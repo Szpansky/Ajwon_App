@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddWork" />
+        <activity android:name=".OpenWorks" />
+        <activity android:name=".AddPerson" />
+        <activity android:name=".AddItems" />
+        <activity android:name=".OpenPersons" />
+        <activity android:name=".OpenItems"></activity>
     </application>
 
 </manifest>

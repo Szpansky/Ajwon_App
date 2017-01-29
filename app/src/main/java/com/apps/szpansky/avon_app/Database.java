@@ -13,27 +13,27 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Avon2.db";    //cala baza
+    public static final String DATABASE_NAME = "Avon.db";    //cala baza
 
     public static final String TABLE_WORKS = "WORKS";    //tabela
-    public static final String WORKS_CATALOG_NR = "CATALOG_NR";      //PRIMARY KEY
-    public static final String WORKS_DATE = "DATE";
+    public static final String WORK_CATALOG_NR = "CATALOG_NR";      //PRIMARY KEY
+    public static final String WORK_PERSONS = "PERSONS";      //FOREIGN KEY WITH TABLE_PERSONS COLUMN PERSON_ID
+    public static final String WORK_DATE = "DATE";
 
 
     public static final String TABLE_PERSONS = "PERSONS";    //tabela
-    public static final String PERSONS_CATALOG_NR = "CATALOG_NR";      //PRIMARY KEY
-    public static final String PERSONS_NAME = "NAME";
-    public static final String PERSONS_SURNAME = "SURNAME";
-    public static final String PERSONS_ADDRESS = "ADDRESS";
-    public static final String PERSONS_ID_ITEMS = "ITEMS";               //PRIMARY KEY
-    public static final String PERSONS_DATE = "DATE";
+    public static final String PERSON_ID = "ID";      //PRIMARY KEY
+    public static final String PERSON_NAME = "NAME";
+    public static final String PERSON_SURNAME = "SURNAME";
+    public static final String PERSON_ADDRESS = "ADDRESS";
+    public static final String PERSON_ITEMS = "ITEMS";               //FOREIGN KEY WITH ITEMS_NR
+    public static final String PERSON_DATE = "DATE";
 
 
     public static final String TABLE_ITEMS = "ITEMS";    //tabela
-    public static final String ITEMS_ID_ITEMS = "ITEMS";               //PRIMARY KEY
-    public static final String ITEMS_ITEM_NR = "ITEM_NR";
-    public static final String ITEMS_PRICE = "PRICE";
-    public static final String ITEMS_DISCOUNT = "DISCOUNT";
+    public static final String ITEM_NR = "ITEM_NR";   //PRIMARY KEY
+    public static final String ITEM_PRICE = "PRICE";
+    public static final String ITEM_DISCOUNT = "DISCOUNT";
 
 
 
@@ -47,25 +47,28 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("create table " + TABLE_WORKS +
-                " (WORKS_CATALOG_NR INTEGER , " +
-                "WORKS_DATE TEXT) " +
-                "PRIMARY KEY (WORKS_CATALOG_NR))");
+        db.execSQL("create table " + TABLE_WORKS +" ("+
+                WORK_CATALOG_NR +" INTEGER," +
+                WORK_PERSONS +" INTEGER," +
+                WORK_DATE +" TEXT," +
+                "PRIMARY KEY ("+ WORK_CATALOG_NR +"), "+
+                "FOREIGN KEY ("+ WORK_PERSONS +") REFERENCES "+ TABLE_PERSONS +" ("+ PERSON_ID +"))");
 
-        db.execSQL("create table " + TABLE_PERSONS +
-                " (PERSONS_CATALOG_NR INTEGER," +
-                "PERSONS_NAME TEXT,PERSONS_SURNAME TEXT," +
-                "PERSONS_ADDRESS TEXT,PERSONS_ID_ITEMS INTEGER," +
-                "PERSONS_DATE TEXT," +
-                "PRIMARY KEY (PERSONS_CATALOG_NR)) " +
-                "FOREIGN KEY (PERSONS_ID_ITEMS) " +
-                "REFERENCES "+ TABLE_ITEMS + "(ITEMS_ID_ITEMS)");
+        db.execSQL("create table " + TABLE_PERSONS +" ("+
+                PERSON_ID +" INTEGER," +
+                PERSON_NAME +" TEXT," +
+                PERSON_SURNAME +" TEXT," +
+                PERSON_ADDRESS +" TEXT," +
+                PERSON_ITEMS +" INTEGER," +
+                PERSON_DATE +" TEXT," +
+                "PRIMARY KEY ("+ PERSON_ID +")," +
+                "FOREIGN KEY ("+ PERSON_ITEMS +") REFERENCES "+ TABLE_ITEMS +" ("+ ITEM_NR +"))");
 
-        db.execSQL("create table " + TABLE_ITEMS +
-                " (ITEMS_ID_ITEMS INTEGER," +
-                "ITEMS_ITEM_NR INTEGER," +
-                "ITEMS_PRICE DOUBLE," +
-                "ITEMS_DISCOUNT INTEGER)");
+        db.execSQL("create table " + TABLE_ITEMS +" ("+
+                ITEM_NR +" INTEGER," +
+                ITEM_PRICE +" DOUBLE," +
+                ITEM_DISCOUNT +" INTEGER," +
+                "PRIMARY KEY ("+ ITEM_NR +"))");
     }
 
     @Override
@@ -76,28 +79,6 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
