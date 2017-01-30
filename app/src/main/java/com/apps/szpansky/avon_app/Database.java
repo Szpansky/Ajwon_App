@@ -1,5 +1,6 @@
 package com.apps.szpansky.avon_app;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -48,7 +49,6 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
@@ -100,6 +100,17 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSONS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
         onCreate(db);
+    }
+
+    public boolean insert_data_works(String catalog_nr){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WORK_CATALOG_NR, catalog_nr);
+        long result = db.insert(TABLE_WORKS,null,contentValues);    //it return row, other way -1
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
 }
 

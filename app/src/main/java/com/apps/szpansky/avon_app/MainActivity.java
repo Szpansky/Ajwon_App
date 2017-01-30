@@ -7,17 +7,17 @@ import android.view.View;
 import android.widget.Button;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
-    Database myDB;
-
+   // public Database myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myDB = new Database(this);            //konstruktor tworzy baze
+     //   myDB = new Database(this);          //konstruktor tworzy baze
 
 
         Button button_new_work = (Button) findViewById(R.id.main_add);
