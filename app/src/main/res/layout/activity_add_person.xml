@@ -66,20 +66,6 @@
         android:id="@+id/text_phone"
         />
 
-    <EditText
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:layout_below="@+id/text_phone"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:inputType="date"
-        android:hint="Date (DD-MM-YY)"
-        android:id="@+id/text_date"
-        />
-
     <Button
         android:text="Add"
         android:layout_width="60dp"

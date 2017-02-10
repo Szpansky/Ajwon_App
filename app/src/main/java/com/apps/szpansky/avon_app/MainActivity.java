@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   myDB = new Database(this);          //konstruktor tworzy baze
+     //   myDB = new Database(this);          //create database
 
 
         Button button_new_work = (Button) findViewById(R.id.main_add);
         Button button_open_works = (Button) findViewById(R.id.main_open);
+        Button button_add_person = (Button) findViewById(R.id.main_add_person);
+        Button button_add_item = (Button) findViewById(R.id.main_add_item);
 
         button_new_work.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +42,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button_add_person.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Intent_Add_Person = new Intent(MainActivity.this, AddPerson.class);
+                MainActivity.this.startActivity(Intent_Add_Person);
+            }
+        });
 
+        button_add_item.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent Intent_Add_Item = new Intent(MainActivity.this, AddItems.class);
+                MainActivity.this.startActivity(Intent_Add_Item);
+            }
+        });
 
     }
 }

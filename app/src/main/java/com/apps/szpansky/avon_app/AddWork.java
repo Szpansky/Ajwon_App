@@ -33,7 +33,7 @@ public class AddWork extends AppCompatActivity {
             public void onClick(View v){
                 boolean isInserted = myDB.insert_data_works(text_catalog.getText().toString());
             if(isInserted == true)
-                Toast.makeText(AddWork.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                Toast.makeText(AddWork.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                 else
                 Toast.makeText(AddWork.this,"Data not Inserted",Toast.LENGTH_LONG).show();
             }

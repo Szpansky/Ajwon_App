@@ -87,7 +87,7 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("create table " + TABLE_ITEMS +" ("+
                 ITEM_CATALOG_NR +" INTEGER PRIMARY KEY NOT NULL," +          // PK
-                ITEM_PRICE +" DOUBLE," +
+                ITEM_PRICE +" DOUBLE NOT NULL," +
                 ITEM_DISCOUNT +" INTEGER)");
 
     }
@@ -107,6 +107,32 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(WORK_CATALOG_NR, catalog_nr);
         long result = db.insert(TABLE_WORKS,null,contentValues);    //it return row, other way -1
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insert_data_persons(String name, String surname, String address, String phone){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PERSON_NAME,name);
+        contentValues.put(PERSON_SURNAME,surname);
+        contentValues.put(PERSON_ADDRESS,address);
+        contentValues.put(PERSON_PHONE,phone);
+        long result = db.insert(TABLE_PERSONS,null,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+    public boolean insert_data_item(String nr, String price, String discount){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ITEM_CATALOG_NR,nr);
+        contentValues.put(ITEM_DISCOUNT,price);
+        contentValues.put(ITEM_PRICE,discount);
+        long result = db.insert(TABLE_ITEMS,null,contentValues);
         if(result == -1)
             return false;
         else

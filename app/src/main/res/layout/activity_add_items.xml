@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="number|numberSigned|numberDecimal"
         android:layout_below="@+id/text_nr"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:hint="Price in zl (1,50)"
