@@ -18,10 +18,10 @@ public class AddPerson extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        myDB = new Database(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
 
+        myDB = new Database(this);
 
         text_name = (EditText)findViewById(R.id.text_name);
         text_surname = (EditText)findViewById(R.id.text_surname);
@@ -31,12 +31,12 @@ public class AddPerson extends AppCompatActivity {
         Add_Data();
     }
     public void Add_Data(){
-        button_add.setOnClickListener(
-                new View.OnClickListener(){
+        button_add.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
                         boolean isInserted = myDB.insert_data_persons(text_name.getText().toString(),
-                                text_surname.getText().toString(),text_address.getText().toString(),
-                                text_phone.getText().toString());
+                                                                        text_surname.getText().toString(),
+                                                                        text_address.getText().toString(),
+                                                                        text_phone.getText().toString());
                         if(isInserted == true)
                             Toast.makeText(AddPerson.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                         else

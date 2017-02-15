@@ -43,6 +43,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_ITEMS = "ITEMS";    //tabela
     public static final String ITEM_CATALOG_NR = "ITEM_NR";   //PRIMARY KEY
     public static final String ITEM_PRICE = "PRICE";
+    public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
 
 
@@ -87,8 +88,9 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("create table " + TABLE_ITEMS +" ("+
                 ITEM_CATALOG_NR +" INTEGER PRIMARY KEY NOT NULL," +          // PK
+                ITEM_NAME +" TEXT NOT NULL," +
                 ITEM_PRICE +" DOUBLE NOT NULL," +
-                ITEM_DISCOUNT +" INTEGER)");
+                ITEM_DISCOUNT +" TEXT)");
 
     }
 
@@ -126,12 +128,13 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
-    public boolean insert_data_item(String nr, String price, String discount){
+    public boolean insert_data_item(String nr, String name, String price, String discount){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ITEM_CATALOG_NR,nr);
-        contentValues.put(ITEM_DISCOUNT,price);
-        contentValues.put(ITEM_PRICE,discount);
+        contentValues.put(ITEM_NAME,name);
+        contentValues.put(ITEM_PRICE,price);
+        contentValues.put(ITEM_DISCOUNT,discount);
         long result = db.insert(TABLE_ITEMS,null,contentValues);
         if(result == -1)
             return false;
