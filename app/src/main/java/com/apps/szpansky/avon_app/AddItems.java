@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class AddItems extends AppCompatActivity {
 
 
-    Database mydb;
+    Database myDB;
     EditText name;
     EditText nr;
     EditText price;
@@ -25,10 +25,12 @@ public class AddItems extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        myDB = new Database(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
 
-        mydb = new Database(this);
+
 
 
 
@@ -58,7 +60,7 @@ public class AddItems extends AppCompatActivity {
                 }else discount +="0";
 
 
-                boolean isInserted = mydb.insert_data_item(nr.getText().toString(),
+                boolean isInserted = myDB.insert_data_item(nr.getText().toString(),
                                                             name.getText().toString(),
                                                             price.getText().toString(),
                                                             discount);
