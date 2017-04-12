@@ -68,6 +68,8 @@ public class AddItems extends AppCompatActivity {
                     Toast.makeText(AddItems.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(AddItems.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                
+                finish();
 
             }
         });

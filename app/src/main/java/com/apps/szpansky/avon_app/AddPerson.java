@@ -41,6 +41,7 @@ public class AddPerson extends AppCompatActivity {
                             Toast.makeText(AddPerson.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(AddPerson.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }
         );

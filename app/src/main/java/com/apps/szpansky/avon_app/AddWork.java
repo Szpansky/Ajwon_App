@@ -36,8 +36,10 @@ public class AddWork extends AppCompatActivity {
                 Toast.makeText(AddWork.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                 else
                 Toast.makeText(AddWork.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                finish();
             }
         }
+
         );
     }
 
