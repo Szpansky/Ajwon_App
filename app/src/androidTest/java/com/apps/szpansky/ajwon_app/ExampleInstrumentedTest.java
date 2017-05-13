@@ -1,4 +1,4 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

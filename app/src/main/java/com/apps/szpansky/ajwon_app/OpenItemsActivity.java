@@ -1,9 +1,9 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class OpenItems extends AppCompatActivity {
+public class OpenItemsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

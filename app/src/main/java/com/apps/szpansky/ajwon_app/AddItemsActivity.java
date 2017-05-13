@@ -1,4 +1,4 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class AddItems extends AppCompatActivity {
+public class AddItemsActivity extends AppCompatActivity {
 
 
     Database myDB;
@@ -42,10 +42,10 @@ public class AddItems extends AppCompatActivity {
         dis_25 = (CheckBox) findViewById(R.id.check_25);
         add = (Button) findViewById(R.id.button_add);
 
-        Add_data();
+        addData();
     }
 
-    public void Add_data(){
+    public void addData(){
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,14 +60,14 @@ public class AddItems extends AppCompatActivity {
                 }else discount +="0";
 
 
-                boolean isInserted = myDB.insert_data_item(nr.getText().toString(),
+                boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
                                                             name.getText().toString(),
                                                             price.getText().toString(),
                                                             discount);
                 if(isInserted == true)
-                    Toast.makeText(AddItems.this,"Data Inserted",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddItemsActivity.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(AddItems.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddItemsActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
                 
                 finish();
 

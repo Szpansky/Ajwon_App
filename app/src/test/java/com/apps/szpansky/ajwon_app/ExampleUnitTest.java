@@ -1,4 +1,4 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import org.junit.Test;
 

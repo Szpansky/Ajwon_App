@@ -1,4 +1,4 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddPerson extends AppCompatActivity {
+public class AddPersonActivity extends AppCompatActivity {
 
     EditText text_name;
     EditText text_surname;
@@ -28,19 +28,19 @@ public class AddPerson extends AppCompatActivity {
         text_address = (EditText)findViewById(R.id.text_addres);
         text_phone = (EditText)findViewById(R.id.text_phone);
         button_add = (Button)findViewById(R.id.button_add);
-        Add_Data();
+        addData();
     }
-    public void Add_Data(){
+    public void addData(){
         button_add.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
-                        boolean isInserted = myDB.insert_data_persons(text_name.getText().toString(),
+                        boolean isInserted = myDB.insertDataToPersons(text_name.getText().toString(),
                                                                         text_surname.getText().toString(),
                                                                         text_address.getText().toString(),
                                                                         text_phone.getText().toString());
                         if(isInserted == true)
-                            Toast.makeText(AddPerson.this,"Data Inserted",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddPersonActivity.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                         else
-                            Toast.makeText(AddPerson.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddPersonActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
                         finish();
                     }
                 }

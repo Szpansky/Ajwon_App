@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.apps.szpansky.avon_app.MainActivity">
+    tools:context="com.apps.szpansky.ajwon_app.MainActivity">
 
     <Button
         android:textColor="@android:color/holo_blue_dark"
@@ -36,12 +36,12 @@
         android:textColor="@android:color/holo_blue_dark"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:textStyle="bold"
-        android:text="Add Client"
+        android:text="Open Clients"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/main_open"
         android:layout_marginTop="48dp"
-        android:id="@+id/main_add_person"  />
+        android:id="@+id/main_open_person"  />
 
     <Button
         android:textColor="@android:color/holo_blue_dark"
@@ -50,7 +50,7 @@
         android:text="Add Item"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/main_add_person"
+        android:layout_below="@+id/main_open_person"
         android:layout_marginTop="16dp"
         android:id="@+id/main_add_item"  />
 

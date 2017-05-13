@@ -1,4 +1,4 @@
-package com.apps.szpansky.avon_app;
+package com.apps.szpansky.ajwon_app;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,16 +12,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Avon3.db";
+    public static final String DATABASE_NAME = "Avon7.db";
+    public static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_WORKS = "WORKS";    //tabela
-    public static final String WORK_CATALOG_NR = "CATALOG_NR";      //PK
+    public static final String WORK_CATALOG_NR = "_id";      //PK
     public static final String WORK_DATE = "DATE";              //AUTO DATE
 
     public static final String[] ALL_KEYS_WORK = new String[]{WORK_CATALOG_NR, WORK_DATE};
 
     public static final String TABLE_CLIENTS = "CLIENTS";
-    public static final String CLIENT_ORDER_ID = "ID";      //PRIMARY KEY
+    public static final String CLIENT_ORDER_ID = "_id";      //PRIMARY KEY
     public static final String CLIENT_ID = "CLIENT_ID";          //FK TO PERSON_ID IN TABLE_PERSONS
     public static final String CLIENT_CARALOG_NR = "CATALOG_NR";   //FK TO CATALOG_NR IN WORKS
     public static final String CLIENT_DATE = "DATE";         //AUTO DATE
@@ -35,12 +36,13 @@ public class Database extends SQLiteOpenHelper {
 
 
     public static final String TABLE_PERSONS = "PERSONS";    //tabela
-    public static final String PERSON_ID = "ID";      //PRIMARY KEY
+    public static final String PERSON_ID = "_id";      //PRIMARY KEY
     public static final String PERSON_NAME = "NAME";
     public static final String PERSON_SURNAME = "SURNAME";
     public static final String PERSON_ADDRESS = "ADDRESS";
     public static final String PERSON_PHONE = "PHONE";
 
+    public static final String[] ALL_KEYS_PERSONS = new String[]{PERSON_ID, PERSON_NAME, PERSON_SURNAME, PERSON_PHONE, PERSON_ADDRESS};
 
     public static final String TABLE_ITEMS = "ITEMS";    //tabela
     public static final String ITEM_CATALOG_NR = "ITEM_NR";   //PRIMARY KEY
@@ -51,7 +53,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     public Database(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -83,11 +85,11 @@ public class Database extends SQLiteOpenHelper {
 
 
         db.execSQL("create table " + TABLE_PERSONS +" ("+
-                PERSON_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +        //PK
+                PERSON_ID +" INTEGER PRIMARY KEY NOT NULL," +        //PK
                 PERSON_NAME +" TEXT," +
                 PERSON_SURNAME +" TEXT," +
                 PERSON_ADDRESS +" TEXT," +
-                PERSON_PHONE +" REAL NOT NULL)");
+                PERSON_PHONE +" LONG NOT NULL)");
 
 
         db.execSQL("create table " + TABLE_ITEMS +" ("+
@@ -108,7 +110,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insert_data_works(String catalog_nr){
+    public boolean insertDataToWorks(String catalog_nr){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WORK_CATALOG_NR, catalog_nr);
@@ -119,7 +121,7 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insert_data_persons(String name, String surname, String address, String phone){
+    public boolean insertDataToPersons(String name, String surname, String address, String phone){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PERSON_NAME,name);
@@ -132,7 +134,7 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
-    public boolean insert_data_item(String nr, String name, String price, String discount){
+    public boolean insertDataToItems(String nr, String name, String price, String discount){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ITEM_CATALOG_NR,nr);
@@ -147,22 +149,20 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-
-
-
-    public Cursor getWORK_ROWS(){
-        String where = null;
+    public Cursor getAllRows(String TABLE_NAME, String[] ROW_NAME, String ID){
+        String[] where = null;            //TODO dodanie mozliwosci wyboru
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query(true, TABLE_WORKS, ALL_KEYS_WORK, WORK_CATALOG_NR, null, null, null, null, null );
+        Cursor c = db.query(true, TABLE_NAME, ROW_NAME, ID, where, null, null, null, null );
         if (c != null) {
             c.moveToFirst();
             }
         return c;
     }
 
-    public boolean delete(String TABLE_NAME, String ROW_NAME){
+    public boolean delete(String TABLE_NAME, long ROW_NAME, String ID){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, ROW_NAME, null) != 0;
+        String where = ID +" = "+ ROW_NAME;
+        return db.delete(TABLE_NAME, where, null) != 0;
     }
 
 }

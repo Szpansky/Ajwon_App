@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.apps.szpansky.avon_app">
+    package="com.apps.szpansky.ajwon_app">
 
     <application
         android:allowBackup="true"
@@ -8,19 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.apps.szpansky.ajwon_app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddWork" />
-        <activity android:name=".OpenWorks" />
-        <activity android:name=".AddPerson" />
-        <activity android:name=".AddItems" />
-        <activity android:name=".OpenPersons" />
-        <activity android:name=".OpenItems"></activity>
+        <activity android:name="com.apps.szpansky.ajwon_app.AddWorkActivity" />
+        <activity android:name="com.apps.szpansky.ajwon_app.OpenWorksActivity" />
+        <activity android:name="com.apps.szpansky.ajwon_app.AddPersonActivity" />
+        <activity android:name="com.apps.szpansky.ajwon_app.AddItemsActivity" />
+        <activity android:name="com.apps.szpansky.ajwon_app.OpenPersonsActivity" />
+        <activity android:name="com.apps.szpansky.ajwon_app.OpenItemsActivity"></activity>
     </application>
 
 </manifest>
