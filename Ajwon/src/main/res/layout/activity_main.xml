@@ -30,7 +30,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/main_add"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:id="@+id/main_open" />
+        android:id="@+id/main_open_works" />
 
     <Button
         android:textColor="@android:color/holo_blue_dark"
@@ -39,7 +39,7 @@
         android:text="Open Clients"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/main_open"
+        android:layout_below="@+id/main_open_works"
         android:layout_marginTop="48dp"
         android:id="@+id/main_open_person"  />
 
@@ -47,12 +47,12 @@
         android:textColor="@android:color/holo_blue_dark"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:textStyle="bold"
-        android:text="Add Item"
+        android:text="Open Items"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/main_open_person"
         android:layout_marginTop="16dp"
-        android:id="@+id/main_add_item"  />
+        android:id="@+id/main_open_item"  />
 
 
 </RelativeLayout>

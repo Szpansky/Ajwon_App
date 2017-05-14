@@ -5,33 +5,33 @@
     android:layout_height="80dp">
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/catalog_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/catalog_id"
-        android:layout_alignParentTop="true"
-        android:textSize="20sp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView"
+        android:textSize="20sp" />
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/order_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/order_date"
-        android:textSize="10sp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:text="TextView"
+        android:textSize="10sp" />
 
 
     <ImageView
+        android:id="@+id/image_cosmetic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/image_cosmetic"
         android:layout_above="@+id/order_date"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@mipmap/ic_launcher" />
 </RelativeLayout>

@@ -12,8 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Avon7.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_NAME = "Ajwon.db";
+    public static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_WORKS = "WORKS";    //tabela
     public static final String WORK_CATALOG_NR = "_id";      //PK
@@ -45,11 +45,12 @@ public class Database extends SQLiteOpenHelper {
     public static final String[] ALL_KEYS_PERSONS = new String[]{PERSON_ID, PERSON_NAME, PERSON_SURNAME, PERSON_PHONE, PERSON_ADDRESS};
 
     public static final String TABLE_ITEMS = "ITEMS";    //tabela
-    public static final String ITEM_CATALOG_NR = "ITEM_NR";   //PRIMARY KEY
+    public static final String ITEM_CATALOG_NR = "_id";   //PRIMARY KEY
     public static final String ITEM_PRICE = "PRICE";
     public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
 
+    public static final String[] ALL_KEYS_ITEMS = new String[]{ITEM_CATALOG_NR,ITEM_NAME,ITEM_PRICE,ITEM_DISCOUNT};
 
 
     public Database(Context context) {

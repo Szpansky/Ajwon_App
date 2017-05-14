@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button button_new_work = (Button) findViewById(R.id.main_add);
-        Button button_open_works = (Button) findViewById(R.id.main_open);
+        Button button_open_works = (Button) findViewById(R.id.main_open_works);
         Button button_open_person = (Button) findViewById(R.id.main_open_person);
-        Button button_add_item = (Button) findViewById(R.id.main_add_item);
+        Button button_open_item = (Button) findViewById(R.id.main_open_item);
 
         button_new_work.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_add_item.setOnClickListener(new View.OnClickListener(){
+        button_open_item.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent Intent_Add_Item = new Intent(MainActivity.this, AddItemsActivity.class);
-                MainActivity.this.startActivity(Intent_Add_Item);
+                Intent Intent_Open_Items = new Intent(MainActivity.this, OpenItemsActivity.class);
+                MainActivity.this.startActivity(Intent_Open_Items);
             }
         });
 
