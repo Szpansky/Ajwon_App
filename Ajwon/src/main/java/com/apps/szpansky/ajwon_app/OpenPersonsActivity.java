@@ -32,8 +32,8 @@ public class OpenPersonsActivity extends AppCompatActivity {
     }
 
     public void addData(){
-        Button button_add_order = (Button) findViewById(R.id.add_person);
-        button_add_order.setOnClickListener(new View.OnClickListener() {
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -47,8 +47,8 @@ public class OpenPersonsActivity extends AppCompatActivity {
 
     private void populateListView(){
         Cursor cursor = myDB.getAllRows(Database.TABLE_PERSONS,Database.ALL_KEYS_PERSONS, Database.PERSON_ID);
-        String[] fromFieldsNames = new String[] {Database.PERSON_ID,Database.PERSON_NAME,Database.PERSON_SURNAME,Database.PERSON_PHONE,Database.PERSON_ADDRESS};
-        int[] toViewIDs = new int[] {R.id.person_id, R.id.person_name,R.id.person_surname,R.id.person_phone,R.id.person_address};
+        String[] fromFieldsNames = Database.ALL_KEYS_PERSONS;
+        int[] toViewIDs = new int[] {R.id.personId, R.id.personName,R.id.personSurname,R.id.personPhone,R.id.personAddress};
         SimpleCursorAdapter myCursorAdapter;
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_person_view, cursor, fromFieldsNames, toViewIDs, 0);
         ListView workView = (ListView) findViewById(R.id.list_view_persons);

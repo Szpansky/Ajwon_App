@@ -9,11 +9,11 @@ import android.widget.Toast;
 
 public class AddPersonActivity extends AppCompatActivity {
 
-    EditText text_name;
-    EditText text_surname;
-    EditText text_address;
-    EditText text_phone;
-    Button button_add;
+    EditText name;
+    EditText surname;
+    EditText address;
+    EditText phone;
+    Button add;
     Database myDB;
 
     @Override
@@ -23,20 +23,20 @@ public class AddPersonActivity extends AppCompatActivity {
 
         myDB = new Database(this);
 
-        text_name = (EditText)findViewById(R.id.text_name);
-        text_surname = (EditText)findViewById(R.id.text_surname);
-        text_address = (EditText)findViewById(R.id.text_addres);
-        text_phone = (EditText)findViewById(R.id.text_phone);
-        button_add = (Button)findViewById(R.id.button_add);
+        name = (EditText)findViewById(R.id.name);
+        surname = (EditText)findViewById(R.id.surname);
+        address = (EditText)findViewById(R.id.addres);
+        phone = (EditText)findViewById(R.id.phone);
+        add = (Button)findViewById(R.id.add);
         addData();
     }
     public void addData(){
-        button_add.setOnClickListener(new View.OnClickListener(){
+        add.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
-                        boolean isInserted = myDB.insertDataToPersons(text_name.getText().toString(),
-                                                                        text_surname.getText().toString(),
-                                                                        text_address.getText().toString(),
-                                                                        text_phone.getText().toString());
+                        boolean isInserted = myDB.insertDataToPersons(name.getText().toString(),
+                                                                        surname.getText().toString(),
+                                                                        address.getText().toString(),
+                                                                        phone.getText().toString());
                         if(isInserted == true)
                             Toast.makeText(AddPersonActivity.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                         else

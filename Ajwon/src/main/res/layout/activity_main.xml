@@ -10,16 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.apps.szpansky.ajwon_app.MainActivity">
 
-    <Button
-        android:textColor="@android:color/holo_blue_dark"
-        android:textColorHighlight="@android:color/holo_red_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="New Work"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:id="@+id/main_add" />
 
     <Button
         android:textColor="@android:color/holo_blue_dark"
@@ -27,21 +17,9 @@
         android:textStyle="bold"
         android:text="Open Works"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/main_add"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:id="@+id/main_open_works" />
-
-    <Button
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="Open Clients"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/main_open_works"
-        android:layout_marginTop="48dp"
-        android:id="@+id/main_open_person"  />
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/openWorks" />
 
     <Button
         android:textColor="@android:color/holo_blue_dark"
@@ -49,10 +27,21 @@
         android:textStyle="bold"
         android:text="Open Items"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/main_open_person"
-        android:layout_marginTop="16dp"
-        android:id="@+id/main_open_item"  />
+        android:layout_height="100dp"
+        android:layout_below="@+id/openPersons"
+        android:layout_marginTop="1dp"
+        android:id="@+id/openItems"  />
+
+    <Button
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="Open Clients"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/openPersons"
+        android:layout_below="@+id/openWorks"
+        android:layout_marginTop="1dp" />
 
 
 </RelativeLayout>

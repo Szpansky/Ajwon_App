@@ -20,21 +20,7 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:inputType="textPersonName"
         android:hint="Item Name"
-        android:id="@+id/text_name"
-        />
-
-    <EditText
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Item Nr"
-        android:layout_below="@+id/text_name"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:id="@+id/text_nr"
+        android:id="@+id/name"
         />
 
     <EditText
@@ -45,60 +31,164 @@
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="number|numberSigned|numberDecimal"
-        android:layout_below="@+id/text_nr"
+        android:layout_below="@+id/nr"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:hint="Price in zl (1,50)"
-        android:id="@+id/text_price"
+        android:hint="Price in zl (1.50)"
+        android:id="@+id/price"
         />
 
-    <CheckBox
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="10% Discount"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/text_price"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/check_10"
-        />
-
-    <CheckBox
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="20% Discount"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/check_10"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/check_20"
-        />
-
-    <CheckBox
-        android:textColor="@android:color/holo_blue_dark"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="25% Discount"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/check_20"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/check_25"
-        />
 
     <Button
         android:text="Add"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/button_add"
+        android:layout_alignParentRight="true"
+        android:id="@+id/add"
         />
 
+
+
+    <TextView
+        android:text="Select Discounts"
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/price"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/simpleText" />
+
+
+    <EditText
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Item Nr"
+        android:layout_marginTop="16dp"
+        android:id="@+id/nr"
+        android:layout_below="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="5%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_5"
+        android:layout_below="@+id/simpleText"
+        android:layout_alignParentLeft="true" />
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="10%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_10"
+        android:layout_below="@+id/check_5"
+        android:layout_alignParentLeft="true" />
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="15%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_15"
+        android:layout_below="@+id/check_10"
+        android:layout_alignParentLeft="true" />
+
+
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="20%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_20"
+        android:layout_below="@+id/simpleText"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="25%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_25"
+        android:layout_below="@+id/check_20"
+        android:layout_centerHorizontal="true" />
+
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="30%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_30"
+        android:layout_below="@+id/check_25"
+        android:layout_centerHorizontal="true" />
+
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="35%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_35"
+        android:layout_below="@+id/simpleText"
+        android:layout_alignParentRight="true" />
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="35%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_40"
+        android:layout_below="@+id/check_35"
+        android:layout_alignParentRight="true" />
+
+
+    <CheckBox
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:text="40%"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/check_45"
+        android:layout_below="@+id/check_40"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

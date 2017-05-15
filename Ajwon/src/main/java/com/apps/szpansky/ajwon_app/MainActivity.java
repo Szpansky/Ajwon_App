@@ -20,21 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
        Database myDB = new Database(this);          //create database
 
+        Button openWorks = (Button) findViewById(R.id.openWorks);
+        Button openPersons = (Button) findViewById(R.id.openPersons);
+        Button openItems = (Button) findViewById(R.id.openItems);
 
-        Button button_new_work = (Button) findViewById(R.id.main_add);
-        Button button_open_works = (Button) findViewById(R.id.main_open_works);
-        Button button_open_person = (Button) findViewById(R.id.main_open_person);
-        Button button_open_item = (Button) findViewById(R.id.main_open_item);
 
-        button_new_work.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Intent_Add_Work = new Intent(MainActivity.this, AddWorkActivity.class);
-                MainActivity.this.startActivity(Intent_Add_Work);
-            }
-        });
-
-        button_open_works.setOnClickListener(new View.OnClickListener() {
+        openWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Intent_Open_Works = new Intent(MainActivity.this, OpenWorksActivity.class);
@@ -43,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_open_person.setOnClickListener(new View.OnClickListener() {
+        openPersons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenPersonsActivity.class);
@@ -51,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_open_item.setOnClickListener(new View.OnClickListener(){
+        openItems.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent Intent_Open_Items = new Intent(MainActivity.this, OpenItemsActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Items);

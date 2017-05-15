@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="85dp">
+    android:layout_height="90dp">
 
 
     <TextView
-        android:id="@+id/item_id"
+        android:id="@+id/itemId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,23 +18,23 @@
 
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/item_id"
+        android:layout_below="@id/itemId"
         android:text="Item Name"
         android:textSize="20sp"
         />
 
 
     <TextView
-        android:id="@+id/item_price"
+        android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/item_id"
-        android:layout_below="@id/item_name"
+        android:layout_alignLeft="@id/itemId"
+        android:layout_below="@id/itemName"
         android:textSize="20sp"
         android:text="Item Price"
         />
@@ -42,10 +42,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/item_discount"
+        android:id="@+id/itemDiscount"
         android:textSize="20sp"
         android:text="Discounts"
-        android:layout_alignBaseline="@id/item_name"
+        android:layout_alignBaseline="@id/itemName"
         android:layout_marginLeft="200dp"
         />
 

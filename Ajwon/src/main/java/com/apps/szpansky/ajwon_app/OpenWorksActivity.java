@@ -13,7 +13,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class OpenWorksActivity extends AppCompatActivity {
 
-Database myDB;
+Database myDB = new Database(this);
 
 
     @Override
@@ -26,17 +26,17 @@ Database myDB;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_works);
-        myDB = new Database(this);
         addData();
         populateListView();
         listViewItemDelClick();
+        listViewItemClick();
     }
 
 
 
     public void addData(){
-        Button button_add_order = (Button) findViewById(R.id.add_work);
-        button_add_order.setOnClickListener(new View.OnClickListener() {
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -49,8 +49,8 @@ Database myDB;
 
     private void populateListView(){
         Cursor cursor = myDB.getAllRows(Database.TABLE_WORKS,Database.ALL_KEYS_WORK, Database.WORK_CATALOG_NR);
-        String[] fromFieldsNames = new String[] {Database.WORK_CATALOG_NR,Database.WORK_DATE};
-        int[] toViewIDs = new int[] {R.id.catalog_id, R.id.order_date};
+        String[] fromFieldsNames = Database.ALL_KEYS_WORK;
+        int[] toViewIDs = new int[] {R.id.catalogId, R.id.date};
         SimpleCursorAdapter myCursorAdapter;
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_work_view, cursor, fromFieldsNames, toViewIDs, 0);
         ListView workView = (ListView) findViewById(R.id.list_view_catalogs);
@@ -59,7 +59,7 @@ Database myDB;
 
     private void listViewItemDelClick(){
         final ListView myList = (ListView) findViewById(R.id.list_view_catalogs);
-            myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 myDB.delete(Database.TABLE_WORKS,id,Database.WORK_CATALOG_NR);
@@ -71,7 +71,23 @@ Database myDB;
     }
 
 
+    private void listViewItemClick(){
+        final ListView myList = (ListView) findViewById(R.id.list_view_catalogs);
+        myList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent Intent_Open_Orders = new Intent(OpenWorksActivity.this, OpenOrdersActivity.class );
+
+                Bundle b = new Bundle();
+                b.putLong("id", id);
+                Intent_Open_Orders.putExtras(b);
+
+                OpenWorksActivity.this.startActivity(Intent_Open_Orders);
+
+            }
+        });
+    }
 
 
 }

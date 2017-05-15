@@ -34,8 +34,8 @@ public class OpenItemsActivity extends AppCompatActivity {
 
 
     public void addData(){
-        Button button_add_item = (Button) findViewById(R.id.button_add);
-        button_add_item.setOnClickListener(new View.OnClickListener() {
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Intent_Add_Item = new Intent(OpenItemsActivity.this, AddItemsActivity.class);
@@ -48,7 +48,7 @@ public class OpenItemsActivity extends AppCompatActivity {
     private void populateListView() {
         Cursor cursor = myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_CATALOG_NR);
         String[] fromFieldsNames = Database.ALL_KEYS_ITEMS;
-        int[] toViewIDs = new int[]{R.id.item_id, R.id.item_name, R.id.item_price, R.id.item_discount};
+        int[] toViewIDs = new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount};
         SimpleCursorAdapter myCursorAdapter;
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_item_view, cursor, fromFieldsNames, toViewIDs, 0);
         ListView workView = (ListView) findViewById(R.id.list_view_items);

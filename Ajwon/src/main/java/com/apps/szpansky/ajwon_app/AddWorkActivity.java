@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 public class AddWorkActivity extends AppCompatActivity {
 
-    EditText text_catalog;
-    Button button_add;
+    EditText catalogId;
+    Button add;
     Database myDB;
 
     @Override
@@ -21,17 +21,17 @@ public class AddWorkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_work);
 
-        text_catalog = (EditText)findViewById(R.id.text_catalog);
-        button_add = (Button)findViewById(R.id.button_add);
+        catalogId = (EditText)findViewById(R.id.catalogId);
+        add = (Button)findViewById(R.id.add);
         addData();
     }
 
     public void addData(){
 
-        button_add.setOnClickListener(
+        add.setOnClickListener(
                 new View.OnClickListener(){
             public void onClick(View v){
-                boolean isInserted = myDB.insertDataToWorks(text_catalog.getText().toString());
+                boolean isInserted = myDB.insertDataToWorks(catalogId.getText().toString());
             if(isInserted == true)
                 Toast.makeText(AddWorkActivity.this,"Data Inserted",Toast.LENGTH_SHORT).show();
                 else

@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="90dp">
 
 
     <TextView
-        android:id="@+id/person_id"
+        android:id="@+id/personId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -16,52 +16,52 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/person_address"
+        android:id="@+id/personAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/person_surname"
-        android:layout_alignStart="@+id/person_surname"
-        android:layout_below="@+id/person_surname"
+        android:layout_alignLeft="@+id/personSurname"
+        android:layout_alignStart="@+id/personSurname"
+        android:layout_below="@+id/personSurname"
         android:text="TextView"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/person_name"
+        android:id="@+id/personName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/person_id"
+        android:layout_below="@+id/personId"
         android:text="TextView"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/person_phone"
+        android:id="@+id/personPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/person_name"
+        android:layout_below="@+id/personName"
         android:text="TextView"
         android:textSize="20sp" />
 
     <ImageView
-        android:id="@+id/image_cosmetic"
+        android:id="@+id/imageCosmetic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/order_date"
+        android:layout_above="@+id/date"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/person_surname"
+        android:id="@+id/personSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/person_name"
-        android:layout_alignBottom="@+id/person_name"
+        android:layout_alignBaseline="@+id/personName"
+        android:layout_alignBottom="@+id/personName"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
