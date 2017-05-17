@@ -15,6 +15,24 @@ import android.widget.SimpleCursorAdapter;
 
 public class OpenWorksActivity extends AppCompatActivity {
 
+    private Database myDB;
+    private Cursor cursor;
+    private String[] fromFieldsNames;
+    private int[] toViewIDs;
+    private SimpleCursorAdapter myCursorAdapter;
+    private ListView workView;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_open_works);
+
+        addData();
+        listViewItemClick();
+
+    }
 
     @Override
     protected void onStart() {
@@ -28,29 +46,10 @@ public class OpenWorksActivity extends AppCompatActivity {
     }
 
 
-    Database myDB;
-    Cursor cursor;
-    String[] fromFieldsNames;
-    int[] toViewIDs;
-    SimpleCursorAdapter myCursorAdapter;
-    ListView workView;
-
-
     @Override
     protected void onPostResume() {
         super.onPostResume();
         workView.setAdapter(myCursorAdapter);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_works);
-
-        addData();
-        listViewItemClick();
-
     }
 
 
@@ -75,9 +74,10 @@ public class OpenWorksActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
+
                         myDB.delete(Database.TABLE_WORKS, id, Database.WORK_CATALOG_NR);
-                        finish();
-                        startActivity(getIntent());
+                        refreshListView();
+
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
@@ -120,4 +120,12 @@ public class OpenWorksActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void refreshListView(){
+        cursor = myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_CATALOG_NR);
+        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_work_view, cursor, fromFieldsNames, toViewIDs, 0);
+        workView.setAdapter(myCursorAdapter);
+    }
+
 }
