@@ -72,7 +72,7 @@
         android:ems="10"
         android:inputType="number"
         android:hint="Item Nr"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
         android:id="@+id/nr"
         android:layout_below="@+id/name"
         android:layout_alignParentLeft="true"

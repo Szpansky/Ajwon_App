@@ -1,7 +1,11 @@
 package com.apps.szpansky.ajwon_app;
 
+import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.BoringLayout;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,6 +33,15 @@ public class AddItemsActivity extends AppCompatActivity {
     Integer discount = 0;
 
 
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         myDB = new Database(this);
@@ -36,8 +49,9 @@ public class AddItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
 
-        name = (EditText) findViewById(R.id.name);
+
         nr = (EditText) findViewById(R.id.nr);
+        name = (EditText) findViewById(R.id.name);
         price = (EditText) findViewById(R.id.price);
         dis_5 = (CheckBox) findViewById(R.id.check_5);
         dis_10 = (CheckBox) findViewById(R.id.check_10);
@@ -50,17 +64,45 @@ public class AddItemsActivity extends AppCompatActivity {
         dis_45 = (CheckBox) findViewById(R.id.check_45);
         add = (Button) findViewById(R.id.add);
 
-        addData();
+
+
+
+
+        Bundle b = getIntent().getExtras();
+        long id = 0; // or other values
+        Boolean edit = false; // or other values
+        if (b != null) {
+            id = b.getLong("id");
+            edit = b.getBoolean("edit");
+        }
+
+        if (edit) {
+            //String [] where = new String[]{String.valueOf("_id ="+id)};
+            //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
+
+            //TODO get data from cursor -> to EditText
+            nr.setText(Long.toString(id));
+            nr.setFocusable(false);
+
+
+            //System.out.println(cursor.toString());
+        }
+
+
+        addData(id,edit);
+
     }
 
 
-    public void addData() {
+
+    public void addData(final long id, final boolean edit) {
         add.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
 
+                myDB.delete(Database.TABLE_WORKS, id, Database.WORK_CATALOG_NR);
                 if (dis_5.isChecked()) discount +=1;
                 if (dis_10.isChecked()) discount +=10;
                 if (dis_15.isChecked()) discount +=100;
@@ -71,15 +113,32 @@ public class AddItemsActivity extends AppCompatActivity {
                 if (dis_40.isChecked()) discount +=10000000;
                 if (dis_45.isChecked()) discount +=100000000;
 
-                boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
-                        name.getText().toString(),
-                        price.getText().toString(),
-                        discount.toString());
-                if (isInserted == true)
-                    Toast.makeText(AddItemsActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(AddItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-                finish();
+
+
+                if (edit){
+                    boolean isUpdated = myDB.updateRowItem(id,
+                            name.getText().toString(),
+                            price.getText().toString(),
+                            discount.toString());
+                    if (isUpdated == true)
+                        Toast.makeText(AddItemsActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AddItemsActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
+                            name.getText().toString(),
+                            price.getText().toString(),
+                            discount.toString());
+                    if (isInserted == true)
+                        Toast.makeText(AddItemsActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AddItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+
+
             }
         });
 

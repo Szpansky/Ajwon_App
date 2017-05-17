@@ -151,7 +151,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     public Cursor getAllRows(String TABLE_NAME, String[] ROW_NAME, String ID){
-        String[] where = null;            //TODO dodanie mozliwosci wyboru
+        String[] where = null;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(true, TABLE_NAME, ROW_NAME, ID, where, null, null, null, null );
         if (c != null) {
@@ -159,6 +159,34 @@ public class Database extends SQLiteOpenHelper {
             }
         return c;
     }
+
+    public Cursor getRow(String TABLE_NAME, String[] ALL_KEYS, long rowId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String where = "_id="+rowId;
+        Cursor c = db.query(true, TABLE_NAME, ALL_KEYS, where, null, null, null, null, null );
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public boolean updateRowItem(long id, String name, String price, String discount){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String where = "_id="+id;
+        ContentValues newValues = new ContentValues();
+        newValues.put(ITEM_NAME,name);
+        newValues.put(ITEM_PRICE,price);
+        newValues.put(ITEM_DISCOUNT,discount);
+        long result = db.update(TABLE_ITEMS,newValues,where,null);
+        if(result == -1)
+            return false;
+        else
+            return true;
+
+    }
+
+
 
     public boolean delete(String TABLE_NAME, long ROW_NAME, String ID){
         SQLiteDatabase db = this.getWritableDatabase();

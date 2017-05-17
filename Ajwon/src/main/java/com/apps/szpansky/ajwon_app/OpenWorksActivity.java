@@ -29,8 +29,9 @@ public class OpenWorksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_works);
 
-        addData();
         listViewItemClick();
+        addData();
+
 
     }
 
