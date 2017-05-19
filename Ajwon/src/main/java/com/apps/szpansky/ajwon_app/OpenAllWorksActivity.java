@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 
-public class OpenWorksActivity extends AppCompatActivity {
+public class OpenAllWorksActivity extends AppCompatActivity {
 
     private Database myDB;
     private Cursor cursor;
@@ -61,8 +61,8 @@ public class OpenWorksActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent Intent_Add_Work = new Intent(OpenWorksActivity.this, AddWorkActivity.class);
-                OpenWorksActivity.this.startActivity(Intent_Add_Work);
+                Intent Intent_Add_Work = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
+                OpenAllWorksActivity.this.startActivity(Intent_Add_Work);
             }
         });
     }
@@ -111,12 +111,12 @@ public class OpenWorksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
-                    Intent Intent_Open_Orders = new Intent(OpenWorksActivity.this, AddWorkActivity.class);
+                    Intent Intent_Open_Orders = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
                     Bundle b = new Bundle();
                     b.putBoolean("edit", true);
                     b.putLong("id", id);
                     Intent_Open_Orders.putExtras(b);
-                    OpenWorksActivity.this.startActivity(Intent_Open_Orders);
+                    OpenAllWorksActivity.this.startActivity(Intent_Open_Orders);
                 }
                 flag[0] = true;
             }

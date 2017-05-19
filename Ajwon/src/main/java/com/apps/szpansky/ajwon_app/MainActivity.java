@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         openWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Intent_Open_Works = new Intent(MainActivity.this, OpenWorksActivity.class);
+                Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllWorksActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Works);
 
             }
@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         openPersons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenPersonsActivity.class);
+                Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenAllPersonsActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Persons);
             }
         });
 
         openItems.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent Intent_Open_Items = new Intent(MainActivity.this, OpenItemsActivity.class);
+                Intent Intent_Open_Items = new Intent(MainActivity.this, OpenAllItemsActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Items);
             }
         });

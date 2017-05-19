@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class AddWorkActivity extends AppCompatActivity {
+public class AddEditWorkActivity extends AppCompatActivity {
 
     EditText catalogId;
     Button add;
@@ -56,17 +56,17 @@ public class AddWorkActivity extends AppCompatActivity {
                 if (edit) {
                     boolean isUpdated = myDB.updateRowWork(id);
                     if (isUpdated == true)
-                        Toast.makeText(AddWorkActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditWorkActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddWorkActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditWorkActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
 
                     boolean isInserted = myDB.insertDataToWorks(catalogId.getText().toString());
                     if (isInserted == true)
-                        Toast.makeText(AddWorkActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditWorkActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddWorkActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditWorkActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                     finish();
 
                 }

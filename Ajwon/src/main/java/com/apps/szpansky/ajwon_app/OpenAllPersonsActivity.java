@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class OpenPersonsActivity extends AppCompatActivity {
+public class OpenAllPersonsActivity extends AppCompatActivity {
 
 
     private Database myDB;
@@ -58,8 +58,8 @@ public class OpenPersonsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent Intent_Add_Person = new Intent(OpenPersonsActivity.this, AddPersonActivity.class);
-                OpenPersonsActivity.this.startActivity(Intent_Add_Person);
+                Intent Intent_Add_Person = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
+                OpenAllPersonsActivity.this.startActivity(Intent_Add_Person);
             }
         });
     }
@@ -113,14 +113,14 @@ public class OpenPersonsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
-                    Intent intent = new Intent(OpenPersonsActivity.this, AddPersonActivity.class);
+                    Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
 
                     Bundle b = new Bundle();
                     b.putBoolean("edit", true);
                     b.putLong("id", id);
                     intent.putExtras(b);
 
-                    OpenPersonsActivity.this.startActivity(intent);
+                    OpenAllPersonsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;
             }

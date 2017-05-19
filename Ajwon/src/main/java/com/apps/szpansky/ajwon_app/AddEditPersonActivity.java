@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddPersonActivity extends AppCompatActivity {
+public class AddEditPersonActivity extends AppCompatActivity {
 
     EditText name;
     EditText surname;
@@ -62,9 +62,9 @@ public class AddPersonActivity extends AppCompatActivity {
                                     address.getText().toString(),
                                     phone.getText().toString());
                             if (isUpdated == true)
-                                Toast.makeText(AddPersonActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddEditPersonActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                             else
-                                Toast.makeText(AddPersonActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddEditPersonActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
                             finish();
                         }
                         else {
@@ -74,9 +74,9 @@ public class AddPersonActivity extends AppCompatActivity {
                                     address.getText().toString(),
                                     phone.getText().toString());
                             if (isInserted == true)
-                                Toast.makeText(AddPersonActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddEditPersonActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                             else
-                                Toast.makeText(AddPersonActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddEditPersonActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                             finish();
 
                         }

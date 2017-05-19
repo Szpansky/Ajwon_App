@@ -1,11 +1,7 @@
 package com.apps.szpansky.ajwon_app;
 
-import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.BoringLayout;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class AddItemsActivity extends AppCompatActivity {
+public class AddEditItemsActivity extends AppCompatActivity {
 
 
     Database myDB;
@@ -113,9 +109,9 @@ public class AddItemsActivity extends AppCompatActivity {
                             price.getText().toString(),
                             discount.toString());
                     if (isUpdated == true)
-                        Toast.makeText(AddItemsActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddItemsActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
                     finish();
                 }
                 else {
@@ -124,9 +120,9 @@ public class AddItemsActivity extends AppCompatActivity {
                             price.getText().toString(),
                             discount.toString());
                     if (isInserted == true)
-                        Toast.makeText(AddItemsActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                     finish();
                 }
 
