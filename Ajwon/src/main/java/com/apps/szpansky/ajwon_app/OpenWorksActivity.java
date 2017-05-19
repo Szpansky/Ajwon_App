@@ -111,8 +111,9 @@ public class OpenWorksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
-                    Intent Intent_Open_Orders = new Intent(OpenWorksActivity.this, OpenOrdersActivity.class);
+                    Intent Intent_Open_Orders = new Intent(OpenWorksActivity.this, AddWorkActivity.class);
                     Bundle b = new Bundle();
+                    b.putBoolean("edit", true);
                     b.putLong("id", id);
                     Intent_Open_Orders.putExtras(b);
                     OpenWorksActivity.this.startActivity(Intent_Open_Orders);

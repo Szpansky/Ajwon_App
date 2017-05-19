@@ -34,14 +34,6 @@ public class AddItemsActivity extends AppCompatActivity {
 
 
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         myDB = new Database(this);

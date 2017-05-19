@@ -65,10 +65,8 @@ public class Database extends SQLiteOpenHelper {
                 WORK_DATE +" DATETIME DEFAULT CURRENT_DATE)");
 
 
-
-
         db.execSQL("create table " + TABLE_CLIENTS +" ("+
-                CLIENT_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+            //KLUCZ PODST AUTO INCREMENT
+                CLIENT_ORDER_ID + " INTEGER PRIMARY KEY NOT NULL,"+            //KLUCZ PODST
                 CLIENT_ID +" INTEGER," +                //FK TO PERSONS_TABLE
                 CLIENT_CARALOG_NR +" INTEGER," +        //FK TO WORK_CATALOG_NR IN TABLE_WORKS
                 CLIENT_DATE +"  DATETIME DEFAULT CURRENT_DATE," +
@@ -160,6 +158,7 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
+
     public Cursor getRow(String TABLE_NAME, String[] ALL_KEYS, long rowId){
         SQLiteDatabase db = this.getReadableDatabase();
         String where = "_id="+rowId;
@@ -168,6 +167,35 @@ public class Database extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         return c;
+    }
+
+
+    public boolean updateRowWork(long id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String where = "_id="+id;
+        ContentValues newValues = new ContentValues();
+        newValues.put(WORK_DATE,"2017-12-12");
+        long result = db.update(TABLE_WORKS,newValues,where,null);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+    public boolean updateRowPerson(long id, String name, String surname, String address, String phone){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String where = "_id="+id;
+        ContentValues newValues = new ContentValues();
+        newValues.put(PERSON_NAME,name);
+        newValues.put(PERSON_SURNAME,surname);
+        newValues.put(PERSON_ADDRESS,address);
+        newValues.put(PERSON_PHONE,phone);
+        long result = db.update(TABLE_PERSONS,newValues,where,null);
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
 
 
@@ -183,9 +211,7 @@ public class Database extends SQLiteOpenHelper {
             return false;
         else
             return true;
-
     }
-
 
 
     public boolean delete(String TABLE_NAME, long ROW_NAME, String ID){
