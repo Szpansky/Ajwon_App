@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app;
+package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,29 +8,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.apps.szpansky.ajwon_app.Tools.Database;
+
 
 public abstract class OpenAllActivity extends AppCompatActivity {
 
+    protected Bundle toNextActivity = new Bundle();
 
-    public Database myDB;
-    public Cursor cursor;
-    public String[] fromFieldsNames;
-    public int[] toViewIDs;
-    public SimpleCursorAdapter myCursorAdapter;
-    public ListView listView;
+    protected Database myDB;
+    protected Cursor cursor;
+    protected String[] fromFieldsNames;
+    protected int[] toViewIDs;
+    protected SimpleCursorAdapter myCursorAdapter;
+    protected ListView listView;
 
-    public String table;
-    public String[] allKeys;
-    public String rowWhereId;
+    protected String table;
+    protected String[] allKeys;
+    protected String rowWhereId;
 
     protected abstract int getLayoutResourceId();
     protected abstract int getItemLayoutResourceId();
 
-    public abstract void setTable(String table);
-    public abstract void setAllKeys(String[] allKeys);
-    public abstract void setRowWhereId(String rowWhereId);
-    public abstract void setToViewIDs(int[] toViewIDs);
-    public abstract void setListView(ListView listView);
+    protected abstract void setTable(String table);
+    protected abstract void setAllKeys(String[] allKeys);
+    protected abstract void setRowWhereId(String rowWhereId);
+    protected abstract void setToViewIDs(int[] toViewIDs);
+    protected abstract void setListView(ListView listView);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,6 @@ public abstract class OpenAllActivity extends AppCompatActivity {
         setRowWhereId(rowWhereId);
         setToViewIDs(toViewIDs);
         setListView(listView);
-
         refreshListView();
     }
 

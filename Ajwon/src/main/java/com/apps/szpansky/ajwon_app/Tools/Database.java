@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app;
+package com.apps.szpansky.ajwon_app.Tools;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,14 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Marcin on 2017-01-27.
- */
 
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
     public static final int DATABASE_VERSION = 3;
+
 
     public static final String TABLE_WORKS = "WORKS";    //tabela
     public static final String WORK_CATALOG_NR = "_id";      //PK
@@ -21,19 +19,6 @@ public class Database extends SQLiteOpenHelper {
     public static final String WORK_DATE_ENDS = "DATE_ENDS";              //AUTO DATE
 
     public static final String[] ALL_KEYS_WORK = new String[]{WORK_CATALOG_NR, WORK_DATE_START, WORK_DATE_ENDS};
-
-    public static final String TABLE_CLIENTS = "CLIENTS";
-    public static final String CLIENT_ORDER_ID = "_id";      //PRIMARY KEY
-    public static final String CLIENT_ID = "CLIENT_ID";          //FK TO PERSON_ID IN TABLE_PERSONS
-    public static final String CLIENT_CARALOG_NR = "CATALOG_NR";   //FK TO CATALOG_NR IN WORKS
-    public static final String CLIENT_DATE = "DATE";         //AUTO DATE
-
-
-    public static final String TABLE_ORDERS = "ORDERS";    //tabela
-    public static final String ORDER_ID = "ORDER_ID";        //PRIMARY KEY
-    public static final String ORDER_ITEM_ID = "ITEM_ID";     //FK TO ITEM_ID IN TABLE_ITEMS
-    public static final String ORDER_CLIENT_ID = "CLIENT_ID";     //FK TO PERSON_ID IN TABLE_PERSONS
-    public static final String ORDER_STATUS = "STATUS";
 
 
     public static final String TABLE_PERSONS = "PERSONS";    //tabela
@@ -45,13 +30,28 @@ public class Database extends SQLiteOpenHelper {
 
     public static final String[] ALL_KEYS_PERSONS = new String[]{PERSON_ID, PERSON_NAME, PERSON_SURNAME, PERSON_PHONE, PERSON_ADDRESS};
 
+
     public static final String TABLE_ITEMS = "ITEMS";    //tabela
     public static final String ITEM_CATALOG_NR = "_id";   //PRIMARY KEY
     public static final String ITEM_PRICE = "PRICE";
     public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
 
-    public static final String[] ALL_KEYS_ITEMS = new String[]{ITEM_CATALOG_NR,ITEM_NAME,ITEM_PRICE,ITEM_DISCOUNT};
+    public static final String[] ALL_KEYS_ITEMS = new String[]{ITEM_CATALOG_NR, ITEM_NAME, ITEM_PRICE, ITEM_DISCOUNT};
+
+
+    public static final String TABLE_ORDERS = "ORDERS";    //tabela
+    public static final String ORDER_ID = "ORDER_ID";        //PRIMARY KEY
+    public static final String ORDER_ITEM_ID = "ITEM_ID";     //FK TO ITEM_ID IN TABLE_ITEMS
+    public static final String ORDER_CLIENT_ID = "CLIENT_ID";     //FK TO PERSON_ID IN TABLE_PERSONS
+    public static final String ORDER_STATUS = "STATUS";
+
+
+    public static final String TABLE_CLIENTS = "CLIENTS";
+    public static final String CLIENT_ORDER_ID = "_id";      //PRIMARY KEY
+    public static final String CLIENT_ID = "CLIENT_ID";          //FK TO PERSON_ID IN TABLE_PERSONS
+    public static final String CLIENT_CATALOG_NR = "CATALOG_NR";   //FK TO CATALOG_NR IN WORKS
+    public static final String CLIENT_DATE = "DATE";         //AUTO DATE
 
 
     public Database(Context context) {
@@ -66,15 +66,26 @@ public class Database extends SQLiteOpenHelper {
                 WORK_DATE_START +" DATETIME DEFAULT CURRENT_DATE," +
                 WORK_DATE_ENDS +" DATETIME)");
 
+        db.execSQL("create table " + TABLE_PERSONS +" ("+
+                PERSON_ID +" INTEGER PRIMARY KEY NOT NULL," +        //PK
+                PERSON_NAME +" TEXT," +
+                PERSON_SURNAME +" TEXT," +
+                PERSON_ADDRESS +" TEXT," +
+                PERSON_PHONE +" LONG NOT NULL)");
+
+        db.execSQL("create table " + TABLE_ITEMS +" ("+
+                ITEM_CATALOG_NR +" INTEGER PRIMARY KEY NOT NULL," +          // PK
+                ITEM_NAME +" TEXT NOT NULL," +
+                ITEM_PRICE +" DOUBLE NOT NULL," +
+                ITEM_DISCOUNT +" TEXT)");
 
         db.execSQL("create table " + TABLE_CLIENTS +" ("+
                 CLIENT_ORDER_ID + " INTEGER PRIMARY KEY NOT NULL,"+            //KLUCZ PODST
                 CLIENT_ID +" INTEGER," +                //FK TO PERSONS_TABLE
-                CLIENT_CARALOG_NR +" INTEGER," +        //FK TO WORK_CATALOG_NR IN TABLE_WORKS
+                CLIENT_CATALOG_NR +" INTEGER," +        //FK TO WORK_CATALOG_NR IN TABLE_WORKS
                 CLIENT_DATE +"  DATETIME DEFAULT CURRENT_DATE," +
                 "FOREIGN KEY ("+ CLIENT_ID +") REFERENCES "+ TABLE_PERSONS +" ("+ PERSON_ID +")," +
-                "FOREIGN KEY ("+ CLIENT_CARALOG_NR +") REFERENCES "+ TABLE_WORKS +" ("+ WORK_CATALOG_NR +"))");
-
+                "FOREIGN KEY ("+ CLIENT_CATALOG_NR +") REFERENCES "+ TABLE_WORKS +" ("+ WORK_CATALOG_NR +"))");
 
         db.execSQL("create table " + TABLE_ORDERS +" ("+
                 ORDER_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +             //PK
@@ -83,22 +94,6 @@ public class Database extends SQLiteOpenHelper {
                 ORDER_STATUS +" BOOLEAN," +
                 "FOREIGN KEY ("+ ORDER_ITEM_ID +") REFERENCES "+ TABLE_ITEMS +" ("+ ITEM_CATALOG_NR +"),"+
                 "FOREIGN KEY ("+ ORDER_CLIENT_ID +") REFERENCES "+ TABLE_PERSONS +" ("+ PERSON_ID +"))");
-
-
-        db.execSQL("create table " + TABLE_PERSONS +" ("+
-                PERSON_ID +" INTEGER PRIMARY KEY NOT NULL," +        //PK
-                PERSON_NAME +" TEXT," +
-                PERSON_SURNAME +" TEXT," +
-                PERSON_ADDRESS +" TEXT," +
-                PERSON_PHONE +" LONG NOT NULL)");
-
-
-        db.execSQL("create table " + TABLE_ITEMS +" ("+
-                ITEM_CATALOG_NR +" INTEGER PRIMARY KEY NOT NULL," +          // PK
-                ITEM_NAME +" TEXT NOT NULL," +
-                ITEM_PRICE +" DOUBLE NOT NULL," +
-                ITEM_DISCOUNT +" TEXT)");
-
     }
 
     @Override
@@ -111,6 +106,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     public boolean insertDataToWorks(String workNr, String workDateEnd){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -122,6 +118,7 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
+
 
     public boolean insertDataToPersons(String name, String surname, String address, String phone){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -136,6 +133,8 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
+
+
     public boolean insertDataToItems(String nr, String name, String price, String discount){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

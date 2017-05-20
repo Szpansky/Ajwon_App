@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app;
+package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
+import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.R;
 
 public class OpenAllPersonsActivity extends OpenAllActivity {
 
@@ -23,27 +27,27 @@ public class OpenAllPersonsActivity extends OpenAllActivity {
 
 
     @Override
-    public void setTable(String table) {
+    protected void setTable(String table) {
         this.table = Database.TABLE_PERSONS;
     }
 
     @Override
-    public void setAllKeys(String[] allKeys) {
+    protected void setAllKeys(String[] allKeys) {
         this.allKeys = Database.ALL_KEYS_PERSONS;
     }
 
     @Override
-    public void setRowWhereId(String rowWhereId) {
+    protected void setRowWhereId(String rowWhereId) {
         this.rowWhereId = Database.PERSON_ID;
     }
 
     @Override
-    public void setToViewIDs(int[] toViewIDs) {
+    protected void setToViewIDs(int[] toViewIDs) {
         this.toViewIDs = new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress,};
     }
 
     @Override
-    public void setListView(ListView listView) {
+    protected void setListView(ListView listView) {
         this.listView = (ListView) findViewById(R.id.list_view_persons);
     }
 
@@ -56,7 +60,7 @@ public class OpenAllPersonsActivity extends OpenAllActivity {
     }
 
 
-    public void addData() {
+    private void addData() {
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
 
@@ -70,11 +74,10 @@ public class OpenAllPersonsActivity extends OpenAllActivity {
 
 
     private void listViewItemClick() {
-        final ListView myList = (ListView) findViewById(R.id.list_view_persons);
-        final Boolean[] flag = new Boolean[1];
+        final boolean[] flag = new boolean[1];
         flag[0] = true;
 
-        myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
@@ -83,18 +86,15 @@ public class OpenAllPersonsActivity extends OpenAllActivity {
             }
         });
 
-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
-
-                    Bundle b = new Bundle();
-                    b.putBoolean("edit", true);
-                    b.putLong("id", id);
-                    intent.putExtras(b);
-
+                    toNextActivity.putBoolean("edit", true);
+                    toNextActivity.putLong("id", id);
+                    intent.putExtras(toNextActivity);
                     OpenAllPersonsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;

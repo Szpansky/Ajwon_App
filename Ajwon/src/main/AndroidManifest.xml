@@ -15,13 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddEditWorkActivity" />
-        <activity android:name=".OpenAllWorksActivity" />
-        <activity android:name=".AddEditPersonActivity" />
-        <activity android:name=".AddEditItemsActivity" />
-        <activity android:name=".OpenAllPersonsActivity" />
-        <activity android:name=".OpenAllItemsActivity" />
-        <activity android:name=".OpenOrdersActivity"></activity>
+        <activity android:name=".AddEdit.AddEditWorkActivity" />
+        <activity android:name=".OpenAll.OpenAllWorksActivity" />
+        <activity android:name=".AddEdit.AddEditPersonActivity" />
+        <activity android:name=".AddEdit.AddEditItemsActivity" />
+        <activity android:name=".OpenAll.OpenAllPersonsActivity" />
+        <activity android:name=".OpenAll.OpenAllItemsActivity" />
+        <activity android:name=".MainBrowsing.OpenOrdersActivity"></activity>
     </application>
 
 </manifest>

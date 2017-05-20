@@ -1,8 +1,10 @@
-package com.apps.szpansky.ajwon_app;
+package com.apps.szpansky.ajwon_app.MainBrowsing;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.apps.szpansky.ajwon_app.R;
 
 public class OpenOrdersActivity extends AppCompatActivity {
 

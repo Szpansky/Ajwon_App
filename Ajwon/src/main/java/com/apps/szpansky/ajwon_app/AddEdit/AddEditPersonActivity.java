@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app;
+package com.apps.szpansky.ajwon_app.AddEdit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditPersonActivity extends AppCompatActivity {
 
