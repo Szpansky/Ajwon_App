@@ -19,7 +19,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_person);
+        setContentView(R.layout.activity_add_edit_person);
 
         myDB = new Database(this);
 

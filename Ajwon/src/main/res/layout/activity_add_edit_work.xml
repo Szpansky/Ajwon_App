@@ -23,8 +23,25 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:inputType="number"
         android:hint="Catalog Nr"
-        android:id="@+id/catalogId"
+        android:id="@+id/workId"
         />
+
+
+    <EditText
+        android:textColor="@android:color/holo_blue_dark"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/workId"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:inputType="date"
+        android:hint="Catalog End Date (YYYY-MM-DD)"
+        android:id="@+id/workDateEnd"
+        />
+
 
     <Button
         android:text="Add"

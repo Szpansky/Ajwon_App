@@ -1,60 +1,62 @@
 package com.apps.szpansky.ajwon_app;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
-public class OpenAllItemsActivity extends AppCompatActivity {
+public class OpenAllItemsActivity extends OpenAllActivity {
 
 
-    private Database myDB;
-    private Cursor cursor;
-    private String[] fromFieldsNames;
-    private int[] toViewIDs;
-    private SimpleCursorAdapter myCursorAdapter;
-    private ListView itemView;
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_open_items;
+    }
 
+
+    @Override
+    protected int getItemLayoutResourceId() {
+        return (R.layout.item_item_view);
+    }
+
+
+    @Override
+    public void setTable(String table) {
+        this.table = Database.TABLE_ITEMS;
+    }
+
+    @Override
+    public void setAllKeys(String[] allKeys) {
+        this.allKeys = Database.ALL_KEYS_ITEMS;
+    }
+
+    @Override
+    public void setRowWhereId(String rowWhereId) {
+        this.rowWhereId = Database.ITEM_CATALOG_NR;
+    }
+
+    @Override
+    public void setToViewIDs(int[] toViewIDs) {
+        this.toViewIDs = new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount};
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        this.listView = (ListView) findViewById(R.id.list_view_items);
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_items);
-
         listViewItemClick();
         addData();
     }
 
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        myDB = new Database(this);
-        cursor = myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_CATALOG_NR);
-        fromFieldsNames = Database.ALL_KEYS_ITEMS;
-        toViewIDs = new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount};
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_item_view, cursor, fromFieldsNames, toViewIDs, 0);
-        itemView = (ListView) findViewById(R.id.list_view_items);
-    }
-
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        itemView.setAdapter(myCursorAdapter);
-    }
-
-
-    public void addData(){
+    public void addData() {
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,31 +65,6 @@ public class OpenAllItemsActivity extends AppCompatActivity {
                 OpenAllItemsActivity.this.startActivity(Intent_Add_Item);
             }
         });
-    }
-
-
-    private void popup(final long id) {
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-
-                        myDB.delete(Database.TABLE_ITEMS, id, Database.ITEM_CATALOG_NR);
-                        refreshListView();
-
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-
-                        break;
-                }
-            }
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You want to delete?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
     }
 
 
@@ -123,14 +100,4 @@ public class OpenAllItemsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    private void refreshListView(){
-        cursor = myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_CATALOG_NR);
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_item_view, cursor, fromFieldsNames, toViewIDs, 0);
-        itemView.setAdapter(myCursorAdapter);
-    }
-
-
-
 }

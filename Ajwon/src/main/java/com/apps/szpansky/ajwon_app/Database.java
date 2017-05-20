@@ -13,13 +13,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_WORKS = "WORKS";    //tabela
     public static final String WORK_CATALOG_NR = "_id";      //PK
-    public static final String WORK_DATE = "DATE";              //AUTO DATE
+    public static final String WORK_DATE_START = "DATE_START";              //AUTO DATE
+    public static final String WORK_DATE_ENDS = "DATE_ENDS";              //AUTO DATE
 
-    public static final String[] ALL_KEYS_WORK = new String[]{WORK_CATALOG_NR, WORK_DATE};
+    public static final String[] ALL_KEYS_WORK = new String[]{WORK_CATALOG_NR, WORK_DATE_START, WORK_DATE_ENDS};
 
     public static final String TABLE_CLIENTS = "CLIENTS";
     public static final String CLIENT_ORDER_ID = "_id";      //PRIMARY KEY
@@ -62,7 +63,8 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("create table " + TABLE_WORKS +" ("+
                 WORK_CATALOG_NR +" INTEGER PRIMARY KEY NOT NULL," +
-                WORK_DATE +" DATETIME DEFAULT CURRENT_DATE)");
+                WORK_DATE_START +" DATETIME DEFAULT CURRENT_DATE," +
+                WORK_DATE_ENDS +" DATETIME)");
 
 
         db.execSQL("create table " + TABLE_CLIENTS +" ("+
@@ -109,10 +111,11 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertDataToWorks(String catalog_nr){
+    public boolean insertDataToWorks(String workNr, String workDateEnd){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WORK_CATALOG_NR, catalog_nr);
+        contentValues.put(WORK_CATALOG_NR, workNr);
+        contentValues.put(WORK_DATE_ENDS, workDateEnd);
         long result = db.insert(TABLE_WORKS,null,contentValues);    //it return row, other way -1
         if(result == -1)
             return false;
@@ -170,11 +173,11 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowWork(long id){
+    public boolean updateRowWork(long id, String workDateEnd){
         SQLiteDatabase db = this.getReadableDatabase();
         String where = "_id="+id;
         ContentValues newValues = new ContentValues();
-        newValues.put(WORK_DATE,"2017-12-12");
+        newValues.put(WORK_DATE_ENDS,workDateEnd);
         long result = db.update(TABLE_WORKS,newValues,where,null);
         if(result == -1)
             return false;

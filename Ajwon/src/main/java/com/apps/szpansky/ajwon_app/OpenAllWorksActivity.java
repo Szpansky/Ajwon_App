@@ -1,56 +1,56 @@
 package com.apps.szpansky.ajwon_app;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+
+public class OpenAllWorksActivity extends OpenAllActivity {
 
 
-public class OpenAllWorksActivity extends AppCompatActivity {
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_open_works;
+    }
 
-    private Database myDB;
-    private Cursor cursor;
-    private String[] fromFieldsNames;
-    private int[] toViewIDs;
-    private SimpleCursorAdapter myCursorAdapter;
-    private ListView workView;
+    @Override
+    protected int getItemLayoutResourceId() {
+        return (R.layout.item_work_view);
+    }
+
+    @Override
+    public void setTable(String table) {
+        this.table = Database.TABLE_WORKS;
+    }
+
+    @Override
+    public void setAllKeys(String[] allKeys) {
+        this.allKeys = Database.ALL_KEYS_WORK;
+    }
+
+    @Override
+    public void setRowWhereId(String rowWhereId) {
+        this.rowWhereId = Database.WORK_CATALOG_NR;
+    }
+
+    @Override
+    public void setToViewIDs(int[] toViewIDs) {
+        this.toViewIDs = new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd};
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        this.listView = (ListView) findViewById(R.id.list_view_catalogs);
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_works);
-
         listViewItemClick();
         addData();
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        myDB = new Database(this);
-        cursor = myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_CATALOG_NR);
-        fromFieldsNames = Database.ALL_KEYS_WORK;
-        toViewIDs = new int[]{R.id.catalogId, R.id.date};
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_work_view, cursor, fromFieldsNames, toViewIDs, 0);
-        workView = (ListView) findViewById(R.id.list_view_catalogs);
-    }
-
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        workView.setAdapter(myCursorAdapter);
     }
 
 
@@ -65,30 +65,6 @@ public class OpenAllWorksActivity extends AppCompatActivity {
                 OpenAllWorksActivity.this.startActivity(Intent_Add_Work);
             }
         });
-    }
-
-
-    private void popup(final long id) {
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-
-                        myDB.delete(Database.TABLE_WORKS, id, Database.WORK_CATALOG_NR);
-                        refreshListView();
-
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        break;
-                }
-            }
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You want to delete?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
     }
 
 
@@ -123,11 +99,5 @@ public class OpenAllWorksActivity extends AppCompatActivity {
         });
     }
 
-
-    private void refreshListView(){
-        cursor = myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_CATALOG_NR);
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.item_work_view, cursor, fromFieldsNames, toViewIDs, 0);
-        workView.setAdapter(myCursorAdapter);
-    }
 
 }

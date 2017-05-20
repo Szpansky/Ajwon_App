@@ -35,7 +35,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         myDB = new Database(this);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_items);
+        setContentView(R.layout.activity_add_edit_items);
 
 
         nr = (EditText) findViewById(R.id.nr);

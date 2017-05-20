@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 public class AddEditWorkActivity extends AppCompatActivity {
 
-    EditText catalogId;
+    EditText workId;
+    EditText workDateEnd;
     Button add;
     Database myDB;
 
@@ -19,9 +20,11 @@ public class AddEditWorkActivity extends AppCompatActivity {
         myDB = new Database(this);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_work);
+        setContentView(R.layout.activity_add_edit_work);
 
-        catalogId = (EditText) findViewById(R.id.catalogId);
+        workId = (EditText) findViewById(R.id.workId);
+        workDateEnd = (EditText) findViewById(R.id.workDateEnd);
+
         add = (Button) findViewById(R.id.add);
 
 
@@ -38,8 +41,8 @@ public class AddEditWorkActivity extends AppCompatActivity {
             //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
 
             //TODO get data from cursor -> to EditText
-            catalogId.setText(Long.toString(id));
-            catalogId.setFocusable(false);
+            workId.setText(Long.toString(id));
+            workId.setFocusable(false);
 
 
             //System.out.println(cursor.toString());
@@ -54,7 +57,7 @@ public class AddEditWorkActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 if (edit) {
-                    boolean isUpdated = myDB.updateRowWork(id);
+                    boolean isUpdated = myDB.updateRowWork(id, workDateEnd.getText().toString());
                     if (isUpdated == true)
                         Toast.makeText(AddEditWorkActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     else
@@ -62,7 +65,7 @@ public class AddEditWorkActivity extends AppCompatActivity {
                     finish();
                 } else {
 
-                    boolean isInserted = myDB.insertDataToWorks(catalogId.getText().toString());
+                    boolean isInserted = myDB.insertDataToWorks(workId.getText().toString(), workDateEnd.getText().toString());
                     if (isInserted == true)
                         Toast.makeText(AddEditWorkActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else
