@@ -1,6 +1,7 @@
 package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,13 +11,14 @@ import android.widget.ListView;
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditWorkActivity;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class OpenAllWorksActivity extends OpenAllActivity {
+public class OpenAllWorksActivity extends SimpleActivity {
 
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_open_works;
+        return R.layout.activity_simple_view;
     }
 
     @Override
@@ -25,29 +27,28 @@ public class OpenAllWorksActivity extends OpenAllActivity {
     }
 
     @Override
-    protected void setTable(String table) {
-        this.table = Database.TABLE_WORKS;
+    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);}
+
+    @Override
+    protected String setTable() {return Database.TABLE_WORKS;}
+
+    @Override
+    protected String[] setAllKeys() {
+        return Database.ALL_KEYS_WORK;
     }
 
     @Override
-    protected void setAllKeys(String[] allKeys) {
-        this.allKeys = Database.ALL_KEYS_WORK;
+    protected String setRowWhereId() {
+        return Database.WORK_ID;
     }
 
-    @Override
-    protected void setRowWhereId(String rowWhereId) {
-        this.rowWhereId = Database.WORK_CATALOG_NR;
-    }
 
     @Override
-    protected void setToViewIDs(int[] toViewIDs) {
-        this.toViewIDs = new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd};
-    }
+    protected int[] setToViewIDs() {return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});}
+
 
     @Override
-    protected void setListView(ListView listView) {
-        this.listView = (ListView) findViewById(R.id.list_view_catalogs);
-    }
+    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
 
 
     @Override
@@ -60,13 +61,11 @@ public class OpenAllWorksActivity extends OpenAllActivity {
 
     private void addData() {
         Button add = (Button) findViewById(R.id.add);
-
         add.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Intent Intent_Add_Work = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
-                OpenAllWorksActivity.this.startActivity(Intent_Add_Work);
+                Intent intent = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
+                OpenAllWorksActivity.this.startActivity(intent);
             }
         });
     }
@@ -90,16 +89,14 @@ public class OpenAllWorksActivity extends OpenAllActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
-                    Intent Intent_Open_Orders = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
+                    Intent intent = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
                     toNextActivity.putBoolean("edit", true);
                     toNextActivity.putLong("id", id);
-                    Intent_Open_Orders.putExtras(toNextActivity);
-                    OpenAllWorksActivity.this.startActivity(Intent_Open_Orders);
+                    intent.putExtras(toNextActivity);
+                    OpenAllWorksActivity.this.startActivity(intent);
                 }
                 flag[0] = true;
             }
         });
     }
-
-
 }

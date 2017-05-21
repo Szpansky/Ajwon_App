@@ -93,7 +93,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                myDB.delete(Database.TABLE_WORKS, id, Database.WORK_CATALOG_NR);
+                myDB.delete(Database.TABLE_WORKS, id, Database.WORK_ID);
                 if (dis_5.isChecked()) discount +=1;
                 if (dis_10.isChecked()) discount +=10;
                 if (dis_15.isChecked()) discount +=100;

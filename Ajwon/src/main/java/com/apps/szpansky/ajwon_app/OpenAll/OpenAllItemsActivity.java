@@ -1,6 +1,7 @@
 package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,46 +11,44 @@ import android.widget.ListView;
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class OpenAllItemsActivity extends OpenAllActivity {
+public class OpenAllItemsActivity extends SimpleActivity {
 
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_open_items;
+        return R.layout.activity_simple_view;
     }
-
 
     @Override
     protected int getItemLayoutResourceId() {
         return (R.layout.item_item_view);
     }
 
+    @Override
+    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_ID);}
 
     @Override
-    protected void setTable(String table) {
-        this.table = Database.TABLE_ITEMS;
+    protected String setTable() {
+        return Database.TABLE_ITEMS;
     }
 
     @Override
-    protected void setAllKeys(String[] allKeys) {
-        this.allKeys = Database.ALL_KEYS_ITEMS;
+    protected String[] setAllKeys() {
+        return Database.ALL_KEYS_ITEMS;
     }
 
     @Override
-    protected void setRowWhereId(String rowWhereId) {
-        this.rowWhereId = Database.ITEM_CATALOG_NR;
+    protected String setRowWhereId() {
+        return Database.ITEM_ID;
     }
 
     @Override
-    protected void setToViewIDs(int[] toViewIDs) {
-        this.toViewIDs = new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount};
-    }
+    protected int[] setToViewIDs() {return (new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount});}
 
     @Override
-    protected void setListView(ListView listView) {
-        this.listView = (ListView) findViewById(R.id.list_view_items);
-    }
+    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
 
 
     @Override
@@ -65,8 +64,8 @@ public class OpenAllItemsActivity extends OpenAllActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Intent_Add_Item = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
-                OpenAllItemsActivity.this.startActivity(Intent_Add_Item);
+                Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
+                OpenAllItemsActivity.this.startActivity(intent);
             }
         });
     }
