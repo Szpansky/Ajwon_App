@@ -1,7 +1,6 @@
-package com.apps.szpansky.ajwon_app.MainBrowsing;
+package com.apps.szpansky.ajwon_app.ForPick;
 
 import android.content.Intent;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +9,16 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditWorkActivity;
-import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllWorksActivity;
+import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class CatalogsActivity extends SimpleActivity {
+/**
+ * Created by Marcin on 2017-05-22.
+ */
 
+public class PickPerson extends SimpleActivity{
 
     @Override
     protected int getLayoutResourceId() {
@@ -26,29 +27,27 @@ public class CatalogsActivity extends SimpleActivity {
 
     @Override
     protected int getItemLayoutResourceId() {
-        return (R.layout.item_work_view);
+        return (R.layout.item_person_view);
     }
 
     @Override
-    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);}
+    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_PERSONS, Database.ALL_KEYS_PERSONS, Database.PERSON_ID);}
 
     @Override
     protected String setTable() {
-        return Database.TABLE_WORKS;
+        return Database.TABLE_PERSONS;
     }
 
     @Override
     protected String[] setAllKeys() {
-        return Database.ALL_KEYS_WORK;
+        return Database.ALL_KEYS_PERSONS;
     }
 
     @Override
-    protected String setRowWhereId() {
-        return Database.WORK_ID;
-    }
+    protected String setRowWhereId() {return Database.PERSON_ID;}
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});}
+    protected int[] setToViewIDs() {return (new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
 
     @Override
     protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
@@ -57,22 +56,21 @@ public class CatalogsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         listViewItemClick();
         addData();
-
     }
 
-
     private void listViewItemClick() {
+
         final boolean[] flag = new boolean[1];
         flag[0] = true;
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //TODO activity about information (delete option in new activity)
-
+                flag[0] = false;
+                //popup(id);
                 return false;
             }
         });
@@ -80,16 +78,19 @@ public class CatalogsActivity extends SimpleActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (flag[0]) {
-                    Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
-                    toNextActivity.putLong("workId", id);
-                    intent.putExtras(toNextActivity);
-                    CatalogsActivity.this.startActivity(intent);
+
+                    Intent intent = new Intent();
+                    intent.putExtra("personId", id );
+                    setResult(RESULT_OK, intent);
+                    finish();
+
                 }
                 flag[0] = true;
             }
         });
+
+
     }
 
 
@@ -98,9 +99,12 @@ public class CatalogsActivity extends SimpleActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogsActivity.this, AddEditWorkActivity.class);
-                CatalogsActivity.this.startActivity(intent);
+                Intent intent = new Intent(PickPerson.this, AddEditPersonActivity.class);
+                PickPerson.this.startActivity(intent);
             }
         });
     }
+
+
+
 }

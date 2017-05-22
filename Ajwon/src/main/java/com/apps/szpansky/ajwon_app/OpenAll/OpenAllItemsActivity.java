@@ -71,7 +71,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
     }
 
 
-    private void listViewItemClick() {
+    public void listViewItemClick() {
         final boolean[] flag = new boolean[1];
         flag[0] = true;
 
@@ -88,11 +88,13 @@ public class OpenAllItemsActivity extends SimpleActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (flag[0]) {
+
                     Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
                     toNextActivity.putBoolean("edit", true);
                     toNextActivity.putLong("id", id);
                     intent.putExtras(toNextActivity);
                     OpenAllItemsActivity.this.startActivity(intent);
+
                 }
                 flag[0] = true;
             }

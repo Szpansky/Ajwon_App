@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 6;
 
 
     public static final String TABLE_WORKS = "WORKS";
@@ -41,10 +41,12 @@ public class Database extends SQLiteOpenHelper {
 
 
     public static final String TABLE_CLIENTS = "CLIENTS";
-    public static final String CLIENT_ORDER_ID = "_id";
+    public static final String CLIENT_ID = "_id";
     public static final String CLIENT_WORK_ID = "WORK_ID";
     public static final String CLIENT_PERSON_ID = "PERSON_ID";
     public static final String CLIENT_DATE = "DATE";
+
+    public static final String[] ALL_KEYS_CLIENTS = new String[]{CLIENT_ID, CLIENT_WORK_ID, CLIENT_PERSON_ID, CLIENT_DATE};
 
 
     public static final String TABLE_ORDERS = "ORDERS";
@@ -53,6 +55,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String ORDER_ITEM_ID = "ITEM_ID";
     public static final String ORDER_AMOUNT = "AMOUNT";
     public static final String ORDER_STATUS = "STATUS";
+
+    public static final String[] ALL_KEYS_ORDERS = new String[]{ORDER_ID, ORDER_CLIENT_ID, ORDER_ITEM_ID, ORDER_AMOUNT,ORDER_STATUS};
 
 
     public Database(Context context) {
@@ -81,7 +85,7 @@ public class Database extends SQLiteOpenHelper {
                 ITEM_DISCOUNT + " TEXT)");
 
         db.execSQL("create table " + TABLE_CLIENTS + " (" +
-                CLIENT_ORDER_ID + " INTEGER PRIMARY KEY NOT NULL," +
+                CLIENT_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CLIENT_WORK_ID + " INTEGER," +
                 CLIENT_PERSON_ID + " INTEGER," +
                 CLIENT_DATE + "  DATETIME DEFAULT CURRENT_DATE," +
@@ -152,10 +156,33 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getAllRows(String TABLE_NAME, String[] ROW_NAME, String ID) {
-        String[] where = null;
+    public boolean insertDataToClients(String workId, String personId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CLIENT_WORK_ID, workId);
+        contentValues.put(CLIENT_PERSON_ID, personId);
+        long result = db.insert(TABLE_CLIENTS, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+    public Cursor getAllRows(String TABLE_NAME, String[] ROWS, String ID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query(true, TABLE_NAME, ROW_NAME, ID, where, null, null, null, null);
+        Cursor c = db.query(true, TABLE_NAME, ROWS, ID, null, null, null, null, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getAllRows(String TABLE_NAME, String[] ROWS,String rowWhereId, Long whereId) {
+        String where = rowWhereId+"="+whereId.toString();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(true, TABLE_NAME, ROWS, where, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
         }
