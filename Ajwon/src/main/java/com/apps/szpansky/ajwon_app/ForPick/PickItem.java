@@ -1,24 +1,25 @@
-package com.apps.szpansky.ajwon_app.MainBrowsing;
+package com.apps.szpansky.ajwon_app.ForPick;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.apps.szpansky.ajwon_app.ForPick.PickItem;
-import com.apps.szpansky.ajwon_app.ForPick.PickPerson;
+
+import com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity;
+import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
+/**
+ * Created by Marcin on 2017-05-22.
+ */
 
-
-public class OrdersActivity extends SimpleActivity {
-    Bundle b = new Bundle();
-
+public class PickItem extends SimpleActivity{
 
     @Override
     protected int getLayoutResourceId() {
@@ -27,56 +28,40 @@ public class OrdersActivity extends SimpleActivity {
 
     @Override
     protected int getItemLayoutResourceId() {
-        return (R.layout.item_order_view);
+        return (R.layout.item_item_view);
     }
-
 
     @Override
-    protected Cursor setCursor() {
-        return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
-    }
-
+    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_ID);}
 
     @Override
     protected String setTable() {
-        return Database.TABLE_ORDERS;
+        return Database.TABLE_ITEMS;
     }
 
     @Override
     protected String[] setAllKeys() {
-        return Database.ALL_KEYS_ORDERS;
+        return Database.ALL_KEYS_ITEMS;
     }
 
     @Override
     protected String setRowWhereId() {
-        return Database.ORDER_ID;
+        return Database.ITEM_ID;
     }
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.orderId, R.id.personId, R.id.itemId, R.id.orderAmount, R.id.orderStatus});}
+    protected int[] setToViewIDs() {return (new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount});}
 
     @Override
     protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        b = getIntent().getExtras();
-        addData();
         listViewItemClick();
+        addData();
     }
-
-    private void addData() {
-        Button add = (Button) findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(OrdersActivity.this, PickItem.class);
-                startActivityForResult(i, 1);
-            }
-        });
-    }
-
 
     private void listViewItemClick() {
 
@@ -97,28 +82,31 @@ public class OrdersActivity extends SimpleActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (flag[0]) {
 
+                    Intent intent = new Intent();
+                    intent.putExtra("itemId", id );
+                    setResult(RESULT_OK, intent);
+                    finish();
+
                 }
                 flag[0] = true;
             }
         });
+
+
     }
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK) {
-
-                Long itemId = data.getLongExtra("itemId" , 0);
-                Long test = b.getLong("clientId");
-                myDB.insertDataToOrders(test.toString(),itemId.toString(),"12","Czekam");
-                //myDB.insertDataToClients(test.toString(), personId.toString());
-                refreshListView();
-
-
+    private void addData() {
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PickItem.this, AddEditItemsActivity.class);
+                PickItem.this.startActivity(intent);
             }
-        }
+        });
     }
+
 
 
 }

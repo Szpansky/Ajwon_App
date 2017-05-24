@@ -73,10 +73,8 @@ public class ClientsActivity extends SimpleActivity {
             @Override
             public void onClick(View v) {
 
-
                 Intent i = new Intent(ClientsActivity.this, PickPerson.class);
                 startActivityForResult(i, 1);
-
 
             }
         });
@@ -103,7 +101,7 @@ public class ClientsActivity extends SimpleActivity {
                 if (flag[0]) {
 
                     Intent intent = new Intent(ClientsActivity.this, OrdersActivity.class);
-                    toNextActivity.putLong("orderId", id);
+                    toNextActivity.putLong("clientId", id);
                     intent.putExtras(toNextActivity);
                     ClientsActivity.this.startActivity(intent);
 

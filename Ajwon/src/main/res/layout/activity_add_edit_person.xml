@@ -53,18 +53,18 @@
         />
 
     <EditText
-        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/phone"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:ems="10"
         android:layout_below="@+id/addres"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:inputType="phone"
+        android:ems="10"
         android:hint="Phone Nr"
-        android:id="@+id/phone"
-        />
+        android:inputType="phone"
+        android:maxLength="9"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <Button
         android:text="Add"

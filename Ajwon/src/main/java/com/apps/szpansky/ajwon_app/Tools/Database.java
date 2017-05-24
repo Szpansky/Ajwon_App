@@ -169,6 +169,22 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
+    public boolean insertDataToOrders(String personId, String itemId, String amount, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ORDER_CLIENT_ID, personId);
+        contentValues.put(ORDER_ITEM_ID, itemId);
+        contentValues.put(ORDER_AMOUNT, amount);
+        contentValues.put(ORDER_STATUS, status);
+        long result = db.insert(TABLE_ORDERS, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+
     public Cursor getAllRows(String TABLE_NAME, String[] ROWS, String ID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(true, TABLE_NAME, ROWS, ID, null, null, null, null, null);
