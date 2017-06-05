@@ -15,6 +15,10 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllItemsActivity extends SimpleActivity {
 
+    @Override
+    protected String[] setFromFieldsNames() {
+        return Database.ALL_KEYS_ITEMS;
+    }
 
     @Override
     protected int getLayoutResourceId() {
@@ -54,6 +58,8 @@ public class OpenAllItemsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Add New Item");
         listViewItemClick();
         addData();
     }
@@ -79,7 +85,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popup(id);
+                //deleteWithPopup(id);
                 return false;
             }
         });

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/workId"
@@ -14,7 +14,7 @@
         android:layout_toEndOf="@+id/textView"
         android:layout_toRightOf="@+id/textView"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
         android:id="@+id/workDateStart"
@@ -25,7 +25,7 @@
         android:layout_toEndOf="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
         android:text="TextView"
-        android:textSize="14sp" />
+        android:textSize="6pt" />
 
     <TextView
         android:id="@+id/workDateEnd"
@@ -36,7 +36,7 @@
         android:layout_toEndOf="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:text="TextView"
-        android:textSize="14sp" />
+        android:textSize="6pt" />
 
     <TextView
         android:id="@+id/textView"
@@ -47,7 +47,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="5sp"
         android:text="Catalog Nr: "
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
         android:id="@+id/textView2"
@@ -57,7 +57,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="5sp"
-        android:text="Created: " />
+        android:text="Created: "
+        android:textSize="6pt" />
 
     <TextView
         android:id="@+id/textView3"
@@ -67,6 +68,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5sp"
-        android:text="Expire: " />
+        android:text="Expire: "
+        android:textSize="6pt" />
 
 </RelativeLayout>

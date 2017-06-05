@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity;
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
@@ -20,6 +19,11 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
  */
 
 public class PickItem extends SimpleActivity{
+
+    @Override
+    protected String[] setFromFieldsNames() {
+        return Database.ALL_KEYS_ITEMS;
+    }
 
     @Override
     protected int getLayoutResourceId() {
@@ -59,6 +63,10 @@ public class PickItem extends SimpleActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Add New Item");
+
         listViewItemClick();
         addData();
     }
@@ -72,7 +80,7 @@ public class PickItem extends SimpleActivity{
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //popup(id);
+                //deleteWithPopup(id);
                 return false;
             }
         });

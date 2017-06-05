@@ -34,6 +34,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected abstract String setRowWhereId();
     protected abstract int[] setToViewIDs();
     protected abstract ListView setListView();
+    protected abstract String[] setFromFieldsNames();
 
 
     @Override
@@ -47,6 +48,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
         toViewIDs = setToViewIDs();
         cursor = setCursor();
         listView = setListView();
+        fromFieldsNames = setFromFieldsNames();
         refreshListView();
     }
 
@@ -60,13 +62,12 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
     public void refreshListView(){
         cursor = setCursor();
-        fromFieldsNames = allKeys;
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), getItemLayoutResourceId(), cursor, fromFieldsNames, toViewIDs, 0);
         listView.setAdapter(myCursorAdapter);
     }
 
 
-    public void popup(final long id) {
+    public void deleteWithPopup(final long id) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
             @Override
@@ -74,7 +75,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
 
-                        myDB.delete(table, id, rowWhereId);
+                        myDB.delete(table, rowWhereId, id);
                         refreshListView();
 
                         break;

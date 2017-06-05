@@ -17,6 +17,11 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
 
     @Override
+    protected String[] setFromFieldsNames() {
+        return Database.ALL_KEYS_PERSONS;
+    }
+
+    @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_simple_view;
     }
@@ -52,6 +57,8 @@ public class OpenAllPersonsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Add New Person");
         listViewItemClick();
         addData();
     }
@@ -78,7 +85,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popup(id);
+                //deleteWithPopup(id);
                 return false;
             }
         });

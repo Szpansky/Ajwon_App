@@ -21,6 +21,11 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 public class PickPerson extends SimpleActivity{
 
     @Override
+    protected String[] setFromFieldsNames() {
+        return Database.ALL_KEYS_PERSONS;
+    }
+
+    @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_simple_view;
     }
@@ -47,7 +52,7 @@ public class PickPerson extends SimpleActivity{
     protected String setRowWhereId() {return Database.PERSON_ID;}
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
+    protected int[] setToViewIDs() {return (new int[]{R.id.orderPersonId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
 
     @Override
     protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
@@ -56,6 +61,9 @@ public class PickPerson extends SimpleActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Add New Person");
 
         listViewItemClick();
         addData();
@@ -70,7 +78,7 @@ public class PickPerson extends SimpleActivity{
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //popup(id);
+                //deleteWithPopup(id);
                 return false;
             }
         });

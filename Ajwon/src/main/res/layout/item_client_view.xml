@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/workId"
+        android:id="@+id/clientWorkId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView6"
         android:layout_toEndOf="@+id/textView6"
         android:layout_toRightOf="@+id/textView6"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
-        android:id="@+id/personId"
+        android:id="@+id/clientPersonId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView10"
@@ -22,28 +22,28 @@
         android:layout_toEndOf="@+id/textView10"
         android:layout_toRightOf="@+id/textView10"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
         android:id="@+id/clientDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/personId"
+        android:layout_below="@+id/clientPersonId"
         android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView11"
         android:layout_toRightOf="@+id/textView11"
         android:text="TextView"
-        android:textSize="14sp" />
+        android:textSize="6pt" />
 
     <TextView
-        android:id="@+id/orderId"
+        android:id="@+id/clientOrderId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="8pt"
+        android:layout_alignTop="@+id/clientDate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/textView6"
@@ -54,7 +54,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="5sp"
         android:text="Catalog Nr: "
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
         android:id="@+id/textView10"
@@ -65,7 +65,7 @@
         android:layout_below="@+id/textView6"
         android:layout_marginTop="5sp"
         android:text="Person Id: "
-        android:textSize="20sp" />
+        android:textSize="8pt" />
 
     <TextView
         android:id="@+id/textView11"
@@ -73,9 +73,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/personId"
+        android:layout_below="@+id/clientPersonId"
         android:layout_marginTop="5sp"
         android:text="Order Date: "
-        android:textSize="14sp" />
+        android:textSize="6pt" />
+
+    <TextView
+        android:id="@+id/clientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/clientSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/clientName"
+        android:layout_alignStart="@+id/clientName"
+        android:layout_below="@+id/clientName"
+        android:text="TextView" />
 
 </RelativeLayout>

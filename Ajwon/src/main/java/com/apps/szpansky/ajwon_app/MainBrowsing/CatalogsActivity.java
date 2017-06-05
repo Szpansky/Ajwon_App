@@ -18,6 +18,10 @@ import com.apps.szpansky.ajwon_app.Tools.Database;
 
 public class CatalogsActivity extends SimpleActivity {
 
+    @Override
+    protected String[] setFromFieldsNames() {
+        return Database.ALL_KEYS_WORK;
+    }
 
     @Override
     protected int getLayoutResourceId() {
@@ -30,7 +34,9 @@ public class CatalogsActivity extends SimpleActivity {
     }
 
     @Override
-    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);}
+    protected Cursor setCursor() {
+        return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);
+    }
 
     @Override
     protected String setTable() {
@@ -48,15 +54,21 @@ public class CatalogsActivity extends SimpleActivity {
     }
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});}
+    protected int[] setToViewIDs() {
+        return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});
+    }
 
     @Override
-    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
+    protected ListView setListView() {
+        return ((ListView) findViewById(R.id.list_view_simple_view));
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Add New Catalog");
         listViewItemClick();
         addData();
 
@@ -70,6 +82,22 @@ public class CatalogsActivity extends SimpleActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                flag[0] = false;
+
+                deleteWithPopup(id);
+
+             /*   int clientId;
+
+                Cursor c = myDB.getRow(Database.TABLE_CLIENTS, Database.CLIENT_ID, Database.CLIENT_WORK_ID, id);
+                if (c.getCount() != 0) {
+                    c.moveToFirst();
+                    clientId = c.getInt(0);
+                    myDB.delete(Database.TABLE_ORDERS, Database.ORDER_CLIENT_ID, clientId);
+                }
+
+
+                myDB.delete(Database.TABLE_CLIENTS, Database.CLIENT_WORK_ID, id);*/
 
                 //TODO activity about information (delete option in new activity)
 

@@ -31,7 +31,8 @@ public class ClientsActivity extends SimpleActivity {
 
     @Override
     protected Cursor setCursor() {
-        return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_WORK_ID, b.getLong("workId"));
+        //return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_WORK_ID, b.getLong("workId"));
+        return myDB.getClients(b.getLong("workId"));
     }
 
     @Override
@@ -49,9 +50,16 @@ public class ClientsActivity extends SimpleActivity {
         return Database.CLIENT_ID;
     }
 
+
+    @Override
+    protected String[] setFromFieldsNames() {
+        return  new String[]{Database.CLIENT_ID, Database.CLIENT_WORK_ID, Database.CLIENT_PERSON_ID, Database.CLIENT_DATE, Database.PERSON_NAME, Database.PERSON_SURNAME};
+    }
+
+
     @Override
     protected int[] setToViewIDs() {
-        return (new int[]{R.id.orderId, R.id.workId, R.id.personId, R.id.clientDate});
+        return (new int[]{R.id.clientOrderId, R.id.clientWorkId, R.id.clientPersonId, R.id.clientDate, R.id.clientName, R.id.clientSurname});
     }
 
     @Override
@@ -62,6 +70,8 @@ public class ClientsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button add = (Button) findViewById(R.id.add);
+        add.setText("Pick Person");
         b = getIntent().getExtras();
         addData();
         listViewItemClick();
@@ -90,7 +100,12 @@ public class ClientsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //popup(id);
+
+
+                deleteWithPopup(id);
+                //myDB.delete(Database.TABLE_ORDERS, Database.ORDER_CLIENT_ID, id);   //TODO delete in new activiti with informations
+
+
                 return false;
             }
         });
@@ -122,9 +137,11 @@ public class ClientsActivity extends SimpleActivity {
             if(resultCode == RESULT_OK) {
 
                 Long personId = data.getLongExtra("personId" , 0);
-                Long test = b.getLong("workId");
+                Long workId = b.getLong("workId");
 
-                myDB.insertDataToClients(test.toString(), personId.toString());
+
+                myDB.insertDataToClients(workId.toString(), personId.toString(), "Waiting");
+
                 refreshListView();
 
 
