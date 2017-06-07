@@ -9,16 +9,18 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditWorkActivity;
+import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class OpenAllWorksActivity extends SimpleActivity {
+public class OpenAllCatalogsActivity extends SimpleActivity {
 
+    Catalog catalog;
 
     @Override
     protected String[] setFromFieldsNames() {
-        return Database.ALL_KEYS_WORK;
+        return Database.ALL_KEYS_CATALOG;
     }
 
     @Override
@@ -32,19 +34,19 @@ public class OpenAllWorksActivity extends SimpleActivity {
     }
 
     @Override
-    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);}
+    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_CATALOGS, Database.ALL_KEYS_CATALOG, Database.CATALOG_ID);}
 
     @Override
-    protected String setTable() {return Database.TABLE_WORKS;}
+    protected String setTable() {return Database.TABLE_CATALOGS;}
 
     @Override
     protected String[] setAllKeys() {
-        return Database.ALL_KEYS_WORK;
+        return Database.ALL_KEYS_CATALOG;
     }
 
     @Override
     protected String setRowWhereId() {
-        return Database.WORK_ID;
+        return Database.CATALOG_ID;
     }
 
 
@@ -59,10 +61,22 @@ public class OpenAllWorksActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        catalog = new Catalog(myDB);
+
         Button add = (Button) findViewById(R.id.add);
         add.setText("Add New Catalog");
         listViewItemClick();
         addData();
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -71,8 +85,8 @@ public class OpenAllWorksActivity extends SimpleActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
-                OpenAllWorksActivity.this.startActivity(intent);
+                Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditWorkActivity.class);
+                OpenAllCatalogsActivity.this.startActivity(intent);
             }
         });
     }
@@ -86,7 +100,7 @@ public class OpenAllWorksActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-               // deleteWithPopup(id);
+                popupForDelete(catalog, (int)id);
                 return false;
             }
         });
@@ -96,11 +110,11 @@ public class OpenAllWorksActivity extends SimpleActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (flag[0]) {
-                    Intent intent = new Intent(OpenAllWorksActivity.this, AddEditWorkActivity.class);
+                    Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditWorkActivity.class);
                     toNextActivity.putBoolean("edit", true);
                     toNextActivity.putLong("id", id);
                     intent.putExtras(toNextActivity);
-                    OpenAllWorksActivity.this.startActivity(intent);
+                    OpenAllCatalogsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;
             }

@@ -8,13 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.apps.szpansky.ajwon_app.SimpleData.Data;
 
 
 public abstract class SimpleActivity extends AppCompatActivity {
 
+    protected Database myDB;                //TODO to check .....
+
     protected Bundle toNextActivity = new Bundle();
 
-    protected Database myDB;
     protected Cursor cursor;
     protected String[] fromFieldsNames;
     protected int[] toViewIDs;
@@ -26,14 +28,21 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected String rowWhereId;
 
     protected abstract int getLayoutResourceId();
+
     protected abstract int getItemLayoutResourceId();
 
     protected abstract Cursor setCursor();
+
     protected abstract String setTable();
+
     protected abstract String[] setAllKeys();
+
     protected abstract String setRowWhereId();
+
     protected abstract int[] setToViewIDs();
+
     protected abstract ListView setListView();
+
     protected abstract String[] setFromFieldsNames();
 
 
@@ -60,14 +69,15 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
 
-    public void refreshListView(){
+    public void refreshListView() {
         cursor = setCursor();
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), getItemLayoutResourceId(), cursor, fromFieldsNames, toViewIDs, 0);
         listView.setAdapter(myCursorAdapter);
     }
 
 
-    public void deleteWithPopup(final long id) {
+    public void popupForDelete(final Data data, final int id) {       //TODO send object that got method for delete
+
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
             @Override
@@ -75,19 +85,21 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
 
-                        myDB.delete(table, rowWhereId, id);
+                        data.deleteData(id);
                         refreshListView();
 
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
+
 
                         break;
                 }
             }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You want to delete?").setPositiveButton("Yes", dialogClickListener)
+        builder.setMessage("You want to delete?\nIt will delete all depends data").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
+
     }
 
 

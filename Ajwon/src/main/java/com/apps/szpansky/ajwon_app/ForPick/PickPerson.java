@@ -52,7 +52,7 @@ public class PickPerson extends SimpleActivity{
     protected String setRowWhereId() {return Database.PERSON_ID;}
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.orderPersonId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
+    protected int[] setToViewIDs() {return (new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
 
     @Override
     protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
@@ -78,7 +78,7 @@ public class PickPerson extends SimpleActivity{
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //deleteWithPopup(id);
+                //popupForDelete(id);
                 return false;
             }
         });

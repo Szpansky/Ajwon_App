@@ -10,11 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView"
         android:layout_toRightOf="@+id/textView"
         android:text="TextView"
-        android:textSize="8pt" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/workDateStart"
@@ -25,7 +24,7 @@
         android:layout_toEndOf="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
         android:text="TextView"
-        android:textSize="6pt" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/workDateEnd"
@@ -36,29 +35,27 @@
         android:layout_toEndOf="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:text="TextView"
-        android:textSize="6pt" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/workDateStart"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5sp"
         android:text="Catalog Nr: "
-        android:textSize="8pt" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/workDateEnd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="5sp"
         android:text="Created: "
-        android:textSize="6pt" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -69,6 +66,6 @@
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5sp"
         android:text="Expire: "
-        android:textSize="6pt" />
+        android:textSize="14sp" />
 
 </RelativeLayout>

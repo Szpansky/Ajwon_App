@@ -9,12 +9,13 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
+import com.apps.szpansky.ajwon_app.SimpleData.Person;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllPersonsActivity extends SimpleActivity {
-
+    Person person;
 
     @Override
     protected String[] setFromFieldsNames() {
@@ -57,6 +58,8 @@ public class OpenAllPersonsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        person = new Person(myDB);
+
         Button add = (Button) findViewById(R.id.add);
         add.setText("Add New Person");
         listViewItemClick();
@@ -85,7 +88,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //deleteWithPopup(id);
+                popupForDelete(person, (int)id);
                 return false;
             }
         });

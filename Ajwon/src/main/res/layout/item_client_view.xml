@@ -91,9 +91,9 @@
         android:id="@+id/clientSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/clientName"
-        android:layout_alignStart="@+id/clientName"
-        android:layout_below="@+id/clientName"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/clientWorkId"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -1,4 +1,5 @@
 package com.apps.szpansky.ajwon_app.MainBrowsing;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,17 +11,18 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.ForPick.PickItem;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.SimpleData.Order;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 
-
 public class OrdersActivity extends SimpleActivity {
     Bundle b = new Bundle();
+    Order order;
 
     @Override
     protected String[] setFromFieldsNames() {
-        return new String[] {Database.ORDER_ID, Database.ORDER_CLIENT_ID, Database.ORDER_ITEM_ID, Database.ORDER_AMOUNT, Database.ORDER_TOTAL, Database.ITEM_NAME};
+        return new String[]{Database.ORDER_ID, Database.ORDER_CLIENT_ID, Database.ORDER_ITEM_ID, Database.ORDER_AMOUNT, Database.ORDER_TOTAL, Database.ITEM_NAME};
     }
 
     @Override
@@ -37,7 +39,7 @@ public class OrdersActivity extends SimpleActivity {
     @Override
     protected Cursor setCursor() {
         return myDB.getItems(b.getLong("clientId"));
-      //  return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
+        //  return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
     }
 
 
@@ -57,14 +59,20 @@ public class OrdersActivity extends SimpleActivity {
     }
 
     @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.orderId, R.id.orderPersonId, R.id.orderItemId, R.id.orderAmount, R.id.orderTotal, R.id.orderItemName});}
+    protected int[] setToViewIDs() {
+        return (new int[]{R.id.orderId, R.id.orderPersonId, R.id.orderItemId, R.id.orderAmount, R.id.orderTotal, R.id.orderItemName});
+    }
 
     @Override
-    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
+    protected ListView setListView() {
+        return ((ListView) findViewById(R.id.list_view_simple_view));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        order = new Order(myDB);
+
         Button add = (Button) findViewById(R.id.add);
         add.setText("Pick Item");
         b = getIntent().getExtras();
@@ -84,6 +92,7 @@ public class OrdersActivity extends SimpleActivity {
     }
 
 
+
     private void listViewItemClick() {
 
         final boolean[] flag = new boolean[1];
@@ -93,7 +102,9 @@ public class OrdersActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                deleteWithPopup(id);
+
+                popupForDelete(order, (int)id );
+
                 return false;
             }
         });
@@ -113,15 +124,13 @@ public class OrdersActivity extends SimpleActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if(resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
 
-                Long itemId = data.getLongExtra("itemId" , 0);
+                Long itemId = data.getLongExtra("itemId", 0);
                 Long clientId = b.getLong("clientId");
 
                 boolean isInserted = myDB.updateRowOrder(clientId, itemId, 1);
-                if ( !isInserted ) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);
-
-
+                if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);
 
 
                 refreshListView();

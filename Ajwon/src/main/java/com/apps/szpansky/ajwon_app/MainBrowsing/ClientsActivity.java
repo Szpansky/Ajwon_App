@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.ForPick.PickPerson;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.SimpleData.Client;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
@@ -17,7 +18,7 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class ClientsActivity extends SimpleActivity {
     Bundle b = new Bundle();
-
+    Client client;
 
     @Override
     protected int getLayoutResourceId() {
@@ -31,7 +32,7 @@ public class ClientsActivity extends SimpleActivity {
 
     @Override
     protected Cursor setCursor() {
-        //return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_WORK_ID, b.getLong("workId"));
+        //return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_CATALOG_ID, b.getLong("workId"));
         return myDB.getClients(b.getLong("workId"));
     }
 
@@ -53,7 +54,7 @@ public class ClientsActivity extends SimpleActivity {
 
     @Override
     protected String[] setFromFieldsNames() {
-        return  new String[]{Database.CLIENT_ID, Database.CLIENT_WORK_ID, Database.CLIENT_PERSON_ID, Database.CLIENT_DATE, Database.PERSON_NAME, Database.PERSON_SURNAME};
+        return  new String[]{Database.CLIENT_ID, Database.CLIENT_CATALOG_ID, Database.CLIENT_PERSON_ID, Database.CLIENT_DATE, Database.PERSON_NAME, Database.PERSON_SURNAME};
     }
 
 
@@ -70,6 +71,8 @@ public class ClientsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        client = new Client(myDB);
+
         Button add = (Button) findViewById(R.id.add);
         add.setText("Pick Person");
         b = getIntent().getExtras();
@@ -102,7 +105,9 @@ public class ClientsActivity extends SimpleActivity {
                 flag[0] = false;
 
 
-                deleteWithPopup(id);
+                popupForDelete(client, (int)id);
+
+                //popupForDelete(id);
                 //myDB.delete(Database.TABLE_ORDERS, Database.ORDER_CLIENT_ID, id);   //TODO delete in new activiti with informations
 
 

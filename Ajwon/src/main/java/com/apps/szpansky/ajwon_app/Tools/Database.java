@@ -10,15 +10,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
-    public static final int DATABASE_VERSION = 15;
+    public static final int DATABASE_VERSION = 1;
 
 
-    public static final String TABLE_WORKS = "WORKS";
-    public static final String WORK_ID = "_id";
-    public static final String WORK_DATE_START = "DATE_START";
-    public static final String WORK_DATE_ENDS = "DATE_ENDS";
+    public static final String TABLE_CATALOGS = "CATALOGS";
+    public static final String CATALOG_ID = "_id";
+    public static final String CATALOG_DATE_START = "DATE_START";
+    public static final String CATALOG_DATE_ENDS = "DATE_ENDS";
 
-    public static final String[] ALL_KEYS_WORK = new String[]{WORK_ID, WORK_DATE_START, WORK_DATE_ENDS};
+    public static final String[] ALL_KEYS_CATALOG = new String[]{CATALOG_ID, CATALOG_DATE_START, CATALOG_DATE_ENDS};
 
 
     public static final String TABLE_PERSONS = "PERSONS";
@@ -27,6 +27,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String PERSON_SURNAME = "SURNAME";
     public static final String PERSON_ADDRESS = "ADDRESS";
     public static final String PERSON_PHONE = "PHONE";
+    public static final String PERSON_NETWORK_ID = "NETWORK_ID";
 
     public static final String[] ALL_KEYS_PERSONS = new String[]{PERSON_ID, PERSON_NAME, PERSON_SURNAME, PERSON_PHONE, PERSON_ADDRESS};
 
@@ -42,12 +43,12 @@ public class Database extends SQLiteOpenHelper {
 
     public static final String TABLE_CLIENTS = "CLIENTS";
     public static final String CLIENT_ID = "_id";
-    public static final String CLIENT_WORK_ID = "WORK_ID";
+    public static final String CLIENT_CATALOG_ID = "CATALOG_ID";
     public static final String CLIENT_PERSON_ID = "PERSON_ID";
     public static final String CLIENT_DATE = "DATE";
     public static final String CLIENT_STATUS = "STATUS";
 
-    public static final String[] ALL_KEYS_CLIENTS = new String[]{CLIENT_ID, CLIENT_WORK_ID, CLIENT_PERSON_ID, CLIENT_DATE, CLIENT_STATUS};
+    public static final String[] ALL_KEYS_CLIENTS = new String[]{CLIENT_ID, CLIENT_CATALOG_ID, CLIENT_PERSON_ID, CLIENT_DATE, CLIENT_STATUS};
 
 
     public static final String TABLE_ORDERS = "ORDERS";
@@ -67,35 +68,36 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("create table " + TABLE_WORKS + " (" +
-                WORK_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                WORK_DATE_START + " DATETIME DEFAULT CURRENT_DATE," +
-                WORK_DATE_ENDS + " DATETIME)");
+        db.execSQL("create table " + TABLE_CATALOGS + " (" +
+                CATALOG_ID + " INTEGER PRIMARY KEY NOT NULL," +
+                CATALOG_DATE_START + " DATETIME DEFAULT CURRENT_DATE," +
+                CATALOG_DATE_ENDS + " DATETIME)");
 
         db.execSQL("create table " + TABLE_PERSONS + " (" +
                 PERSON_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 PERSON_NAME + " TEXT," +
                 PERSON_SURNAME + " TEXT," +
                 PERSON_ADDRESS + " TEXT," +
-                PERSON_PHONE + " LONG NOT NULL)");
+                PERSON_PHONE + " LONG NOT NULL," +
+                PERSON_NETWORK_ID + " INTEGER DEFAULT 0)");
 
         db.execSQL("create table " + TABLE_ITEMS + " (" +
                 ITEM_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                ITEM_NAME + " TEXT NOT NULL," +
+                ITEM_NAME + " TEXT," +
                 ITEM_PRICE + " DOUBLE NOT NULL," +
                 ITEM_DISCOUNT + " TEXT)");
 
         db.execSQL("create table " + TABLE_CLIENTS + " (" +
                 CLIENT_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                CLIENT_WORK_ID + " INTEGER," +
+                CLIENT_CATALOG_ID + " INTEGER," +
                 CLIENT_PERSON_ID + " INTEGER," +
                 CLIENT_DATE + "  DATETIME DEFAULT CURRENT_DATE," +
                 CLIENT_STATUS + " TEXT," +
-                "FOREIGN KEY (" + CLIENT_WORK_ID + ") REFERENCES " + TABLE_WORKS + " (" + WORK_ID + ")," +
+                "FOREIGN KEY (" + CLIENT_CATALOG_ID + ") REFERENCES " + TABLE_CATALOGS + " (" + CATALOG_ID + ")," +
                 "FOREIGN KEY (" + CLIENT_PERSON_ID + ") REFERENCES " + TABLE_PERSONS + " (" + PERSON_ID + "))");
 
         db.execSQL("create table " + TABLE_ORDERS + " (" +
-                ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                ORDER_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 ORDER_ITEM_ID + " INTEGER," +
                 ORDER_CLIENT_ID + " INTEGER," +
                 ORDER_AMOUNT + " INTEGER," +
@@ -107,7 +109,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATALOGS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSONS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENTS);
@@ -119,9 +121,9 @@ public class Database extends SQLiteOpenHelper {
     public boolean insertDataToWorks(String workNr, String workDateEnd) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WORK_ID, workNr);
-        contentValues.put(WORK_DATE_ENDS, workDateEnd);
-        long result = db.insert(TABLE_WORKS, null, contentValues);    //it return row, other way -1
+        contentValues.put(CATALOG_ID, workNr);
+        contentValues.put(CATALOG_DATE_ENDS, workDateEnd);
+        long result = db.insert(TABLE_CATALOGS, null, contentValues);    //it return row, other way -1
         if (result == -1)
             return false;
         else
@@ -162,14 +164,14 @@ public class Database extends SQLiteOpenHelper {
     public boolean insertDataToClients(String workId, String personId, String status) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT " + CLIENT_WORK_ID + ", " + CLIENT_PERSON_ID +
+        Cursor c = db.rawQuery("SELECT " + CLIENT_CATALOG_ID + ", " + CLIENT_PERSON_ID +
                 " FROM " + TABLE_CLIENTS +
-                " WHERE " + CLIENT_WORK_ID + " = " + workId + " AND " + CLIENT_PERSON_ID + "=" + personId, null);
-        if (c.getCount() != 0) return false;     //if exist quit from adding the same data
+                " WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND " + CLIENT_PERSON_ID + "=" + personId, null);
+        if (c.getCount() != 0) return false;     //if exist, quit from adding the same data
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CLIENT_WORK_ID, workId);
+        contentValues.put(CLIENT_CATALOG_ID, workId);
         contentValues.put(CLIENT_PERSON_ID, personId);
         contentValues.put(CLIENT_STATUS, status);
 
@@ -218,25 +220,13 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
-
-    public Cursor getAllRows(String TABLE_NAME, String[] ROWS, String rowWhereId, Long whereId) {
-        String where = rowWhereId + "=" + whereId.toString();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query(true, TABLE_NAME, ROWS, where, null, null, null, null, null);
-
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
     public Cursor getClients(Long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
                 "FROM " + TABLE_PERSONS + " AS C LEFT JOIN " + TABLE_CLIENTS + " AS P " +
                 "ON P." + CLIENT_PERSON_ID + " = C." + PERSON_ID + " " +
-                "WHERE " + CLIENT_WORK_ID + "= " + workId + " ORDER BY " + CLIENT_DATE + " DESC", null);
+                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + CLIENT_DATE + " DESC", null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -261,10 +251,10 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean updateRowWork(long id, String workDateEnd) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String where = WORK_ID + " = " + id;
+        String where = CATALOG_ID + " = " + id;
         ContentValues newValues = new ContentValues();
-        newValues.put(WORK_DATE_ENDS, workDateEnd);
-        long result = db.update(TABLE_WORKS, newValues, where, null);
+        newValues.put(CATALOG_DATE_ENDS, workDateEnd);
+        long result = db.update(TABLE_CATALOGS, newValues, where, null);
         if (result == -1)
             return false;
         else
@@ -300,11 +290,6 @@ public class Database extends SQLiteOpenHelper {
             return false;
         else
             return true;
-    }
-
-
-    public boolean updateRowClient(long id) {
-        return false;
     }
 
 
@@ -346,7 +331,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT " + ROW_NAME +
                 " FROM " + TABLE_NAME +
-                " WHERE " + WHERE +" = "+ id, null);
+                " WHERE " + WHERE + " = " + id, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -354,10 +339,43 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean delete(String TABLE_NAME, String ROW_WHERE_ID, long id) {
+    public int getInt(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT " + ROW_NAME +
+                " FROM " + TABLE_NAME +
+                " WHERE " + WHERE + " = " + id, null);
+
+        if (c.getCount() == 0) return -1;
+        c.moveToFirst();
+        return c.getInt(0);
+
+
+    }
+
+
+    public double getDouble(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT " + ROW_NAME +
+                " FROM " + TABLE_NAME +
+                " WHERE " + WHERE + " = " + id, null);
+
+        c.moveToFirst();
+
+        return c.getDouble(0);
+    }
+
+
+    public boolean delete(String TABLE_NAME, String ROW_WHERE_ID, int id) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         String where = ROW_WHERE_ID + " = " + id;
-        return db.delete(TABLE_NAME, where, null) != 0;
+        long result = db.delete(TABLE_NAME, where, null);
+        if (result == -1)
+            return false;
+        else
+            return true;
     }
 
 

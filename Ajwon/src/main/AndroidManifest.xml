@@ -17,7 +17,7 @@
         </activity>
         <activity android:name=".ForPick.PickPerson"/>
         <activity android:name=".ForPick.PickItem"/>
-        <activity android:name=".OpenAll.OpenAllWorksActivity" />
+        <activity android:name=".OpenAll.OpenAllCatalogsActivity" />
         <activity android:name=".OpenAll.OpenAllPersonsActivity" />
         <activity android:name=".OpenAll.OpenAllItemsActivity" />
         <activity android:name=".AddEdit.AddEditWorkActivity" />

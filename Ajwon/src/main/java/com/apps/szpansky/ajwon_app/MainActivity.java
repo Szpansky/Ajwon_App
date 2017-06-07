@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.apps.szpansky.ajwon_app.MainBrowsing.CatalogsActivity;
 import com.apps.szpansky.ajwon_app.OpenAll.OpenAllItemsActivity;
 import com.apps.szpansky.ajwon_app.OpenAll.OpenAllPersonsActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllWorksActivity;
+import com.apps.szpansky.ajwon_app.OpenAll.OpenAllCatalogsActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         openWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllWorksActivity.class);
+                Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllCatalogsActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Works);
             }
         });

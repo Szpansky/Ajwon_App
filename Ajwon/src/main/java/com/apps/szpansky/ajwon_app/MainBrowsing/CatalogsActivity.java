@@ -11,16 +11,24 @@ import android.widget.ListView;
 
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditWorkActivity;
+import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllWorksActivity;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 
 public class CatalogsActivity extends SimpleActivity {
 
+    Catalog catalog;
+
+
     @Override
     protected String[] setFromFieldsNames() {
-        return Database.ALL_KEYS_WORK;
+        return Database.ALL_KEYS_CATALOG;
+    }
+
+    @Override
+    protected int[] setToViewIDs() {
+        return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});
     }
 
     @Override
@@ -35,28 +43,25 @@ public class CatalogsActivity extends SimpleActivity {
 
     @Override
     protected Cursor setCursor() {
-        return myDB.getAllRows(Database.TABLE_WORKS, Database.ALL_KEYS_WORK, Database.WORK_ID);
+        return myDB.getAllRows(Database.TABLE_CATALOGS, Database.ALL_KEYS_CATALOG, Database.CATALOG_ID);
     }
 
     @Override
     protected String setTable() {
-        return Database.TABLE_WORKS;
+        return Database.TABLE_CATALOGS;
     }
 
     @Override
     protected String[] setAllKeys() {
-        return Database.ALL_KEYS_WORK;
+        return Database.ALL_KEYS_CATALOG;
     }
 
     @Override
     protected String setRowWhereId() {
-        return Database.WORK_ID;
+        return Database.CATALOG_ID;
     }
 
-    @Override
-    protected int[] setToViewIDs() {
-        return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});
-    }
+
 
     @Override
     protected ListView setListView() {
@@ -67,6 +72,8 @@ public class CatalogsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        catalog = new Catalog(myDB);
+
         Button add = (Button) findViewById(R.id.add);
         add.setText("Add New Catalog");
         listViewItemClick();
@@ -85,19 +92,8 @@ public class CatalogsActivity extends SimpleActivity {
 
                 flag[0] = false;
 
-                deleteWithPopup(id);
+                popupForDelete(catalog, (int)id);
 
-             /*   int clientId;
-
-                Cursor c = myDB.getRow(Database.TABLE_CLIENTS, Database.CLIENT_ID, Database.CLIENT_WORK_ID, id);
-                if (c.getCount() != 0) {
-                    c.moveToFirst();
-                    clientId = c.getInt(0);
-                    myDB.delete(Database.TABLE_ORDERS, Database.ORDER_CLIENT_ID, clientId);
-                }
-
-
-                myDB.delete(Database.TABLE_CLIENTS, Database.CLIENT_WORK_ID, id);*/
 
                 //TODO activity about information (delete option in new activity)
 

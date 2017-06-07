@@ -80,7 +80,7 @@ public class PickItem extends SimpleActivity{
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                //deleteWithPopup(id);
+                //popupForDelete(id);
                 return false;
             }
         });
