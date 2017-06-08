@@ -226,7 +226,7 @@ public class Database extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * " +
                 "FROM " + TABLE_PERSONS + " AS C LEFT JOIN " + TABLE_CLIENTS + " AS P " +
                 "ON P." + CLIENT_PERSON_ID + " = C." + PERSON_ID + " " +
-                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + CLIENT_DATE + " DESC", null);
+                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + PERSON_SURNAME, null);
         if (c != null) {
             c.moveToFirst();
         }

@@ -27,7 +27,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
     CheckBox dis_30;
     CheckBox dis_35;
     CheckBox dis_40;
-    CheckBox dis_45;
+    CheckBox dis_100;
     Button add;
     Integer discount = 0;
 
@@ -52,7 +52,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         dis_30 = (CheckBox) findViewById(R.id.check_30);
         dis_35 = (CheckBox) findViewById(R.id.check_35);
         dis_40 = (CheckBox) findViewById(R.id.check_40);
-        dis_45 = (CheckBox) findViewById(R.id.check_45);
+        dis_100 = (CheckBox) findViewById(R.id.check_100);
         add = (Button) findViewById(R.id.add);
 
 
@@ -103,7 +103,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
                 if (dis_30.isChecked()) discount +=100000;
                 if (dis_35.isChecked()) discount +=1000000;
                 if (dis_40.isChecked()) discount +=10000000;
-                if (dis_45.isChecked()) discount +=100000000;
+                if (dis_100.isChecked()) discount +=100000000;
 
 
 
