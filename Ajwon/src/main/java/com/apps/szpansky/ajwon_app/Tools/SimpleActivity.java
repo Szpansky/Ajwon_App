@@ -12,7 +12,7 @@ import android.widget.SimpleCursorAdapter;
 
 public abstract class SimpleActivity extends AppCompatActivity {
 
-    protected Database myDB;                //TODO to check .....
+    protected  static Database myDB;
 
     protected Bundle toNextActivity = new Bundle();
 
