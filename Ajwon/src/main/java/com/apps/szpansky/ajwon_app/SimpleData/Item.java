@@ -3,7 +3,7 @@ package com.apps.szpansky.ajwon_app.SimpleData;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 
 
-public class Item extends Order {
+public class Item extends Order{
 
     public Item(Database myDB) {
         super(myDB);

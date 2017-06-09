@@ -102,7 +102,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
 
                     Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
                     toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putLong("id", id);
+                    toNextActivity.putInt("id", (int)id);
                     intent.putExtras(toNextActivity);
                     OpenAllItemsActivity.this.startActivity(intent);
 

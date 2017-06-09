@@ -100,7 +100,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
                     toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putLong("id", id);
+                    toNextActivity.putInt("id", (int)id);
                     intent.putExtras(toNextActivity);
                     OpenAllPersonsActivity.this.startActivity(intent);
                 }

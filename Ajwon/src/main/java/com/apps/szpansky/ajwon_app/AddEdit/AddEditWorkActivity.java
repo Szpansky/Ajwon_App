@@ -32,10 +32,10 @@ public class AddEditWorkActivity extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        long id = 0; // or other values
+        int id = 0; // or other values
         Boolean edit = false; // or other values
         if (b != null) {
-            id = b.getLong("id");
+            id = b.getInt("id");
             edit = b.getBoolean("edit");
         }
 
@@ -44,7 +44,7 @@ public class AddEditWorkActivity extends AppCompatActivity {
             //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
 
             //TODO get data from cursor -> to EditText
-            workId.setText(Long.toString(id));
+            workId.setText(id);
             workId.setFocusable(false);
 
 
@@ -55,7 +55,7 @@ public class AddEditWorkActivity extends AppCompatActivity {
 
     }
 
-    public void addData(final long id, final boolean edit) {
+    public void addData(final int id, final boolean edit) {
         add.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

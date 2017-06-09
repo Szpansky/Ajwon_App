@@ -38,8 +38,9 @@ public class OrdersActivity extends SimpleActivity {
 
     @Override
     protected Cursor setCursor() {
-        return myDB.getItems(b.getLong("clientId"));
-        //  return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
+        //return order.getCursor();
+        return myDB.getItems(b.getInt("clientId"));
+        //return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
     }
 
 
@@ -126,8 +127,8 @@ public class OrdersActivity extends SimpleActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
 
-                Long itemId = data.getLongExtra("itemId", 0);
-                Long clientId = b.getLong("clientId");
+                Integer itemId = data.getIntExtra("itemId", 0);
+                Integer clientId = b.getInt("clientId");
 
                 boolean isInserted = myDB.updateRowOrder(clientId, itemId, 1);
                 if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);

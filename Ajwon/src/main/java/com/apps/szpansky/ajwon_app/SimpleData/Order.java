@@ -1,10 +1,11 @@
 package com.apps.szpansky.ajwon_app.SimpleData;
 
+import android.database.Cursor;
+
+import com.apps.szpansky.ajwon_app.Tools.Data;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 
-/**
- * Created by Marcin on 2017-06-06.
- */
+
 
 public class Order extends Data{
 

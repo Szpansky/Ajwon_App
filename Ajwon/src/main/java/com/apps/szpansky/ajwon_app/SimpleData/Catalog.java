@@ -8,6 +8,7 @@ public class Catalog extends Client {
 
     public Catalog(Database myDB) {
         super(myDB);
+
     }
 
     @Override

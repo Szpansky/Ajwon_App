@@ -107,7 +107,7 @@ public class CatalogsActivity extends SimpleActivity {
 
                 if (flag[0]) {
                     Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
-                    toNextActivity.putLong("workId", id);
+                    toNextActivity.putInt("workId", (int)id);
                     intent.putExtras(toNextActivity);
                     CatalogsActivity.this.startActivity(intent);
                 }

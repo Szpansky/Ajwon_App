@@ -184,7 +184,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToOrders(String personId, String itemId, double amount) {
+    public boolean insertDataToOrders(String personId, String itemId, int amount) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -220,7 +220,7 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
-    public Cursor getClients(Long id) {
+    public Cursor getClients(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
@@ -234,7 +234,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getItems(Long id) {
+    public Cursor getItems(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String orderId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
@@ -249,7 +249,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowWork(long id, String workDateEnd) {
+    public boolean updateRowWork(int id, String workDateEnd) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = CATALOG_ID + " = " + id;
         ContentValues newValues = new ContentValues();
@@ -262,7 +262,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowPerson(long id, String name, String surname, String address, String phone) {
+    public boolean updateRowPerson(int id, String name, String surname, String address, String phone) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = PERSON_ID + " = " + id;
         ContentValues newValues = new ContentValues();
@@ -278,7 +278,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowItem(long id, String name, String price, String discount) {
+    public boolean updateRowItem(int id, String name, String price, String discount) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = ITEM_ID + " = " + id;
         ContentValues newValues = new ContentValues();
@@ -293,7 +293,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowOrder(long clientId, long itemId, int count) {
+    public boolean updateRowOrder(int clientId, int itemId, int count) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = ORDER_CLIENT_ID + " = " + clientId + " AND " + ORDER_ITEM_ID + " = " + itemId;
 
@@ -327,7 +327,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getRow(String TABLE_NAME, String ROW_NAME, String WHERE, long id) {
+    public Cursor getRow(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT " + ROW_NAME +
                 " FROM " + TABLE_NAME +

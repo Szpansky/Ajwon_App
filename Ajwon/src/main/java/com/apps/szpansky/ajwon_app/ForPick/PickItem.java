@@ -91,7 +91,7 @@ public class PickItem extends SimpleActivity{
                 if (flag[0]) {
 
                     Intent intent = new Intent();
-                    intent.putExtra("itemId", id );
+                    intent.putExtra("itemId", (int)id );
                     setResult(RESULT_OK, intent);
                     finish();
 

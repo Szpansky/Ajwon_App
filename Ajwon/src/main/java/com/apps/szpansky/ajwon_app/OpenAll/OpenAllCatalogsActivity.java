@@ -69,14 +69,6 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
         addData();
 
 
-
-
-
-
-
-
-
-
     }
 
 
@@ -112,7 +104,7 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditWorkActivity.class);
                     toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putLong("id", id);
+                    toNextActivity.putInt("id", (int)id);
                     intent.putExtras(toNextActivity);
                     OpenAllCatalogsActivity.this.startActivity(intent);
                 }

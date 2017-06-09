@@ -34,10 +34,10 @@ public class AddEditPersonActivity extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        long id = 0; // or other values
+        int id = 0; // or other values
         Boolean edit = false; // or other values
         if (b != null) {
-            id = b.getLong("id");
+            id = b.getInt("id");
             edit = b.getBoolean("edit");
         }
 
@@ -55,7 +55,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
 
         addData(id,edit);
     }
-    public void addData(final long id, final boolean edit) {
+    public void addData(final int id, final boolean edit) {
         add.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
 

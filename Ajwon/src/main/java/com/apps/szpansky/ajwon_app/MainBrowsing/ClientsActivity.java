@@ -33,7 +33,7 @@ public class ClientsActivity extends SimpleActivity {
     @Override
     protected Cursor setCursor() {
         //return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_CATALOG_ID, b.getLong("workId"));
-        return myDB.getClients(b.getLong("workId"));
+        return myDB.getClients(b.getInt("workId"));
     }
 
     @Override
@@ -121,7 +121,7 @@ public class ClientsActivity extends SimpleActivity {
                 if (flag[0]) {
 
                     Intent intent = new Intent(ClientsActivity.this, OrdersActivity.class);
-                    toNextActivity.putLong("clientId", id);
+                    toNextActivity.putInt("clientId", (int)id);
                     intent.putExtras(toNextActivity);
                     ClientsActivity.this.startActivity(intent);
 
@@ -141,8 +141,8 @@ public class ClientsActivity extends SimpleActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
 
-                Long personId = data.getLongExtra("personId" , 0);
-                Long workId = b.getLong("workId");
+                Integer personId = data.getIntExtra("personId" , 0);
+                Integer workId = b.getInt("workId");
 
 
                 myDB.insertDataToClients(workId.toString(), personId.toString(), "Waiting");

@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import com.apps.szpansky.ajwon_app.SimpleData.Data;
 
 
 public abstract class SimpleActivity extends AppCompatActivity {
