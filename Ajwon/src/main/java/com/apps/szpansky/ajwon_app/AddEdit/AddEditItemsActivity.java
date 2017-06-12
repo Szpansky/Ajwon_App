@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.apps.szpansky.ajwon_app.SimpleData.Item;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -60,19 +61,25 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        int id = 0; // or other values
+        Integer id = 0; // or other values
         Boolean edit = false; // or other values
         if (b != null) {
-            id = b.getInt("id");
+
+            id = Item.clickedItemId;
+
             edit = b.getBoolean("edit");
+
         }
+
+        id = Item.clickedItemId;
+
 
         if (edit) {
             //String [] where = new String[]{String.valueOf("_id ="+id)};
             //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
 
             //TODO get data from cursor -> to EditText
-            nr.setText(Long.toString(id));
+            nr.setText(id.toString());
             nr.setFocusable(false);
 
 

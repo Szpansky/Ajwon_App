@@ -1,6 +1,5 @@
 package com.apps.szpansky.ajwon_app.MainBrowsing;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,67 +10,33 @@ import android.widget.ListView;
 import com.apps.szpansky.ajwon_app.ForPick.PickPerson;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.SimpleData.Client;
-import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.SimpleData.Order;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 
 
 public class ClientsActivity extends SimpleActivity {
     Bundle b = new Bundle();
-    Client client;
+    //Client client;
 
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_simple_view;
+    //public static int clickedClientId = 1 ;
+
+
+    public ClientsActivity() {
+        super(new Client());
     }
 
-    @Override
-    protected int getItemLayoutResourceId() {
-        return R.layout.item_client_view;
-    }
-
-    @Override
-    protected Cursor setCursor() {
-        //return myDB.getAllRows(Database.TABLE_CLIENTS,Database.ALL_KEYS_CLIENTS,Database.CLIENT_CATALOG_ID, b.getLong("workId"));
-        return myDB.getClients(b.getInt("workId"));
-    }
-
-    @Override
-    protected String setTable() {
-        return Database.TABLE_CLIENTS;
-    }
-
-    @Override
-    protected String[] setAllKeys() {
-        return Database.ALL_KEYS_CLIENTS;
-    }
-
-    @Override
-    protected String setRowWhereId() {
-        return Database.CLIENT_ID;
-    }
-
-
-    @Override
-    protected String[] setFromFieldsNames() {
-        return  new String[]{Database.CLIENT_ID, Database.CLIENT_CATALOG_ID, Database.CLIENT_PERSON_ID, Database.CLIENT_DATE, Database.PERSON_NAME, Database.PERSON_SURNAME};
-    }
-
-
-    @Override
-    protected int[] setToViewIDs() {
-        return (new int[]{R.id.clientOrderId, R.id.clientWorkId, R.id.clientPersonId, R.id.clientDate, R.id.clientName, R.id.clientSurname});
-    }
 
     @Override
     protected ListView setListView() {
         return ((ListView) findViewById(R.id.list_view_simple_view));
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        client = new Client(myDB);
+        //client = new Client(myDB);
 
         Button add = (Button) findViewById(R.id.add);
         add.setText("Pick Person");
@@ -105,7 +70,7 @@ public class ClientsActivity extends SimpleActivity {
                 flag[0] = false;
 
 
-                popupForDelete(client, (int)id);
+                popupForDelete((int)id);
 
                 //popupForDelete(id);
                 //myDB.delete(Database.TABLE_ORDERS, Database.ORDER_CLIENT_ID, id);   //TODO delete in new activiti with informations
@@ -121,10 +86,13 @@ public class ClientsActivity extends SimpleActivity {
                 if (flag[0]) {
 
                     Intent intent = new Intent(ClientsActivity.this, OrdersActivity.class);
-                    toNextActivity.putInt("clientId", (int)id);
+                    toNextActivity.putInt("clickedClientId", (int)id);
                     intent.putExtras(toNextActivity);
-                    ClientsActivity.this.startActivity(intent);
 
+                    Order.clickedClientId = (int) id;
+
+                    ClientsActivity.this.startActivity(intent);
+                    //clickedClientId = (int)id;
                 }
                 flag[0] = true;
             }
@@ -142,10 +110,10 @@ public class ClientsActivity extends SimpleActivity {
             if(resultCode == RESULT_OK) {
 
                 Integer personId = data.getIntExtra("personId" , 0);
-                Integer workId = b.getInt("workId");
+                Integer catalogId = Client.clickedCatalogId;
 
 
-                myDB.insertDataToClients(workId.toString(), personId.toString(), "Waiting");
+                myDB.insertDataToClients(catalogId.toString(), personId.toString(), "Waiting");
 
                 refreshListView();
 

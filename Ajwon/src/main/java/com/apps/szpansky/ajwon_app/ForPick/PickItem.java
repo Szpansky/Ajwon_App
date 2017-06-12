@@ -11,6 +11,8 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.SimpleData.Item;
+import com.apps.szpansky.ajwon_app.Tools.Data;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
@@ -20,44 +22,15 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class PickItem extends SimpleActivity{
 
-    @Override
-    protected String[] setFromFieldsNames() {
-        return Database.ALL_KEYS_ITEMS;
+
+    public PickItem() {
+        super(new Item());
     }
 
     @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_simple_view;
+    protected ListView setListView(){
+        return ((ListView) findViewById(R.id.list_view_simple_view));
     }
-
-    @Override
-    protected int getItemLayoutResourceId() {
-        return (R.layout.item_item_view);
-    }
-
-    @Override
-    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_ID);}
-
-    @Override
-    protected String setTable() {
-        return Database.TABLE_ITEMS;
-    }
-
-    @Override
-    protected String[] setAllKeys() {
-        return Database.ALL_KEYS_ITEMS;
-    }
-
-    @Override
-    protected String setRowWhereId() {
-        return Database.ITEM_ID;
-    }
-
-    @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount});}
-
-    @Override
-    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
 
 
     @Override

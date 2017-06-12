@@ -12,7 +12,15 @@ import android.widget.SimpleCursorAdapter;
 
 public abstract class SimpleActivity extends AppCompatActivity {
 
-    protected  static Database myDB;
+    public SimpleActivity(Data data) {
+        this.data = data;
+    }
+
+    protected static Database myDB;
+    private Data data;
+
+
+
 
     protected Bundle toNextActivity = new Bundle();
 
@@ -26,37 +34,24 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected String[] allKeys;
     protected String rowWhereId;
 
-    protected abstract int getLayoutResourceId();
-
-    protected abstract int getItemLayoutResourceId();
-
-    protected abstract Cursor setCursor();
-
-    protected abstract String setTable();
-
-    protected abstract String[] setAllKeys();
-
-    protected abstract String setRowWhereId();
-
-    protected abstract int[] setToViewIDs();
 
     protected abstract ListView setListView();
 
-    protected abstract String[] setFromFieldsNames();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDB = new Database(this);
-        setContentView(getLayoutResourceId());
-        table = setTable();
-        allKeys = setAllKeys();
-        rowWhereId = setRowWhereId();
-        toViewIDs = setToViewIDs();
-        cursor = setCursor();
+
+        setContentView(data.getLayoutResourceId());
+        table = data.setTable();
+        allKeys = data.setAllKeys();
+        rowWhereId = data.setRowWhereId();
+        toViewIDs = data.setToViewIDs();
+        cursor = data.setCursor(myDB);
         listView = setListView();
-        fromFieldsNames = setFromFieldsNames();
+        fromFieldsNames = data.setFromFieldsNames();
         refreshListView();
     }
 
@@ -69,13 +64,13 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
 
     public void refreshListView() {
-        cursor = setCursor();
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), getItemLayoutResourceId(), cursor, fromFieldsNames, toViewIDs, 0);
+        cursor = data.setCursor(myDB);
+        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), data.getItemLayoutResourceId(), cursor, fromFieldsNames, toViewIDs, 0);
         listView.setAdapter(myCursorAdapter);
     }
 
 
-    public void popupForDelete(final Data data, final int id) {       //TODO send object that got method for delete
+    public void popupForDelete(final int id) {       //TODO send object that got method for delete
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
@@ -84,7 +79,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
 
-                        data.deleteData(id);
+                        data.deleteData(id, myDB);
                         refreshListView();
 
                         break;

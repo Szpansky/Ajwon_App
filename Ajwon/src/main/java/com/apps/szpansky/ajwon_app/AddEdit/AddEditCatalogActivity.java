@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
 
-public class AddEditWorkActivity extends AppCompatActivity {
+public class AddEditCatalogActivity extends AppCompatActivity {
 
     EditText workId;
     EditText workDateEnd;
@@ -32,19 +33,26 @@ public class AddEditWorkActivity extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        int id = 0; // or other values
+        Integer id = 0; // or other values
         Boolean edit = false; // or other values
         if (b != null) {
-            id = b.getInt("id");
+
+            id = Catalog.clickedCatalogId;
+
+
             edit = b.getBoolean("edit");
         }
+
+
+        id = Catalog.clickedCatalogId;
+
 
         if (edit) {
             //String [] where = new String[]{String.valueOf("_id ="+id)};
             //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
 
             //TODO get data from cursor -> to EditText
-            workId.setText(id);
+            workId.setText(id.toString());
             workId.setFocusable(false);
 
 
@@ -62,17 +70,17 @@ public class AddEditWorkActivity extends AppCompatActivity {
                 if (edit) {
                     boolean isUpdated = myDB.updateRowWork(id, workDateEnd.getText().toString());
                     if (isUpdated == true)
-                        Toast.makeText(AddEditWorkActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditCatalogActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditWorkActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditCatalogActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
 
                     boolean isInserted = myDB.insertDataToWorks(workId.getText().toString(), workDateEnd.getText().toString());
                     if (isInserted == true)
-                        Toast.makeText(AddEditWorkActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditCatalogActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditWorkActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditCatalogActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                     finish();
 
                 }

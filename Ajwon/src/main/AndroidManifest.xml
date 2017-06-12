@@ -20,7 +20,7 @@
         <activity android:name=".OpenAll.OpenAllCatalogsActivity" />
         <activity android:name=".OpenAll.OpenAllPersonsActivity" />
         <activity android:name=".OpenAll.OpenAllItemsActivity" />
-        <activity android:name=".AddEdit.AddEditWorkActivity" />
+        <activity android:name=".AddEdit.AddEditCatalogActivity" />
         <activity android:name=".AddEdit.AddEditPersonActivity" />
         <activity android:name=".AddEdit.AddEditItemsActivity" />
         <activity android:name=".MainBrowsing.CatalogsActivity" />

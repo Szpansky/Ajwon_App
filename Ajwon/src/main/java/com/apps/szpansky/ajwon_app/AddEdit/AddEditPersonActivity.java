@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.apps.szpansky.ajwon_app.SimpleData.Person;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -37,9 +38,14 @@ public class AddEditPersonActivity extends AppCompatActivity {
         int id = 0; // or other values
         Boolean edit = false; // or other values
         if (b != null) {
-            id = b.getInt("id");
+
+            id = Person.clickedPersonId;
+
             edit = b.getBoolean("edit");
         }
+
+        id = Person.clickedPersonId;
+
 
         if (edit) {
             //String [] where = new String[]{String.valueOf("_id ="+id)};

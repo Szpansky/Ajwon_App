@@ -10,46 +10,19 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.SimpleData.Person;
+import com.apps.szpansky.ajwon_app.Tools.Data;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllPersonsActivity extends SimpleActivity {
-    Person person;
 
-    @Override
-    protected String[] setFromFieldsNames() {
-        return Database.ALL_KEYS_PERSONS;
+    //Person person;
+
+    public OpenAllPersonsActivity() {
+        super(new Person());
     }
 
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_simple_view;
-    }
-
-    @Override
-    protected int getItemLayoutResourceId() {
-        return (R.layout.item_person_view);
-    }
-
-    @Override
-    protected Cursor setCursor() {return myDB.getAllRows(Database.TABLE_PERSONS, Database.ALL_KEYS_PERSONS, Database.PERSON_ID);}
-
-    @Override
-    protected String setTable() {
-        return Database.TABLE_PERSONS;
-    }
-
-    @Override
-    protected String[] setAllKeys() {
-        return Database.ALL_KEYS_PERSONS;
-    }
-
-    @Override
-    protected String setRowWhereId() {return Database.PERSON_ID;}
-
-    @Override
-    protected int[] setToViewIDs() {return (new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});}
 
     @Override
     protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
@@ -58,7 +31,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        person = new Person(myDB);
+        //person = new Person(myDB);
 
         Button add = (Button) findViewById(R.id.add);
         add.setText("Add New Person");
@@ -88,7 +61,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popupForDelete(person, (int)id);
+                popupForDelete((int)id);
                 return false;
             }
         });
@@ -99,8 +72,12 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
+
+                    Person.clickedPersonId = (int) id;
+
                     toNextActivity.putBoolean("edit", true);
                     toNextActivity.putInt("id", (int)id);
+
                     intent.putExtras(toNextActivity);
                     OpenAllPersonsActivity.this.startActivity(intent);
                 }

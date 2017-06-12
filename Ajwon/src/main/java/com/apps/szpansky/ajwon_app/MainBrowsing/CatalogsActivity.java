@@ -2,7 +2,6 @@ package com.apps.szpansky.ajwon_app.MainBrowsing;
 
 import android.content.Intent;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,57 +9,19 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditWorkActivity;
+import com.apps.szpansky.ajwon_app.AddEdit.AddEditCatalogActivity;
 import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
+import com.apps.szpansky.ajwon_app.SimpleData.Client;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 import com.apps.szpansky.ajwon_app.R;
-import com.apps.szpansky.ajwon_app.Tools.Database;
 
 public class CatalogsActivity extends SimpleActivity {
 
-    Catalog catalog;
+    //Catalog catalog;
 
-
-    @Override
-    protected String[] setFromFieldsNames() {
-        return Database.ALL_KEYS_CATALOG;
+    public CatalogsActivity() {
+        super(new Catalog());
     }
-
-    @Override
-    protected int[] setToViewIDs() {
-        return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_simple_view;
-    }
-
-    @Override
-    protected int getItemLayoutResourceId() {
-        return (R.layout.item_work_view);
-    }
-
-    @Override
-    protected Cursor setCursor() {
-        return myDB.getAllRows(Database.TABLE_CATALOGS, Database.ALL_KEYS_CATALOG, Database.CATALOG_ID);
-    }
-
-    @Override
-    protected String setTable() {
-        return Database.TABLE_CATALOGS;
-    }
-
-    @Override
-    protected String[] setAllKeys() {
-        return Database.ALL_KEYS_CATALOG;
-    }
-
-    @Override
-    protected String setRowWhereId() {
-        return Database.CATALOG_ID;
-    }
-
 
 
     @Override
@@ -72,7 +33,7 @@ public class CatalogsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        catalog = new Catalog(myDB);
+        //catalog = new Catalog(myDB);
 
         Button add = (Button) findViewById(R.id.add);
         add.setText("Add New Catalog");
@@ -92,7 +53,7 @@ public class CatalogsActivity extends SimpleActivity {
 
                 flag[0] = false;
 
-                popupForDelete(catalog, (int)id);
+                popupForDelete((int)id);
 
 
                 //TODO activity about information (delete option in new activity)
@@ -107,9 +68,13 @@ public class CatalogsActivity extends SimpleActivity {
 
                 if (flag[0]) {
                     Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
-                    toNextActivity.putInt("workId", (int)id);
+                    toNextActivity.putInt("catalogId", (int)id);
                     intent.putExtras(toNextActivity);
+
+                    Client.clickedCatalogId =(int)id;
+
                     CatalogsActivity.this.startActivity(intent);
+
                 }
                 flag[0] = true;
             }
@@ -122,7 +87,7 @@ public class CatalogsActivity extends SimpleActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogsActivity.this, AddEditWorkActivity.class);
+                Intent intent = new Intent(CatalogsActivity.this, AddEditCatalogActivity.class);
                 CatalogsActivity.this.startActivity(intent);
             }
         });

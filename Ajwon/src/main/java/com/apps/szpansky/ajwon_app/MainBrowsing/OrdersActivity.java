@@ -11,58 +11,21 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.ForPick.PickItem;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.SimpleData.Client;
 import com.apps.szpansky.ajwon_app.SimpleData.Order;
+import com.apps.szpansky.ajwon_app.Tools.Data;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 
 public class OrdersActivity extends SimpleActivity {
     Bundle b = new Bundle();
-    Order order;
+    //Order order;
 
-    @Override
-    protected String[] setFromFieldsNames() {
-        return new String[]{Database.ORDER_ID, Database.ORDER_CLIENT_ID, Database.ORDER_ITEM_ID, Database.ORDER_AMOUNT, Database.ORDER_TOTAL, Database.ITEM_NAME};
+    public OrdersActivity() {
+        super(new Order());
     }
 
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_simple_view;
-    }
-
-    @Override
-    protected int getItemLayoutResourceId() {
-        return (R.layout.item_order_view);
-    }
-
-
-    @Override
-    protected Cursor setCursor() {
-        //return order.getCursor();
-        return myDB.getItems(b.getInt("clientId"));
-        //return myDB.getAllRows(Database.TABLE_ORDERS,Database.ALL_KEYS_ORDERS,Database.ORDER_CLIENT_ID, b.getLong("clientId"));
-    }
-
-
-    @Override
-    protected String setTable() {
-        return Database.TABLE_ORDERS;
-    }
-
-    @Override
-    protected String[] setAllKeys() {
-        return Database.ALL_KEYS_ORDERS;
-    }
-
-    @Override
-    protected String setRowWhereId() {
-        return Database.ORDER_ID;
-    }
-
-    @Override
-    protected int[] setToViewIDs() {
-        return (new int[]{R.id.orderId, R.id.orderPersonId, R.id.orderItemId, R.id.orderAmount, R.id.orderTotal, R.id.orderItemName});
-    }
 
     @Override
     protected ListView setListView() {
@@ -72,7 +35,7 @@ public class OrdersActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        order = new Order(myDB);
+        //order = new Order(myDB);
 
         Button add = (Button) findViewById(R.id.add);
         add.setText("Pick Item");
@@ -104,7 +67,7 @@ public class OrdersActivity extends SimpleActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
 
-                popupForDelete(order, (int)id );
+                popupForDelete((int)id );
 
                 return false;
             }
@@ -128,7 +91,8 @@ public class OrdersActivity extends SimpleActivity {
             if (resultCode == RESULT_OK) {
 
                 Integer itemId = data.getIntExtra("itemId", 0);
-                Integer clientId = b.getInt("clientId");
+                Integer clientId = Order.clickedClientId;
+
 
                 boolean isInserted = myDB.updateRowOrder(clientId, itemId, 1);
                 if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);
