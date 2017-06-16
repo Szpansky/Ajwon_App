@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/drawerLayout"
     tools:context="com.apps.szpansky.ajwon_app.MainActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
 
     <Button
@@ -16,10 +18,14 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="1dp"
         android:text="Start"
         android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
 
 
     <Button
@@ -27,32 +33,45 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="110dp"
         android:text="Open Works"
         android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/openCatalogs"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/openItems"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/openPersons"
-        android:layout_marginTop="1dp"
         android:text="Open Items"
         android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/openPersons"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/openPersons"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/openWorks"
-        android:layout_marginTop="1dp"
         android:text="Open Clients"
         android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        android:layout_below="@+id/openWorks"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start">
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
