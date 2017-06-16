@@ -1,23 +1,18 @@
 package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
-
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.SimpleData.Person;
-import com.apps.szpansky.ajwon_app.Tools.Data;
-import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllPersonsActivity extends SimpleActivity {
 
-    //Person person;
+    Button add;
 
     public OpenAllPersonsActivity() {
         super(new Person());
@@ -25,15 +20,10 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //person = new Person(myDB);
 
-        Button add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.add);
         add.setText("Add New Person");
         listViewItemClick();
         addData();
@@ -41,7 +31,6 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
 
     private void addData() {
-        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -73,12 +62,10 @@ public class OpenAllPersonsActivity extends SimpleActivity {
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
 
-                    Person.clickedPersonId = (int) id;
+                    toNextActivityBundle.putBoolean("isEdit", true);
+                    toNextActivityBundle.putInt("personId", (int)id);
 
-                    toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putInt("id", (int)id);
-
-                    intent.putExtras(toNextActivity);
+                    intent.putExtras(toNextActivityBundle);
                     OpenAllPersonsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;

@@ -9,13 +9,14 @@ import com.apps.szpansky.ajwon_app.Tools.Database;
 
 public class Item extends Order{
 
-
     public static int clickedItemId;
+
 
     @Override
     public int getLayoutResourceId(){
         return R.layout.activity_simple_view;
     }
+
 
     @Override
     public int getItemLayoutResourceId(){
@@ -23,11 +24,13 @@ public class Item extends Order{
         return (R.layout.item_item_view);
     }
 
+
     @Override
     public Cursor setCursor(Database myDB){
 
         return myDB.getAllRows(Database.TABLE_ITEMS, Database.ALL_KEYS_ITEMS, Database.ITEM_ID);
     }
+
 
     @Override
     public String setTable(){
@@ -35,17 +38,20 @@ public class Item extends Order{
         return Database.TABLE_ITEMS;
     }
 
+
     @Override
     public String[] setAllKeys(){
 
         return Database.ALL_KEYS_ITEMS;
     }
 
+
     @Override
     public String setRowWhereId(){
 
         return Database.ITEM_ID;
     }
+
 
     @Override
     public int[] setToViewIDs(){
@@ -63,9 +69,8 @@ public class Item extends Order{
 
     @Override
     public void deleteData(int itemId, Database myDB) {
+
         myDB.delete(Database.TABLE_ORDERS,Database.ORDER_ITEM_ID,itemId);
         myDB.delete(Database.TABLE_ITEMS, Database.ITEM_ID, itemId);
     }
-
-
 }

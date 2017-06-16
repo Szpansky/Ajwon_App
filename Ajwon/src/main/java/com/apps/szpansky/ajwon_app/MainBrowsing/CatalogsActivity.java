@@ -15,9 +15,10 @@ import com.apps.szpansky.ajwon_app.SimpleData.Client;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 import com.apps.szpansky.ajwon_app.R;
 
+
 public class CatalogsActivity extends SimpleActivity {
 
-    //Catalog catalog;
+    Button add;
 
     public CatalogsActivity() {
         super(new Catalog());
@@ -25,21 +26,25 @@ public class CatalogsActivity extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView() {
-        return ((ListView) findViewById(R.id.list_view_simple_view));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        add = (Button) findViewById(R.id.add);
+        add.setText("Add New Catalog");
+
+        addData();
+        listViewItemClick();
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //catalog = new Catalog(myDB);
-
-        Button add = (Button) findViewById(R.id.add);
-        add.setText("Add New Catalog");
-        listViewItemClick();
-        addData();
-
+    private void addData() {
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogsActivity.this, AddEditCatalogActivity.class);
+                CatalogsActivity.this.startActivity(intent);
+            }
+        });
     }
 
 
@@ -50,14 +55,10 @@ public class CatalogsActivity extends SimpleActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
                 flag[0] = false;
 
                 popupForDelete((int)id);
-
-
                 //TODO activity about information (delete option in new activity)
-
                 return false;
             }
         });
@@ -65,30 +66,13 @@ public class CatalogsActivity extends SimpleActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (flag[0]) {
+
                     Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
-                    toNextActivity.putInt("catalogId", (int)id);
-                    intent.putExtras(toNextActivity);
-
                     Client.clickedCatalogId =(int)id;
-
                     CatalogsActivity.this.startActivity(intent);
-
                 }
                 flag[0] = true;
-            }
-        });
-    }
-
-
-    private void addData() {
-        Button add = (Button) findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CatalogsActivity.this, AddEditCatalogActivity.class);
-                CatalogsActivity.this.startActivity(intent);
             }
         });
     }

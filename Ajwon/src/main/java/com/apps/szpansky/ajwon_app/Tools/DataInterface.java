@@ -20,7 +20,4 @@ public interface DataInterface {
       int[] setToViewIDs();
       String[] setFromFieldsNames();
 
-
-
-
 }

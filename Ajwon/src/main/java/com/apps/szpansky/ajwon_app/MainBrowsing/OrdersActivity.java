@@ -19,8 +19,8 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 
 public class OrdersActivity extends SimpleActivity {
-    Bundle b = new Bundle();
-    //Order order;
+
+    Button add;
 
     public OrdersActivity() {
         super(new Order());
@@ -28,37 +28,29 @@ public class OrdersActivity extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView() {
-        return ((ListView) findViewById(R.id.list_view_simple_view));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //order = new Order(myDB);
 
-        Button add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.add);
         add.setText("Pick Item");
-        b = getIntent().getExtras();
+
         addData();
         listViewItemClick();
     }
 
+
     private void addData() {
-        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OrdersActivity.this, PickItem.class);
-                startActivityForResult(i, 1);
+                Intent intent = new Intent(OrdersActivity.this, PickItem.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
 
 
-
     private void listViewItemClick() {
-
         final boolean[] flag = new boolean[1];
         flag[0] = true;
 
@@ -68,7 +60,7 @@ public class OrdersActivity extends SimpleActivity {
                 flag[0] = false;
 
                 popupForDelete((int)id );
-
+                //TODO delete in new activiti with informations
                 return false;
             }
         });
@@ -93,17 +85,11 @@ public class OrdersActivity extends SimpleActivity {
                 Integer itemId = data.getIntExtra("itemId", 0);
                 Integer clientId = Order.clickedClientId;
 
-
                 boolean isInserted = myDB.updateRowOrder(clientId, itemId, 1);
                 if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);
 
-
                 refreshListView();
-
-
             }
         }
     }
-
-
 }

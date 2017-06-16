@@ -13,12 +13,17 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditPersonActivity extends AppCompatActivity {
 
-    EditText name;
-    EditText surname;
-    EditText address;
-    EditText phone;
-    Button add;
-    Database myDB;
+    private EditText name;
+    private EditText surname;
+    private EditText address;
+    private EditText phone;
+    private Button add;
+
+    private Integer thisId = 0;
+    private Boolean isEdit = false;
+
+    private Database myDB;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_person);
 
         myDB = new Database(this);
+        bundle = getIntent().getExtras();
 
         name = (EditText)findViewById(R.id.name);
         surname = (EditText)findViewById(R.id.surname);
@@ -33,34 +39,20 @@ public class AddEditPersonActivity extends AppCompatActivity {
         phone = (EditText)findViewById(R.id.phone);
         add = (Button)findViewById(R.id.add);
 
+        if (bundle != null) {
 
-        Bundle b = getIntent().getExtras();
-        int id = 0; // or other values
-        Boolean edit = false; // or other values
-        if (b != null) {
-
-            id = Person.clickedPersonId;
-
-            edit = b.getBoolean("edit");
+            thisId = bundle.getInt("personId");
+            isEdit = bundle.getBoolean("isEdit");
         }
 
-        id = Person.clickedPersonId;
-
-
-        if (edit) {
-            //String [] where = new String[]{String.valueOf("_id ="+id)};
-            //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
-
+        if (isEdit) {
             //TODO get data from cursor -> to EditText
-            //nr.setText(Long.toString(id));
-            //nr.setFocusable(false);
-
-
-            //System.out.println(cursor.toString());
         }
 
-        addData(id,edit);
+        addData(thisId, isEdit);
     }
+
+
     public void addData(final int id, final boolean edit) {
         add.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
@@ -87,13 +79,9 @@ public class AddEditPersonActivity extends AppCompatActivity {
                             else
                                 Toast.makeText(AddEditPersonActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                             finish();
-
                         }
                     }
                 }
         );
-
     }
-
-
 }

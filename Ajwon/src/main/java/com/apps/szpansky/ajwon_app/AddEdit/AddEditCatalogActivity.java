@@ -14,54 +14,45 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditCatalogActivity extends AppCompatActivity {
 
-    EditText workId;
-    EditText workDateEnd;
-    Button add;
-    Database myDB;
+    private EditText workId;
+    private EditText workDateEnd;
+    private Button add;
+
+    private Integer thisId = 0;
+    private Boolean isEdit = false;
+
+    private Database myDB;
+    private Bundle bundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        myDB = new Database(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_work);
 
+        myDB = new Database(this);
+        bundle = getIntent().getExtras();
+
         workId = (EditText) findViewById(R.id.workId);
         workDateEnd = (EditText) findViewById(R.id.workDateEnd);
-
         add = (Button) findViewById(R.id.add);
 
+        if (bundle != null) {
 
-        Bundle b = getIntent().getExtras();
-        Integer id = 0; // or other values
-        Boolean edit = false; // or other values
-        if (b != null) {
-
-            id = Catalog.clickedCatalogId;
-
-
-            edit = b.getBoolean("edit");
+            thisId = bundle.getInt("catalogId");
+            isEdit = bundle.getBoolean("isEdit");
         }
 
-
-        id = Catalog.clickedCatalogId;
-
-
-        if (edit) {
-            //String [] where = new String[]{String.valueOf("_id ="+id)};
-            //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
+        if (isEdit) {
 
             //TODO get data from cursor -> to EditText
-            workId.setText(id.toString());
+            workId.setText(thisId.toString());
             workId.setFocusable(false);
-
-
-            //System.out.println(cursor.toString());
         }
 
-        addData(id, edit);
-
+        addData(thisId, isEdit);
     }
+
 
     public void addData(final int id, final boolean edit) {
         add.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +78,5 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             }
         }
         );
-
     }
-
-
 }

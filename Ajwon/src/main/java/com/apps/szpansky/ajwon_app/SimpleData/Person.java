@@ -9,8 +9,8 @@ import com.apps.szpansky.ajwon_app.Tools.Database;
 
 public class Person extends Client {
 
-
     public static int clickedPersonId;
+
 
     @Override
     public int getLayoutResourceId(){
@@ -18,11 +18,13 @@ public class Person extends Client {
         return R.layout.activity_simple_view;
     }
 
+
     @Override
     public int getItemLayoutResourceId(){
 
         return (R.layout.item_person_view);
     }
+
 
     @Override
     public Cursor setCursor(Database myDB){
@@ -30,11 +32,13 @@ public class Person extends Client {
         return myDB.getAllRows(Database.TABLE_PERSONS, Database.ALL_KEYS_PERSONS, Database.PERSON_ID);
     }
 
+
     @Override
     public String setTable(){
 
         return Database.TABLE_PERSONS;
     }
+
 
     @Override
     public String[] setAllKeys(){
@@ -42,11 +46,13 @@ public class Person extends Client {
         return Database.ALL_KEYS_PERSONS;
     }
 
+
     @Override
     public String setRowWhereId(){
 
         return Database.PERSON_ID;
     }
+
 
     @Override
     public int[] setToViewIDs(){
@@ -62,24 +68,17 @@ public class Person extends Client {
     }
 
 
-
-
-
     @Override
     public void deleteData(int personId, Database myDB) {
 
-
         int clientId;
-
 
         do {
             clientId = myDB.getInt(Database.TABLE_CLIENTS, Database.CLIENT_ID, Database.CLIENT_PERSON_ID, personId);
             if (clientId != -1) super.deleteData(clientId, myDB);
         } while (clientId != -1);
 
-
         myDB.delete(Database.TABLE_PERSONS, Database.PERSON_ID, personId);
-
 
     }
 }

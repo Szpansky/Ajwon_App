@@ -14,7 +14,8 @@ import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllCatalogsActivity extends SimpleActivity {
 
-    //Catalog catalog;
+    Button add;
+
 
     public OpenAllCatalogsActivity() {
         super(new Catalog());
@@ -22,27 +23,18 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView(){
-        return ((ListView) findViewById(R.id.list_view_simple_view));
-    }
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //catalog = new Catalog(myDB);
 
-        Button add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.add);
         add.setText("Add New Catalog");
+
         listViewItemClick();
         addData();
-
-
     }
 
 
     private void addData() {
-        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,13 +65,10 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
                 if (flag[0]) {
                     Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditCatalogActivity.class);
 
-                    Catalog.clickedCatalogId = (int) id;
+                    toNextActivityBundle.putInt("catalogId", (int)id);
+                    toNextActivityBundle.putBoolean("isEdit", true);
 
-                    toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putInt("id", (int)id);
-
-
-                    intent.putExtras(toNextActivity);
+                    intent.putExtras(toNextActivityBundle);
                     OpenAllCatalogsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;

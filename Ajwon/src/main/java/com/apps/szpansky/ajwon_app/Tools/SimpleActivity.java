@@ -8,21 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.apps.szpansky.ajwon_app.R;
 
 
 public abstract class SimpleActivity extends AppCompatActivity {
 
-    public SimpleActivity(Data data) {
-        this.data = data;
-    }
-
     protected static Database myDB;
     private Data data;
 
-
-
-
-    protected Bundle toNextActivity = new Bundle();
+    protected Bundle toNextActivityBundle = new Bundle();
 
     protected Cursor cursor;
     protected String[] fromFieldsNames;
@@ -35,8 +29,14 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected String rowWhereId;
 
 
-    protected abstract ListView setListView();
+    public SimpleActivity(Data data) {
+        this.data = data;
+    }
 
+
+    protected ListView setListView(){
+        return ((ListView) findViewById(R.id.list_view_simple_view));
+    }
 
 
     @Override
@@ -85,7 +85,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
 
-
                         break;
                 }
             }
@@ -95,8 +94,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 .setNegativeButton("No", dialogClickListener).show();
 
     }
-
-
 }
 
 

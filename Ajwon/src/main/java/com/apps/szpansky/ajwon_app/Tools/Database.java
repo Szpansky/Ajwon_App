@@ -220,7 +220,7 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
-    public Cursor getClientsWhereWork(Integer id) {
+    public Cursor getClients(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
@@ -234,7 +234,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getClientItems(Integer id) {
+    public Cursor getOrders(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String orderId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +

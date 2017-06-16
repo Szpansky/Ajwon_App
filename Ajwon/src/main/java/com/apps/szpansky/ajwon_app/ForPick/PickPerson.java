@@ -16,16 +16,15 @@ import com.apps.szpansky.ajwon_app.Tools.Data;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-/**
- * Created by Marcin on 2017-05-22.
- */
 
 public class PickPerson extends SimpleActivity{
 
+    Button add;
 
     public PickPerson() {
         super(new Person());
     }
+
 
     @Override
     protected ListView setListView(){
@@ -37,43 +36,11 @@ public class PickPerson extends SimpleActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Button add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.add);
         add.setText("Add New Person");
 
-        listViewItemClick();
         addData();
-    }
-
-    private void listViewItemClick() {
-
-        final boolean[] flag = new boolean[1];
-        flag[0] = true;
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                flag[0] = false;
-                //popupForDelete(id);
-                return false;
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (flag[0]) {
-
-                    Intent intent = new Intent();
-                    intent.putExtra("personId", (int)id );
-                    setResult(RESULT_OK, intent);
-                    finish();
-
-                }
-                flag[0] = true;
-            }
-        });
-
-
+        listViewItemClick();
     }
 
 
@@ -89,5 +56,31 @@ public class PickPerson extends SimpleActivity{
     }
 
 
+    private void listViewItemClick() {
+        final boolean[] flag = new boolean[1];
+        flag[0] = true;
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                flag[0] = false;
+
+                return false;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (flag[0]) {
+
+                    Intent intent = new Intent();
+                    intent.putExtra("personId", (int)id );
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+                flag[0] = true;
+            }
+        });
+    }
 }

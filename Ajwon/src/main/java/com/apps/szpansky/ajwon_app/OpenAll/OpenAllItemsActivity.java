@@ -1,7 +1,6 @@
 package com.apps.szpansky.ajwon_app.OpenAll;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,14 +9,12 @@ import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity;
 import com.apps.szpansky.ajwon_app.SimpleData.Item;
-import com.apps.szpansky.ajwon_app.Tools.Data;
-import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
 public class OpenAllItemsActivity extends SimpleActivity {
 
-    //Item item;
+    Button add;
 
     public OpenAllItemsActivity() {
         super(new Item());
@@ -25,15 +22,10 @@ public class OpenAllItemsActivity extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView() {return ((ListView) findViewById(R.id.list_view_simple_view));}
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //item = new Item(myDB);
 
-        Button add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.add);
         add.setText("Add New Item");
         listViewItemClick();
         addData();
@@ -41,7 +33,6 @@ public class OpenAllItemsActivity extends SimpleActivity {
 
 
     private void addData() {
-        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,19 +60,13 @@ public class OpenAllItemsActivity extends SimpleActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (flag[0]) {
-
                     Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
 
-                    Item.clickedItemId = (int)id;
+                    toNextActivityBundle.putBoolean("isEdit", true);
+                    toNextActivityBundle.putInt("itemId", (int)id);
 
-                    toNextActivity.putBoolean("edit", true);
-                    toNextActivity.putInt("id", (int)id);
-
-
-
-                    intent.putExtras(toNextActivity);
+                    intent.putExtras(toNextActivityBundle);
                     OpenAllItemsActivity.this.startActivity(intent);
-
                 }
                 flag[0] = true;
             }

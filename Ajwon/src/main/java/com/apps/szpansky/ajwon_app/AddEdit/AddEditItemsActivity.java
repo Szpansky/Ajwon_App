@@ -15,32 +15,35 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditItemsActivity extends AppCompatActivity {
 
+    private EditText name;
+    private EditText nr;
+    private EditText price;
+    private CheckBox dis_5;
+    private CheckBox dis_10;
+    private CheckBox dis_15;
+    private CheckBox dis_20;
+    private CheckBox dis_25;
+    private CheckBox dis_30;
+    private CheckBox dis_35;
+    private CheckBox dis_40;
+    private CheckBox dis_100;
+    private Button add;
 
-    Database myDB;
-    EditText name;
-    EditText nr;
-    EditText price;
-    CheckBox dis_5;
-    CheckBox dis_10;
-    CheckBox dis_15;
-    CheckBox dis_20;
-    CheckBox dis_25;
-    CheckBox dis_30;
-    CheckBox dis_35;
-    CheckBox dis_40;
-    CheckBox dis_100;
-    Button add;
-    Integer discount = 0;
+    private Integer thisId = 0;
+    private Integer discount = 0;
+    private Boolean isEdit = false;
 
+    private Database myDB;
+    private Bundle bundle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        myDB = new Database(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_items);
 
+        myDB = new Database(this);
+        bundle = getIntent().getExtras();
 
         nr = (EditText) findViewById(R.id.nr);
         name = (EditText) findViewById(R.id.name);
@@ -56,41 +59,21 @@ public class AddEditItemsActivity extends AppCompatActivity {
         dis_100 = (CheckBox) findViewById(R.id.check_100);
         add = (Button) findViewById(R.id.add);
 
+        if (bundle != null) {
 
-
-
-
-        Bundle b = getIntent().getExtras();
-        Integer id = 0; // or other values
-        Boolean edit = false; // or other values
-        if (b != null) {
-
-            id = Item.clickedItemId;
-
-            edit = b.getBoolean("edit");
-
+            thisId = bundle.getInt("itemId");
+            isEdit = bundle.getBoolean("isEdit");
         }
 
-        id = Item.clickedItemId;
-
-
-        if (edit) {
-            //String [] where = new String[]{String.valueOf("_id ="+id)};
-            //Cursor cursor = myDB.getRow(Database.TABLE_ITEMS,Database.ALL_KEYS_ITEMS,id);
+        if (isEdit) {
 
             //TODO get data from cursor -> to EditText
-            nr.setText(id.toString());
+            nr.setText(thisId.toString());
             nr.setFocusable(false);
-
-
-            //System.out.println(cursor.toString());
         }
 
-
-        addData(id,edit);
-
+        addData(thisId, isEdit);
     }
-
 
 
     public void addData(final int id, final boolean edit) {
@@ -99,9 +82,6 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-
-
                 if (dis_5.isChecked()) discount +=1;
                 if (dis_10.isChecked()) discount +=10;
                 if (dis_15.isChecked()) discount +=100;
@@ -111,8 +91,6 @@ public class AddEditItemsActivity extends AppCompatActivity {
                 if (dis_35.isChecked()) discount +=1000000;
                 if (dis_40.isChecked()) discount +=10000000;
                 if (dis_100.isChecked()) discount +=100000000;
-
-
 
                 if (edit){
                     boolean isUpdated = myDB.updateRowItem(id,
@@ -136,13 +114,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
                         Toast.makeText(AddEditItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
                     finish();
                 }
-
-
             }
         });
-
-
     }
-
-
 }
