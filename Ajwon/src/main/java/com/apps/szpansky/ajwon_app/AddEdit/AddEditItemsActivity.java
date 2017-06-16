@@ -1,5 +1,6 @@
 package com.apps.szpansky.ajwon_app.AddEdit;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +16,9 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditItemsActivity extends AppCompatActivity {
 
-    private EditText name;
     private EditText nr;
     private EditText price;
+    private EditText name;
     private CheckBox dis_5;
     private CheckBox dis_10;
     private CheckBox dis_15;
@@ -31,7 +32,9 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
     private Integer thisId = 0;
     private Integer discount = 0;
+    private String test;                ////////////////////////
     private Boolean isEdit = false;
+
 
     private Database myDB;
     private Bundle bundle;
@@ -48,6 +51,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         nr = (EditText) findViewById(R.id.nr);
         name = (EditText) findViewById(R.id.name);
         price = (EditText) findViewById(R.id.price);
+
         dis_5 = (CheckBox) findViewById(R.id.check_5);
         dis_10 = (CheckBox) findViewById(R.id.check_10);
         dis_15 = (CheckBox) findViewById(R.id.check_15);
@@ -57,6 +61,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         dis_35 = (CheckBox) findViewById(R.id.check_35);
         dis_40 = (CheckBox) findViewById(R.id.check_40);
         dis_100 = (CheckBox) findViewById(R.id.check_100);
+
         add = (Button) findViewById(R.id.add);
 
         if (bundle != null) {
@@ -68,7 +73,11 @@ public class AddEditItemsActivity extends AppCompatActivity {
         if (isEdit) {
 
             //TODO get data from cursor -> to EditText
-            nr.setText(thisId.toString());
+            nr.setText(getPreviousData(0));
+            name.setText(getPreviousData(1));
+            price.setText(getPreviousData(2));
+            test=getPreviousData(3);
+
             nr.setFocusable(false);
         }
 
@@ -116,5 +125,12 @@ public class AddEditItemsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    private String getPreviousData(int columnIndex){
+        Cursor cursor = myDB.getRow(Database.TABLE_ITEMS, Database.ITEM_ID, thisId);
+        cursor.moveToFirst();
+        return cursor.getString(columnIndex);
     }
 }

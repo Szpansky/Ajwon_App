@@ -327,9 +327,9 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getRow(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
+    public Cursor getRow(String TABLE_NAME, String WHERE, int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT " + ROW_NAME +
+        Cursor c = db.rawQuery("SELECT *" +
                 " FROM " + TABLE_NAME +
                 " WHERE " + WHERE + " = " + id, null);
         if (c != null) {
