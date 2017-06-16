@@ -7,15 +7,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
 
 public class AddEditCatalogActivity extends AppCompatActivity {
 
-    private EditText workId;
-    private EditText workDateEnd;
+    private EditText catalogId;
+    private EditText catalogDateEnd;
     private Button add;
 
     private Integer thisId = 0;
@@ -28,13 +27,13 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_work);
+        setContentView(R.layout.activity_add_edit_catalog);
 
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        workId = (EditText) findViewById(R.id.workId);
-        workDateEnd = (EditText) findViewById(R.id.workDateEnd);
+        catalogId = (EditText) findViewById(R.id.catalogId);
+        catalogDateEnd = (EditText) findViewById(R.id.catalogDateEnd);
         add = (Button) findViewById(R.id.add);
 
         if (bundle != null) {
@@ -46,8 +45,8 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         if (isEdit) {
 
             //TODO get data from cursor -> to EditText
-            workId.setText(thisId.toString());
-            workId.setFocusable(false);
+            catalogId.setText(thisId.toString());
+            catalogId.setFocusable(false);
         }
 
         addData(thisId, isEdit);
@@ -59,7 +58,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 if (edit) {
-                    boolean isUpdated = myDB.updateRowWork(id, workDateEnd.getText().toString());
+                    boolean isUpdated = myDB.updateRowWork(id, catalogDateEnd.getText().toString());
                     if (isUpdated == true)
                         Toast.makeText(AddEditCatalogActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     else
@@ -67,7 +66,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
                     finish();
                 } else {
 
-                    boolean isInserted = myDB.insertDataToWorks(workId.getText().toString(), workDateEnd.getText().toString());
+                    boolean isInserted = myDB.insertDataToWorks(catalogId.getText().toString(), catalogDateEnd.getText().toString());
                     if (isInserted == true)
                         Toast.makeText(AddEditCatalogActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else

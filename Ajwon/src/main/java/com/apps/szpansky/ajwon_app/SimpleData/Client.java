@@ -25,37 +25,28 @@ public class Client extends Order {
 
 
     @Override
-    public String setTable(){
+    public int[] getToViewIDs(){
 
-        return Database.TABLE_CLIENTS;
+        return (new int[]{
+                R.id.clientOrderId,
+                R.id.clientCatalogId,
+                R.id.clientPersonId,
+                R.id.clientDate,
+                R.id.clientName,
+                R.id.clientSurname});
     }
 
 
     @Override
-    public String[] setAllKeys(){
+    public String[] getFromFieldsNames(){
 
-        return Database.ALL_KEYS_CLIENTS;
-    }
-
-
-    @Override
-    public String setRowWhereId(){
-
-        return Database.CLIENT_ID;
-    }
-
-
-    @Override
-    public int[] setToViewIDs(){
-
-        return (new int[]{R.id.clientOrderId, R.id.clientCatalogId, R.id.clientPersonId, R.id.clientDate, R.id.clientName, R.id.clientSurname});
-    }
-
-
-    @Override
-    public String[] setFromFieldsNames(){
-
-        return  new String[]{Database.CLIENT_ID, Database.CLIENT_CATALOG_ID, Database.CLIENT_PERSON_ID, Database.CLIENT_DATE, Database.PERSON_NAME, Database.PERSON_SURNAME};
+        return  new String[]{
+                Database.CLIENT_ID,
+                Database.CLIENT_CATALOG_ID,
+                Database.CLIENT_PERSON_ID,
+                Database.CLIENT_DATE,
+                Database.PERSON_NAME,
+                Database.PERSON_SURNAME};
     }
 
 

@@ -10,7 +10,7 @@ import com.apps.szpansky.ajwon_app.Tools.Database;
 public class Person extends Client {
 
     public static int clickedPersonId;
-    
+
 
     @Override
     public int getItemLayoutResourceId(){
@@ -27,37 +27,26 @@ public class Person extends Client {
 
 
     @Override
-    public String setTable(){
+    public int[] getToViewIDs(){
 
-        return Database.TABLE_PERSONS;
+        return (new int[]{
+                R.id.personId,
+                R.id.personName,
+                R.id.personSurname,
+                R.id.personPhone,
+                R.id.personAddress});
     }
 
 
     @Override
-    public String[] setAllKeys(){
+    public String[] getFromFieldsNames(){
 
-        return Database.ALL_KEYS_PERSONS;
-    }
-
-
-    @Override
-    public String setRowWhereId(){
-
-        return Database.PERSON_ID;
-    }
-
-
-    @Override
-    public int[] setToViewIDs(){
-
-        return (new int[]{R.id.personId, R.id.personName, R.id.personSurname, R.id.personPhone, R.id.personAddress});
-    }
-
-
-    @Override
-    public String[] setFromFieldsNames(){
-
-        return Database.ALL_KEYS_PERSONS;
+        return new String[]{
+                Database.PERSON_ID,
+                Database.PERSON_NAME,
+                Database.PERSON_SURNAME,
+                Database.PERSON_PHONE,
+                Database.PERSON_ADDRESS};
     }
 
 

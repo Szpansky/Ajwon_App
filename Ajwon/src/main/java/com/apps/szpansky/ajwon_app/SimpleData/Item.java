@@ -27,37 +27,24 @@ public class Item extends Order{
 
 
     @Override
-    public String setTable(){
+    public int[] getToViewIDs(){
 
-        return Database.TABLE_ITEMS;
+        return (new int[]{
+                R.id.itemId,
+                R.id.itemName,
+                R.id.itemPrice,
+                R.id.itemDiscount});
     }
 
 
     @Override
-    public String[] setAllKeys(){
+    public String[] getFromFieldsNames(){
 
-        return Database.ALL_KEYS_ITEMS;
-    }
-
-
-    @Override
-    public String setRowWhereId(){
-
-        return Database.ITEM_ID;
-    }
-
-
-    @Override
-    public int[] setToViewIDs(){
-
-        return (new int[]{R.id.itemId, R.id.itemName, R.id.itemPrice, R.id.itemDiscount});
-    }
-
-
-    @Override
-    public String[] setFromFieldsNames(){
-
-        return Database.ALL_KEYS_ITEMS;
+        return new String[]{
+                Database.ITEM_ID,
+                Database.ITEM_NAME,
+                Database.ITEM_PRICE,
+                Database.ITEM_DISCOUNT};
     }
 
 

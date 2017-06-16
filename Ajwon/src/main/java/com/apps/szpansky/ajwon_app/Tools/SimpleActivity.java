@@ -14,27 +14,18 @@ import com.apps.szpansky.ajwon_app.R;
 public abstract class SimpleActivity extends AppCompatActivity {
 
     protected static Database myDB;
-    private Data data;
-
     protected Bundle toNextActivityBundle = new Bundle();
-
-    protected Cursor cursor;
-    protected String[] fromFieldsNames;
-    protected int[] toViewIDs;
     protected SimpleCursorAdapter myCursorAdapter;
     protected ListView listView;
 
-    protected String table;
-    protected String[] allKeys;
-    protected String rowWhereId;
-
+    private Data data;
 
     public SimpleActivity(Data data) {
         this.data = data;
     }
 
 
-    protected ListView setListView(){
+    protected ListView setListView() {
         return ((ListView) findViewById(R.id.list_view_simple_view));
     }
 
@@ -42,16 +33,11 @@ public abstract class SimpleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(data.getLayoutResourceId());
+
         myDB = new Database(this);
 
-        setContentView(data.getLayoutResourceId());
-        table = data.setTable();
-        allKeys = data.setAllKeys();
-        rowWhereId = data.setRowWhereId();
-        toViewIDs = data.setToViewIDs();
-        cursor = data.setCursor(myDB);
         listView = setListView();
-        fromFieldsNames = data.setFromFieldsNames();
         refreshListView();
     }
 
@@ -64,8 +50,12 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
 
     public void refreshListView() {
-        cursor = data.setCursor(myDB);
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), data.getItemLayoutResourceId(), cursor, fromFieldsNames, toViewIDs, 0);
+        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(),
+                data.getItemLayoutResourceId(),
+                data.setCursor(myDB),
+                data.getFromFieldsNames(),
+                data.getToViewIDs(),
+                0);
         listView.setAdapter(myCursorAdapter);
     }
 

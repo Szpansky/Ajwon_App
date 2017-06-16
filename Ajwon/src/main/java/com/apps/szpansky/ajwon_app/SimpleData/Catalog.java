@@ -1,7 +1,6 @@
 package com.apps.szpansky.ajwon_app.SimpleData;
 
 import android.database.Cursor;
-import android.widget.ListView;
 
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.Tools.Database;
@@ -16,7 +15,7 @@ public class Catalog extends Client {
     @Override
     public int getItemLayoutResourceId(){
 
-        return (R.layout.item_work_view);
+        return (R.layout.item_catalog_view);
     }
 
 
@@ -28,37 +27,22 @@ public class Catalog extends Client {
 
 
     @Override
-    public String setTable(){
+    public int[] getToViewIDs(){
 
-        return Database.TABLE_CATALOGS;
+        return (new int[]{
+                R.id.catalogId,
+                R.id.catalogDateStart,
+                R.id.catalogDateEnd});
     }
 
 
     @Override
-    public String[] setAllKeys(){
+    public String[] getFromFieldsNames(){
 
-        return Database.ALL_KEYS_CATALOG;
-    }
-
-
-    @Override
-    public String setRowWhereId(){
-
-        return Database.CATALOG_ID;
-    }
-
-
-    @Override
-    public int[] setToViewIDs(){
-
-        return (new int[]{R.id.workId, R.id.workDateStart, R.id.workDateEnd});
-    }
-
-
-    @Override
-    public String[] setFromFieldsNames(){
-
-        return Database.ALL_KEYS_CATALOG;
+        return new String[]{
+                Database.CATALOG_ID,
+                Database.CATALOG_DATE_START,
+                Database.CATALOG_DATE_ENDS};
     }
 
 

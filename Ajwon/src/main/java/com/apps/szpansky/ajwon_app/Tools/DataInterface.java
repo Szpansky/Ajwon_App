@@ -10,14 +10,16 @@ import android.widget.ListView;
 
 public interface DataInterface {
 
-      void deleteData(int id, Database myDB);
-      int getLayoutResourceId();
-      int getItemLayoutResourceId();
-      Cursor setCursor(Database myDB);
-      String setTable();
-      String[] setAllKeys();
-      String setRowWhereId();
-      int[] setToViewIDs();
-      String[] setFromFieldsNames();
+    void deleteData(int id, Database myDB);
+
+    int getLayoutResourceId();
+
+    int getItemLayoutResourceId();
+
+    Cursor setCursor(Database myDB);
+
+    String[] getFromFieldsNames();
+
+    int[] getToViewIDs();
 
 }
