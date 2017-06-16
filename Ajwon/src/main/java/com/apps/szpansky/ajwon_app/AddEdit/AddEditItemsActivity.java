@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.apps.szpansky.ajwon_app.SimpleData.Item;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -19,6 +18,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
     private EditText nr;
     private EditText price;
     private EditText name;
+
     private CheckBox dis_5;
     private CheckBox dis_10;
     private CheckBox dis_15;
@@ -28,11 +28,14 @@ public class AddEditItemsActivity extends AppCompatActivity {
     private CheckBox dis_35;
     private CheckBox dis_40;
     private CheckBox dis_100;
+
+    private CheckBox[] dis_all = {dis_5, dis_10, dis_15, dis_20, dis_25, dis_30, dis_35, dis_40, dis_100};
+
     private Button add;
 
     private Integer thisId = 0;
     private Integer discount = 0;
-    private String test;                ////////////////////////
+    private String discountSTR;                ////////////////////////
     private Boolean isEdit = false;
 
 
@@ -52,15 +55,15 @@ public class AddEditItemsActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         price = (EditText) findViewById(R.id.price);
 
-        dis_5 = (CheckBox) findViewById(R.id.check_5);
-        dis_10 = (CheckBox) findViewById(R.id.check_10);
-        dis_15 = (CheckBox) findViewById(R.id.check_15);
-        dis_20 = (CheckBox) findViewById(R.id.check_20);
-        dis_25 = (CheckBox) findViewById(R.id.check_25);
-        dis_30 = (CheckBox) findViewById(R.id.check_30);
-        dis_35 = (CheckBox) findViewById(R.id.check_35);
-        dis_40 = (CheckBox) findViewById(R.id.check_40);
-        dis_100 = (CheckBox) findViewById(R.id.check_100);
+        dis_all[0] = (CheckBox) findViewById(R.id.check_5);
+        dis_all[1] = (CheckBox) findViewById(R.id.check_10);
+        dis_all[2] = (CheckBox) findViewById(R.id.check_15);
+        dis_all[3] = (CheckBox) findViewById(R.id.check_20);
+        dis_all[4] = (CheckBox) findViewById(R.id.check_25);
+        dis_all[5] = (CheckBox) findViewById(R.id.check_30);
+        dis_all[6] = (CheckBox) findViewById(R.id.check_35);
+        dis_all[7] = (CheckBox) findViewById(R.id.check_40);
+        dis_all[8] = (CheckBox) findViewById(R.id.check_100);
 
         add = (Button) findViewById(R.id.add);
 
@@ -72,15 +75,17 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
         if (isEdit) {
 
-            //TODO get data from cursor -> to EditText
             nr.setText(getPreviousData(0));
             name.setText(getPreviousData(1));
             price.setText(getPreviousData(2));
-            test=getPreviousData(3);
+            discountSTR = getPreviousData(3);
 
+            for (int i = 0; i < discountSTR.length(); i++){
+                int discountRevert = discountSTR.length() - 1 - i;
+                if (discountSTR.charAt( (discountRevert) ) == '1') dis_all[i].setChecked(true);
+            }
             nr.setFocusable(false);
         }
-
         addData(thisId, isEdit);
     }
 
@@ -91,15 +96,15 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (dis_5.isChecked()) discount +=1;
-                if (dis_10.isChecked()) discount +=10;
-                if (dis_15.isChecked()) discount +=100;
-                if (dis_20.isChecked()) discount +=1000;
-                if (dis_25.isChecked()) discount +=10000;
-                if (dis_30.isChecked()) discount +=100000;
-                if (dis_35.isChecked()) discount +=1000000;
-                if (dis_40.isChecked()) discount +=10000000;
-                if (dis_100.isChecked()) discount +=100000000;
+                if (dis_all[0].isChecked()) discount +=1;
+                if (dis_all[1].isChecked()) discount +=10;
+                if (dis_all[2].isChecked()) discount +=100;
+                if (dis_all[3].isChecked()) discount +=1000;
+                if (dis_all[4].isChecked()) discount +=10000;
+                if (dis_all[5].isChecked()) discount +=100000;
+                if (dis_all[6].isChecked()) discount +=1000000;
+                if (dis_all[7].isChecked()) discount +=10000000;
+                if (dis_all[8].isChecked()) discount +=100000000;
 
                 if (edit){
                     boolean isUpdated = myDB.updateRowItem(id,
