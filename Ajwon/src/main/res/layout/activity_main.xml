@@ -12,47 +12,47 @@
 
 
     <Button
-        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/openCatalogs"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="Start"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="1dp"
-        android:id="@+id/openCatalogs" />
+        android:text="Start"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
 
     <Button
-        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/openWorks"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="Open Works"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="110dp"
-        android:id="@+id/openWorks" />
+        android:text="Open Works"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <Button
-        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/openItems"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="Open Items"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/openPersons"
         android:layout_marginTop="1dp"
-        android:id="@+id/openItems"  />
+        android:text="Open Items"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <Button
-        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/openPersons"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:text="Open Clients"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/openPersons"
         android:layout_below="@+id/openWorks"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="1dp"
+        android:text="Open Clients"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

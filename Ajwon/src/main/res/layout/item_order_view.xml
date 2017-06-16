@@ -7,11 +7,11 @@
         android:id="@+id/orderId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10sp"
         android:layout_alignBottom="@+id/textView13"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="TextView"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/orderPersonId"
@@ -112,11 +112,11 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" zł"
-        android:textSize="14sp"
         android:layout_alignBaseline="@+id/orderTotal"
         android:layout_alignBottom="@+id/orderTotal"
+        android:layout_toEndOf="@+id/orderTotal"
         android:layout_toRightOf="@+id/orderTotal"
-        android:layout_toEndOf="@+id/orderTotal" />
+        android:text=" zł"
+        android:textSize="14sp" />
 
 </RelativeLayout>
