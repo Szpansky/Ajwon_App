@@ -15,7 +15,6 @@ public class Order extends Data{
 
     @Override
     public int getLayoutResourceId(){
-
         return R.layout.activity_simple_view;
     }
 

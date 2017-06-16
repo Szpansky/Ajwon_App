@@ -14,13 +14,6 @@ public class Catalog extends Client {
 
 
     @Override
-    public int getLayoutResourceId(){
-
-        return R.layout.activity_simple_view;
-    }
-
-
-    @Override
     public int getItemLayoutResourceId(){
 
         return (R.layout.item_work_view);

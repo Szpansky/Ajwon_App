@@ -12,13 +12,6 @@ public class Client extends Order {
 
 
     @Override
-    public int getLayoutResourceId(){
-
-        return R.layout.activity_simple_view;
-    }
-
-
-    @Override
     public int getItemLayoutResourceId(){
 
         return R.layout.item_client_view;

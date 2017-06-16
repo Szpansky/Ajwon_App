@@ -10,14 +10,7 @@ import com.apps.szpansky.ajwon_app.Tools.Database;
 public class Person extends Client {
 
     public static int clickedPersonId;
-
-
-    @Override
-    public int getLayoutResourceId(){
-
-        return R.layout.activity_simple_view;
-    }
-
+    
 
     @Override
     public int getItemLayoutResourceId(){
