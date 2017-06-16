@@ -75,10 +75,10 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
         if (isEdit) {
 
-            nr.setText(getPreviousData(0));
-            name.setText(getPreviousData(1));
-            price.setText(getPreviousData(2));
-            discountSTR = getPreviousData(3);
+            nr.setText(getItemInfo(0));
+            name.setText(getItemInfo(1));
+            price.setText(getItemInfo(2));
+            discountSTR = getItemInfo(3);
 
             for (int i = 0; i < discountSTR.length(); i++){
                 int discountRevert = discountSTR.length() - 1 - i;
@@ -133,7 +133,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
     }
 
 
-    private String getPreviousData(int columnIndex){
+    private String getItemInfo(int columnIndex){
         Cursor cursor = myDB.getRow(Database.TABLE_ITEMS, Database.ITEM_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);

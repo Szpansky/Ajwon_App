@@ -1,5 +1,6 @@
 package com.apps.szpansky.ajwon_app.AddEdit;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.apps.szpansky.ajwon_app.SimpleData.Person;
 import com.apps.szpansky.ajwon_app.Tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -46,9 +46,12 @@ public class AddEditPersonActivity extends AppCompatActivity {
         }
 
         if (isEdit) {
-            //TODO get data from cursor -> to EditText
-        }
 
+            name.setText(getPersonInfo(1));
+            surname.setText(getPersonInfo(2));
+            address.setText(getPersonInfo(3));
+            phone.setText(getPersonInfo(4));
+        }
         addData(thisId, isEdit);
     }
 
@@ -83,5 +86,11 @@ public class AddEditPersonActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private String getPersonInfo(int columnIndex){
+        Cursor cursor = myDB.getRow(Database.TABLE_PERSONS, Database.PERSON_ID, thisId);
+        cursor.moveToFirst();
+        return cursor.getString(columnIndex);
     }
 }

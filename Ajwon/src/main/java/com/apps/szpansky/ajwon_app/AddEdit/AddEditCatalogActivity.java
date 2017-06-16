@@ -48,9 +48,9 @@ public class AddEditCatalogActivity extends AppCompatActivity {
 
         if (isEdit) {
 
-            catalogId.setText(getPreviousData(0));
-            catalogDateStart.setText(getPreviousData(1));
-            catalogDateEnd.setText(getPreviousData(2));
+            catalogId.setText(getCatalogInfo(0));
+            catalogDateStart.setText(getCatalogInfo(1));
+            catalogDateEnd.setText(getCatalogInfo(2));
 
             catalogId.setFocusable(false);
         }
@@ -86,7 +86,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     }
 
 
-    private String getPreviousData(int columnIndex){
+    private String getCatalogInfo(int columnIndex){
         Cursor cursor = myDB.getRow(Database.TABLE_CATALOGS, Database.CATALOG_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);
