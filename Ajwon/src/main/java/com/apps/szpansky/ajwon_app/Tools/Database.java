@@ -220,13 +220,51 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
+
+    public Cursor getPersons() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * " +
+                "FROM " + TABLE_PERSONS + " " +
+                "ORDER BY " + PERSON_SURNAME, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getItems(Integer id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String itemId = id.toString();
+        Cursor c = db.rawQuery("SELECT * " +
+                "FROM " + TABLE_ITEMS +
+                "WHERE " + ITEM_ID + "= " + itemId + " ORDER BY " + ITEM_NAME, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getItems() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * " +
+                "FROM " + TABLE_ITEMS + " " +
+                "ORDER BY " + ITEM_NAME, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
     public Cursor getClients(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
                 "FROM " + TABLE_PERSONS + " AS C LEFT JOIN " + TABLE_CLIENTS + " AS P " +
                 "ON P." + CLIENT_PERSON_ID + " = C." + PERSON_ID + " " +
-                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + PERSON_SURNAME, null);
+                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + PERSON_NAME, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -240,7 +278,7 @@ public class Database extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * " +
                 "FROM " + TABLE_ITEMS + " AS C LEFT JOIN " + TABLE_ORDERS + " AS P " +
                 "ON P." + ORDER_ITEM_ID + " = C." + ITEM_ID + " " +
-                "WHERE " + ORDER_CLIENT_ID + " = " + orderId + " ORDER BY " + ORDER_TOTAL + " DESC", null);
+                "WHERE " + ORDER_CLIENT_ID + " = " + orderId + " ORDER BY " + ITEM_NAME, null);
         if (c != null) {
             c.moveToFirst();
         }

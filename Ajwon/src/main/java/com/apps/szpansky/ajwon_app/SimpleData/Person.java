@@ -22,7 +22,7 @@ public class Person extends Client {
     @Override
     public Cursor setCursor(Database myDB){
 
-        return myDB.getAllRows(Database.TABLE_PERSONS, Database.ALL_KEYS_PERSONS, Database.PERSON_ID);
+        return myDB.getPersons();
     }
 
 
