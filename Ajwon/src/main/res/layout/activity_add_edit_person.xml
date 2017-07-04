@@ -18,7 +18,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Imie"
         android:inputType="textPersonName"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_below="@+id/name"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Surname"
+        android:hint="Nazwisko"
         android:inputType="textPersonName"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
         android:layout_below="@+id/surname"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Addres"
+        android:hint="Adres"
         android:inputType="textPostalAddress"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -57,7 +57,7 @@
         android:layout_below="@+id/addres"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Phone Nr"
+        android:hint="Numer Telefonu"
         android:inputType="phone"
         android:maxLength="9"
         android:textColor="@android:color/holo_blue_dark"

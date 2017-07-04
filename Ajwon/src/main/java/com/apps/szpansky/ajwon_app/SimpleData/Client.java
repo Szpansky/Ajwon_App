@@ -28,12 +28,15 @@ public class Client extends Order {
     public int[] getToViewIDs(){
 
         return (new int[]{
-                R.id.clientOrderId,
-                R.id.clientCatalogId,
-                R.id.clientPersonId,
+               // R.id.clientOrderId,
+               // R.id.clientCatalogId,
+               // R.id.clientPersonId,
                 R.id.clientDate,
                 R.id.clientName,
-                R.id.clientSurname});
+                R.id.clientSurname,
+                R.id.clientOrderStatus
+               // R.id.clientAmount
+        });
     }
 
 
@@ -41,12 +44,15 @@ public class Client extends Order {
     public String[] getFromFieldsNames(){
 
         return  new String[]{
-                Database.CLIENT_ID,
-                Database.CLIENT_CATALOG_ID,
-                Database.CLIENT_PERSON_ID,
+                //Database.CLIENT_ID,
+               // Database.CLIENT_CATALOG_ID,
+              //  Database.CLIENT_PERSON_ID,
                 Database.CLIENT_DATE,
                 Database.PERSON_NAME,
-                Database.PERSON_SURNAME};
+                Database.PERSON_SURNAME,
+                Database.CLIENT_STATUS
+                //Database.ORDER_AMOUNT
+        };
     }
 
 

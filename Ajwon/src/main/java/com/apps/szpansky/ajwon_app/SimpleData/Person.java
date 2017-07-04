@@ -30,7 +30,7 @@ public class Person extends Client {
     public int[] getToViewIDs(){
 
         return (new int[]{
-                R.id.personId,
+                //R.id.personId,
                 R.id.personName,
                 R.id.personSurname,
                 R.id.personPhone,
@@ -42,7 +42,7 @@ public class Person extends Client {
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.PERSON_ID,
+                //Database.PERSON_ID,
                 Database.PERSON_NAME,
                 Database.PERSON_SURNAME,
                 Database.PERSON_PHONE,

@@ -17,7 +17,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Item Name"
+        android:hint="Nazwa Przedmiotu"
         android:inputType="textPersonName"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -30,7 +30,7 @@
         android:layout_below="@+id/nr"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Price in zl (1.50)"
+        android:hint="Cena w zł (1.50)"
         android:inputType="number|numberSigned|numberDecimal"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -54,7 +54,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/price"
         android:layout_marginTop="10dp"
-        android:text="Select Discounts"
+        android:text="Wybierz Zniżki"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
@@ -69,8 +69,9 @@
         android:layout_below="@+id/name"
         android:layout_marginTop="18dp"
         android:ems="10"
-        android:hint="Item Nr"
+        android:hint="Kod Przedmiotu"
         android:inputType="number"
+        android:maxLength="5"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 

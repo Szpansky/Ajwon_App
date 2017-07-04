@@ -261,24 +261,40 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getClients(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
-        Cursor c = db.rawQuery("SELECT * " +
-                "FROM " + TABLE_PERSONS + " AS C LEFT JOIN " + TABLE_CLIENTS + " AS P " +
-                "ON P." + CLIENT_PERSON_ID + " = C." + PERSON_ID + " " +
-                "WHERE " + CLIENT_CATALOG_ID + "= " + workId + " ORDER BY " + PERSON_NAME, null);
+        Cursor c = db.rawQuery("SELECT " +"P."+PERSON_ID+" ,"+ PERSON_NAME +" ,"+ PERSON_SURNAME +" ,"+CLIENT_DATE+" ,"+ CLIENT_STATUS +" "+
+                "FROM " + TABLE_PERSONS + " AS P " +
+                "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
+                "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
+                "WHERE " + CLIENT_CATALOG_ID + " = " + workId +" "
+
+                //"SELECT " + ORDER_TOTAL + " "
+            /*    "INTERSECT " +
+                "SELECT "+ORDER_TOTAL+" "+
+                "FROM " + TABLE_ORDERS*/
+
+
+
+                /*"ORDER BY " + PERSON_NAME*/, null);
         if (c != null) {
             c.moveToFirst();
         }
         return c;
+
+
+        // dodatkowo pobrac sume ilosci i calkowita cene, z przediotow zamoionych przez dana osobe, zliczone
+
+
+
     }
 
 
     public Cursor getOrders(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String orderId = id.toString();
+        String clientId = id.toString();
         Cursor c = db.rawQuery("SELECT * " +
                 "FROM " + TABLE_ITEMS + " AS C LEFT JOIN " + TABLE_ORDERS + " AS P " +
                 "ON P." + ORDER_ITEM_ID + " = C." + ITEM_ID + " " +
-                "WHERE " + ORDER_CLIENT_ID + " = " + orderId + " ORDER BY " + ITEM_NAME, null);
+                "WHERE " + ORDER_CLIENT_ID + " = " + clientId + " ORDER BY " + ITEM_NAME, null);
         if (c != null) {
             c.moveToFirst();
         }

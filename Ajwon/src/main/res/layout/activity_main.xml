@@ -33,36 +33,36 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Open Works"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"
-        android:layout_below="@+id/openCatalogs"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/openCatalogs"
+        android:text="Katalogi"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/openItems"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Open Items"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"
-        android:layout_below="@+id/openPersons"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/openPersons"
+        android:text="Przedmioty"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/openPersons"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Open Clients"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"
-        android:layout_below="@+id/openWorks"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/openWorks"
+        android:text="Klienci"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
 </RelativeLayout>
 

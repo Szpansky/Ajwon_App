@@ -85,7 +85,7 @@ public class ClientsActivity extends SimpleActivity {
                 Integer personId = data.getIntExtra("personId" , 0);
                 Integer catalogId = Client.clickedCatalogId;
 
-                myDB.insertDataToClients(catalogId.toString(), personId.toString(), "Waiting");
+                myDB.insertDataToClients(catalogId.toString(), personId.toString(), "Nie Zapłacono");
 
                 refreshListView();
             }

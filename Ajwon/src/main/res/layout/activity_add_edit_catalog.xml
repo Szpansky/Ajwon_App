@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Catalog Nr"
+        android:hint="Numer Katalogu"
         android:inputType="number"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -32,8 +32,9 @@
         android:layout_below="@id/catalogId"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:elevation="1dp"
         android:ems="10"
-        android:hint="Catalog Start Date (YYYY-MM-DD)"
+        android:hint="Data utworzenia (Auto)"
         android:inputType="date"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
@@ -49,7 +50,7 @@
         android:layout_below="@+id/catalogDateStart"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:ems="10"
-        android:hint="Catalog End Date (YYYY-MM-DD)"
+        android:hint="Data zakończenia (YYYY-MM-DD"
         android:inputType="date"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />

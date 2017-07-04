@@ -29,8 +29,8 @@ public class Order extends Data{
     public int[] getToViewIDs(){
 
         return (new int[]{
-                R.id.orderId,
-                R.id.orderPersonId,
+                //R.id.orderId,
+                //R.id.orderPersonId,
                 R.id.orderItemId,
                 R.id.orderAmount,
                 R.id.orderTotal,
@@ -42,8 +42,8 @@ public class Order extends Data{
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.ORDER_ID,
-                Database.ORDER_CLIENT_ID,
+                //Database.ORDER_ID,
+                //Database.ORDER_CLIENT_ID,
                 Database.ORDER_ITEM_ID,
                 Database.ORDER_AMOUNT,
                 Database.ORDER_TOTAL,
