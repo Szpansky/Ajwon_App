@@ -12,14 +12,10 @@ public class Database extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Ajwon.db";
     public static final int DATABASE_VERSION = 1;
 
-
     public static final String TABLE_CATALOGS = "CATALOGS";
     public static final String CATALOG_ID = "_id";
     public static final String CATALOG_DATE_START = "DATE_START";
     public static final String CATALOG_DATE_ENDS = "DATE_ENDS";
-
-    public static final String[] ALL_KEYS_CATALOG = new String[]{CATALOG_ID, CATALOG_DATE_START, CATALOG_DATE_ENDS};
-
 
     public static final String TABLE_PERSONS = "PERSONS";
     public static final String PERSON_ID = "_id";
@@ -29,17 +25,11 @@ public class Database extends SQLiteOpenHelper {
     public static final String PERSON_PHONE = "PHONE";
     public static final String PERSON_NETWORK_ID = "NETWORK_ID";
 
-    public static final String[] ALL_KEYS_PERSONS = new String[]{PERSON_ID, PERSON_NAME, PERSON_SURNAME, PERSON_PHONE, PERSON_ADDRESS};
-
-
     public static final String TABLE_ITEMS = "ITEMS";
     public static final String ITEM_ID = "_id";
     public static final String ITEM_PRICE = "PRICE";
     public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
-
-    public static final String[] ALL_KEYS_ITEMS = new String[]{ITEM_ID, ITEM_NAME, ITEM_PRICE, ITEM_DISCOUNT};
-
 
     public static final String TABLE_CLIENTS = "CLIENTS";
     public static final String CLIENT_ID = "_id";
@@ -48,17 +38,12 @@ public class Database extends SQLiteOpenHelper {
     public static final String CLIENT_DATE = "DATE";
     public static final String CLIENT_STATUS = "STATUS";
 
-    public static final String[] ALL_KEYS_CLIENTS = new String[]{CLIENT_ID, CLIENT_CATALOG_ID, CLIENT_PERSON_ID, CLIENT_DATE, CLIENT_STATUS};
-
-
     public static final String TABLE_ORDERS = "ORDERS";
     public static final String ORDER_ID = "_id";
     public static final String ORDER_CLIENT_ID = "PERSON_ID";
     public static final String ORDER_ITEM_ID = "ITEM_ID";
     public static final String ORDER_AMOUNT = "AMOUNT";
     public static final String ORDER_TOTAL = "TOTAL";
-
-    public static final String[] ALL_KEYS_ORDERS = new String[]{ORDER_ID, ORDER_CLIENT_ID, ORDER_ITEM_ID, ORDER_AMOUNT};
 
 
     public Database(Context context) {
@@ -102,7 +87,6 @@ public class Database extends SQLiteOpenHelper {
                 ORDER_CLIENT_ID + " INTEGER," +
                 ORDER_AMOUNT + " INTEGER," +
                 ORDER_TOTAL + " DOUBLE," +
-
                 "FOREIGN KEY (" + ORDER_ITEM_ID + ") REFERENCES " + TABLE_ITEMS + " (" + ITEM_ID + ")," +
                 "FOREIGN KEY (" + ORDER_CLIENT_ID + ") REFERENCES " + TABLE_CLIENTS + " (" + CLIENT_ID + "))");
     }
@@ -118,11 +102,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToWorks(String workNr, String workDateEnd) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean insertDataToCatalogs(String workNr, String workDateEnd) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(CATALOG_ID, workNr);
         contentValues.put(CATALOG_DATE_ENDS, workDateEnd);
+
+        SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(TABLE_CATALOGS, null, contentValues);    //it return row, other way -1
         if (result == -1)
             return false;
@@ -132,12 +117,13 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean insertDataToPersons(String name, String surname, String address, String phone) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PERSON_NAME, name);
         contentValues.put(PERSON_SURNAME, surname);
         contentValues.put(PERSON_ADDRESS, address);
         contentValues.put(PERSON_PHONE, phone);
+
+        SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(TABLE_PERSONS, null, contentValues);
         if (result == -1)
             return false;
@@ -147,12 +133,13 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean insertDataToItems(String nr, String name, String price, String discount) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ITEM_ID, nr);
         contentValues.put(ITEM_NAME, name);
         contentValues.put(ITEM_PRICE, price);
         contentValues.put(ITEM_DISCOUNT, discount);
+
+        SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(TABLE_ITEMS, null, contentValues);
         if (result == -1)
             return false;
@@ -162,13 +149,13 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean insertDataToClients(String workId, String personId, String status) {
-
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT " + CLIENT_CATALOG_ID + ", " + CLIENT_PERSON_ID +
-                " FROM " + TABLE_CLIENTS +
-                " WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND " + CLIENT_PERSON_ID + "=" + personId, null);
+        Cursor c = db.rawQuery(
+                "SELECT " + CLIENT_CATALOG_ID + ", " + CLIENT_PERSON_ID +
+                        " FROM " + TABLE_CLIENTS +
+                        " WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND " + CLIENT_PERSON_ID + "=" + personId
+                , null);
         if (c.getCount() != 0) return false;     //if exist, quit from adding the same data
-
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(CLIENT_CATALOG_ID, workId);
@@ -185,17 +172,17 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean insertDataToOrders(String personId, String itemId, int amount) {
-
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT " + ITEM_PRICE + " FROM " + TABLE_ITEMS + " WHERE " + ITEM_ID + " = " + itemId, null);
+        Cursor c = db.rawQuery(
+                "SELECT " + ITEM_PRICE + " " +
+                        "FROM " + TABLE_ITEMS + " " +
+                        "WHERE " + ITEM_ID + " = " + itemId
+                , null);
 
         c.moveToFirst();
         double price = c.getDouble(0);
         double total = price * amount;
-
-
-        db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ORDER_CLIENT_ID, personId);
@@ -203,6 +190,7 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(ORDER_AMOUNT, amount);
         contentValues.put(ORDER_TOTAL, total);
 
+        db = this.getWritableDatabase();
         long result = db.insert(TABLE_ORDERS, null, contentValues);
         if (result == -1)
             return false;
@@ -211,61 +199,16 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getAllRows(String TABLE_NAME, String[] ROWS, String ID) {
+    public Cursor getCatalogs(String filter) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query(true, TABLE_NAME, ROWS, ID, null, null, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-
-    public Cursor getPersons() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * " +
-                "FROM " + TABLE_PERSONS + " " +
-                "ORDER BY " + PERSON_SURNAME, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-
-    public Cursor getItems(Integer id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String itemId = id.toString();
-        Cursor c = db.rawQuery("SELECT * " +
-                "FROM " + TABLE_ITEMS +
-                "WHERE " + ITEM_ID + "= " + itemId + " ORDER BY " + ITEM_NAME, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-
-    public Cursor getItems() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * " +
-                "FROM " + TABLE_ITEMS + " " +
-                "ORDER BY " + ITEM_NAME, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-
-    public Cursor getClients(Integer id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String workId = id.toString();
-        Cursor c = db.rawQuery("SELECT "+"P."+PERSON_ID+" ,"+ PERSON_NAME +" ,"+ PERSON_SURNAME +" ,"+CLIENT_DATE+" ,"+ CLIENT_STATUS +" "+
-                "FROM " + TABLE_PERSONS + " AS P " +
-                "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
-                "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
-                "WHERE " + CLIENT_CATALOG_ID + " = " + workId
+        Cursor c = db.rawQuery(
+                "SELECT * " +
+                        "FROM " + TABLE_CATALOGS + " " +
+                        "WHERE " +
+                        CATALOG_ID + " LIKE \"%" + filter + "%\"" + " OR " +
+                        CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
+                        CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + " " +
+                        "ORDER BY " + CATALOG_DATE_START
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -274,18 +217,79 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getOrders(Integer id) {
+    public Cursor getPersons(String filter) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String clientId = id.toString();
-        Cursor c = db.rawQuery("SELECT * " +
-                "FROM " + TABLE_ITEMS + " AS C LEFT JOIN " + TABLE_ORDERS + " AS P " +
-                "ON P." + ORDER_ITEM_ID + " = C." + ITEM_ID + " " +
-                "WHERE " + ORDER_CLIENT_ID + " = " + clientId + " ORDER BY " + ITEM_NAME, null);
+        Cursor c = db.rawQuery(
+                "SELECT * " +
+                        "FROM " + TABLE_PERSONS + " " +
+                        "WHERE " +
+                        PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        PERSON_ADDRESS + " LIKE \"%" + filter + "%\"" + " OR " +
+                        PERSON_PHONE + " LIKE \"%" + filter + "%\"" + " " +
+                        "ORDER BY " + PERSON_SURNAME
+                , null);
         if (c != null) {
             c.moveToFirst();
         }
         return c;
+    }
 
+
+    public Cursor getItems(String filter) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * " +
+                        "FROM " + TABLE_ITEMS + " " +
+                        "WHERE " +
+                        ITEM_ID + " LIKE \"%" + filter + "%\"" + " OR " +
+                        ITEM_NAME + " LIKE \"%" + filter + "%\"" + " " +
+                        "ORDER BY " + ITEM_NAME
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getClients(Integer id, String filter) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String workId = id.toString();
+        Cursor c = db.rawQuery(
+                "SELECT " + "P." + PERSON_ID + " ," + PERSON_NAME + " ," + PERSON_SURNAME + " ," + CLIENT_DATE + " ," + CLIENT_STATUS + " " +
+                        "FROM " + TABLE_PERSONS + " AS P " +
+                        "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
+                        "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
+                        "WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND (" +
+                        PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getOrders(Integer id, String filter) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String clientId = id.toString();
+        Cursor c = db.rawQuery(
+                "SELECT " + "I." + ITEM_ID + " ," + ORDER_AMOUNT + " ," + ORDER_TOTAL + " ," + ITEM_NAME + " " +
+                        "FROM " + TABLE_ITEMS + " AS I " +
+                        "LEFT JOIN " + TABLE_ORDERS + " AS O " +
+                        "ON O." + ORDER_ITEM_ID + " = I." + ITEM_ID + " " +
+                        "WHERE " + ORDER_CLIENT_ID + " = " + clientId + " " + " AND (" +
+                        ITEM_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "I." + ITEM_ID + " LIKE \"%" + filter + "%\"" + ") " +
+                        "ORDER BY " + ITEM_NAME
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
     }
 
 
@@ -337,21 +341,20 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = ORDER_CLIENT_ID + " = " + clientId + " AND " + ORDER_ITEM_ID + " = " + itemId;
 
-
-        Cursor c = db.rawQuery("SELECT " + ITEM_PRICE +
-                " FROM " + TABLE_ITEMS +
-                " WHERE " + ITEM_ID + " = " + itemId, null);
+        Cursor c = db.rawQuery(
+                "SELECT " + ITEM_PRICE +
+                        " FROM " + TABLE_ITEMS +
+                        " WHERE " + ITEM_ID + " = " + itemId, null);
         c.moveToFirst();
         double price = c.getDouble(0);
 
-
-        c = db.rawQuery("SELECT " + ORDER_AMOUNT +
-                " FROM " + TABLE_ORDERS +
-                " WHERE " + ORDER_CLIENT_ID + " = " + clientId + " AND " + ORDER_ITEM_ID + " = " + itemId, null);
+        c = db.rawQuery(
+                "SELECT " + ORDER_AMOUNT +
+                        " FROM " + TABLE_ORDERS +
+                        " WHERE " + ORDER_CLIENT_ID + " = " + clientId + " AND " + ORDER_ITEM_ID + " = " + itemId, null);
         if (c.getCount() == 0) return false;
         c.moveToFirst();
         double amount = c.getDouble(0);
-
 
         amount = amount + count;
         double total = price * amount;
@@ -369,9 +372,10 @@ public class Database extends SQLiteOpenHelper {
 
     public Cursor getRow(String TABLE_NAME, String WHERE, int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT *" +
-                " FROM " + TABLE_NAME +
-                " WHERE " + WHERE + " = " + id, null);
+        Cursor c = db.rawQuery(
+                "SELECT *" +
+                        " FROM " + TABLE_NAME +
+                        " WHERE " + WHERE + " = " + id, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -380,26 +384,24 @@ public class Database extends SQLiteOpenHelper {
 
 
     public int getInt(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
-
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT " + ROW_NAME +
-                " FROM " + TABLE_NAME +
-                " WHERE " + WHERE + " = " + id, null);
+        Cursor c = db.rawQuery(
+                "SELECT " + ROW_NAME +
+                        " FROM " + TABLE_NAME +
+                        " WHERE " + WHERE + " = " + id, null);
 
         if (c.getCount() == 0) return -1;
         c.moveToFirst();
         return c.getInt(0);
-
-
     }
 
 
     public double getDouble(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
-
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT " + ROW_NAME +
-                " FROM " + TABLE_NAME +
-                " WHERE " + WHERE + " = " + id, null);
+        Cursor c = db.rawQuery(
+                "SELECT " + ROW_NAME +
+                        " FROM " + TABLE_NAME +
+                        " WHERE " + WHERE + " = " + id, null);
 
         c.moveToFirst();
 
@@ -408,7 +410,6 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean delete(String TABLE_NAME, String ROW_WHERE_ID, int id) {
-
         SQLiteDatabase db = this.getWritableDatabase();
         String where = ROW_WHERE_ID + " = " + id;
         long result = db.delete(TABLE_NAME, where, null);

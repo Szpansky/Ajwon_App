@@ -20,7 +20,7 @@ public class Client extends Order {
 
     @Override
     public Cursor setCursor(Database myDB){
-        return myDB.getClients(clickedCatalogId);
+        return myDB.getClients(clickedCatalogId, this.filter);
     }
 
 

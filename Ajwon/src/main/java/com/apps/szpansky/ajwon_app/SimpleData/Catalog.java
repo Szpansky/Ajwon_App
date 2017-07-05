@@ -22,7 +22,7 @@ public class Catalog extends Client {
     @Override
     public Cursor setCursor(Database myDB){
 
-        return myDB.getAllRows(Database.TABLE_CATALOGS, Database.ALL_KEYS_CATALOG, Database.CATALOG_ID);
+        return myDB.getCatalogs(this.filter);
     }
 
 

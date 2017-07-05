@@ -22,7 +22,7 @@ public class Item extends Order{
     @Override
     public Cursor setCursor(Database myDB){
 
-        return myDB.getItems();
+        return myDB.getItems(this.filter);
     }
 
 

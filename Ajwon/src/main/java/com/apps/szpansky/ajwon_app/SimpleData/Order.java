@@ -21,7 +21,7 @@ public class Order extends Data{
 
     @Override
     public Cursor setCursor(Database myDB){
-        return myDB.getOrders(clickedClientId);
+        return myDB.getOrders(clickedClientId, this.filter);
     }
 
 
@@ -41,7 +41,7 @@ public class Order extends Data{
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.ORDER_ITEM_ID,
+                Database.ITEM_ID,
                 Database.ORDER_AMOUNT,
                 Database.ORDER_TOTAL,
                 Database.ITEM_NAME

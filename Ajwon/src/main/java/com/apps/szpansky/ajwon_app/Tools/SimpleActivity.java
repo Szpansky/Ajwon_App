@@ -2,9 +2,13 @@ package com.apps.szpansky.ajwon_app.Tools;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -17,6 +21,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected Bundle toNextActivityBundle = new Bundle();
     protected SimpleCursorAdapter myCursorAdapter;
     protected ListView listView;
+    Toolbar toolbar;
 
     private Data data;
 
@@ -37,8 +42,46 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
         myDB = new Database(this);
 
+        setToolBar();
+
         listView = setListView();
         refreshListView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView)item.getActionView();
+
+
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                data.filter = newText;
+                refreshListView();
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    private void setToolBar(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Przeglądanie");
     }
 
 

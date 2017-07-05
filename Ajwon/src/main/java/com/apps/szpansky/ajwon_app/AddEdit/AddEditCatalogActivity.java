@@ -72,7 +72,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
                     finish();
                 } else {
 
-                    boolean isInserted = myDB.insertDataToWorks(catalogId.getText().toString(), catalogDateEnd.getText().toString());
+                    boolean isInserted = myDB.insertDataToCatalogs(catalogId.getText().toString(), catalogDateEnd.getText().toString());
                     if (isInserted == true)
                         Toast.makeText(AddEditCatalogActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     else
