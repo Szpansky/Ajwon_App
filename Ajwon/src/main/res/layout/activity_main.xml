@@ -6,8 +6,6 @@
     android:layout_height="match_parent">
 
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,73 +16,32 @@
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="162dp"
             android:text="Start"
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold"
-            android:layout_below="@+id/toolbar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-
-        <Button
-            android:id="@+id/openWorks"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="18dp"
-            android:text="Open Works"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold"
-            android:layout_below="@+id/openCatalogs"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:id="@+id/openItems"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@+id/openPersons"
-            android:layout_marginTop="1dp"
-            android:text="Open Items"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/openPersons"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@+id/openWorks"
-            android:layout_marginTop="1dp"
-            android:text="Open Clients"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold" />
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="#FFFF"
-            app:subtitleTextColor="#FFF"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
 
+        <include
+            layout="@layout/toolbar_layout"
+            ></include>
+
+
     </RelativeLayout>
 
-
     <android.support.design.widget.NavigationView
+        android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/menu"
         android:layout_gravity="start"
-        android:layout_marginTop="?attr/actionBarSize"
-        >
+        android:clickable="true"
+        android:contextClickable="true"
+        android:longClickable="false"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/menu">
 
     </android.support.design.widget.NavigationView>
 

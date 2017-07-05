@@ -4,28 +4,32 @@
 
     <item
         android:id="@+id/menuLogin"
+        android:icon="@mipmap/ic_person_black_24dp"
         android:title="Zaloguj"
-        android:icon="@mipmap/ic_launcher"
         />
 
     <item
         android:id="@+id/menuMyAccount"
+        android:icon="@mipmap/ic_info_black_24dp"
         android:title="Moje Informacje"
         />
 
     <item
         android:id="@+id/menuWorks"
+        android:icon="@mipmap/ic_library_books_black_24dp"
         android:title="Katalogi"
         />
 
     <item
         android:id="@+id/menuClients"
+        android:icon="@mipmap/ic_account_box_black_24dp"
         android:title="Klienci"
         />
 
     <item
         android:id="@+id/menuItems"
+        android:icon="@mipmap/ic_toys_black_24dp"
         android:title="Przedmioty"
-    />
+        />
 
 </menu>
