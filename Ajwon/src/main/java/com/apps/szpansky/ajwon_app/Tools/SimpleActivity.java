@@ -60,7 +60,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
 
-    public void popupForDelete(final int id) {       //TODO send object that got method for delete
+    public void popupForDelete(final int id) {
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 

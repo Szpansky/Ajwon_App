@@ -2,14 +2,7 @@ package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,12 +21,6 @@ public class MainActivity extends AppCompatActivity {
     Button openItems;
 
 
-    private DrawerLayout aDrawerLayout;
-    private ActionBarDrawerToggle aToggle;
-
-    public Toolbar aToolbar;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        aToolbar = (Toolbar) findViewById(R.id.nav_action);
-        //this.setSupportActionBar(aToolbar);
         setTitle("Menu");
-
-
-        aDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        aToggle = new ActionBarDrawerToggle(this, aDrawerLayout,R.string.open,R.string.close);
-
-        aDrawerLayout.addDrawerListener(aToggle);
-        aToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -106,11 +82,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(aToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
