@@ -32,7 +32,8 @@ public class Catalog extends Client {
         return (new int[]{
                 R.id.catalogId,
                 R.id.catalogDateStart,
-                R.id.catalogDateEnd});
+                R.id.catalogDateEnd
+        });
     }
 
 

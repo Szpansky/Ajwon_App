@@ -33,7 +33,8 @@ public class Item extends Order{
                 R.id.itemId,
                 R.id.itemName,
                 R.id.itemPrice,
-                R.id.itemDiscount});
+                R.id.itemDiscount
+        });
     }
 
 
@@ -44,7 +45,8 @@ public class Item extends Order{
                 Database.ITEM_ID,
                 Database.ITEM_NAME,
                 Database.ITEM_PRICE,
-                Database.ITEM_DISCOUNT};
+                Database.ITEM_DISCOUNT
+        };
     }
 
 

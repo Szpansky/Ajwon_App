@@ -265,26 +265,12 @@ public class Database extends SQLiteOpenHelper {
                 "FROM " + TABLE_PERSONS + " AS P " +
                 "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
                 "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
-                "WHERE " + CLIENT_CATALOG_ID + " = " + workId +" "
-
-                //"SELECT " + ORDER_TOTAL + " "
-            /*    "INTERSECT " +
-                "SELECT "+ORDER_TOTAL+" "+
-                "FROM " + TABLE_ORDERS*/
-
-
-
-                /*"ORDER BY " + PERSON_NAME*/, null);
+                "WHERE " + CLIENT_CATALOG_ID + " = " + workId
+                , null);
         if (c != null) {
             c.moveToFirst();
         }
         return c;
-
-
-        // dodatkowo pobrac sume ilosci i calkowita cene, z przediotow zamoionych przez dana osobe, zliczone
-
-
-
     }
 
 
