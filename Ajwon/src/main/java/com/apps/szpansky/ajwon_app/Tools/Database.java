@@ -257,7 +257,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT " + "P." + PERSON_ID + " ," + PERSON_NAME + " ," + PERSON_SURNAME + " ," + CLIENT_DATE + " ," + CLIENT_STATUS + " " +
+                "SELECT * " +
                         "FROM " + TABLE_PERSONS + " AS P " +
                         "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
                         "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
@@ -277,7 +277,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String clientId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT " + "I." + ITEM_ID + " ," + ORDER_AMOUNT + " ," + ORDER_TOTAL + " ," + ITEM_NAME + " " +
+                "SELECT * " +
                         "FROM " + TABLE_ITEMS + " AS I " +
                         "LEFT JOIN " + TABLE_ORDERS + " AS O " +
                         "ON O." + ORDER_ITEM_ID + " = I." + ITEM_ID + " " +

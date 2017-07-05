@@ -30,9 +30,9 @@ public class Order extends Data{
 
         return (new int[]{
                 R.id.orderItemId,
+                R.id.orderItemName,
                 R.id.orderAmount,
-                R.id.orderTotal,
-                R.id.orderItemName
+                R.id.orderTotal
         });
     }
 
@@ -41,10 +41,10 @@ public class Order extends Data{
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.ITEM_ID,
+                Database.ORDER_ITEM_ID,
+                Database.ITEM_NAME,
                 Database.ORDER_AMOUNT,
-                Database.ORDER_TOTAL,
-                Database.ITEM_NAME
+                Database.ORDER_TOTAL
         };
     }
 

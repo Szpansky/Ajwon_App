@@ -28,9 +28,9 @@ public class Client extends Order {
     public int[] getToViewIDs(){
 
         return (new int[]{
-                R.id.clientDate,
                 R.id.clientName,
                 R.id.clientSurname,
+                R.id.clientDate,
                 R.id.clientOrderStatus
         });
     }
@@ -40,9 +40,9 @@ public class Client extends Order {
     public String[] getFromFieldsNames(){
 
         return  new String[]{
-                Database.CLIENT_DATE,
                 Database.PERSON_NAME,
                 Database.PERSON_SURNAME,
+                Database.CLIENT_DATE,
                 Database.CLIENT_STATUS
         };
     }
