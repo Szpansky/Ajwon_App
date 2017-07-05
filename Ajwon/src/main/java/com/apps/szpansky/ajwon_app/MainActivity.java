@@ -2,8 +2,11 @@ package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Button openPersons;
     Button openItems;
 
-
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle("Menu");
-
-
-
+        setToolBar();
+        setDrawerWithToggle();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         openCatalogs = (Button) findViewById(R.id.openCatalogs);
         openWorks = (Button) findViewById(R.id.openWorks);
@@ -47,6 +49,27 @@ public class MainActivity extends AppCompatActivity {
         onItemsClick();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(drawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setToolBar(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Menu");
+    }
+
+    private void setDrawerWithToggle() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+    }
 
     private void onStartClick() {
         openCatalogs.setOnClickListener(new View.OnClickListener() {
