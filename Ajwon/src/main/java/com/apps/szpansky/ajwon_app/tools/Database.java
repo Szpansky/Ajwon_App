@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app.Tools;
+package com.apps.szpansky.ajwon_app.tools;
 
 import android.content.ContentValues;
 import android.content.Context;

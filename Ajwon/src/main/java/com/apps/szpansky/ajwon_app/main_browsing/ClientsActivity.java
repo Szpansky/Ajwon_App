@@ -1,27 +1,25 @@
-package com.apps.szpansky.ajwon_app.MainBrowsing;
+package com.apps.szpansky.ajwon_app.main_browsing;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 
-
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditCatalogActivity;
-import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
-import com.apps.szpansky.ajwon_app.SimpleData.Client;
-import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
+import com.apps.szpansky.ajwon_app.for_pick.PickPerson;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.simple_data.Client;
+import com.apps.szpansky.ajwon_app.simple_data.Order;
+import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
-public class CatalogsActivity extends SimpleActivity {
+public class ClientsActivity extends SimpleActivity {
 
     Button add;
 
-    public CatalogsActivity() {
-        super(new Catalog());
+    public ClientsActivity() {
+        super(new Client());
     }
 
 
@@ -30,7 +28,7 @@ public class CatalogsActivity extends SimpleActivity {
         super.onCreate(savedInstanceState);
 
         add = (Button) findViewById(R.id.add);
-        add.setText("Add New Catalog");
+        add.setText("Pick Person");
 
         addData();
         listViewItemClick();
@@ -41,8 +39,8 @@ public class CatalogsActivity extends SimpleActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogsActivity.this, AddEditCatalogActivity.class);
-                CatalogsActivity.this.startActivity(intent);
+                Intent intent = new Intent(ClientsActivity.this, PickPerson.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -58,7 +56,7 @@ public class CatalogsActivity extends SimpleActivity {
                 flag[0] = false;
 
                 popupForDelete((int)id);
-                //TODO activity about information (delete option in new activity)
+                //TODO delete in new activiti with informations
                 return false;
             }
         });
@@ -68,12 +66,28 @@ public class CatalogsActivity extends SimpleActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (flag[0]) {
 
-                    Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
-                    Client.clickedCatalogId =(int)id;
-                    CatalogsActivity.this.startActivity(intent);
+                    Intent intent = new Intent(ClientsActivity.this, OrdersActivity.class);
+                    Order.clickedClientId = (int) id;
+                    ClientsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;
             }
         });
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+
+                Integer personId = data.getIntExtra("personId" , 0);
+                Integer catalogId = Client.clickedCatalogId;
+
+                myDB.insertDataToClients(catalogId.toString(), personId.toString(), getString(R.string.not_paid));
+
+                refreshListView();
+            }
+        }
     }
 }

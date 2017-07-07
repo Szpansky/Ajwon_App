@@ -1,8 +1,7 @@
-package com.apps.szpansky.ajwon_app.Tools;
+package com.apps.szpansky.ajwon_app.tools;
 
 
 import android.database.Cursor;
-import android.widget.ListView;
 
 /**
  * Created by Marcin on 2017-06-09.

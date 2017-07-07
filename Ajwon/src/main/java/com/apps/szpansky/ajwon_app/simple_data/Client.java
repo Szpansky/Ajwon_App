@@ -1,9 +1,9 @@
-package com.apps.szpansky.ajwon_app.SimpleData;
+package com.apps.szpansky.ajwon_app.simple_data;
 
 import android.database.Cursor;
 
 import com.apps.szpansky.ajwon_app.R;
-import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.tools.Database;
 
 
 public class Client extends Order {

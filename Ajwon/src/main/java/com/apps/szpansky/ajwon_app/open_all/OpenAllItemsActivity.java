@@ -1,21 +1,22 @@
-package com.apps.szpansky.ajwon_app.OpenAll;
+package com.apps.szpansky.ajwon_app.open_all;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditPersonActivity;
-import com.apps.szpansky.ajwon_app.SimpleData.Person;
-import com.apps.szpansky.ajwon_app.R;
-import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class OpenAllPersonsActivity extends SimpleActivity {
+import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
+import com.apps.szpansky.ajwon_app.simple_data.Item;
+import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
+
+public class OpenAllItemsActivity extends SimpleActivity {
 
     Button add;
 
-    public OpenAllPersonsActivity() {
-        super(new Person());
+    public OpenAllItemsActivity() {
+        super(new Item());
     }
 
 
@@ -24,7 +25,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
         super.onCreate(savedInstanceState);
 
         add = (Button) findViewById(R.id.add);
-        add.setText("Add New Person");
+        add.setText("Add New Item");
         listViewItemClick();
         addData();
     }
@@ -32,17 +33,16 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
     private void addData() {
         add.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
-                OpenAllPersonsActivity.this.startActivity(intent);
+                Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
+                OpenAllItemsActivity.this.startActivity(intent);
             }
         });
     }
 
 
-    private void listViewItemClick() {
+    public void listViewItemClick() {
         final boolean[] flag = new boolean[1];
         flag[0] = true;
 
@@ -58,15 +58,14 @@ public class OpenAllPersonsActivity extends SimpleActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (flag[0]) {
-                    Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
+                    Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
 
                     toNextActivityBundle.putBoolean("isEdit", true);
-                    toNextActivityBundle.putInt("personId", (int)id);
+                    toNextActivityBundle.putInt("itemId", (int)id);
 
                     intent.putExtras(toNextActivityBundle);
-                    OpenAllPersonsActivity.this.startActivity(intent);
+                    OpenAllItemsActivity.this.startActivity(intent);
                 }
                 flag[0] = true;
             }

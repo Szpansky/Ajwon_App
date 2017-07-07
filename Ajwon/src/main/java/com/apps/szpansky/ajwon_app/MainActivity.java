@@ -12,12 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.apps.szpansky.ajwon_app.MainBrowsing.CatalogsActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllItemsActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllPersonsActivity;
-import com.apps.szpansky.ajwon_app.OpenAll.OpenAllCatalogsActivity;
-
-import static android.support.design.R.id.right;
+import com.apps.szpansky.ajwon_app.main_browsing.CatalogsActivity;
+import com.apps.szpansky.ajwon_app.open_all.OpenAllItemsActivity;
+import com.apps.szpansky.ajwon_app.open_all.OpenAllPersonsActivity;
+import com.apps.szpansky.ajwon_app.open_all.OpenAllCatalogsActivity;
 
 
 public class MainActivity extends AppCompatActivity {

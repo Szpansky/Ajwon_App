@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.apps.szpansky.ajwon_app">
 
     <application
@@ -17,49 +18,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ForPick.PickPerson"
+            android:name=".for_pick.PickPerson"
             android:label="@string/pick_person"
-            android:parentActivityName=".MainBrowsing.ClientsActivity" />
+            android:parentActivityName=".main_browsing.ClientsActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".ForPick.PickItem"
+            android:name=".for_pick.PickItem"
             android:label="@string/pick_item"
-            android:parentActivityName=".MainBrowsing.OrdersActivity" />
+            android:parentActivityName=".main_browsing.OrdersActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".OpenAll.OpenAllCatalogsActivity"
+            android:name=".open_all.OpenAllCatalogsActivity"
             android:label="@string/catalogs"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".OpenAll.OpenAllPersonsActivity"
+            android:name=".open_all.OpenAllPersonsActivity"
             android:label="@string/clients"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".OpenAll.OpenAllItemsActivity"
+            android:name=".open_all.OpenAllItemsActivity"
             android:label="@string/items"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".AddEdit.AddEditCatalogActivity"
+            android:name=".add_edit.AddEditCatalogActivity"
             android:label="@string/add_or_edit"
-            android:parentActivityName=".OpenAll.OpenAllCatalogsActivity" />
+            android:parentActivityName=".open_all.OpenAllCatalogsActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".AddEdit.AddEditPersonActivity"
+            android:name=".add_edit.AddEditPersonActivity"
             android:label="@string/add_or_edit"
-            android:parentActivityName=".OpenAll.OpenAllPersonsActivity" />
+            android:parentActivityName=".open_all.OpenAllPersonsActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".AddEdit.AddEditItemsActivity"
+            android:name=".add_edit.AddEditItemsActivity"
             android:label="@string/add_or_edit"
-            android:parentActivityName=".OpenAll.OpenAllItemsActivity" />
+            android:parentActivityName=".open_all.OpenAllItemsActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".MainBrowsing.CatalogsActivity"
+            android:name=".main_browsing.CatalogsActivity"
             android:label="@string/browsing"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".MainBrowsing.ClientsActivity"
+            android:name=".main_browsing.ClientsActivity"
             android:label="@string/browsing"
-            android:parentActivityName=".MainBrowsing.CatalogsActivity" />
+            android:parentActivityName=".main_browsing.CatalogsActivity"
+            tools:targetApi="jelly_bean" />
         <activity
-            android:name=".MainBrowsing.OrdersActivity"
+            android:name=".main_browsing.OrdersActivity"
             android:label="@string/browsing"
-            android:parentActivityName=".MainBrowsing.ClientsActivity" />
+            android:parentActivityName=".main_browsing.ClientsActivity"
+            tools:targetApi="jelly_bean" />
     </application>
 
 </manifest>

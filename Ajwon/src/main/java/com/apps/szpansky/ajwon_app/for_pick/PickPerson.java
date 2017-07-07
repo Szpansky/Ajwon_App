@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app.OpenAll;
+package com.apps.szpansky.ajwon_app.for_pick;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,18 +7,25 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.apps.szpansky.ajwon_app.AddEdit.AddEditCatalogActivity;
-import com.apps.szpansky.ajwon_app.SimpleData.Catalog;
-import com.apps.szpansky.ajwon_app.R;
-import com.apps.szpansky.ajwon_app.Tools.SimpleActivity;
 
-public class OpenAllCatalogsActivity extends SimpleActivity {
+import com.apps.szpansky.ajwon_app.add_edit.AddEditPersonActivity;
+import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.simple_data.Person;
+import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
+
+
+public class PickPerson extends SimpleActivity{
 
     Button add;
 
+    public PickPerson() {
+        super(new Person());
+    }
 
-    public OpenAllCatalogsActivity() {
-        super(new Catalog());
+
+    @Override
+    protected ListView setListView(){
+        return ((ListView) findViewById(R.id.list_view_simple_view));
     }
 
 
@@ -27,19 +34,20 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
         super.onCreate(savedInstanceState);
 
         add = (Button) findViewById(R.id.add);
-        add.setText("Add New Catalog");
+        add.setText("Add New Person");
 
-        listViewItemClick();
         addData();
+        listViewItemClick();
     }
 
 
     private void addData() {
+        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditCatalogActivity.class);
-                OpenAllCatalogsActivity.this.startActivity(intent);
+                Intent intent = new Intent(PickPerson.this, AddEditPersonActivity.class);
+                PickPerson.this.startActivity(intent);
             }
         });
     }
@@ -53,7 +61,7 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popupForDelete((int)id);
+
                 return false;
             }
         });
@@ -61,15 +69,12 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (flag[0]) {
-                    Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditCatalogActivity.class);
 
-                    toNextActivityBundle.putInt("catalogId", (int)id);
-                    toNextActivityBundle.putBoolean("isEdit", true);
-
-                    intent.putExtras(toNextActivityBundle);
-                    OpenAllCatalogsActivity.this.startActivity(intent);
+                    Intent intent = new Intent();
+                    intent.putExtra("personId", (int)id );
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
                 flag[0] = true;
             }

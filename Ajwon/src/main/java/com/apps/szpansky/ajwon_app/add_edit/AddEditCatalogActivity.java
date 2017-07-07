@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app.AddEdit;
+package com.apps.szpansky.ajwon_app.add_edit;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 import android.widget.Toast;
 
-import com.apps.szpansky.ajwon_app.Tools.Database;
+import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
 

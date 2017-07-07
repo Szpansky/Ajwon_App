@@ -1,4 +1,4 @@
-package com.apps.szpansky.ajwon_app.Tools;
+package com.apps.szpansky.ajwon_app.tools;
 
 
 import com.apps.szpansky.ajwon_app.R;
