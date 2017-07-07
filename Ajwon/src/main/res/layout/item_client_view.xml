@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="10sp"
+        android:layout_marginTop="5sp"
         android:text="@string/error"
         android:textSize="18sp" />
 
@@ -19,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/clientName"
         android:layout_toRightOf="@+id/clientName"
         android:text="@string/error"
@@ -31,6 +33,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/clientName"
+        android:layout_marginTop="5sp"
         android:text="@string/ordered"
         android:textSize="14sp" />
 
@@ -40,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/clientDate"
         android:layout_alignBottom="@+id/clientDate"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView11"
         android:layout_toRightOf="@+id/textView11"
         android:text="@string/colon" />
@@ -49,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/clientSurname"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView33"
         android:layout_toRightOf="@+id/textView33"
         android:text="@string/error"
@@ -61,6 +66,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView11"
+        android:layout_marginTop="5sp"
         android:text="@string/status" />
 
     <TextView
@@ -68,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView11"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView18"
         android:layout_toRightOf="@+id/textView18"
         android:text="@string/colon" />
@@ -77,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView33"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView34"
         android:layout_toRightOf="@+id/textView34"
         android:text="@string/error" />

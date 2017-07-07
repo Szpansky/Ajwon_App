@@ -11,6 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="5sp"
         android:text="@string/error"
         android:textAlignment="center"
         android:textSize="14sp" />
@@ -22,6 +23,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/itemName"
+        android:layout_marginTop="5sp"
         android:text="@string/price"
         android:textSize="14sp" />
 
@@ -40,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemName"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView31"
         android:layout_toRightOf="@+id/textView31"
         android:text="@string/error"
@@ -52,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/itemPrice"
         android:layout_alignBottom="@+id/itemPrice"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/itemPrice"
         android:layout_toRightOf="@+id/itemPrice"
         android:text=" zł"
@@ -64,6 +68,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView9"
+        android:layout_marginTop="5sp"
         android:text="@string/code"
         android:textSize="14sp" />
 
@@ -72,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView9"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView7"
         android:layout_toRightOf="@+id/textView7"
         android:text="@string/colon" />
@@ -81,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemPrice"
+        android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView32"
         android:layout_toRightOf="@+id/textView32"
         android:text="@string/error"
