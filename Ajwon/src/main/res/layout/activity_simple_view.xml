@@ -18,6 +18,9 @@
         android:layout_marginTop="56dp"
         android:clickable="true"
         android:focusable="true"
+        android:layoutAnimation="@anim/my_layout_animation"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:textFilterEnabled="true" />
 
     <include
