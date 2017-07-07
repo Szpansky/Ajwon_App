@@ -1,6 +1,20 @@
+
 <resources>
     <string name="app_name">Ajwon</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="ErrorNotify">Ups... coś poszło nie tak :(</string>
+    <string name="error_notify">Ups… coś poszło nie tak :(</string>
+    <string name="add_catalog_notify">Dodano Katalog</string>
+    <string name="edit_catalog_notify">Edytowano Katalog</string>
+    <string name="add_client_notify">Dodano Klienta</string>
+    <string name="edit_client_notify">Edytowano Klienta</string>
+    <string name="add_item_notify">Dodano Przedmiot</string>
+    <string name="edit_item_notify">Edytowano Przedmiot</string>
+    <string name="browsing">Przeglądanie</string>
+    <string name="add_or_edit">Dodaj / Edytuj</string>
+    <string name="items">Przedmioty</string>
+    <string name="clients">Klienci</string>
+    <string name="catalogs">Katalogi</string>
+    <string name="pick_person">Wybierz Osobę</string>
+    <string name="pick_item">Wybierz Przedmiot</string>
 </resources>

@@ -66,9 +66,9 @@ public class AddEditPersonActivity extends AppCompatActivity {
                                                    address.getText().toString(),
                                                    phone.getText().toString());
                                            if (isUpdated == true)
-                                               Toast.makeText(AddEditPersonActivity.this, "Zaktualizowano Osobę", Toast.LENGTH_SHORT).show();
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.edit_client_notify, Toast.LENGTH_SHORT).show();
                                            else
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                                            finish();
                                        } else {
 
@@ -77,9 +77,9 @@ public class AddEditPersonActivity extends AppCompatActivity {
                                                    address.getText().toString(),
                                                    phone.getText().toString());
                                            if (isInserted == true)
-                                               Toast.makeText(AddEditPersonActivity.this, "Dodano Osobę", Toast.LENGTH_SHORT).show();
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.add_client_notify, Toast.LENGTH_SHORT).show();
                                            else
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                                            finish();
                                        }
                                    }

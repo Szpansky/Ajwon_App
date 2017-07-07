@@ -8,24 +8,58 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="Ajwon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ForPick.PickPerson"/>
-        <activity android:name=".ForPick.PickItem"/>
-        <activity android:name=".OpenAll.OpenAllCatalogsActivity" />
-        <activity android:name=".OpenAll.OpenAllPersonsActivity" />
-        <activity android:name=".OpenAll.OpenAllItemsActivity" />
-        <activity android:name=".AddEdit.AddEditCatalogActivity" />
-        <activity android:name=".AddEdit.AddEditPersonActivity" />
-        <activity android:name=".AddEdit.AddEditItemsActivity" />
-        <activity android:name=".MainBrowsing.CatalogsActivity" />
-        <activity android:name=".MainBrowsing.ClientsActivity" />
-        <activity android:name=".MainBrowsing.OrdersActivity"></activity>
+        <activity
+            android:name=".ForPick.PickPerson"
+            android:label="@string/pick_person"
+            android:parentActivityName=".MainBrowsing.ClientsActivity" />
+        <activity
+            android:name=".ForPick.PickItem"
+            android:label="@string/pick_item"
+            android:parentActivityName=".MainBrowsing.OrdersActivity" />
+        <activity
+            android:name=".OpenAll.OpenAllCatalogsActivity"
+            android:label="@string/catalogs"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".OpenAll.OpenAllPersonsActivity"
+            android:label="@string/clients"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".OpenAll.OpenAllItemsActivity"
+            android:label="@string/items"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddEdit.AddEditCatalogActivity"
+            android:label="@string/add_or_edit"
+            android:parentActivityName=".OpenAll.OpenAllCatalogsActivity" />
+        <activity
+            android:name=".AddEdit.AddEditPersonActivity"
+            android:label="@string/add_or_edit"
+            android:parentActivityName=".OpenAll.OpenAllPersonsActivity" />
+        <activity
+            android:name=".AddEdit.AddEditItemsActivity"
+            android:label="@string/add_or_edit"
+            android:parentActivityName=".OpenAll.OpenAllItemsActivity" />
+        <activity
+            android:name=".MainBrowsing.CatalogsActivity"
+            android:label="@string/browsing"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainBrowsing.ClientsActivity"
+            android:label="@string/browsing"
+            android:parentActivityName=".MainBrowsing.CatalogsActivity" />
+        <activity
+            android:name=".MainBrowsing.OrdersActivity"
+            android:label="@string/browsing"
+            android:parentActivityName=".MainBrowsing.ClientsActivity" />
     </application>
 
 </manifest>

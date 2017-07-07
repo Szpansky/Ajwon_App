@@ -112,9 +112,9 @@ public class AddEditItemsActivity extends AppCompatActivity {
                             price.getText().toString(),
                             discount.toString());
                     if (isUpdated == true)
-                        Toast.makeText(AddEditItemsActivity.this, "Zaktualizowano Przedmiot", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.edit_item_notify, Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditItemsActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                     finish();
                 } else {
                     boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
@@ -122,9 +122,9 @@ public class AddEditItemsActivity extends AppCompatActivity {
                             price.getText().toString(),
                             discount.toString());
                     if (isInserted == true)
-                        Toast.makeText(AddEditItemsActivity.this, "Dodano Przedmiot", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.add_item_notify, Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditItemsActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                     finish();
                 }
             }

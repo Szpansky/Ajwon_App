@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         onStartClick();     //button click
 
         onNavigationItemClick();
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -57,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void setToolBar(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Menu");
     }
+
 
     private void setDrawerWithToggle() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
+
 
     private void onNavigationItemClick(){
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void onStartClick() {
         openCatalogs.setOnClickListener(new View.OnClickListener() {

@@ -56,31 +56,29 @@ public abstract class SimpleActivity extends AppCompatActivity {
         inflater.inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
         SearchView searchView = (SearchView) item.getActionView();
-        searchView.setQueryHint("Nazwa / Kod / Data");
+        searchView.setQueryHint("Nazwa / Kod / Data / Status");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 data.filter = newText;
                 refreshListView();
-
                 return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
     }
 
+
     private void setToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Przeglądanie");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

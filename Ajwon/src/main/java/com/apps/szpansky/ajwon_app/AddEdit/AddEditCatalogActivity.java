@@ -85,16 +85,16 @@ public class AddEditCatalogActivity extends AppCompatActivity {
                                        if (edit) {
                                            boolean isUpdated = myDB.updateRowCatalog(id, catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
                                            if (isUpdated == true)
-                                               Toast.makeText(AddEditCatalogActivity.this, "Zaktualizowano Katalog", Toast.LENGTH_SHORT).show();
+                                               Toast.makeText(AddEditCatalogActivity.this, R.string.edit_catalog_notify, Toast.LENGTH_SHORT).show();
                                            else
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                               Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                                            finish();
                                        } else {
                                            boolean isInserted = myDB.insertDataToCatalogs(catalogId.getText().toString(), catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
                                            if (isInserted == true)
-                                               Toast.makeText(AddEditCatalogActivity.this, "Dodano Katalog", Toast.LENGTH_SHORT).show();
+                                               Toast.makeText(AddEditCatalogActivity.this, R.string.add_catalog_notify, Toast.LENGTH_SHORT).show();
                                            else
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                               Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                                            finish();
                                        }
                                    }
