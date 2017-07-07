@@ -4,55 +4,55 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/clientDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView11"
-        android:layout_alignBottom="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11"
-        android:layout_toRightOf="@+id/textView11"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zamówiono: "
-        android:textSize="14sp"
-        android:layout_below="@+id/clientName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:id="@+id/clientName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginRight="10sp"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10sp"
+        android:text="@string/error"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/clientSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/clientName"
         android:layout_toRightOf="@+id/clientName"
-        android:layout_toEndOf="@+id/clientName" />
+        android:text="@string/error"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/clientOrderStatus"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/clientDate"
-        android:layout_toRightOf="@+id/textView18"
-        android:layout_toEndOf="@+id/textView18" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/clientName"
+        android:text="@string/ordered"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/clientDate"
+        android:layout_alignBottom="@+id/clientDate"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        android:text="@string/colon" />
+
+    <TextView
+        android:id="@+id/clientDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clientSurname"
+        android:layout_toEndOf="@+id/textView33"
+        android:layout_toRightOf="@+id/textView33"
+        android:text="@string/error"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView18"
@@ -61,6 +61,24 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView11"
-        android:text="Status: " />
+        android:text="@string/status" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_toEndOf="@+id/textView18"
+        android:layout_toRightOf="@+id/textView18"
+        android:text="@string/colon" />
+
+    <TextView
+        android:id="@+id/clientOrderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView33"
+        android:layout_toEndOf="@+id/textView34"
+        android:layout_toRightOf="@+id/textView34"
+        android:text="@string/error" />
 
 </RelativeLayout>

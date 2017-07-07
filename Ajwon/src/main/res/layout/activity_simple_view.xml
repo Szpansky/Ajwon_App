@@ -4,8 +4,7 @@
     android:id="@+id/activity_open_works"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.apps.szpansky.ajwon_app.OpenAll.OpenAllCatalogsActivity"
-    >
+    tools:context="com.apps.szpansky.ajwon_app.OpenAll.OpenAllCatalogsActivity">
 
 
     <ListView
@@ -19,9 +18,12 @@
         android:layout_marginTop="56dp"
         android:clickable="true"
         android:focusable="true"
-        android:textFilterEnabled="true"/>
+        android:textFilterEnabled="true" />
 
-    <include layout="@layout/toolbar_layout"></include>
+    <include
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/add"

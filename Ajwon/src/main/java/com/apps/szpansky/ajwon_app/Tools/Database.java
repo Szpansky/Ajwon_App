@@ -264,6 +264,7 @@ public class Database extends SQLiteOpenHelper {
                         "WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND (" +
                         PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
                         PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        CLIENT_DATE + " LIKE \"%" + filter + "%\"" + " OR " +
                         CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"
                 , null);
         if (c != null) {

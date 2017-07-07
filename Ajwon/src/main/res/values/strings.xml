@@ -1,8 +1,9 @@
 
 <resources>
     <string name="app_name">Ajwon</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="open">Otwórz</string>
+    <string name="close">Zamknij</string>
+    <string name="search">Szukaj</string>
     <string name="error_notify">Ups… coś poszło nie tak :(</string>
     <string name="add_catalog_notify">Dodano Katalog</string>
     <string name="edit_catalog_notify">Edytowano Katalog</string>
@@ -12,9 +13,37 @@
     <string name="edit_item_notify">Edytowano Przedmiot</string>
     <string name="browsing">Przeglądanie</string>
     <string name="add_or_edit">Dodaj / Edytuj</string>
+    <string name="log_in">Zaloguj</string>
+    <string name="information">Informacje</string>
     <string name="items">Przedmioty</string>
     <string name="clients">Klienci</string>
     <string name="catalogs">Katalogi</string>
     <string name="pick_person">Wybierz Osobę</string>
     <string name="pick_item">Wybierz Przedmiot</string>
+    <string name="search_hint">Nazwa/Kod/Data/Status</string>
+    <string name="delete_notify">"Na pewno chcesz usunąć?</string>
+    <string name="agree">Tak</string>
+    <string name="disagree">Nie</string>
+    <string name="not_paid">Nie Zapłanoco</string>
+    <string name="paid">Zapłacono</string>
+    <string name="news">Witaj</string>
+    <string name="news_sub">Piękna pogoda, masz 2 zamówienia</string>
+    <string name="error">Błąd</string>
+    <string name="name">Imię</string>
+    <string name="surname">Nazwisko</string>
+    <string name="address">Adres</string>
+    <string name="phone_number">Numer Telefonu</string>
+    <string name="colon">:</string>
+    <string name="code">Kod</string>
+    <string name="amount">Ilość</string>
+    <string name="total">Suma</string>
+    <string name="discounts">Zniżki</string>
+    <string name="price">Cena</string>
+    <string name="status">Status</string>
+    <string name="ordered">Zamówiono</string>
+    <string name="start">Początek</string>
+    <string name="end">Koniec</string>
+    <string name="catalog_nr">Numer Katalogu</string>
+    <string name="item_title">Nazwa Przedmiotu</string>
+    <string name="date">Data</string>
 </resources>

@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/catalog_nr"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:text="@string/colon"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/catalogId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:text="TextView"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/catalogDateStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/catalogId"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/catalogDateEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/catalogDateStart"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/catalogDateStart"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Nr Katalogu: "
+        android:layout_toEndOf="@+id/textView36"
+        android:layout_toRightOf="@+id/textView36"
+        android:text="@string/error"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/catalogDateEnd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Początek: "
+        android:layout_below="@+id/textView"
+        android:text="@string/start"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/colon" />
+
+    <TextView
+        android:id="@+id/catalogDateStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView37"
+        android:layout_toEndOf="@+id/textView37"
+        android:layout_toRightOf="@+id/textView37"
+        android:text="@string/error"
         android:textSize="14sp" />
 
     <TextView
@@ -64,8 +70,28 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="5sp"
-        android:text="Koniec: "
+        android:text="@string/end"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:text="@string/colon" />
+
+    <TextView
+        android:id="@+id/catalogDateEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView35"
+        android:layout_alignBottom="@+id/textView35"
+        android:layout_toEndOf="@+id/textView35"
+        android:layout_toRightOf="@+id/textView35"
+        android:text="@string/error"
         android:textSize="14sp" />
 
 </RelativeLayout>

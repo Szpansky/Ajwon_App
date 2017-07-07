@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menuLogin"
         android:icon="@mipmap/ic_person_black_24dp"
-        android:title="Zaloguj"
-        />
+        android:title="@string/log_in" />
 
     <item
         android:id="@+id/menuMyAccount"
         android:icon="@mipmap/ic_info_black_24dp"
-        android:title="Moje Informacje"
-        />
+        android:title="@string/information" />
 
     <item
         android:id="@+id/menuWorks"
         android:icon="@mipmap/ic_library_books_black_24dp"
-        android:title="Katalogi"
-        />
+        android:title="@string/catalogs" />
 
     <item
         android:id="@+id/menuClients"
         android:icon="@mipmap/ic_account_box_black_24dp"
-        android:title="Klienci"
-        />
+        android:title="@string/clients" />
 
     <item
         android:id="@+id/menuItems"
         android:icon="@mipmap/ic_toys_black_24dp"
-        android:title="Przedmioty"
-        />
+        android:title="@string/items" />
 
 </menu>

@@ -5,15 +5,15 @@
 
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView9"
-        android:text="Kod: "
+        android:layout_alignParentTop="true"
+        android:text="@string/error"
+        android:textAlignment="center"
         android:textSize="14sp" />
-
 
     <TextView
         android:id="@+id/textView9"
@@ -22,54 +22,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/itemName"
-        android:text="Cena: "
+        android:text="@string/price"
         android:textSize="14sp" />
 
 
     <TextView
-        android:id="@+id/itemId"
+        android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7"
-        android:layout_toRightOf="@+id/textView7"
-        android:text="Id"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/itemName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Item Name"
-        android:textAlignment="center"
-        android:textSize="14sp" />
-
+        android:layout_below="@+id/itemName"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:text="@string/colon" />
 
     <TextView
         android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView9"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9"
-        android:layout_toRightOf="@+id/textView9"
-        android:text="Item Price"
+        android:layout_below="@+id/itemName"
+        android:layout_toEndOf="@+id/textView31"
+        android:layout_toRightOf="@+id/textView31"
+        android:text="@string/error"
         android:textSize="14sp" />
 
-
-    <TextView
-        android:id="@+id/itemDiscount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/itemId"
-        android:text="Discounts"
-        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView17"
@@ -80,6 +55,45 @@
         android:layout_toEndOf="@+id/itemPrice"
         android:layout_toRightOf="@+id/itemPrice"
         android:text=" zł"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9"
+        android:text="@string/code"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView9"
+        android:layout_toEndOf="@+id/textView7"
+        android:layout_toRightOf="@+id/textView7"
+        android:text="@string/colon" />
+
+    <TextView
+        android:id="@+id/itemId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemPrice"
+        android:layout_toEndOf="@+id/textView32"
+        android:layout_toRightOf="@+id/textView32"
+        android:text="@string/error"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/itemDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/itemId"
+        android:text="@string/error"
         android:textSize="14sp" />
 
 

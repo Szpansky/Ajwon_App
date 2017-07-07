@@ -56,7 +56,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
         inflater.inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
         SearchView searchView = (SearchView) item.getActionView();
-        searchView.setQueryHint("Nazwa / Kod / Data / Status");
+        searchView.setQueryHint(getString(R.string.search_hint));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -119,8 +119,8 @@ public abstract class SimpleActivity extends AppCompatActivity {
             }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You want to delete?\nIt will delete all depends data").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage(R.string.delete_notify).setPositiveButton(R.string.agree, dialogClickListener)
+                .setNegativeButton(R.string.disagree, dialogClickListener).show();
 
     }
 }

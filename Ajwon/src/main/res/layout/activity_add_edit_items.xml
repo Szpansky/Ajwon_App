@@ -10,6 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.apps.szpansky.ajwon_app.AddEdit.AddEditItemsActivity">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/item_title" />
+
     <EditText
         android:id="@+id/name"
         style="@style/Base.TextAppearance.AppCompat.Title"
@@ -18,11 +27,44 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView6"
-        android:hint="Nazwa Przedmiotu"
+        android:hint="@string/item_title"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name"
+        android:text="@string/code" />
+
+    <EditText
+        android:id="@+id/nr"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView8"
+        android:hint="@string/code"
+        android:inputType="number"
+        android:maxLength="5"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nr"
+        android:text="@string/price" />
 
     <EditText
         android:id="@+id/price"
@@ -39,43 +81,17 @@
         android:textStyle="bold" />
 
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Add" />
-
-
     <TextView
         android:id="@+id/simpleText"
         style="@style/Base.TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/price"
         android:layout_marginTop="10dp"
         android:text="Wybierz Zniżki"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
-
-    <EditText
-        android:id="@+id/nr"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView8"
-        android:hint="Kod Przedmiotu"
-        android:inputType="number"
-        android:maxLength="5"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/check_5"
@@ -190,31 +206,13 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Nazwa:" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/name"
-        android:text="Kod:" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/nr"
-        android:text="Cena:" />
+    <Button
+        android:id="@+id/add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Add" />
 
 </RelativeLayout>

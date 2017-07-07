@@ -85,8 +85,10 @@ public class OrdersActivity extends SimpleActivity {
                 Integer itemId = data.getIntExtra("itemId", 0);
                 Integer clientId = Order.clickedClientId;
 
-                boolean isInserted = myDB.updateRowOrder(clientId, itemId, 1);
-                if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), 1);
+                int count = 1;
+
+                boolean isInserted = myDB.updateRowOrder(clientId, itemId, count);
+                if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), count);
 
                 refreshListView();
             }

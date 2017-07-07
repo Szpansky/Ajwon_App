@@ -11,6 +11,16 @@
     tools:context="com.apps.szpansky.ajwon_app.AddEdit.AddEditCatalogActivity">
 
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/catalog_nr" />
+
     <EditText
         android:id="@+id/catalogId"
         style="@style/Base.TextAppearance.AppCompat.Title"
@@ -19,13 +29,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView10"
-        android:hint="Numer Katalogu"
+        android:hint="@string/catalog_nr"
         android:inputType="number"
         android:maxLength="5"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/catalogId"
+        android:text="@string/start" />
 
     <EditText
         android:id="@+id/catalogDateStart"
@@ -37,12 +56,21 @@
         android:layout_below="@+id/textView19"
         android:elevation="1dp"
         android:focusable="false"
-        android:hint="Data rozpoczęcia"
+        android:hint="@string/date"
         android:inputType="date"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/catalogDateStart"
+        android:text="@string/end" />
 
     <EditText
         android:id="@+id/catalogDateEnd"
@@ -53,7 +81,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView20"
         android:focusable="false"
-        android:hint="Data zakończenia"
+        android:hint="@string/date"
         android:inputType="date"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
@@ -67,37 +95,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="Add" />
-
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="Numer Katalogu:" />
-
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/catalogId"
-        android:text="Początek:" />
-
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/catalogDateStart"
-        android:text="Koniec:" />
 
 
 </RelativeLayout>
