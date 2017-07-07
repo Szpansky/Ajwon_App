@@ -102,11 +102,11 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToCatalogs(String workNr, String workDateEnd) {
+    public boolean insertDataToCatalogs(String id, String dateStart, String dateEnd) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CATALOG_ID, workNr);
-        contentValues.put(CATALOG_DATE_ENDS, workDateEnd);
-
+        contentValues.put(CATALOG_ID, id);
+        contentValues.put(CATALOG_DATE_START, dateStart);
+        contentValues.put(CATALOG_DATE_ENDS, dateEnd);
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(TABLE_CATALOGS, null, contentValues);    //it return row, other way -1
         if (result == -1)
@@ -293,11 +293,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowWork(int id, String workDateEnd) {
+    public boolean updateRowCatalog(int id, String dateStart, String dateEnd) {
         SQLiteDatabase db = this.getReadableDatabase();
         String where = CATALOG_ID + " = " + id;
         ContentValues newValues = new ContentValues();
-        newValues.put(CATALOG_DATE_ENDS, workDateEnd);
+        newValues.put(CATALOG_DATE_START, dateStart);
+        newValues.put(CATALOG_DATE_ENDS, dateEnd);
         long result = db.update(TABLE_CATALOGS, newValues, where, null);
         if (result == -1)
             return false;

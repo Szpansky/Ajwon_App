@@ -80,9 +80,9 @@ public class AddEditItemsActivity extends AppCompatActivity {
             price.setText(getItemInfo(2));
             discountSTR = getItemInfo(3);
 
-            for (int i = 0; i < discountSTR.length(); i++){
+            for (int i = 0; i < discountSTR.length(); i++) {
                 int discountRevert = discountSTR.length() - 1 - i;
-                if (discountSTR.charAt( (discountRevert) ) == '1') dis_all[i].setChecked(true);
+                if (discountSTR.charAt((discountRevert)) == '1') dis_all[i].setChecked(true);
             }
             nr.setFocusable(false);
         }
@@ -96,36 +96,35 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (dis_all[0].isChecked()) discount +=1;
-                if (dis_all[1].isChecked()) discount +=10;
-                if (dis_all[2].isChecked()) discount +=100;
-                if (dis_all[3].isChecked()) discount +=1000;
-                if (dis_all[4].isChecked()) discount +=10000;
-                if (dis_all[5].isChecked()) discount +=100000;
-                if (dis_all[6].isChecked()) discount +=1000000;
-                if (dis_all[7].isChecked()) discount +=10000000;
-                if (dis_all[8].isChecked()) discount +=100000000;
+                if (dis_all[0].isChecked()) discount += 1;
+                if (dis_all[1].isChecked()) discount += 10;
+                if (dis_all[2].isChecked()) discount += 100;
+                if (dis_all[3].isChecked()) discount += 1000;
+                if (dis_all[4].isChecked()) discount += 10000;
+                if (dis_all[5].isChecked()) discount += 100000;
+                if (dis_all[6].isChecked()) discount += 1000000;
+                if (dis_all[7].isChecked()) discount += 10000000;
+                if (dis_all[8].isChecked()) discount += 100000000;
 
-                if (edit){
+                if (edit) {
                     boolean isUpdated = myDB.updateRowItem(id,
                             name.getText().toString(),
                             price.getText().toString(),
                             discount.toString());
                     if (isUpdated == true)
-                        Toast.makeText(AddEditItemsActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Zaktualizowano Przedmiot", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditItemsActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
                     finish();
-                }
-                else {
+                } else {
                     boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
                             name.getText().toString(),
                             price.getText().toString(),
                             discount.toString());
                     if (isInserted == true)
-                        Toast.makeText(AddEditItemsActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddEditItemsActivity.this, "Dodano Przedmiot", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(AddEditItemsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddEditItemsActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
@@ -133,7 +132,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
     }
 
 
-    private String getItemInfo(int columnIndex){
+    private String getItemInfo(int columnIndex) {
         Cursor cursor = myDB.getRow(Database.TABLE_ITEMS, Database.ITEM_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);

@@ -54,7 +54,7 @@
         android:layout_above="@+id/catalogDateEnd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Utworzony: "
+        android:text="Początek: "
         android:textSize="14sp" />
 
     <TextView

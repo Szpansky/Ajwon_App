@@ -33,11 +33,11 @@ public class AddEditPersonActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        name = (EditText)findViewById(R.id.name);
-        surname = (EditText)findViewById(R.id.surname);
-        address = (EditText)findViewById(R.id.addres);
-        phone = (EditText)findViewById(R.id.phone);
-        add = (Button)findViewById(R.id.add);
+        name = (EditText) findViewById(R.id.name);
+        surname = (EditText) findViewById(R.id.surname);
+        address = (EditText) findViewById(R.id.addres);
+        phone = (EditText) findViewById(R.id.phone);
+        add = (Button) findViewById(R.id.add);
 
         if (bundle != null) {
 
@@ -57,38 +57,37 @@ public class AddEditPersonActivity extends AppCompatActivity {
 
 
     public void addData(final int id, final boolean edit) {
-        add.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v){
+        add.setOnClickListener(new View.OnClickListener() {
+                                   public void onClick(View v) {
 
-                        if (edit){
-                            boolean isUpdated = myDB.updateRowPerson(id, name.getText().toString(),
-                                    surname.getText().toString(),
-                                    address.getText().toString(),
-                                    phone.getText().toString());
-                            if (isUpdated == true)
-                                Toast.makeText(AddEditPersonActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(AddEditPersonActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                        else {
+                                       if (edit) {
+                                           boolean isUpdated = myDB.updateRowPerson(id, name.getText().toString(),
+                                                   surname.getText().toString(),
+                                                   address.getText().toString(),
+                                                   phone.getText().toString());
+                                           if (isUpdated == true)
+                                               Toast.makeText(AddEditPersonActivity.this, "Zaktualizowano Osobę", Toast.LENGTH_SHORT).show();
+                                           else
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                           finish();
+                                       } else {
 
-                            boolean isInserted = myDB.insertDataToPersons(name.getText().toString(),
-                                    surname.getText().toString(),
-                                    address.getText().toString(),
-                                    phone.getText().toString());
-                            if (isInserted == true)
-                                Toast.makeText(AddEditPersonActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(AddEditPersonActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    }
-                }
+                                           boolean isInserted = myDB.insertDataToPersons(name.getText().toString(),
+                                                   surname.getText().toString(),
+                                                   address.getText().toString(),
+                                                   phone.getText().toString());
+                                           if (isInserted == true)
+                                               Toast.makeText(AddEditPersonActivity.this, "Dodano Osobę", Toast.LENGTH_SHORT).show();
+                                           else
+                                               Toast.makeText(AddEditPersonActivity.this, R.string.ErrorNotify, Toast.LENGTH_LONG).show();
+                                           finish();
+                                       }
+                                   }
+                               }
         );
     }
 
-    private String getPersonInfo(int columnIndex){
+    private String getPersonInfo(int columnIndex) {
         Cursor cursor = myDB.getRow(Database.TABLE_PERSONS, Database.PERSON_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);

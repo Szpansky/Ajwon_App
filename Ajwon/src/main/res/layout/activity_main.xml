@@ -16,18 +16,19 @@
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginTop="162dp"
             android:text="Start"
             android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
 
         <include
             layout="@layout/toolbar_layout"
-            ></include>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></include>
 
 
     </RelativeLayout>

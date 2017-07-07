@@ -25,6 +25,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
     private Data data;
 
+
     public SimpleActivity(Data data) {
         this.data = data;
     }
@@ -48,15 +49,14 @@ public abstract class SimpleActivity extends AppCompatActivity {
         refreshListView();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchView searchView = (SearchView)item.getActionView();
-
-
-
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setQueryHint("Nazwa / Kod / Data");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -77,8 +77,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
-    private void setToolBar(){
+    private void setToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Przeglądanie");
@@ -104,7 +103,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
 
     public void popupForDelete(final int id) {
-
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
             @Override

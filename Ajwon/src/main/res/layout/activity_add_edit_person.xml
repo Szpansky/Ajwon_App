@@ -16,10 +16,13 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView22"
         android:ems="10"
-        android:hint="Imie"
+        android:hint="Podaj Imie"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
@@ -28,11 +31,13 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView23"
         android:ems="10"
-        android:hint="Nazwisko"
+        android:hint="Podaj Nazwisko"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
@@ -41,11 +46,13 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/surname"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView24"
         android:ems="10"
-        android:hint="Adres"
+        android:hint="Podaj Adres"
         android:inputType="textPostalAddress"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
@@ -54,12 +61,14 @@
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/addres"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView25"
         android:ems="10"
         android:hint="Numer Telefonu"
         android:inputType="phone"
         android:maxLength="9"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold" />
 
@@ -70,6 +79,42 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="Add" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Imie:" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name"
+        android:text="Nazwisko:" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/surname"
+        android:text="Adres:" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addres"
+        android:text="Numer Telefonu:" />
 
 
 </RelativeLayout>
