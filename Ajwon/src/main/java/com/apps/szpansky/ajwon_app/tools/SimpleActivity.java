@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.R;
 
@@ -66,7 +69,13 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                data.filter = newText;
+                if (newText.contains("\"")){
+                    data.filter = "";
+                    Toast.makeText(SimpleActivity.this, "Bez \" Proszę ;)", Toast.LENGTH_SHORT).show();
+                } else {
+                    data.filter = newText;
+                }
+
                 refreshListView();
                 return false;
             }
