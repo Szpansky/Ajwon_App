@@ -2,6 +2,7 @@ package com.apps.szpansky.ajwon_app.for_pick;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,7 +17,7 @@ import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 public class PickItem extends SimpleActivity {
 
-    Button add;
+    FloatingActionButton add;
 
     public PickItem() {
         super(new Item());
@@ -33,8 +34,7 @@ public class PickItem extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (Button) findViewById(R.id.add);
-        add.setText("Add New Item");
+        add = (FloatingActionButton) findViewById(R.id.add);
 
         addData();
         listViewItemClick();
@@ -42,7 +42,6 @@ public class PickItem extends SimpleActivity {
 
 
     private void addData() {
-        Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

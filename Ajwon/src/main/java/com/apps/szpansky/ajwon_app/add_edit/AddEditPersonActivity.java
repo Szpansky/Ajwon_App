@@ -1,6 +1,7 @@
 package com.apps.szpansky.ajwon_app.add_edit;
 
 import android.database.Cursor;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
     private EditText surname;
     private EditText address;
     private EditText phone;
-    private Button add;
+    private FloatingActionButton add;
 
     private Integer thisId = 0;
     private Boolean isEdit = false;
@@ -37,7 +38,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
         surname = (EditText) findViewById(R.id.surname);
         address = (EditText) findViewById(R.id.addres);
         phone = (EditText) findViewById(R.id.phone);
-        add = (Button) findViewById(R.id.add);
+        add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
 

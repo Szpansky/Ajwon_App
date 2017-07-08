@@ -2,6 +2,7 @@ package com.apps.szpansky.ajwon_app.main_browsing;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -15,7 +16,7 @@ import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 public class OrdersActivity extends SimpleActivity {
 
-    Button add;
+    FloatingActionButton add;
 
     public OrdersActivity() {
         super(new Order());
@@ -26,8 +27,7 @@ public class OrdersActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (Button) findViewById(R.id.add);
-        add.setText("Pick Item");
+        add = (FloatingActionButton) findViewById(R.id.add);
 
         addData();
         listViewItemClick();

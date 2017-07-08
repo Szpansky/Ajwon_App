@@ -1,6 +1,7 @@
 package com.apps.szpansky.ajwon_app.add_edit;
 
 import android.database.Cursor;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
     private CheckBox[] dis_all = {dis_5, dis_10, dis_15, dis_20, dis_25, dis_30, dis_35, dis_40, dis_100};
 
-    private Button add;
+    private FloatingActionButton add;
 
     private Integer thisId = 0;
     private Integer discount = 0;
@@ -65,7 +66,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         dis_all[7] = (CheckBox) findViewById(R.id.check_40);
         dis_all[8] = (CheckBox) findViewById(R.id.check_100);
 
-        add = (Button) findViewById(R.id.add);
+        add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
 

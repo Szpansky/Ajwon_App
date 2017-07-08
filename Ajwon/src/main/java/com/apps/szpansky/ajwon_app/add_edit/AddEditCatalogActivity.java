@@ -3,17 +3,14 @@ package com.apps.szpansky.ajwon_app.add_edit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.database.Cursor;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import java.util.Calendar;
-
 import android.widget.Toast;
-
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -23,7 +20,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     private EditText catalogId;
     private EditText catalogDateEnd;
     private EditText catalogDateStart;
-    private Button add;
+    private FloatingActionButton add;
 
     private Integer thisId = 0;
     private Boolean isEdit = false;
@@ -56,7 +53,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         catalogId = (EditText) findViewById(R.id.catalogId);
         catalogDateStart = (EditText) findViewById(R.id.catalogDateStart);
         catalogDateEnd = (EditText) findViewById(R.id.catalogDateEnd);
-        add = (Button) findViewById(R.id.add);
+        add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
 
