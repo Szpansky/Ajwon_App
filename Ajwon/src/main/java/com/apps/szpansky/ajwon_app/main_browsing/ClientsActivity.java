@@ -30,7 +30,7 @@ public class ClientsActivity extends SimpleActivity {
 
 
     @Override
-    protected void addButtonClick() {
+    protected void onAddButtonClick() {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

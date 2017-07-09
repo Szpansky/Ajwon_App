@@ -26,7 +26,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
 
 
     @Override
-    protected void addButtonClick() {
+    protected void onAddButtonClick() {
         addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

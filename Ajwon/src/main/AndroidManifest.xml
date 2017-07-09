@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="Ajwon">
@@ -17,61 +18,78 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".for_pick.PickPerson"
+            android:theme="@style/PickTheme"
             android:label="@string/pick_person"
             android:parentActivityName=".main_browsing.ClientsActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".for_pick.PickItem"
+            android:theme="@style/PickTheme"
             android:label="@string/pick_item"
             android:parentActivityName=".main_browsing.OrdersActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".open_all.OpenAllCatalogsActivity"
             android:label="@string/catalogs"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".open_all.OpenAllPersonsActivity"
             android:label="@string/clients"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".open_all.OpenAllItemsActivity"
             android:label="@string/items"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".add_edit.AddEditCatalogActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllCatalogsActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".add_edit.AddEditPersonActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllPersonsActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".add_edit.AddEditItemsActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllItemsActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".main_browsing.CatalogsActivity"
+            android:theme="@style/BrowsingTheme"
             android:label="@string/browsing"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".main_browsing.ClientsActivity"
+            android:theme="@style/BrowsingTheme"
             android:label="@string/browsing"
             android:parentActivityName=".main_browsing.CatalogsActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".main_browsing.OrdersActivity"
+            android:theme="@style/BrowsingTheme"
             android:label="@string/browsing"
             android:parentActivityName=".main_browsing.ClientsActivity"
             tools:targetApi="jelly_bean" />
+
     </application>
 
 </manifest>

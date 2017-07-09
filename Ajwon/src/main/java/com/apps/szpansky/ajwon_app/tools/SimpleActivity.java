@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -24,16 +25,18 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected SimpleCursorAdapter myCursorAdapter;
     protected ListView listView;
     protected FloatingActionButton addButton;
-
+    private AbsListView.OnScrollListener onScrollListener;
     protected Toolbar toolbar;
-
     private Data data;
 
-    protected abstract void addButtonClick();
+
+    protected abstract void onAddButtonClick();
+
 
     protected SimpleActivity(Data data) {
         this.data = data;
     }
+
 
     protected ListView setListView() {
         return ((ListView) findViewById(R.id.list_view_simple_view));
@@ -53,7 +56,8 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
         listView = setListView();
         refreshListView();
-        addButtonClick();
+        onAddButtonClick();
+        onScrolling();
     }
 
 
@@ -88,17 +92,17 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
 
-    private void setToolBar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-
     @Override
     protected void onPostResume() {
         super.onPostResume();
         refreshListView();
+    }
+
+
+    private void setToolBar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -110,6 +114,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 data.getToViewIDs(),
                 0);
         listView.setAdapter(myCursorAdapter);
+        listView.setOnScrollListener(onScrollListener);
     }
 
 
@@ -136,6 +141,32 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.disagree, dialogClickListener).show();
 
     }
+
+
+    private void onScrolling() {
+        onScrollListener = new AbsListView.OnScrollListener() {
+            int previousItem = 0;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                if (previousItem != firstVisibleItem) {
+                    if (previousItem < firstVisibleItem) {
+                        addButton.hide();
+                    } else {
+                        addButton.show();
+                    }
+                    previousItem = firstVisibleItem;
+                }
+            }
+        };
+        onScrollListener.onScroll(listView, listView.getFirstVisiblePosition(), listView.getLastVisiblePosition(), listView.getCount());
+    }
+
 }
 
 
