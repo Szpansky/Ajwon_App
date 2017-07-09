@@ -2,19 +2,15 @@ package com.apps.szpansky.ajwon_app.open_all;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
 import com.apps.szpansky.ajwon_app.simple_data.Item;
-import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 public class OpenAllItemsActivity extends SimpleActivity {
 
-    FloatingActionButton add;
 
     public OpenAllItemsActivity() {
         super(new Item());
@@ -25,15 +21,13 @@ public class OpenAllItemsActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
-
         listViewItemClick();
-        addData();
     }
 
 
-    private void addData() {
-        add.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void addButtonClick() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
@@ -51,7 +45,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popupForDelete((int)id);
+                popupForDelete((int) id);
                 return false;
             }
         });
@@ -63,7 +57,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
                     Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
 
                     toNextActivityBundle.putBoolean("isEdit", true);
-                    toNextActivityBundle.putInt("itemId", (int)id);
+                    toNextActivityBundle.putInt("itemId", (int) id);
 
                     intent.putExtras(toNextActivityBundle);
                     OpenAllItemsActivity.this.startActivity(intent);

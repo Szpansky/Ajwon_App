@@ -2,21 +2,17 @@ package com.apps.szpansky.ajwon_app.main_browsing;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-
 import android.widget.AdapterView;
-import android.widget.Button;
 
 import com.apps.szpansky.ajwon_app.for_pick.PickItem;
-import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.simple_data.Order;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
 public class OrdersActivity extends SimpleActivity {
 
-    FloatingActionButton add;
+    private final int BACK_CODE = 1;
 
     public OrdersActivity() {
         super(new Order());
@@ -27,19 +23,17 @@ public class OrdersActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
-
-        addData();
         listViewItemClick();
     }
 
 
-    private void addData() {
-        add.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void addButtonClick() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrdersActivity.this, PickItem.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, BACK_CODE);
             }
         });
     }
@@ -54,7 +48,7 @@ public class OrdersActivity extends SimpleActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
 
-                popupForDelete((int)id );
+                popupForDelete((int) id);
                 //TODO delete in new activiti with informations
                 return false;
             }
@@ -74,7 +68,7 @@ public class OrdersActivity extends SimpleActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == BACK_CODE) {
             if (resultCode == RESULT_OK) {
 
                 Integer itemId = data.getIntExtra("itemId", 0);
@@ -83,7 +77,8 @@ public class OrdersActivity extends SimpleActivity {
                 int count = 1;
 
                 boolean isInserted = myDB.updateRowOrder(clientId, itemId, count);
-                if (!isInserted) myDB.insertDataToOrders(clientId.toString(), itemId.toString(), count);
+                if (!isInserted)
+                    myDB.insertDataToOrders(clientId.toString(), itemId.toString(), count);
 
                 refreshListView();
             }

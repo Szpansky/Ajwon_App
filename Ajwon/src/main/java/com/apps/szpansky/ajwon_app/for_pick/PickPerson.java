@@ -2,22 +2,16 @@ package com.apps.szpansky.ajwon_app.for_pick;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditPersonActivity;
-import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.simple_data.Person;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
-public class PickPerson extends SimpleActivity{
+public class PickPerson extends SimpleActivity {
 
-    FloatingActionButton add;
 
     public PickPerson() {
         super(new Person());
@@ -25,24 +19,16 @@ public class PickPerson extends SimpleActivity{
 
 
     @Override
-    protected ListView setListView(){
-        return ((ListView) findViewById(R.id.list_view_simple_view));
-    }
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
-
-        addData();
         listViewItemClick();
     }
 
 
-    private void addData() {
-        add.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void addButtonClick() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PickPerson.this, AddEditPersonActivity.class);
@@ -71,7 +57,7 @@ public class PickPerson extends SimpleActivity{
                 if (flag[0]) {
 
                     Intent intent = new Intent();
-                    intent.putExtra("personId", (int)id );
+                    intent.putExtra("personId", (int) id);
                     setResult(RESULT_OK, intent);
                     finish();
                 }

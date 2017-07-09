@@ -3,14 +3,13 @@ package com.apps.szpansky.ajwon_app.tools;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -24,15 +23,17 @@ public abstract class SimpleActivity extends AppCompatActivity {
     protected Bundle toNextActivityBundle = new Bundle();
     protected SimpleCursorAdapter myCursorAdapter;
     protected ListView listView;
-    Toolbar toolbar;
+    protected FloatingActionButton addButton;
+
+    protected Toolbar toolbar;
 
     private Data data;
 
+    protected abstract void addButtonClick();
 
-    public SimpleActivity(Data data) {
+    protected SimpleActivity(Data data) {
         this.data = data;
     }
-
 
     protected ListView setListView() {
         return ((ListView) findViewById(R.id.list_view_simple_view));
@@ -42,7 +43,9 @@ public abstract class SimpleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(data.getLayoutResourceId());
+        setContentView(R.layout.activity_simple_view);
+
+        addButton = (FloatingActionButton) findViewById(R.id.add);
 
         myDB = new Database(this);
 
@@ -50,6 +53,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
         listView = setListView();
         refreshListView();
+        addButtonClick();
     }
 
 
@@ -69,7 +73,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.contains("\"")){
+                if (newText.contains("\"")) {
                     data.filter = "";
                     Toast.makeText(SimpleActivity.this, "Bez \" Proszę ;)", Toast.LENGTH_SHORT).show();
                 } else {
@@ -98,7 +102,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
 
-    public void refreshListView() {
+    protected void refreshListView() {
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(),
                 data.getItemLayoutResourceId(),
                 data.setCursor(myDB),
@@ -109,7 +113,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
 
-    public void popupForDelete(final int id) {
+    protected void popupForDelete(final int id) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
             @Override

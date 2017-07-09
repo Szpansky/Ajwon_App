@@ -2,22 +2,16 @@ package com.apps.szpansky.ajwon_app.for_pick;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
-import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.simple_data.Item;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
 public class PickItem extends SimpleActivity {
 
-    FloatingActionButton add;
 
     public PickItem() {
         super(new Item());
@@ -25,24 +19,16 @@ public class PickItem extends SimpleActivity {
 
 
     @Override
-    protected ListView setListView() {
-        return ((ListView) findViewById(R.id.list_view_simple_view));
-    }
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
-
-        addData();
         listViewItemClick();
     }
 
 
-    private void addData() {
-        add.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void addButtonClick() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PickItem.this, AddEditItemsActivity.class);

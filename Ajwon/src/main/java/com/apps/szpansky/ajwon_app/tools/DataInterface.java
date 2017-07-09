@@ -11,8 +11,6 @@ public interface DataInterface {
 
     void deleteData(int id, Database myDB);
 
-    int getLayoutResourceId();
-
     int getItemLayoutResourceId();
 
     Cursor setCursor(Database myDB);

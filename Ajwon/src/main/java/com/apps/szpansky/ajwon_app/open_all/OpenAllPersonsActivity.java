@@ -2,18 +2,15 @@ package com.apps.szpansky.ajwon_app.open_all;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+
 import com.apps.szpansky.ajwon_app.add_edit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.simple_data.Person;
-import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 public class OpenAllPersonsActivity extends SimpleActivity {
 
-    FloatingActionButton add;
 
     public OpenAllPersonsActivity() {
         super(new Person());
@@ -24,15 +21,13 @@ public class OpenAllPersonsActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
-
         listViewItemClick();
-        addData();
     }
 
 
-    private void addData() {
-        add.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void addButtonClick() {
+        addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -51,7 +46,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
-                popupForDelete((int)id);
+                popupForDelete((int) id);
                 return false;
             }
         });
@@ -64,7 +59,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
                     Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
 
                     toNextActivityBundle.putBoolean("isEdit", true);
-                    toNextActivityBundle.putInt("personId", (int)id);
+                    toNextActivityBundle.putInt("personId", (int) id);
 
                     intent.putExtras(toNextActivityBundle);
                     OpenAllPersonsActivity.this.startActivity(intent);
