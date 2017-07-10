@@ -17,7 +17,8 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditCatalogActivity extends AppCompatActivity {
 
-    private EditText catalogId;
+    //private EditText catalogId;
+    private EditText catalogNumber;
     private EditText catalogDateEnd;
     private EditText catalogDateStart;
     private FloatingActionButton add;
@@ -50,9 +51,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        catalogId = (EditText) findViewById(R.id.catalogId);
+        //catalogId = (EditText) findViewById(R.id.catalogId);
+        catalogNumber = (EditText) findViewById(R.id.catalogNumber);
         catalogDateStart = (EditText) findViewById(R.id.catalogDateStart);
         catalogDateEnd = (EditText) findViewById(R.id.catalogDateEnd);
+
         add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
@@ -63,11 +66,12 @@ public class AddEditCatalogActivity extends AppCompatActivity {
 
         if (isEdit) {
 
-            catalogId.setText(getCatalogInfo(0));
-            catalogDateStart.setText(getCatalogInfo(1));
-            catalogDateEnd.setText(getCatalogInfo(2));
+            //catalogId.setText(getCatalogInfo(0));
+            catalogNumber.setText(getCatalogInfo(1));
+            catalogDateStart.setText(getCatalogInfo(2));
+            catalogDateEnd.setText(getCatalogInfo(3));
 
-            catalogId.setFocusable(false);
+            catalogNumber.setFocusable(false);
         }
 
         showDialogOnDateClick();
@@ -87,7 +91,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
                                                Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
                                            finish();
                                        } else {
-                                           boolean isInserted = myDB.insertDataToCatalogs(catalogId.getText().toString(), catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
+                                           boolean isInserted = myDB.insertDataToCatalogs(catalogNumber.getText().toString(), catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
                                            if (isInserted == true)
                                                Toast.makeText(AddEditCatalogActivity.this, R.string.add_catalog_notify, Toast.LENGTH_SHORT).show();
                                            else

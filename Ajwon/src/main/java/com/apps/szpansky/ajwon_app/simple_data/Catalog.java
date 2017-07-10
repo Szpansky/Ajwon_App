@@ -30,7 +30,8 @@ public class Catalog extends Client {
     public int[] getToViewIDs(){
 
         return (new int[]{
-                R.id.catalogId,
+                //R.id.catalogId,
+                R.id.catalogNumber,
                 R.id.catalogDateStart,
                 R.id.catalogDateEnd
         });
@@ -41,7 +42,8 @@ public class Catalog extends Client {
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.CATALOG_ID,
+                //Database.CATALOG_ID,
+                Database.CATALOG_NUMBER,
                 Database.CATALOG_DATE_START,
                 Database.CATALOG_DATE_ENDS};
     }

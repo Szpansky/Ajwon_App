@@ -10,10 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_CATALOGS = "CATALOGS";
     public static final String CATALOG_ID = "_id";
+    public static final String CATALOG_NUMBER = "NUMBER";
     public static final String CATALOG_DATE_START = "DATE_START";
     public static final String CATALOG_DATE_ENDS = "DATE_ENDS";
 
@@ -55,6 +56,7 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("create table " + TABLE_CATALOGS + " (" +
                 CATALOG_ID + " INTEGER PRIMARY KEY NOT NULL," +
+                CATALOG_NUMBER + " VARCHAR(10) UNIQUE," +
                 CATALOG_DATE_START + " DATETIME DEFAULT CURRENT_DATE," +
                 CATALOG_DATE_ENDS + " DATETIME)");
 
@@ -102,11 +104,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToCatalogs(String id, String dateStart, String dateEnd) {
+    public boolean insertDataToCatalogs(String number, String dateStart, String dateEnd) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CATALOG_ID, id);
+        contentValues.put(CATALOG_NUMBER, number);
         contentValues.put(CATALOG_DATE_START, dateStart);
         contentValues.put(CATALOG_DATE_ENDS, dateEnd);
+
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(TABLE_CATALOGS, null, contentValues);    //it return row, other way -1
         if (result == -1)
@@ -148,17 +151,17 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToClients(String workId, String personId, String status) {
+    public boolean insertDataToClients(String catalogId, String personId, String status) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
                 "SELECT " + CLIENT_CATALOG_ID + ", " + CLIENT_PERSON_ID +
                         " FROM " + TABLE_CLIENTS +
-                        " WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND " + CLIENT_PERSON_ID + "=" + personId
+                        " WHERE " + CLIENT_CATALOG_ID + " = " + catalogId + " AND " + CLIENT_PERSON_ID + "=" + personId
                 , null);
         if (c.getCount() != 0) return false;     //if exist, quit from adding the same data
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CLIENT_CATALOG_ID, workId);
+        contentValues.put(CLIENT_CATALOG_ID, catalogId);
         contentValues.put(CLIENT_PERSON_ID, personId);
         contentValues.put(CLIENT_STATUS, status);
 
@@ -205,10 +208,10 @@ public class Database extends SQLiteOpenHelper {
                 "SELECT * " +
                         "FROM " + TABLE_CATALOGS + " " +
                         "WHERE " +
-                        CATALOG_ID + " LIKE \"%" + filter + "%\"" + " OR " +
+                        CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + " " +
-                        "ORDER BY " + CATALOG_DATE_START
+                        "ORDER BY " + CATALOG_DATE_START +" DESC"
                 , null);
         if (c != null) {
             c.moveToFirst();
