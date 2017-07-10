@@ -41,7 +41,7 @@ public class Database extends SQLiteOpenHelper {
 
     public static final String TABLE_ORDERS = "ORDERS";
     public static final String ORDER_ID = "_id";
-    public static final String ORDER_CLIENT_ID = "PERSON_ID";
+    public static final String ORDER_CLIENT_ID = "CLIENT_ID";
     public static final String ORDER_ITEM_ID = "ITEM_ID";
     public static final String ORDER_AMOUNT = "AMOUNT";
     public static final String ORDER_TOTAL = "TOTAL";

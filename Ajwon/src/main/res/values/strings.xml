@@ -5,6 +5,7 @@
     <string name="close">Zamknij</string>
     <string name="search">Szukaj</string>
     <string name="error_notify">Ups… coś poszło nie tak :(</string>
+    <string name="successfully_notify">Sukces !</string>
     <string name="add_catalog_notify">Dodano Katalog</string>
     <string name="edit_catalog_notify">Edytowano Katalog</string>
     <string name="add_client_notify">Dodano Klienta</string>
@@ -46,4 +47,6 @@
     <string name="catalog_nr">Numer Katalogu</string>
     <string name="item_title">Nazwa Przedmiotu</string>
     <string name="date">Data</string>
+    <string name="ExportDB">Zapisz Bazę Danych</string>
+    <string name="ImportDB">Wczytaj Bazę Danych</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/menuLogin"
@@ -26,5 +25,21 @@
         android:id="@+id/menuItems"
         android:icon="@mipmap/ic_toys_black_24dp"
         android:title="@string/items" />
+
+    <item
+        android:id="@+id/menuSpace"
+        android:enabled="false"
+        android:title="------------------------------------"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/menuExportDB"
+        android:icon="@mipmap/ic_file_upload_black_24dp"
+        android:title="@string/ExportDB" />
+
+    <item
+        android:id="@+id/menuImportDB"
+        android:icon="@mipmap/ic_file_download_black_24dp"
+        android:title="@string/ImportDB" />
 
 </menu>

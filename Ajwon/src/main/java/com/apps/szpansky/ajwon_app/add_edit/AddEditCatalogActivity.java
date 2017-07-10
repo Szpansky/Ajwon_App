@@ -17,7 +17,6 @@ import com.apps.szpansky.ajwon_app.R;
 
 public class AddEditCatalogActivity extends AppCompatActivity {
 
-    //private EditText catalogId;
     private EditText catalogNumber;
     private EditText catalogDateEnd;
     private EditText catalogDateStart;
@@ -29,10 +28,10 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     private Database myDB;
     private Bundle bundle;
 
-    private int year_x, month_x, day_x;
+    private Integer year_x, month_x, day_x;
 
-    static final int DIALOG_ID_START = 0;
-    static final int DIALOG_ID_END = 1;
+    static final int DIALOG_ID_START_DATE = 0;
+    static final int DIALOG_ID_END_DATE = 1;
 
 
     public AddEditCatalogActivity() {
@@ -51,7 +50,6 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        //catalogId = (EditText) findViewById(R.id.catalogId);
         catalogNumber = (EditText) findViewById(R.id.catalogNumber);
         catalogDateStart = (EditText) findViewById(R.id.catalogDateStart);
         catalogDateEnd = (EditText) findViewById(R.id.catalogDateEnd);
@@ -59,14 +57,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
-
             thisId = bundle.getInt("catalogId");
             isEdit = bundle.getBoolean("isEdit");
         }
 
         if (isEdit) {
-
-            //catalogId.setText(getCatalogInfo(0));
             catalogNumber.setText(getCatalogInfo(1));
             catalogDateStart.setText(getCatalogInfo(2));
             catalogDateEnd.setText(getCatalogInfo(3));
@@ -129,8 +124,14 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             year_x = year;
             month_x = month + 1;
+            String monthString ;
+            monthString = setZeroBeforeString(month_x.toString());
+
             day_x = dayOfMonth;
-            catalogDateStart.setText(year_x + "-" + month_x + "-" + day_x);
+            String dayString ;
+            dayString = setZeroBeforeString(day_x.toString());
+
+            catalogDateStart.setText(year_x + "-" + monthString + "-" + dayString);
         }
     };
 
@@ -140,8 +141,14 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             year_x = year;
             month_x = month + 1;
+            String monthString ;
+            monthString = setZeroBeforeString(month_x.toString());
+
             day_x = dayOfMonth;
-            catalogDateEnd.setText(year_x + "-" + month_x + "-" + day_x);
+            String dayString ;
+            dayString = setZeroBeforeString(day_x.toString());
+
+            catalogDateEnd.setText(year_x + "-" + monthString + "-" + dayString);
         }
     };
 
@@ -149,18 +156,24 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     public void showDialogOnDateClick() {
         catalogDateStart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showDialog(DIALOG_ID_START);
-            }
+            public void onClick(View v) {showDialog(DIALOG_ID_START_DATE);}
         });
 
         catalogDateEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(DIALOG_ID_END);
+                showDialog(DIALOG_ID_END_DATE);
             }
         });
     }
+
+
+    public String setZeroBeforeString(String value){
+        if (value.length() == 1)
+            return "0"+value;
+        else return value;
+    }
+
 
 
 }
