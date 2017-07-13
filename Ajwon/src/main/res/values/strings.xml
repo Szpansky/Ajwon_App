@@ -49,4 +49,7 @@
     <string name="date">Data</string>
     <string name="ExportDB">Zapisz Bazę Danych</string>
     <string name="ImportDB">Wczytaj Bazę Danych</string>
+    <string name="account">Konto</string>
+    <string name="basic">Podstawowe</string>
+    <string name="utilities">Narzędzia</string>
 </resources>

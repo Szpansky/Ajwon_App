@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private final static boolean EXPORT = true;
     private final static boolean IMPORT = false;
 
-
     Button openCatalogs;
 
     Toolbar toolbar;
@@ -39,18 +40,17 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        openCatalogs = (Button) findViewById(R.id.openCatalogs);
+        navigationView = (NavigationView) findViewById(R.id.navView);
 
         setToolBar();
         setDrawerWithToggle();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView = (NavigationView) findViewById(R.id.navView);
-
-        openCatalogs = (Button) findViewById(R.id.openCatalogs);
 
         onStartClick();
 
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void importExportDB(boolean which){
+    private void importExportDB(boolean which) {
         try {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
@@ -134,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
                 String currentDBPath = "//data//" + getPackageName()
                         + "//databases//" + Database.DATABASE_NAME;
                 String backupDBPath = "/" + getString(R.string.app_name) + "/" + Database.DATABASE_NAME;
-                String appFolderPathOnSD =  sd.getPath() + "/" + getString(R.string.app_name);
+                String appFolderPathOnSD = sd.getPath() + "/" + getString(R.string.app_name);
 
                 File currentDB;
                 File backupDB;
 
-                if(which) {
+                if (which) {
                     File file = new File(appFolderPathOnSD);
-                    if(!file.exists()) {
+                    if (!file.exists()) {
                         file.mkdirs();
                     }
                     currentDB = new File(data, currentDBPath);

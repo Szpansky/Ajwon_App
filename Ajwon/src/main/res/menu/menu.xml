@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/menuLogin"
-        android:icon="@mipmap/ic_person_black_24dp"
-        android:title="@string/log_in" />
 
     <item
-        android:id="@+id/menuMyAccount"
-        android:icon="@mipmap/ic_info_black_24dp"
-        android:title="@string/information" />
+        android:id="@+id/accountItems"
+        android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/menuLogin"
+                android:icon="@mipmap/ic_person_black_24dp"
+                android:title="@string/log_in" />
+            <item
+                android:id="@+id/menuMyAccount"
+                android:icon="@mipmap/ic_info_black_24dp"
+                android:title="@string/information" />
+        </menu>
+    </item>
+
 
     <item
-        android:id="@+id/menuWorks"
-        android:icon="@mipmap/ic_library_books_black_24dp"
-        android:title="@string/catalogs" />
+        android:id="@+id/mainItems"
+        android:title="@string/basic">
+        <menu>
+            <item
+                android:id="@+id/menuWorks"
+                android:icon="@mipmap/ic_library_books_black_24dp"
+                android:title="@string/catalogs" />
+            <item
+                android:id="@+id/menuClients"
+                android:icon="@mipmap/ic_account_box_black_24dp"
+                android:title="@string/clients" />
+            <item
+                android:id="@+id/menuItems"
+                android:icon="@mipmap/ic_toys_black_24dp"
+                android:title="@string/items" />
+
+        </menu>
+    </item>
+
 
     <item
-        android:id="@+id/menuClients"
-        android:icon="@mipmap/ic_account_box_black_24dp"
-        android:title="@string/clients" />
+        android:id="@+id/subItems"
+        android:title="@string/utilities">
+        <menu>
+            <item
+                android:id="@+id/menuExportDB"
+                android:icon="@mipmap/ic_file_upload_black_24dp"
+                android:title="@string/ExportDB" />
+            <item
+                android:id="@+id/menuImportDB"
+                android:icon="@mipmap/ic_file_download_black_24dp"
+                android:title="@string/ImportDB" />
+        </menu>
+    </item>
 
-    <item
-        android:id="@+id/menuItems"
-        android:icon="@mipmap/ic_toys_black_24dp"
-        android:title="@string/items" />
-
-    <item
-        android:id="@+id/menuSpace"
-        android:enabled="false"
-        android:title="------------------------------------"
-        android:visible="true" />
-
-    <item
-        android:id="@+id/menuExportDB"
-        android:icon="@mipmap/ic_file_upload_black_24dp"
-        android:title="@string/ExportDB" />
-
-    <item
-        android:id="@+id/menuImportDB"
-        android:icon="@mipmap/ic_file_download_black_24dp"
-        android:title="@string/ImportDB" />
 
 </menu>
