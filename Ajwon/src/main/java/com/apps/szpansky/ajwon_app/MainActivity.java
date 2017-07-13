@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView;
     GridLayout subFloatingMenu;
-    //RelativeLayout mainLayout;
 
 
     @Override
@@ -67,13 +66,11 @@ public class MainActivity extends AppCompatActivity {
         fabNewItem = (FloatingActionButton) findViewById(R.id.fabAddItem);
 
         subFloatingMenu = (GridLayout) findViewById(R.id.subFloatingMenu);
-        //mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
         fabRotate = AnimationUtils.loadAnimation(this, R.anim.fab_rotate);
         fabRotateBack = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_back);
-
 
         setToolBar();
         setDrawerWithToggle();
@@ -171,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
                     fabNewItem.startAnimation(fabClose);
                     fabNewItem.setClickable(false);
 
-
                     FLOATING_MENU = false;
                 } else {
                     subFloatingMenu.setVisibility(View.VISIBLE);
@@ -255,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.successfully_notify, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Nie Znaleziono Bazy", Toast.LENGTH_LONG)
+            Toast.makeText(this, R.string.backup_error, Toast.LENGTH_LONG)
                     .show();
         }
     }
