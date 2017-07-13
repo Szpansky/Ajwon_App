@@ -79,7 +79,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 if (newText.contains("\"")) {
                     data.filter = "";
-                    Toast.makeText(SimpleActivity.this, "Bez \" Proszę ;)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SimpleActivity.this, R.string.search_toast, Toast.LENGTH_SHORT).show();
                 } else {
                     data.filter = newText;
                 }

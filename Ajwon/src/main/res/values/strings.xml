@@ -52,4 +52,9 @@
     <string name="account">Konto</string>
     <string name="basic">Podstawowe</string>
     <string name="utilities">Narzędzia</string>
+    <string name="catalog">Katalog</string>
+    <string name="person">Osoba</string>
+    <string name="item">Przedmiot</string>
+    <string name="string_new">Nowy</string>
+    <string name="search_toast">Bez \" Proszę ;)</string>
 </resources>

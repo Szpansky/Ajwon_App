@@ -42,7 +42,7 @@
         android:clickable="true"
         android:verticalScrollbarPosition="left"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@mipmap/ic_add_white_24dp" />
 
 
 </RelativeLayout>

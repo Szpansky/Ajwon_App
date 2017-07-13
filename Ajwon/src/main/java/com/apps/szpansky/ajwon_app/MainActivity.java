@@ -4,18 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
+import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
+import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
+import com.apps.szpansky.ajwon_app.add_edit.AddEditPersonActivity;
 import com.apps.szpansky.ajwon_app.main_browsing.CatalogsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllItemsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllPersonsActivity;
@@ -32,13 +37,19 @@ public class MainActivity extends AppCompatActivity {
 
     private final static boolean EXPORT = true;
     private final static boolean IMPORT = false;
+    private static boolean FLOATING_MENU = false;
 
     Button openCatalogs;
+    FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
+
+    Animation fabClose, fabOpen, fabRotate, fabRotateBack;
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView;
+    GridLayout subFloatingMenu;
+    //RelativeLayout mainLayout;
 
 
     @Override
@@ -46,15 +57,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        openCatalogs = (Button) findViewById(R.id.openCatalogs);
+
         navigationView = (NavigationView) findViewById(R.id.navView);
+        openCatalogs = (Button) findViewById(R.id.openCatalogs);
+
+        fabMain = (FloatingActionButton) findViewById(R.id.fabMain);
+        fabNewCatalog = (FloatingActionButton) findViewById(R.id.fabAddCatalog);
+        fabNewPerson = (FloatingActionButton) findViewById(R.id.fabAddPerson);
+        fabNewItem = (FloatingActionButton) findViewById(R.id.fabAddItem);
+
+        subFloatingMenu = (GridLayout) findViewById(R.id.subFloatingMenu);
+        //mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+
+        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
+        fabRotate = AnimationUtils.loadAnimation(this, R.anim.fab_rotate);
+        fabRotateBack = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_back);
+
 
         setToolBar();
         setDrawerWithToggle();
 
         onStartClick();
+        onFloatingButtonClick();
 
         onNavigationItemClick();
+
+        onFabMenuItemClick();
     }
 
 
@@ -121,6 +150,70 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent Intent_Open_Catalogs = new Intent(MainActivity.this, CatalogsActivity.class);
                 MainActivity.this.startActivity(Intent_Open_Catalogs);
+            }
+        });
+    }
+
+
+    private void onFloatingButtonClick() {
+        fabMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (FLOATING_MENU) {
+                    subFloatingMenu.setVisibility(View.GONE);
+                    subFloatingMenu.startAnimation(fabClose);
+                    fabMain.startAnimation(fabRotateBack);
+
+                    fabNewCatalog.startAnimation(fabClose);
+                    fabNewCatalog.setClickable(false);
+                    fabNewPerson.startAnimation(fabClose);
+                    fabNewPerson.setClickable(false);
+                    fabNewItem.startAnimation(fabClose);
+                    fabNewItem.setClickable(false);
+
+
+                    FLOATING_MENU = false;
+                } else {
+                    subFloatingMenu.setVisibility(View.VISIBLE);
+                    subFloatingMenu.startAnimation(fabOpen);
+                    fabMain.startAnimation(fabRotate);
+
+                    fabNewCatalog.startAnimation(fabOpen);
+                    fabNewCatalog.setClickable(true);
+                    fabNewPerson.startAnimation(fabOpen);
+                    fabNewPerson.setClickable(true);
+                    fabNewItem.startAnimation(fabOpen);
+                    fabNewItem.setClickable(true);
+
+                    FLOATING_MENU = true;
+                }
+            }
+        });
+    }
+
+
+    public void onFabMenuItemClick(){
+        fabNewCatalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddEditCatalogActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        fabNewPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddEditPersonActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        fabNewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddEditItemsActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
     }
