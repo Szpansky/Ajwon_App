@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
@@ -107,25 +109,48 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    private void dialogLoginBuilder(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_login, null);
+        EditText email = (EditText) view.findViewById(R.id.dialog_text_email);
+        EditText password = (EditText) view.findViewById(R.id.dialog_text_password);
+        Button login = (Button) view.findViewById(R.id.dialog_button_login);
 
-    private void onNavigationItemClick() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Logowanie wkrótce", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setView(view);
+        builder.create();
+        builder.show();
+    }
+
+
+    private void dialogInformationBuilder(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+    }
+
+    private synchronized void onNavigationItemClick() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case (R.id.menuLogin):
+                        dialogLoginBuilder();
+                        break;
                     case (R.id.menuWorks):
-                        drawerLayout.closeDrawers();
                         Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllCatalogsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Works);
                         break;
                     case (R.id.menuClients):
-                        drawerLayout.closeDrawers();
                         Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenAllPersonsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Persons);
                         break;
                     case (R.id.menuItems):
-                        drawerLayout.closeDrawers();
                         Intent Intent_Open_Items = new Intent(MainActivity.this, OpenAllItemsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Items);
                         break;
@@ -136,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                         importExportDB(IMPORT);
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }

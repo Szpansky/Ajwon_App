@@ -3,11 +3,11 @@
     <color name="colorPrimary">#00e5ff</color>
     <color name="colorPrimaryDark">#00b2cc</color>
     <color name="colorPrimaryLight">#6effff</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
 
-    <color name="colorPrimaryForPick">#d500f9</color>
-    <color name="colorPrimaryDarkForPick">#9e00c5</color>
-    <color name="colorPrimaryLightForPick">#ff5bff</color>
+    <color name="colorPrimaryForPick">#ffee32</color>
+    <color name="colorPrimaryDarkForPick">#c8bc00</color>
+    <color name="colorPrimaryLightForPick">#ffff6c</color>
     <color name="colorAccentForPick">#FF4081</color>
 
     <color name="colorPrimaryForBrowsing">#00e676</color>
