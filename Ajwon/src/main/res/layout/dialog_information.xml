@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Obecny Katalog:"
+        android:textSize="@dimen/default_text_size"
+        android:textStyle="bold|italic" />
+
+    <GridLayout
+        android:id="@+id/grid_current"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp">
+
+        <TextView
+            android:id="@+id/text_info11"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="0"
+            android:text="Numer Katalogu"
+            android:textAllCaps="false"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info12"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="1"
+            android:text="Ilość Klientów"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info13"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="2"
+            android:text="Ilość Przedmiotów"
+            android:textSize="@dimen/default_text_size" />
+
+
+        <TextView
+            android:id="@+id/text_info14"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="3"
+            android:text="Nie zapłacone"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info15"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="4"
+            android:text="Zrealizowane"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info16"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="5"
+            android:text="Suma"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="6"
+            android:text="Suma z zniżkami*"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_catalogs_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_clients_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="1"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_items_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="2"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_not_payed_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="3"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_payed_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="4"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="5"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/current_total_with_discounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="6"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="Ogólnie:"
+        android:textSize="@dimen/default_text_size"
+        android:textStyle="bold|italic" />
+
+    <GridLayout
+        android:id="@+id/grid_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/text_info21"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="0"
+            android:text="Ilość Katalogów"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info22"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="1"
+            android:text="Ilość Klientów"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/text_info23"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="2"
+            android:text="Ilość Przedmiotów"
+            android:textSize="@dimen/default_text_size" />
+
+
+        <TextView
+            android:id="@+id/text_info24"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="3"
+            android:text="Ilość Kontaktów"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/catalogs_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/clients_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="1"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/items_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="2"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/persons_amount"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="3"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+
+    </GridLayout>
+
+</LinearLayout>

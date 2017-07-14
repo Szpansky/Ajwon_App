@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -130,7 +131,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void dialogInformationBuilder(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_information, null);
 
+        builder.setView(view);
+        builder.create();
+        builder.show();
     }
 
     private synchronized void onNavigationItemClick() {
@@ -140,24 +145,33 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case (R.id.menuLogin):
+                        drawerLayout.closeDrawer(Gravity.START, false);
                         dialogLoginBuilder();
                         break;
+                    case (R.id.menuMyAccount):
+                        dialogInformationBuilder();
+                        break;
                     case (R.id.menuWorks):
+                        //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllCatalogsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Works);
                         break;
                     case (R.id.menuClients):
+                        //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenAllPersonsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Persons);
                         break;
                     case (R.id.menuItems):
+                        //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Items = new Intent(MainActivity.this, OpenAllItemsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Items);
                         break;
                     case (R.id.menuExportDB):
+                        drawerLayout.closeDrawers();
                         importExportDB(EXPORT);
                         break;
                     case (R.id.menuImportDB):
+                        drawerLayout.closeDrawers();
                         importExportDB(IMPORT);
                         break;
                 }
@@ -182,28 +196,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (FLOATING_MENU) {
-                    subFloatingMenu.setVisibility(View.GONE);
                     subFloatingMenu.startAnimation(fabClose);
                     fabMain.startAnimation(fabRotateBack);
 
-                    fabNewCatalog.startAnimation(fabClose);
                     fabNewCatalog.setClickable(false);
-                    fabNewPerson.startAnimation(fabClose);
                     fabNewPerson.setClickable(false);
-                    fabNewItem.startAnimation(fabClose);
                     fabNewItem.setClickable(false);
 
+                    subFloatingMenu.setVisibility(View.GONE);
                     FLOATING_MENU = false;
                 } else {
                     subFloatingMenu.setVisibility(View.VISIBLE);
                     subFloatingMenu.startAnimation(fabOpen);
                     fabMain.startAnimation(fabRotate);
 
-                    fabNewCatalog.startAnimation(fabOpen);
                     fabNewCatalog.setClickable(true);
-                    fabNewPerson.startAnimation(fabOpen);
                     fabNewPerson.setClickable(true);
-                    fabNewItem.startAnimation(fabOpen);
                     fabNewItem.setClickable(true);
 
                     FLOATING_MENU = true;
