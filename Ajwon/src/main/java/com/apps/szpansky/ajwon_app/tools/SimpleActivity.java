@@ -3,6 +3,7 @@ package com.apps.szpansky.ajwon_app.tools;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -15,7 +16,6 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.R;
 
@@ -81,11 +81,11 @@ public abstract class SimpleActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 if (newText.contains("\"")) {
                     data.filter = "";
-                    Toast.makeText(SimpleActivity.this, R.string.search_toast, Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.activity_simple_view), R.string.search_toast, Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } else {
                     data.filter = newText;
                 }
-
                 refreshListView();
                 return false;
             }
@@ -135,7 +135,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 builder.dismiss();
             }
         });
-
         buttonNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +157,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
                 if (previousItem != firstVisibleItem) {
                     if (previousItem < firstVisibleItem) {
                         addButton.hide();
@@ -171,7 +169,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
         };
         onScrollListener.onScroll(listView, listView.getFirstVisiblePosition(), listView.getLastVisiblePosition(), listView.getCount());
     }
-
 }
 
 

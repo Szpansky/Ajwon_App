@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +20,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
@@ -110,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void dialogLoginBuilder(){
+    private void dialogLoginBuilder() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_login, null);
+        final View view = getLayoutInflater().inflate(R.layout.dialog_login, null);
         EditText email = (EditText) view.findViewById(R.id.dialog_text_email);
         EditText password = (EditText) view.findViewById(R.id.dialog_text_password);
         Button login = (Button) view.findViewById(R.id.dialog_button_login);
@@ -120,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Logowanie wkrótce", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(view, R.string.coming_soon, Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         });
         builder.setView(view);
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void dialogInformationBuilder(){
+    private void dialogInformationBuilder() {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
         View view = getLayoutInflater().inflate(R.layout.dialog_information, null);
 
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onFabMenuItemClick(){
+    public void onFabMenuItemClick() {
         fabNewCatalog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -289,11 +290,12 @@ public class MainActivity extends AppCompatActivity {
                 src.close();
                 dst.close();
 
-                Toast.makeText(this, R.string.successfully_notify, Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.drawerLayout), R.string.successfully_notify, Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, R.string.backup_error, Toast.LENGTH_LONG)
-                    .show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.drawerLayout), R.string.backup_error, Snackbar.LENGTH_SHORT);
+            snackbar.show();
         }
     }
 }

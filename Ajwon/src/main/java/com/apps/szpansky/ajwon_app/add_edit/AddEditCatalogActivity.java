@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import java.util.Calendar;
 import android.widget.Toast;
+
+import java.util.Calendar;
+
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 
@@ -70,32 +72,49 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         }
 
         showDialogOnDateClick();
-        addData(thisId, isEdit);
+
+        onAddClick();
     }
 
 
-    private void addData(final int id, final boolean edit) {
+    private void onAddClick() {
         add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isEdit) {
+                    updateData();
+                } else {
+                    addData();
+                }
+            }
+        });
+    }
 
-                                   public void onClick(View v) {
-                                       if (edit) {
-                                           boolean isUpdated = myDB.updateRowCatalog(id, catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
-                                           if (isUpdated == true)
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.edit_catalog_notify, Toast.LENGTH_SHORT).show();
-                                           else
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                                           finish();
-                                       } else {
-                                           boolean isInserted = myDB.insertDataToCatalogs(catalogNumber.getText().toString(), catalogDateStart.getText().toString(), catalogDateEnd.getText().toString());
-                                           if (isInserted == true)
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.add_catalog_notify, Toast.LENGTH_SHORT).show();
-                                           else
-                                               Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                                           finish();
-                                       }
-                                   }
-                               }
-        );
+
+    private void updateData() {
+        boolean isUpdated = myDB.updateRowCatalog(thisId,
+                catalogDateStart.getText().toString(),
+                catalogDateEnd.getText().toString());
+        if (isUpdated) {
+            Toast.makeText(AddEditCatalogActivity.this, R.string.edit_catalog_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
+    }
+
+
+    private void addData() {
+        boolean isInserted = myDB.insertDataToCatalogs(
+                catalogNumber.getText().toString(),
+                catalogDateStart.getText().toString(),
+                catalogDateEnd.getText().toString());
+        if (isInserted) {
+            Toast.makeText(AddEditCatalogActivity.this, R.string.add_catalog_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditCatalogActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
     }
 
 
@@ -124,11 +143,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             year_x = year;
             month_x = month + 1;
-            String monthString ;
+            String monthString;
             monthString = setZeroBeforeString(month_x.toString());
 
             day_x = dayOfMonth;
-            String dayString ;
+            String dayString;
             dayString = setZeroBeforeString(day_x.toString());
 
             catalogDateStart.setText(year_x + "-" + monthString + "-" + dayString);
@@ -141,11 +160,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             year_x = year;
             month_x = month + 1;
-            String monthString ;
+            String monthString;
             monthString = setZeroBeforeString(month_x.toString());
 
             day_x = dayOfMonth;
-            String dayString ;
+            String dayString;
             dayString = setZeroBeforeString(day_x.toString());
 
             catalogDateEnd.setText(year_x + "-" + monthString + "-" + dayString);
@@ -156,7 +175,9 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     public void showDialogOnDateClick() {
         catalogDateStart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {showDialog(DIALOG_ID_START_DATE);}
+            public void onClick(View v) {
+                showDialog(DIALOG_ID_START_DATE);
+            }
         });
 
         catalogDateEnd.setOnClickListener(new View.OnClickListener() {
@@ -168,12 +189,9 @@ public class AddEditCatalogActivity extends AppCompatActivity {
     }
 
 
-    public String setZeroBeforeString(String value){
+    public String setZeroBeforeString(String value) {
         if (value.length() == 1)
-            return "0"+value;
+            return "0" + value;
         else return value;
     }
-
-
-
 }

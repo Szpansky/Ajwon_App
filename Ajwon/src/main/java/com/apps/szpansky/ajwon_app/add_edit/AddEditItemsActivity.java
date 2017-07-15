@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,7 +35,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
     private Integer thisId = 0;
     private Integer discount = 0;
-    private String discountSTR;                ////////////////////////
+    private String discountSTR;
     private Boolean isEdit = false;
 
 
@@ -69,13 +68,11 @@ public class AddEditItemsActivity extends AppCompatActivity {
         add = (FloatingActionButton) findViewById(R.id.add);
 
         if (bundle != null) {
-
             thisId = bundle.getInt("itemId");
             isEdit = bundle.getBoolean("isEdit");
         }
 
         if (isEdit) {
-
             nr.setText(getItemInfo(0));
             name.setText(getItemInfo(1));
             price.setText(getItemInfo(2));
@@ -87,14 +84,12 @@ public class AddEditItemsActivity extends AppCompatActivity {
             }
             nr.setFocusable(false);
         }
-        addData(thisId, isEdit);
+        onAddClick();
     }
 
 
-    public void addData(final int id, final boolean edit) {
+    private void onAddClick() {
         add.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 if (dis_all[0].isChecked()) discount += 1;
@@ -107,29 +102,42 @@ public class AddEditItemsActivity extends AppCompatActivity {
                 if (dis_all[7].isChecked()) discount += 10000000;
                 if (dis_all[8].isChecked()) discount += 100000000;
 
-                if (edit) {
-                    boolean isUpdated = myDB.updateRowItem(id,
-                            name.getText().toString(),
-                            price.getText().toString(),
-                            discount.toString());
-                    if (isUpdated == true)
-                        Toast.makeText(AddEditItemsActivity.this, R.string.edit_item_notify, Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                    finish();
+                if (isEdit) {
+                    updateData();
                 } else {
-                    boolean isInserted = myDB.insertDataToItems(nr.getText().toString(),
-                            name.getText().toString(),
-                            price.getText().toString(),
-                            discount.toString());
-                    if (isInserted == true)
-                        Toast.makeText(AddEditItemsActivity.this, R.string.add_item_notify, Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                    finish();
+                    addData();
                 }
             }
         });
+    }
+
+
+    private void updateData() {
+        boolean isUpdated = myDB.updateRowItem(thisId,
+                name.getText().toString(),
+                price.getText().toString(),
+                discount.toString());
+        if (isUpdated) {
+            Toast.makeText(AddEditItemsActivity.this, R.string.edit_item_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
+    }
+
+
+    private void addData() {
+        boolean isInserted = myDB.insertDataToItems(
+                nr.getText().toString(),
+                name.getText().toString(),
+                price.getText().toString(),
+                discount.toString());
+        if (isInserted) {
+            Toast.makeText(AddEditItemsActivity.this, R.string.add_item_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditItemsActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
     }
 
 

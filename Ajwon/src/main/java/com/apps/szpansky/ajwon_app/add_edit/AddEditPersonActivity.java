@@ -2,6 +2,7 @@ package com.apps.szpansky.ajwon_app.add_edit;
 
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,40 +54,53 @@ public class AddEditPersonActivity extends AppCompatActivity {
             address.setText(getPersonInfo(3));
             phone.setText(getPersonInfo(4));
         }
-        addData(thisId, isEdit);
+        onAddClick();
     }
 
 
-    public void addData(final int id, final boolean edit) {
+    private void onAddClick() {
         add.setOnClickListener(new View.OnClickListener() {
-                                   public void onClick(View v) {
-
-                                       if (edit) {
-                                           boolean isUpdated = myDB.updateRowPerson(id, name.getText().toString(),
-                                                   surname.getText().toString(),
-                                                   address.getText().toString(),
-                                                   phone.getText().toString());
-                                           if (isUpdated == true)
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.edit_client_notify, Toast.LENGTH_SHORT).show();
-                                           else
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                                           finish();
-                                       } else {
-
-                                           boolean isInserted = myDB.insertDataToPersons(name.getText().toString(),
-                                                   surname.getText().toString(),
-                                                   address.getText().toString(),
-                                                   phone.getText().toString());
-                                           if (isInserted == true)
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.add_client_notify, Toast.LENGTH_SHORT).show();
-                                           else
-                                               Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
-                                           finish();
-                                       }
-                                   }
-                               }
-        );
+            @Override
+            public void onClick(View v) {
+                if (isEdit) {
+                    updateData();
+                } else {
+                    addData();
+                }
+            }
+        });
     }
+
+
+    private void updateData() {
+        boolean isUpdated = myDB.updateRowPerson(thisId,
+                name.getText().toString(),
+                surname.getText().toString(),
+                address.getText().toString(),
+                phone.getText().toString());
+        if (isUpdated) {
+            Toast.makeText(AddEditPersonActivity.this, R.string.edit_client_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
+    }
+
+
+    private void addData() {
+        boolean isInserted = myDB.insertDataToPersons(
+                name.getText().toString(),
+                surname.getText().toString(),
+                address.getText().toString(),
+                phone.getText().toString());
+        if (isInserted) {
+            Toast.makeText(AddEditPersonActivity.this, R.string.add_client_notify, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AddEditPersonActivity.this, R.string.error_notify, Toast.LENGTH_LONG).show();
+        }
+        finish();
+    }
+
 
     private String getPersonInfo(int columnIndex) {
         Cursor cursor = myDB.getRow(Database.TABLE_PERSONS, Database.PERSON_ID, thisId);
