@@ -130,13 +130,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void dialogInformationBuilder(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog builder = new AlertDialog.Builder(this).create();
         View view = getLayoutInflater().inflate(R.layout.dialog_information, null);
 
+        Button backButton = (Button) view.findViewById(R.id.dialog_button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.dismiss();
+            }
+        });
+
         builder.setView(view);
-        builder.create();
         builder.show();
     }
+
 
     private synchronized void onNavigationItemClick() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

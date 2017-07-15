@@ -1,16 +1,18 @@
 package com.apps.szpansky.ajwon_app.tools;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -119,27 +121,30 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
 
     protected void popupForDelete(final int id) {
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        final AlertDialog builder = new AlertDialog.Builder(this).create();
+        View view = getLayoutInflater().inflate(R.layout.dialog_popup_alert, null);
 
+        Button buttonYes = (Button) view.findViewById(R.id.dialog_button_yes);
+        Button buttonNo = (Button) view.findViewById(R.id.dialog_button_no);
+
+        buttonYes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-
-                        data.deleteData(id, myDB);
-                        refreshListView();
-
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-
-                        break;
-                }
+            public void onClick(View v) {
+                data.deleteData(id, myDB);
+                refreshListView();
+                builder.dismiss();
             }
-        };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.delete_notify).setPositiveButton(R.string.agree, dialogClickListener)
-                .setNegativeButton(R.string.disagree, dialogClickListener).show();
+        });
 
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            builder.dismiss();
+            }
+        });
+
+        builder.setView(view);
+        builder.show();
     }
 
 
