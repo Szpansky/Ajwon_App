@@ -118,7 +118,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
     private void addData() {
         String number = nr.getText().toString();
 
-        number = SimpleFunctions.fillItemNumberWithZeros(number);
+        number = SimpleFunctions.fillWithZeros(number, 5);
 
         boolean isInserted = myDB.insertDataToItems(
                 nr.getText().toString(),

@@ -145,11 +145,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             year_x = year;
             month_x = month + 1;
             String monthString;
-            monthString = SimpleFunctions.setZeroBeforeString(month_x.toString());
+            monthString = SimpleFunctions.fillWithZeros(month_x.toString(), 2);
 
             day_x = dayOfMonth;
             String dayString;
-            dayString = SimpleFunctions.setZeroBeforeString(day_x.toString());
+            dayString = SimpleFunctions.fillWithZeros(day_x.toString(), 2);
 
             catalogDateStart.setText(year_x + "-" + monthString + "-" + dayString);
         }
@@ -162,11 +162,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             year_x = year;
             month_x = month + 1;
             String monthString;
-            monthString = SimpleFunctions.setZeroBeforeString(month_x.toString());
+            monthString = SimpleFunctions.fillWithZeros(month_x.toString(), 2);
 
             day_x = dayOfMonth;
             String dayString;
-            dayString = SimpleFunctions.setZeroBeforeString(day_x.toString());
+            dayString = SimpleFunctions.fillWithZeros(day_x.toString(), 2);
 
             catalogDateEnd.setText(year_x + "-" + monthString + "-" + dayString);
         }
