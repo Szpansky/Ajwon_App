@@ -47,14 +47,17 @@
     <string name="string_new">Nowy</string>
     <string name="ExportDB">Zapisz Bazę Danych</string>
     <string name="ImportDB">Wczytaj Bazę Danych</string>
+    <string name="export_import">Eksport / Import</string>
     <string name="account">Konto</string>
     <string name="basic">Podstawowe</string>
     <string name="utilities">Narzędzia</string>
     <string name="search">Szukaj</string>
     <string name="browsing">Przeglądanie</string>
     <string name="add_or_edit">Dodaj / Edytuj</string>
-    <string name="log_in">Zaloguj</string>
+    <string name="login">Zaloguj</string>
     <string name="information">Informacje</string>
+    <string name="settings">Ustawienia</string>
+    <string name="help_opinion">Pomoc i opinia</string>
 
     <string name="error">Błąd</string>
     <string name="search_toast">Bez \" Proszę ;)</string>
@@ -64,4 +67,11 @@
     <string name="successfully_notify">Sukces !</string>
     <string name="backup_error">Nie Znaleziono Bazy</string>
     <string name="search_hint">Nazwa/Kod/Data/Status</string>
+    <string name="export_import_information">Eksport utworzy plik w Katalogu:\n /Ajwon/ajwon.db \nImportowanie pliku zastąpi istniejące dane.</string>
+    <string name="export_import_title">Eksport / Import Bazy Danych</string>
+    <string name="export_db">Eksport</string>
+    <string name="import_db">Import</string>
+    <string name="email">Email</string>
+    <string name="password">Hasło</string>
+    <string name="log_in">Log In</string>
 </resources>

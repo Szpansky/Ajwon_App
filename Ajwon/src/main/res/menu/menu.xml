@@ -9,7 +9,7 @@
             <item
                 android:id="@+id/menuLogin"
                 android:icon="@mipmap/ic_person_black_24dp"
-                android:title="@string/log_in" />
+                android:title="@string/login" />
             <item
                 android:id="@+id/menuMyAccount"
                 android:icon="@mipmap/ic_info_black_24dp"
@@ -47,13 +47,17 @@
         android:title="@string/utilities">
         <menu>
             <item
-                android:id="@+id/menuExportDB"
-                android:icon="@mipmap/ic_file_upload_black_24dp"
-                android:title="@string/ExportDB" />
+                android:id="@+id/menuExportImport"
+                android:icon="@mipmap/ic_import_export_black_24dp"
+                android:title="@string/export_import" />
             <item
-                android:id="@+id/menuImportDB"
-                android:icon="@mipmap/ic_file_download_black_24dp"
-                android:title="@string/ImportDB" />
+                android:id="@+id/menuSetting"
+                android:icon="@mipmap/ic_settings_black_24dp"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/menuHelpOpinion"
+                android:icon="@mipmap/ic_help_black_24dp"
+                android:title="@string/help_opinion" />
         </menu>
     </item>
 

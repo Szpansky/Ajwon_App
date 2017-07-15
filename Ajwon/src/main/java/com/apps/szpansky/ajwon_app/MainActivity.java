@@ -147,6 +147,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void dialogExportImportBuilder(){
+        final AlertDialog builder = new AlertDialog.Builder(this).create();
+        View view = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
+
+        Button exportButton = (Button) view.findViewById(R.id.exportButton);
+        exportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                importExportDB(EXPORT);
+                builder.dismiss();
+            }
+        });
+
+        Button importButton = (Button) view.findViewById(R.id.importButton);
+        importButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                importExportDB(IMPORT);
+                builder.dismiss();
+            }
+        });
+        builder.setView(view);
+        builder.show();
+    }
+
+
     private synchronized void onNavigationItemClick() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -175,14 +201,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent Intent_Open_Items = new Intent(MainActivity.this, OpenAllItemsActivity.class);
                         MainActivity.this.startActivity(Intent_Open_Items);
                         break;
-                    case (R.id.menuExportDB):
-                        drawerLayout.closeDrawers();
-                        importExportDB(EXPORT);
+                    case (R.id.menuExportImport):
+                        dialogExportImportBuilder();
                         break;
-                    case (R.id.menuImportDB):
-                        drawerLayout.closeDrawers();
-                        importExportDB(IMPORT);
-                        break;
+
                 }
                 return true;
             }

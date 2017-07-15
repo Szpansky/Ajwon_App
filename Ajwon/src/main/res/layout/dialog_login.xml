@@ -11,22 +11,22 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/default_text_size"
         android:textStyle="bold"
-        android:text="Login" />
+        android:text="@string/login" />
 
     <EditText
         android:id="@+id/dialog_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName" />
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/dialog_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword" />
 
     <Button
@@ -35,5 +35,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:text="Login" />
+        android:text="@string/log_in" />
 </LinearLayout>
