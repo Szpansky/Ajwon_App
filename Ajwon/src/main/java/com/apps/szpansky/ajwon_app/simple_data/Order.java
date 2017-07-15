@@ -41,7 +41,7 @@ public class Order extends Data{
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.ORDER_ITEM_ID,
+                Database.ITEM_NUMBER,
                 Database.ITEM_NAME,
                 Database.ORDER_AMOUNT,
                 Database.ORDER_TOTAL

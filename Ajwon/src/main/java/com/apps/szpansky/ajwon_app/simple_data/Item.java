@@ -41,7 +41,7 @@ public class Item extends Order{
     public String[] getFromFieldsNames(){
 
         return new String[]{
-                Database.ITEM_ID,
+                Database.ITEM_NUMBER,
                 Database.ITEM_NAME,
                 Database.ITEM_PRICE,
                 Database.ITEM_DISCOUNT

@@ -11,31 +11,21 @@ import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.tools.SimpleFunctions;
 
 
 public class AddEditItemsActivity extends AppCompatActivity {
 
-    private EditText nr;
-    private EditText price;
-    private EditText name;
+    private EditText nr, price, name;
 
-    private CheckBox dis_5;
-    private CheckBox dis_10;
-    private CheckBox dis_15;
-    private CheckBox dis_20;
-    private CheckBox dis_25;
-    private CheckBox dis_30;
-    private CheckBox dis_35;
-    private CheckBox dis_40;
-    private CheckBox dis_100;
+    private CheckBox dis_5, dis_10, dis_15, dis_20, dis_25, dis_30, dis_35, dis_40, dis_100;
 
     private CheckBox[] dis_all = {dis_5, dis_10, dis_15, dis_20, dis_25, dis_30, dis_35, dis_40, dis_100};
 
     private FloatingActionButton add;
 
     private Integer thisId = 0;
-    private Integer discount = 0;
-    private String discountSTR;
+    private String discount;
     private Boolean isEdit = false;
 
 
@@ -73,14 +63,14 @@ public class AddEditItemsActivity extends AppCompatActivity {
         }
 
         if (isEdit) {
-            nr.setText(getItemInfo(0));
-            name.setText(getItemInfo(1));
-            price.setText(getItemInfo(2));
-            discountSTR = getItemInfo(3);
+            nr.setText(getItemInfo(1));
+            name.setText(getItemInfo(2));
+            price.setText(getItemInfo(3));
+            discount = getItemInfo(4);
 
-            for (int i = 0; i < discountSTR.length(); i++) {
-                int discountRevert = discountSTR.length() - 1 - i;
-                if (discountSTR.charAt((discountRevert)) == '1') dis_all[i].setChecked(true);
+            for (int i = 0; i < discount.length(); i++) {
+                int discountRevert = discount.length() - 1 - i;
+                if (discount.charAt((discountRevert)) == '1') dis_all[i].setChecked(true);
             }
             nr.setFocusable(false);
         }
@@ -92,16 +82,15 @@ public class AddEditItemsActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dis_all[0].isChecked()) discount += 1;
-                if (dis_all[1].isChecked()) discount += 10;
-                if (dis_all[2].isChecked()) discount += 100;
-                if (dis_all[3].isChecked()) discount += 1000;
-                if (dis_all[4].isChecked()) discount += 10000;
-                if (dis_all[5].isChecked()) discount += 100000;
-                if (dis_all[6].isChecked()) discount += 1000000;
-                if (dis_all[7].isChecked()) discount += 10000000;
-                if (dis_all[8].isChecked()) discount += 100000000;
+                discount = "";
 
+                for (int i = 0; i <= 8; i++) {
+                    if (dis_all[i].isChecked()) {
+                        discount = "1" + discount;
+                    } else {
+                        discount = "0" + discount;
+                    }
+                }
                 if (isEdit) {
                     updateData();
                 } else {
@@ -116,7 +105,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         boolean isUpdated = myDB.updateRowItem(thisId,
                 name.getText().toString(),
                 price.getText().toString(),
-                discount.toString());
+                discount);
         if (isUpdated) {
             Toast.makeText(AddEditItemsActivity.this, R.string.edit_item_notify, Toast.LENGTH_SHORT).show();
         } else {
@@ -127,8 +116,13 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
 
     private void addData() {
+        String number = nr.getText().toString();
+
+        number = SimpleFunctions.fillItemNumberWithZeros(number);
+
         boolean isInserted = myDB.insertDataToItems(
                 nr.getText().toString(),
+                number,
                 name.getText().toString(),
                 price.getText().toString(),
                 discount.toString());

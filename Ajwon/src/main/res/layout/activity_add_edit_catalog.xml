@@ -9,13 +9,24 @@
 
 
     <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/default_padding"
+        android:text="@string/catalog"
+        android:textAllCaps="true"
+        android:textSize="@dimen/default_text_size"
+        android:textStyle="bold|italic" />
+
+    <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/textView45"
         android:text="@string/catalog_nr" />
 
     <EditText

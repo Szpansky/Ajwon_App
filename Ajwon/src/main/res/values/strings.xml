@@ -23,7 +23,7 @@
     <string name="item">Przedmiot</string>
     <string name="pick_person">Wybierz Osobę</string>
     <string name="pick_item">Wybierz Przedmiot</string>
-    <string name="not_paid">Nie Zapłanoco</string>
+    <string name="not_paid">Nie Zapłacono</string>
     <string name="paid">Zapłacono</string>
 
     <string name="name">Imię</string>
@@ -74,4 +74,5 @@
     <string name="email">Email</string>
     <string name="password">Hasło</string>
     <string name="log_in">Log In</string>
+    <string name="client">Klient</string>
 </resources>

@@ -28,6 +28,7 @@ public class Database extends SQLiteOpenHelper {
 
     public static final String TABLE_ITEMS = "ITEMS";
     public static final String ITEM_ID = "_id";
+    public static final String ITEM_NUMBER = "NUMBER";
     public static final String ITEM_PRICE = "PRICE";
     public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
@@ -57,29 +58,30 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("create table " + TABLE_CATALOGS + " (" +
                 CATALOG_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CATALOG_NUMBER + " VARCHAR(10) UNIQUE," +
-                CATALOG_DATE_START + " DATETIME DEFAULT CURRENT_DATE," +
-                CATALOG_DATE_ENDS + " DATETIME)");
+                CATALOG_DATE_START + " DATE DEFAULT CURRENT_DATE," +
+                CATALOG_DATE_ENDS + " DATE)");
 
         db.execSQL("create table " + TABLE_PERSONS + " (" +
                 PERSON_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                PERSON_NAME + " TEXT," +
-                PERSON_SURNAME + " TEXT," +
-                PERSON_ADDRESS + " TEXT," +
-                PERSON_PHONE + " LONG NOT NULL," +
+                PERSON_NAME + " VARCHAR(40)," +
+                PERSON_SURNAME + " VARCHAR(40)," +
+                PERSON_ADDRESS + " VARCHAR(150)," +
+                PERSON_PHONE + " VARCHAR(25) NOT NULL," +
                 PERSON_NETWORK_ID + " INTEGER DEFAULT 0)");
 
         db.execSQL("create table " + TABLE_ITEMS + " (" +
                 ITEM_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                ITEM_NAME + " TEXT," +
-                ITEM_PRICE + " DOUBLE NOT NULL," +
-                ITEM_DISCOUNT + " TEXT)");
+                ITEM_NUMBER + " VARCHAR(6) UNIQUE,"+
+                ITEM_NAME + " VARCHAR(150)," +
+                ITEM_PRICE + " DECIMAL NOT NULL," +
+                ITEM_DISCOUNT + " VARCHAR(15))");
 
         db.execSQL("create table " + TABLE_CLIENTS + " (" +
                 CLIENT_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CLIENT_CATALOG_ID + " INTEGER," +
                 CLIENT_PERSON_ID + " INTEGER," +
-                CLIENT_DATE + "  DATETIME DEFAULT CURRENT_DATE," +
-                CLIENT_STATUS + " TEXT," +
+                CLIENT_DATE + "  DATE DEFAULT CURRENT_DATE," +
+                CLIENT_STATUS + " VARCHAR(25)," +
                 "FOREIGN KEY (" + CLIENT_CATALOG_ID + ") REFERENCES " + TABLE_CATALOGS + " (" + CATALOG_ID + ")," +
                 "FOREIGN KEY (" + CLIENT_PERSON_ID + ") REFERENCES " + TABLE_PERSONS + " (" + PERSON_ID + "))");
 
@@ -87,8 +89,8 @@ public class Database extends SQLiteOpenHelper {
                 ORDER_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 ORDER_ITEM_ID + " INTEGER," +
                 ORDER_CLIENT_ID + " INTEGER," +
-                ORDER_AMOUNT + " INTEGER," +
-                ORDER_TOTAL + " DOUBLE," +
+                ORDER_AMOUNT + " SHORTINTEGER," +
+                ORDER_TOTAL + " DECIMAL," +
                 "FOREIGN KEY (" + ORDER_ITEM_ID + ") REFERENCES " + TABLE_ITEMS + " (" + ITEM_ID + ")," +
                 "FOREIGN KEY (" + ORDER_CLIENT_ID + ") REFERENCES " + TABLE_CLIENTS + " (" + CLIENT_ID + "))");
     }
@@ -135,9 +137,10 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToItems(String nr, String name, String price, String discount) {
+    public boolean insertDataToItems(String id, String nr, String name, String price, String discount) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ITEM_ID, nr);
+        contentValues.put(ITEM_ID, id);
+        contentValues.put(ITEM_NUMBER, nr);
         contentValues.put(ITEM_NAME, name);
         contentValues.put(ITEM_PRICE, price);
         contentValues.put(ITEM_DISCOUNT, discount);
@@ -298,7 +301,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean updateRowCatalog(int id, String dateStart, String dateEnd) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String where = CATALOG_ID + " = " + id;
         ContentValues newValues = new ContentValues();
         newValues.put(CATALOG_DATE_START, dateStart);
@@ -312,7 +315,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean updateRowPerson(int id, String name, String surname, String address, String phone) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String where = PERSON_ID + " = " + id;
         ContentValues newValues = new ContentValues();
         newValues.put(PERSON_NAME, name);
@@ -328,7 +331,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean updateRowItem(int id, String name, String price, String discount) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String where = ITEM_ID + " = " + id;
         ContentValues newValues = new ContentValues();
         newValues.put(ITEM_NAME, name);
@@ -367,6 +370,7 @@ public class Database extends SQLiteOpenHelper {
         ContentValues newValues = new ContentValues();
         newValues.put(ORDER_AMOUNT, amount);
         newValues.put(ORDER_TOTAL, total);
+        db = this.getWritableDatabase();
         long result = db.update(TABLE_ORDERS, newValues, where, null);
         if (result == -1)
             return false;
@@ -423,8 +427,6 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
-
-
 }
 
 

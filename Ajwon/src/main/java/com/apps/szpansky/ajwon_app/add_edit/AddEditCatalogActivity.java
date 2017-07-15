@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.tools.SimpleFunctions;
 
 
 public class AddEditCatalogActivity extends AppCompatActivity {
@@ -144,11 +145,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             year_x = year;
             month_x = month + 1;
             String monthString;
-            monthString = setZeroBeforeString(month_x.toString());
+            monthString = SimpleFunctions.setZeroBeforeString(month_x.toString());
 
             day_x = dayOfMonth;
             String dayString;
-            dayString = setZeroBeforeString(day_x.toString());
+            dayString = SimpleFunctions.setZeroBeforeString(day_x.toString());
 
             catalogDateStart.setText(year_x + "-" + monthString + "-" + dayString);
         }
@@ -161,11 +162,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             year_x = year;
             month_x = month + 1;
             String monthString;
-            monthString = setZeroBeforeString(month_x.toString());
+            monthString = SimpleFunctions.setZeroBeforeString(month_x.toString());
 
             day_x = dayOfMonth;
             String dayString;
-            dayString = setZeroBeforeString(day_x.toString());
+            dayString = SimpleFunctions.setZeroBeforeString(day_x.toString());
 
             catalogDateEnd.setText(year_x + "-" + monthString + "-" + dayString);
         }
@@ -186,12 +187,5 @@ public class AddEditCatalogActivity extends AppCompatActivity {
                 showDialog(DIALOG_ID_END_DATE);
             }
         });
-    }
-
-
-    public String setZeroBeforeString(String value) {
-        if (value.length() == 1)
-            return "0" + value;
-        else return value;
     }
 }
