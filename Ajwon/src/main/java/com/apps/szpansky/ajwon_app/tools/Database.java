@@ -113,7 +113,7 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(CATALOG_DATE_ENDS, dateEnd);
 
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.insert(TABLE_CATALOGS, null, contentValues);    //it return row, other way -1
+        long result = db.insert(TABLE_CATALOGS, null, contentValues);
         if (result == -1)
             return false;
         else
@@ -379,12 +379,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getRow(String TABLE_NAME, String WHERE, int id) {
+    public Cursor getRows(String TABLE_NAME, String WHERE, int toWhere) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
                 "SELECT *" +
                         " FROM " + TABLE_NAME +
-                        " WHERE " + WHERE + " = " + id, null);
+                        " WHERE " + WHERE + " = " + toWhere, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -392,12 +392,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public int getInt(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
+    public int getInt(String TABLE_NAME, String COLUMN_NAME, String WHERE, int toWhere) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
-                "SELECT " + ROW_NAME +
+                "SELECT " + COLUMN_NAME +
                         " FROM " + TABLE_NAME +
-                        " WHERE " + WHERE + " = " + id, null);
+                        " WHERE " + WHERE + " = " + toWhere, null);
 
         if (c.getCount() == 0) return -1;
         c.moveToFirst();
@@ -405,12 +405,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public double getDouble(String TABLE_NAME, String ROW_NAME, String WHERE, int id) {
+    public double getDouble(String TABLE_NAME, String COLUMN_NAME, String WHERE, int toWhere) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
-                "SELECT " + ROW_NAME +
+                "SELECT " + COLUMN_NAME +
                         " FROM " + TABLE_NAME +
-                        " WHERE " + WHERE + " = " + id, null);
+                        " WHERE " + WHERE + " = " + toWhere, null);
 
         c.moveToFirst();
 

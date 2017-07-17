@@ -120,7 +120,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
 
 
     private String getCatalogInfo(int columnIndex) {
-        Cursor cursor = myDB.getRow(Database.TABLE_CATALOGS, Database.CATALOG_ID, thisId);
+        Cursor cursor = myDB.getRows(Database.TABLE_CATALOGS, Database.CATALOG_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);
     }

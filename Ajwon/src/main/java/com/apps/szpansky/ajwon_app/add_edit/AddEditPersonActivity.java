@@ -2,11 +2,9 @@ package com.apps.szpansky.ajwon_app.add_edit;
 
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -103,7 +101,7 @@ public class AddEditPersonActivity extends AppCompatActivity {
 
 
     private String getPersonInfo(int columnIndex) {
-        Cursor cursor = myDB.getRow(Database.TABLE_PERSONS, Database.PERSON_ID, thisId);
+        Cursor cursor = myDB.getRows(Database.TABLE_PERSONS, Database.PERSON_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);
     }

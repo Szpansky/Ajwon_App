@@ -1,10 +1,7 @@
 package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -21,10 +18,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
@@ -34,40 +29,32 @@ import com.apps.szpansky.ajwon_app.main_browsing.CatalogsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllItemsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllPersonsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllCatalogsActivity;
-import com.apps.szpansky.ajwon_app.simple_data.Item;
 import com.apps.szpansky.ajwon_app.tools.Database;
-import com.apps.szpansky.ajwon_app.tools.SimpleFunctions;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.channels.FileChannel;
+import com.apps.szpansky.ajwon_app.tools.FileManagement;
+import com.apps.szpansky.ajwon_app.tools.NetworkFunctions;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public static boolean LOGGED = false;
 
     private final static boolean EXPORT = true;
     private final static boolean IMPORT = false;
     private static boolean FLOATING_MENU = false;
 
-    String tableName = Database.TABLE_ITEMS;    //default exported/imported items
-    String fileName = "Items.txt";
+    private String tableName = Database.TABLE_ITEMS;    //default exported/imported
+    private String fileName = "Items.txt";
 
-    Button openCatalogs;
-    FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
+    private Button openCatalogs;
+    private FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
 
-    Animation fabClose, fabOpen, fabRotate, fabRotateBack;
+    private Animation fabClose, fabOpen, fabRotate, fabRotateBack;
 
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle drawerToggle;
-    NavigationView navigationView;
-    GridLayout subFloatingMenu;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private NavigationView navigationView;
+    private GridLayout subFloatingMenu;
 
 
     @Override
@@ -128,19 +115,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void dialogLoginBuilder() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final View view = getLayoutInflater().inflate(R.layout.dialog_login, null);
-        EditText email = (EditText) view.findViewById(R.id.dialog_text_email);
-        EditText password = (EditText) view.findViewById(R.id.dialog_text_password);
-        Button login = (Button) view.findViewById(R.id.dialog_button_login);
+        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_login, null);
+        final EditText emailEditText = (EditText) dialogView.findViewById(R.id.dialog_text_email);
+        final EditText passwordEditText = (EditText) dialogView.findViewById(R.id.dialog_text_password);
+        Button loginButton = (Button) dialogView.findViewById(R.id.dialog_button_login);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar snackbar = Snackbar.make(view, R.string.coming_soon, Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                LOGGED = NetworkFunctions.logIn(email,password);
+
+                if (LOGGED){
+                    Snackbar snackbar = Snackbar.make(dialogView, R.string.coming_soon, Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }else{
+                    Snackbar snackbar = Snackbar.make(dialogView, R.string.coming_soon, Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
+
             }
         });
-        builder.setView(view);
+        builder.setView(dialogView);
         builder.create();
         builder.show();
     }
@@ -148,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void dialogInformationBuilder() {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
-        View view = getLayoutInflater().inflate(R.layout.dialog_information, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_information, null);
 
-        Button backButton = (Button) view.findViewById(R.id.dialog_button_back);
+        Button backButton = (Button) dialogView.findViewById(R.id.dialog_button_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,48 +156,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        builder.setView(view);
+        builder.setView(dialogView);
         builder.show();
     }
 
 
     private void dialogExportImportBuilder() {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
-        View view = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
 
-        Button importButton = (Button) view.findViewById(R.id.importButton);
-        Button exportButton = (Button) view.findViewById(R.id.exportButton);
-        final RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.dialog_ie_radio_group);
-        Button importTable = (Button) view.findViewById(R.id.dialog_ie_button_folder_import);
-        Button exportTable = (Button) view.findViewById(R.id.dialog_ie_button_folder_export);
+        Button importDBButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_db_import);
+        Button exportDBButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_db_export);
+        final RadioGroup radioGroup = (RadioGroup) dialogView.findViewById(R.id.dialog_ie_radio_group);
+        Button importTableButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_folder_import);
+        Button exportTableButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_folder_export);
 
-        importButton.setOnClickListener(new View.OnClickListener() {
+        importDBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleFunctions.importExportDB(findViewById(R.id.drawerLayout), IMPORT, getPackageName());
+                FileManagement.importExportDB(findViewById(R.id.drawerLayout), IMPORT, getPackageName());
                 builder.dismiss();
             }
         });
 
-        exportButton.setOnClickListener(new View.OnClickListener() {
+        exportDBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleFunctions.importExportDB(findViewById(R.id.drawerLayout), EXPORT, getPackageName());
+                FileManagement.importExportDB(findViewById(R.id.drawerLayout), EXPORT, getPackageName());
                 builder.dismiss();
             }
         });
 
-        importTable.setOnClickListener(new View.OnClickListener() {
+        importTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
 
-        exportTable.setOnClickListener(new View.OnClickListener() {
+        exportTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleFunctions.generateTXT(findViewById(R.id.drawerLayout), getBaseContext(), fileName, tableName);
+                FileManagement.generateTXT(findViewById(R.id.drawerLayout), getBaseContext(), fileName, tableName);
                 builder.dismiss();
             }
         });
@@ -219,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setView(view);
+        builder.setView(dialogView);
         builder.show();
     }
 
@@ -259,8 +257,8 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case (R.id.menuHelpOpinion):
-                        break;
 
+                        break;
                 }
                 return true;
             }

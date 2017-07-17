@@ -136,7 +136,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
 
 
     private String getItemInfo(int columnIndex) {
-        Cursor cursor = myDB.getRow(Database.TABLE_ITEMS, Database.ITEM_ID, thisId);
+        Cursor cursor = myDB.getRows(Database.TABLE_ITEMS, Database.ITEM_ID, thisId);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);
     }
