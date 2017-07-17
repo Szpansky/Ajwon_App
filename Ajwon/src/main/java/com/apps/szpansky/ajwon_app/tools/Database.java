@@ -71,7 +71,7 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL("create table " + TABLE_ITEMS + " (" +
                 ITEM_ID + " INTEGER PRIMARY KEY NOT NULL," +
-                ITEM_NUMBER + " VARCHAR(6) UNIQUE,"+
+                ITEM_NUMBER + " VARCHAR(6) UNIQUE," +
                 ITEM_NAME + " VARCHAR(150)," +
                 ITEM_PRICE + " DECIMAL NOT NULL," +
                 ITEM_DISCOUNT + " VARCHAR(15))");
@@ -214,7 +214,7 @@ public class Database extends SQLiteOpenHelper {
                         CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + " " +
-                        "ORDER BY " + CATALOG_DATE_START +" DESC"
+                        "ORDER BY " + CATALOG_DATE_START + " DESC"
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -426,6 +426,19 @@ public class Database extends SQLiteOpenHelper {
             return false;
         else
             return true;
+    }
+
+
+    public Cursor getTable(String TABLE_NAME) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT *" +
+                        " FROM " + TABLE_NAME
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
     }
 }
 

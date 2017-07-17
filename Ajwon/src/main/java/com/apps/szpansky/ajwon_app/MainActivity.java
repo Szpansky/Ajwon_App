@@ -1,8 +1,11 @@
 package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,8 +21,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
@@ -28,11 +34,18 @@ import com.apps.szpansky.ajwon_app.main_browsing.CatalogsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllItemsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllPersonsActivity;
 import com.apps.szpansky.ajwon_app.open_all.OpenAllCatalogsActivity;
+import com.apps.szpansky.ajwon_app.simple_data.Item;
 import com.apps.szpansky.ajwon_app.tools.Database;
+import com.apps.szpansky.ajwon_app.tools.SimpleFunctions;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.nio.channels.FileChannel;
 
 
@@ -41,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     private final static boolean EXPORT = true;
     private final static boolean IMPORT = false;
     private static boolean FLOATING_MENU = false;
+
+    String tableName = Database.TABLE_ITEMS;    //default exported/imported items
+    String fileName = "Items.txt";
 
     Button openCatalogs;
     FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
@@ -147,25 +163,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void dialogExportImportBuilder(){
+    private void dialogExportImportBuilder() {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
         View view = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
 
+        Button importButton = (Button) view.findViewById(R.id.importButton);
         Button exportButton = (Button) view.findViewById(R.id.exportButton);
-        exportButton.setOnClickListener(new View.OnClickListener() {
+        final RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.dialog_ie_radio_group);
+        Button importTable = (Button) view.findViewById(R.id.dialog_ie_button_folder_import);
+        Button exportTable = (Button) view.findViewById(R.id.dialog_ie_button_folder_export);
+
+        importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                importExportDB(EXPORT);
+                SimpleFunctions.importExportDB(findViewById(R.id.drawerLayout), IMPORT, getPackageName());
                 builder.dismiss();
             }
         });
 
-        Button importButton = (Button) view.findViewById(R.id.importButton);
-        importButton.setOnClickListener(new View.OnClickListener() {
+        exportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                importExportDB(IMPORT);
+                SimpleFunctions.importExportDB(findViewById(R.id.drawerLayout), EXPORT, getPackageName());
                 builder.dismiss();
+            }
+        });
+
+        importTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        exportTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleFunctions.generateTXT(findViewById(R.id.drawerLayout), getBaseContext(), fileName, tableName);
+                builder.dismiss();
+            }
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case (R.id.dialog_ie_radio_items):
+                        fileName = "Items.txt";
+                        tableName = Database.TABLE_ITEMS;
+                        break;
+                    case (R.id.dialog_ie_radio_persons):
+                        fileName = "Persons.txt";
+                        tableName = Database.TABLE_PERSONS;
+                        break;
+                }
             }
         });
         builder.setView(view);
@@ -173,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private synchronized void onNavigationItemClick() {
+    private void onNavigationItemClick() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
@@ -203,6 +254,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (R.id.menuExportImport):
                         dialogExportImportBuilder();
+                        break;
+                    case (R.id.menuSetting):
+
+                        break;
+                    case (R.id.menuHelpOpinion):
                         break;
 
                 }
@@ -276,48 +332,5 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
-    }
-
-
-    private void importExportDB(boolean which) {
-        try {
-            File sd = Environment.getExternalStorageDirectory();
-            File data = Environment.getDataDirectory();
-
-            if (sd.canWrite()) {
-                String currentDBPath = "//data//" + getPackageName()
-                        + "//databases//" + Database.DATABASE_NAME;
-                String backupDBPath = "/" + getString(R.string.app_name) + "/" + Database.DATABASE_NAME;
-                String appFolderPathOnSD = sd.getPath() + "/" + getString(R.string.app_name);
-
-                File currentDB;
-                File backupDB;
-
-                if (which) {
-                    File file = new File(appFolderPathOnSD);
-                    if (!file.exists()) {
-                        file.mkdirs();
-                    }
-                    currentDB = new File(data, currentDBPath);
-                    backupDB = new File(sd, backupDBPath);
-
-                } else {
-                    backupDB = new File(data, currentDBPath);
-                    currentDB = new File(sd, backupDBPath);
-                }
-
-                FileChannel src = new FileInputStream(currentDB).getChannel();
-                FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                dst.transferFrom(src, 0, src.size());
-                src.close();
-                dst.close();
-
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.drawerLayout), R.string.successfully_notify, Snackbar.LENGTH_SHORT);
-                snackbar.show();
-            }
-        } catch (Exception e) {
-            Snackbar snackbar = Snackbar.make(findViewById(R.id.drawerLayout), R.string.backup_error, Snackbar.LENGTH_SHORT);
-            snackbar.show();
-        }
     }
 }
