@@ -126,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                LOGGED = NetworkFunctions.logIn(email,password);
+                LOGGED = NetworkFunctions.logIn(email, password);
 
-                if (LOGGED){
+                if (LOGGED) {
                     Snackbar snackbar = Snackbar.make(dialogView, R.string.coming_soon, Snackbar.LENGTH_SHORT);
                     snackbar.show();
-                }else{
+                } else {
                     Snackbar snackbar = Snackbar.make(dialogView, R.string.coming_soon, Snackbar.LENGTH_SHORT);
                     snackbar.show();
                 }
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void dialogExportImportBuilder() {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
+        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_export_import, null);
 
         Button importDBButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_db_import);
         Button exportDBButton = (Button) dialogView.findViewById(R.id.dialog_ie_button_db_export);
@@ -190,15 +190,14 @@ public class MainActivity extends AppCompatActivity {
         importTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FileManagement.importTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
             }
         });
 
         exportTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManagement.generateTXT(findViewById(R.id.drawerLayout), getBaseContext(), fileName, tableName);
-                builder.dismiss();
+                FileManagement.generateTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
             }
         });
 
@@ -213,6 +212,18 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.dialog_ie_radio_persons):
                         fileName = "Persons.txt";
                         tableName = Database.TABLE_PERSONS;
+                        break;
+                    case (R.id.dialog_ie_radio_catalogs):
+                        fileName = "Catalogs.txt";
+                        tableName = Database.TABLE_CATALOGS;
+                        break;
+                    case (R.id.dialog_ie_radio_clients):
+                        fileName = "Clients.txt";
+                        tableName = Database.TABLE_CLIENTS;
+                        break;
+                    case (R.id.dialog_ie_radio_orders):
+                        fileName = "Orders.txt";
+                        tableName = Database.TABLE_ORDERS;
                         break;
                 }
             }

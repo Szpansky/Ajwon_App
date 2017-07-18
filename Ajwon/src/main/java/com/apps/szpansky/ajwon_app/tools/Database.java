@@ -2,7 +2,9 @@ package com.apps.szpansky.ajwon_app.tools;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -10,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Ajwon.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static final String TABLE_CATALOGS = "CATALOGS";
     public static final String CATALOG_ID = "_id";
@@ -32,6 +34,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String ITEM_PRICE = "PRICE";
     public static final String ITEM_NAME = "NAME";
     public static final String ITEM_DISCOUNT = "DISCOUNT";
+    public static final String ITEM_UPDATE_DATE = "UPDATE_DATE";
 
     public static final String TABLE_CLIENTS = "CLIENTS";
     public static final String CLIENT_ID = "_id";
@@ -59,7 +62,7 @@ public class Database extends SQLiteOpenHelper {
                 CATALOG_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CATALOG_NUMBER + " VARCHAR(10) UNIQUE," +
                 CATALOG_DATE_START + " DATE DEFAULT CURRENT_DATE," +
-                CATALOG_DATE_ENDS + " DATE)");
+                CATALOG_DATE_ENDS + " DATE DEFAULT CURRENT_DATE)");
 
         db.execSQL("create table " + TABLE_PERSONS + " (" +
                 PERSON_ID + " INTEGER PRIMARY KEY NOT NULL," +
@@ -74,7 +77,8 @@ public class Database extends SQLiteOpenHelper {
                 ITEM_NUMBER + " VARCHAR(6) UNIQUE," +
                 ITEM_NAME + " VARCHAR(150)," +
                 ITEM_PRICE + " DECIMAL NOT NULL," +
-                ITEM_DISCOUNT + " VARCHAR(15))");
+                ITEM_DISCOUNT + " VARCHAR(15)," +
+                ITEM_UPDATE_DATE + " DATE DEFAULT CURRENT_DATE)");
 
         db.execSQL("create table " + TABLE_CLIENTS + " (" +
                 CLIENT_ID + " INTEGER PRIMARY KEY NOT NULL," +
@@ -248,7 +252,7 @@ public class Database extends SQLiteOpenHelper {
                 "SELECT * " +
                         "FROM " + TABLE_ITEMS + " " +
                         "WHERE " +
-                        ITEM_ID + " LIKE \"%" + filter + "%\"" + " OR " +
+                        ITEM_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
                         ITEM_NAME + " LIKE \"%" + filter + "%\"" + " " +
                         "ORDER BY " + ITEM_NAME
                 , null);
@@ -307,10 +311,10 @@ public class Database extends SQLiteOpenHelper {
         newValues.put(CATALOG_DATE_START, dateStart);
         newValues.put(CATALOG_DATE_ENDS, dateEnd);
         long result = db.update(TABLE_CATALOGS, newValues, where, null);
-        if (result == -1)
-            return false;
-        else
+        if (result == 1)
             return true;
+        else
+            return false;
     }
 
 
@@ -323,10 +327,10 @@ public class Database extends SQLiteOpenHelper {
         newValues.put(PERSON_ADDRESS, address);
         newValues.put(PERSON_PHONE, phone);
         long result = db.update(TABLE_PERSONS, newValues, where, null);
-        if (result == -1)
-            return false;
-        else
+        if (result == 1)
             return true;
+        else
+            return false;
     }
 
 
@@ -338,10 +342,10 @@ public class Database extends SQLiteOpenHelper {
         newValues.put(ITEM_PRICE, price);
         newValues.put(ITEM_DISCOUNT, discount);
         long result = db.update(TABLE_ITEMS, newValues, where, null);
-        if (result == -1)
-            return false;
-        else
+        if (result == 1)
             return true;
+        else
+            return false;
     }
 
 
@@ -372,10 +376,10 @@ public class Database extends SQLiteOpenHelper {
         newValues.put(ORDER_TOTAL, total);
         db = this.getWritableDatabase();
         long result = db.update(TABLE_ORDERS, newValues, where, null);
-        if (result == -1)
-            return false;
-        else
+        if (result == 1)
             return true;
+        else
+            return false;
     }
 
 
@@ -439,6 +443,38 @@ public class Database extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         return c;
+    }
+
+    public boolean updateTable(String tableName, ContentValues newValues, String where) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            int result;
+            result = db.update(tableName, newValues, where, null);
+            if (result == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException se) {
+            return false;
+        }
+    }
+
+
+    public boolean insertDataToTable(String tableName, ContentValues newValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try {
+
+            long result = db.insert(tableName, null, newValues);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (SQLException se) {
+            return false;
+        }
     }
 }
 

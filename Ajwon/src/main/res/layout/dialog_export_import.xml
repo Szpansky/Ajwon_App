@@ -1,124 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_import_export"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="@dimen/default_padding"
-        android:text="@string/import_export_title"
-        android:textSize="@dimen/default_text_size"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/import_export_information"
-        android:textAlignment="center"
-        android:textSize="@dimen/default_sub_text_size_" />
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:weightSum="1">
 
-        <Button
-            android:id="@+id/dialog_ie_button_db_import"
-            style="@style/Widget.AppCompat.Button.Colored"
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/default_padding"
+            android:text="@string/import_export_title"
+            android:textAlignment="center"
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/import_export_information"
+            android:textAlignment="center"
+            android:textSize="@dimen/default_sub_text_size_" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_weight="1"
-            android:text="@string/import_db" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/dialog_ie_button_db_export"
-            style="@style/Widget.AppCompat.Button.Colored"
+            <Button
+                android:id="@+id/dialog_ie_button_db_import"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_weight="1"
+                android:text="@string/import_db" />
+
+            <Button
+                android:id="@+id/dialog_ie_button_db_export"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_weight="1"
+                android:text="@string/export_db" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default_margin"
+            android:padding="@dimen/default_padding"
+            android:text="@string/import_eksport_folder"
+            android:textAlignment="center"
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/import_export_table_info"
+            android:textAlignment="center"
+            android:textSize="@dimen/default_sub_text_size_" />
+
+        <RadioGroup
+            android:id="@+id/dialog_ie_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.09"
+            android:paddingTop="@dimen/default_padding">
+
+            <RadioButton
+                android:id="@+id/dialog_ie_radio_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:padding="@dimen/default_padding"
+                android:text="@string/items" />
+
+            <RadioButton
+                android:id="@+id/dialog_ie_radio_persons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_padding"
+                android:text="@string/persons" />
+
+            <RadioButton
+                android:id="@+id/dialog_ie_radio_catalogs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_padding"
+                android:text="@string/catalogs"
+                android:textAllCaps="false" />
+
+            <RadioButton
+                android:id="@+id/dialog_ie_radio_clients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_padding"
+                android:text="@string/clients" />
+
+            <RadioButton
+                android:id="@+id/dialog_ie_radio_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_padding"
+                android:text="@string/orders" />
+
+        </RadioGroup>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_weight="1"
-            android:text="@string/export_db" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dialog_ie_button_folder_import"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_weight="1"
+                android:text="@string/import_db" />
+
+            <Button
+                android:id="@+id/dialog_ie_button_folder_export"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_weight="1"
+                android:text="@string/export_db" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/default_padding"
+            android:text="@string/import_export_hint"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/default_margin"
-        android:padding="@dimen/default_padding"
-        android:text="@string/import_eksport_folder"
-        android:textSize="@dimen/default_text_size"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView47"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/import_export_table_info"
-        android:textAlignment="center"
-        android:textSize="@dimen/default_sub_text_size_" />
-
-    <RadioGroup
-        android:id="@+id/dialog_ie_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
-
-        <RadioButton
-            android:id="@+id/dialog_ie_radio_persons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/default_padding"
-            android:text="@string/clients" />
-
-        <RadioButton
-            android:id="@+id/dialog_ie_radio_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:padding="@dimen/default_padding"
-            android:text="@string/items" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dialog_ie_button_folder_import"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_weight="1"
-            android:text="@string/import_db" />
-
-        <Button
-            android:id="@+id/dialog_ie_button_folder_export"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_weight="1"
-            android:text="@string/export_db" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

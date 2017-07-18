@@ -68,7 +68,7 @@
     <string name="wait_notify">Czekaj, właśnie pracuje :) </string>
     <string name="backup_error">Nie Znaleziono Bazy</string>
     <string name="search_hint">Nazwa/Kod/Data/Status</string>
-    <string name="import_export_information">Importowanie pliku zastąpi istniejące dane.\nEksport utworzy plik w katalogu domowym:\n\"/Ajwon/\" i pozwala się nim dzielić</string>
+    <string name="import_export_information">Importowanie pliku zastąpi istniejące dane.\nEksport utworzy plik w katalogu głównym:\n\"/Ajwon/\" i pozwala się nim dzielić.\n(Używaj gdy chcesz przeinstalować aplikacje)</string>
     <string name="import_export_title">Import / Eksport Bazy Danych</string>
     <string name="import_export">Import / Eksport</string>
     <string name="export_db">Eksport</string>
@@ -77,8 +77,13 @@
     <string name="password">Hasło</string>
     <string name="log_in">Log In</string>
     <string name="client">Klient</string>
-    <string name="import_eksport_folder">Import / Eksport Folderu</string>
-    <string name="import_export_table_info">Importowanie doda brakujące wartości.\nJeżeli istnieją zaktualizuje je.\nEksport utworzy plik w katalogu domowym:\n\"/Ajwon/Exported/\" i pozwala sie nim dzielić.</string>
-
+    <string name="import_eksport_folder">Import / Eksport (Zaznaczenia)</string>
+    <string name="import_export_table_info">Importowanie doda brakujące wartości.\nJeżeli istnieją zaktualizuje je.\nEksport utworzy plik w katalogu głównym:\n\"/Ajwon/Exported/\" i pozwala sie nim dzielić.</string>
+    <string name="import_export_hint">WAŻNE! (Wszystkie pliki przeznaczone do importowania, umieść w głównym katalogu</string>
+    <string name="file_does_not_exists">Plik nie istnieje</string>
+    <string name="updated">Zaktualizowano:</string>
+    <string name="created">\nUtworzono:</string>
+    <string name="persons">Osoby</string>
+    <string name="orders">Zamowienia</string>
 
 </resources>
