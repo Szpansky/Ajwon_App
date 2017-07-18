@@ -77,6 +77,10 @@
     <string name="password">Hasło</string>
     <string name="log_in">Log In</string>
     <string name="client">Klient</string>
+    <string name="new_client">Nowy Klient</string>
+    <string name="new_catalog">Nowy Katalog</string>
+    <string name="new_item">Nowy Przedmiot</string>
+
     <string name="import_eksport_folder">Import / Eksport (Zaznaczenia)</string>
     <string name="import_export_table_info">Importowanie doda brakujące wartości.\nJeżeli istnieją zaktualizuje je.\nEksport utworzy plik w katalogu głównym:\n\"/Ajwon/Exported/\" i pozwala sie nim dzielić.</string>
     <string name="import_export_hint">WAŻNE! (Wszystkie pliki przeznaczone do importowania, umieść w głównym katalogu</string>

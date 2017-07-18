@@ -1,114 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_work"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity">
 
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
     <TextView
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/default_margin"
         android:padding="@dimen/default_padding"
-        android:text="@string/catalog"
+        android:text="@string/new_catalog"
         android:textAllCaps="true"
         android:textSize="@dimen/default_text_size"
         android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView45"
-        android:text="@string/catalog_nr" />
 
-    <EditText
-        android:id="@+id/catalogNumber"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView10"
-        android:hint="@string/catalog_nr"
-        android:maxLength="7"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/catalogNumber"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_text_height"
+            android:hint="@string/catalog_nr"
+            android:maxLength="7"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold" />
+    </android.support.design.widget.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/catalogNumber"
-        android:text="@string/start" />
-
-    <EditText
-        android:id="@+id/catalogDateStart"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView19"
-        android:elevation="1dp"
-        android:focusable="false"
-        android:hint="@string/date"
-        android:inputType="date"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/catalogDateStart"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_text_height"
+            android:focusable="false"
+            android:hint="@string/date"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold" />
+    </android.support.design.widget.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/catalogDateStart"
-        android:text="@string/end" />
-
-    <EditText
-        android:id="@+id/catalogDateEnd"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView20"
-        android:focusable="false"
-        android:hint="@string/date"
-        android:inputType="date"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/catalogDateEnd"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_text_height"
+            android:focusable="false"
+            android:hint="@string/date"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold" />
+    </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginRight="@dimen/default_margin"
-        android:clickable="true"
-        app:fabSize="normal"
-        app:srcCompat="@mipmap/ic_add_white_24dp" />
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_add_white_24dp" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

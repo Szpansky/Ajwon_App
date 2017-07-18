@@ -92,7 +92,7 @@ public final class FileManagement {
             File root = new File(Environment.getExternalStorageDirectory(), view.getResources().getString(R.string.app_name));
             File file = new File(root, fileName);
             if ((!root.exists()) || (!file.exists())) {
-                Snackbar snackbarInfo1 = Snackbar.make(view, R.string.file_does_not_exists, Snackbar.LENGTH_INDEFINITE);
+                Snackbar snackbarInfo1 = Snackbar.make(view, R.string.file_does_not_exists, Snackbar.LENGTH_SHORT);
                 snackbarInfo1.show();
                 return;
             }
