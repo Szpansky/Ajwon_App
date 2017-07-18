@@ -8,6 +8,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Calendar;
+
 
 public class Database extends SQLiteOpenHelper {
 
@@ -335,12 +337,26 @@ public class Database extends SQLiteOpenHelper {
 
 
     public boolean updateRowItem(int id, String name, String price, String discount) {
+        Calendar calendar = Calendar.getInstance();
+        Integer year_x = calendar.get(Calendar.YEAR);
+        Integer month_x = calendar.get(Calendar.MONTH);
+        Integer day_x = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String day = day_x.toString();
+        day = SimpleFunctions.fillWithZeros(day, 2);
+
+        String month = month_x.toString();
+        month = SimpleFunctions.fillWithZeros(month, 2);
+
+        String thisDate = year_x + "-" + month + "-" + day;
+
         SQLiteDatabase db = this.getWritableDatabase();
         String where = ITEM_ID + " = " + id;
         ContentValues newValues = new ContentValues();
         newValues.put(ITEM_NAME, name);
         newValues.put(ITEM_PRICE, price);
         newValues.put(ITEM_DISCOUNT, discount);
+        newValues.put(ITEM_UPDATE_DATE, thisDate);
         long result = db.update(TABLE_ITEMS, newValues, where, null);
         if (result == 1)
             return true;
@@ -417,7 +433,6 @@ public class Database extends SQLiteOpenHelper {
                         " WHERE " + WHERE + " = " + toWhere, null);
 
         c.moveToFirst();
-
         return c.getDouble(0);
     }
 
@@ -445,7 +460,7 @@ public class Database extends SQLiteOpenHelper {
         return c;
     }
 
-    public boolean updateTable(String tableName, ContentValues newValues, String where) {
+    public boolean updateContentValuesToTable(String tableName, ContentValues newValues, String where) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             int result;
@@ -461,11 +476,9 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDataToTable(String tableName, ContentValues newValues) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
+    public boolean insertContentValuesToTable(String tableName, ContentValues newValues) {
         try {
-
+            SQLiteDatabase db = this.getWritableDatabase();
             long result = db.insert(tableName, null, newValues);
             if (result == -1) {
                 return false;
@@ -475,6 +488,18 @@ public class Database extends SQLiteOpenHelper {
         } catch (SQLException se) {
             return false;
         }
+    }
+
+    public Cursor getRows(String TABLE_NAME, String WHERE) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT *" +
+                        " FROM " + TABLE_NAME +
+                        " WHERE " + WHERE, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
     }
 }
 
