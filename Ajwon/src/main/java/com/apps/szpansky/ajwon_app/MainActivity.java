@@ -32,6 +32,12 @@ import com.apps.szpansky.ajwon_app.open_all.OpenAllCatalogsActivity;
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.tools.FileManagement;
 import com.apps.szpansky.ajwon_app.tools.NetworkFunctions;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     private GridLayout subFloatingMenu;
+
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -87,6 +96,32 @@ public class MainActivity extends AppCompatActivity {
         onNavigationItemClick();
 
         onFabMenuItemClick();
+
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_Interstitial_main_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        onStartADSClick();
+
+    }
+
+    private void onStartADSClick(){
+        Button startAds = (Button) findViewById(R.id.startAd);
+        startAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.error_notify, Snackbar.LENGTH_SHORT);
+                    snackbarInfo.show();
+                }
+            }
+        });
     }
 
 
