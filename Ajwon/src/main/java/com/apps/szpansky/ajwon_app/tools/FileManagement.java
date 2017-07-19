@@ -150,13 +150,21 @@ public final class FileManagement {
         try {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
+            String backupDBPath;
+            String appFolderPathOnSD;
 
             if (sd.canWrite()) {
-
                 String currentDBPath = "//data//" + packageName
                         + "//databases//" + Database.DATABASE_NAME;
-                String backupDBPath = "/" + view.getResources().getString(R.string.app_name) + "/" + Database.DATABASE_NAME;
-                String appFolderPathOnSD = sd.getPath() + "/" + view.getResources().getString(R.string.app_name);
+
+                if(export){
+                    backupDBPath = "/" + view.getResources().getString(R.string.app_name) + "/Exported/" + Database.DATABASE_NAME;
+                    appFolderPathOnSD = sd.getPath() + "/" + view.getResources().getString(R.string.app_name) + "/Exported/";
+                }else {
+                    backupDBPath = "/" + view.getResources().getString(R.string.app_name) + "/" + Database.DATABASE_NAME;
+                    appFolderPathOnSD = sd.getPath() + "/" + view.getResources().getString(R.string.app_name);
+                }
+
 
                 File currentDB;
                 File backupDB;

@@ -83,7 +83,7 @@
             android:parentActivityName=".main_browsing.ClientsActivity"
             android:theme="@style/BrowsingTheme"
             tools:targetApi="jelly_bean" />
-
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

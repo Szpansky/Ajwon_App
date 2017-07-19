@@ -1,7 +1,9 @@
 package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
@@ -34,10 +38,8 @@ import com.apps.szpansky.ajwon_app.tools.FileManagement;
 import com.apps.szpansky.ajwon_app.tools.NetworkFunctions;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -69,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         navigationView = (NavigationView) findViewById(R.id.navView);
@@ -97,7 +98,26 @@ public class MainActivity extends AppCompatActivity {
 
         onFabMenuItemClick();
 
+        setAds();
 
+        onStartADSClick();
+
+        getPreferences();
+
+    }
+
+
+    private void getPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String test = sharedPreferences.getString("pref_edit_text_loggedAs", getResources().getString(R.string.logged_as));
+        NavigationView navigationView = (NavigationView) drawerLayout.findViewById(R.id.navView);
+        View v = navigationView.getHeaderView(0);
+        TextView loggedAs = (TextView) v.findViewById(R.id.loggedAs);
+        loggedAs.setText(test);
+    }
+
+
+    private void setAds() {
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -105,11 +125,10 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_Interstitial_main_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        onStartADSClick();
-
     }
 
-    private void onStartADSClick(){
+
+    private void onStartADSClick() {
         Button startAds = (Button) findViewById(R.id.startAd);
         startAds.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +136,17 @@ public class MainActivity extends AppCompatActivity {
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 } else {
-                    Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.error_notify, Snackbar.LENGTH_SHORT);
+                    Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.try_again_later, Snackbar.LENGTH_SHORT);
                     snackbarInfo.show();
                 }
+            }
+        });
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.thank_you, Snackbar.LENGTH_SHORT);
+                snackbarInfo.show();
             }
         });
     }
@@ -252,14 +279,6 @@ public class MainActivity extends AppCompatActivity {
                         fileName = "Catalogs.txt";
                         tableName = Database.TABLE_CATALOGS;
                         break;
-                    case (R.id.dialog_ie_radio_clients):
-                        fileName = "Clients.txt";
-                        tableName = Database.TABLE_CLIENTS;
-                        break;
-                    case (R.id.dialog_ie_radio_orders):
-                        fileName = "Orders.txt";
-                        tableName = Database.TABLE_ORDERS;
-                        break;
                 }
             }
         });
@@ -284,23 +303,34 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.menuWorks):
                         //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Works = new Intent(MainActivity.this, OpenAllCatalogsActivity.class);
-                        MainActivity.this.startActivity(Intent_Open_Works);
+                        startActivity(Intent_Open_Works);
                         break;
                     case (R.id.menuClients):
                         //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Persons = new Intent(MainActivity.this, OpenAllPersonsActivity.class);
-                        MainActivity.this.startActivity(Intent_Open_Persons);
+                        startActivity(Intent_Open_Persons);
                         break;
                     case (R.id.menuItems):
                         //drawerLayout.closeDrawer(Gravity.START, false);
                         Intent Intent_Open_Items = new Intent(MainActivity.this, OpenAllItemsActivity.class);
-                        MainActivity.this.startActivity(Intent_Open_Items);
+                        startActivity(Intent_Open_Items);
+                        break;
+                    case (R.id.showTools):
+                        Menu menu = navigationView.getMenu();
+                        if (menu.findItem(R.id.subItems).isVisible()) {
+                            menu.findItem(R.id.subItems).setVisible(false);
+                            item.setIcon(R.mipmap.ic_keyboard_arrow_down_black_24dp);
+                        } else {
+                            menu.findItem(R.id.subItems).setVisible(true);
+                            item.setIcon(R.mipmap.ic_keyboard_arrow_up_black_24dp);
+                        }
                         break;
                     case (R.id.menuExportImport):
                         dialogExportImportBuilder();
                         break;
                     case (R.id.menuSetting):
-
+                        Intent Intent_Open_Settings = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(Intent_Open_Settings);
                         break;
                     case (R.id.menuHelpOpinion):
 

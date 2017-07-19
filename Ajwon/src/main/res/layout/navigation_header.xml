@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_header"
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:background="@drawable/nav_header_gradient">
@@ -19,6 +19,17 @@
         android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/loggedAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text2"
+        android:layout_toEndOf="@+id/text1"
+        android:layout_toRightOf="@+id/text1"
+        android:padding="10dp"
+        android:textColor="#FFFF"
+        android:textSize="@dimen/default_text_size" />
+
+    <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +39,6 @@
         android:padding="10dp"
         android:text="@string/news_sub"
         android:textColor="#FFFF"
-        android:textSize="12sp" />
+        android:textSize="@dimen/default_sub_text_size_" />
 
 </RelativeLayout>

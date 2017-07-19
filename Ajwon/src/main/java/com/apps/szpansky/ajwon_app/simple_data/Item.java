@@ -31,8 +31,7 @@ public class Item extends Order{
         return (new int[]{
                 R.id.itemId,
                 R.id.itemName,
-                R.id.itemPrice,
-                R.id.itemDiscount
+                R.id.itemPrice
         });
     }
 
@@ -43,8 +42,7 @@ public class Item extends Order{
         return new String[]{
                 Database.ITEM_NUMBER,
                 Database.ITEM_NAME,
-                Database.ITEM_PRICE,
-                Database.ITEM_DISCOUNT
+                Database.ITEM_PRICE
         };
     }
 

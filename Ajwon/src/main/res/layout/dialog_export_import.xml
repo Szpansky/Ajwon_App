@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialog_import_export"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:scrollbarStyle="outsideInset">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +45,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
                 android:text="@string/import_db" />
 
@@ -53,7 +54,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
                 android:text="@string/export_db" />
 
@@ -86,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.09"
+            android:orientation="vertical"
             android:paddingTop="@dimen/default_padding">
 
             <RadioButton
@@ -102,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="@dimen/default_padding"
-                android:text="@string/persons" />
+                android:text="@string/clients" />
 
             <RadioButton
                 android:id="@+id/dialog_ie_radio_catalogs"
@@ -112,22 +114,6 @@
                 android:padding="@dimen/default_padding"
                 android:text="@string/catalogs"
                 android:textAllCaps="false" />
-
-            <RadioButton
-                android:id="@+id/dialog_ie_radio_clients"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/default_padding"
-                android:text="@string/clients" />
-
-            <RadioButton
-                android:id="@+id/dialog_ie_radio_orders"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/default_padding"
-                android:text="@string/orders" />
 
         </RadioGroup>
 
@@ -141,7 +127,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
                 android:text="@string/import_db" />
 
@@ -150,7 +136,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
                 android:text="@string/export_db" />
 

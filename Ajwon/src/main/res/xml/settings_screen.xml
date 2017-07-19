@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:summary="Ustawienia ogólne"
+        android:title="Ogólne">
+
+
+        <EditTextPreference
+            android:defaultValue="@string/logged_as"
+            android:key="pref_edit_text_loggedAs"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Zalogowany jako"
+            android:title="@string/coming_soon" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="Ustawienia wyglądu"
+        android:title="Wygląd">
+
+        <ListPreference
+            android:entries="@array/colors"
+            android:entryValues="@array/colors"
+            android:key="list_preference_main_colors1"
+            android:summary="Schemat kolorów głównych"
+            android:title="Kolor Główny" />
+
+        <ListPreference
+            android:entries="@array/colors"
+            android:entryValues="@array/colors"
+            android:key="list_preference_browsing_colors2"
+            android:summary="Schemat kolorów dla okien przeglądania"
+            android:title="Kolor Przeglądanie" />
+
+        <ListPreference
+            android:entries="@array/colors"
+            android:entryValues="@array/colors"
+            android:key="list_preference_picking_colors3"
+            android:summary="Schemat kolorów dla okien wyboru"
+            android:title="Kolor Wyboru" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="Ustawienia powiadomień"
+        android:title="Powiadomienia">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:onClick="notify_switch"
+            android:summary="Powiadomienia"
+            android:title="Powiadomienia" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_2"
+            android:summary="Powiadomienia o kończącym się katalogu"
+            android:title="Kończący się katalog" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_3"
+            android:summary="Powiadomienia o nowych klientach"
+            android:title="Nowy klient" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_4"
+            android:summary="Powiadomienia o nowych zamówieniach"
+            android:title="Nowe zamówienie" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

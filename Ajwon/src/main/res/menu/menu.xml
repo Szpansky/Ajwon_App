@@ -24,19 +24,20 @@
         <menu>
             <item
                 android:id="@+id/menuWorks"
-                android:checkable="true"
                 android:icon="@mipmap/ic_library_books_black_24dp"
                 android:title="@string/catalogs" />
             <item
                 android:id="@+id/menuClients"
-                android:checkable="true"
                 android:icon="@mipmap/ic_account_box_black_24dp"
                 android:title="@string/clients" />
             <item
                 android:id="@+id/menuItems"
-                android:checkable="true"
                 android:icon="@mipmap/ic_toys_black_24dp"
                 android:title="@string/items" />
+            <item
+                android:id="@+id/showTools"
+                android:icon="@mipmap/ic_keyboard_arrow_down_black_24dp"
+                android:title="@string/show_tools" />
 
         </menu>
     </item>
@@ -44,7 +45,8 @@
 
     <item
         android:id="@+id/subItems"
-        android:title="@string/utilities">
+        android:title="@string/utilities"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/menuExportImport"
