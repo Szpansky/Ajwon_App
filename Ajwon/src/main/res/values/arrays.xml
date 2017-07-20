@@ -3,9 +3,9 @@
 
 
     <string-array name="colors">
-        <item>Kolor Niebieski</item>
-        <item>Kolor Zielony</item>
-        <item>Kolor Żółty</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
     </string-array>
 
 

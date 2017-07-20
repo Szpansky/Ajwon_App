@@ -67,7 +67,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/default_margin"
             android:padding="@dimen/default_padding"
-            android:text="@string/import_eksport_folder"
+            android:text="@string/import_export_folder"
             android:textAlignment="center"
             android:textSize="@dimen/default_text_size"
             android:textStyle="bold" />

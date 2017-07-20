@@ -1,96 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ajwon</string>
-    <string name="open">Otwórz</string>
-    <string name="close">Zamknij</string>
-    <string name="disagree">Nie</string>
-    <string name="agree">Tak</string>
-    <string name="news">Witaj</string>
-    <string name="news_sub">Piękna pogoda</string>
-
-    <string name="add_catalog_notify">Dodano Katalog</string>
-    <string name="add_client_notify">Dodano Klienta</string>
-    <string name="add_item_notify">Dodano Przedmiot</string>
-    <string name="edit_client_notify">Edytowano Klienta</string>
-    <string name="edit_catalog_notify">Edytowano Katalog</string>
-    <string name="edit_item_notify">Edytowano Przedmiot</string>
-    <string name="item_title">Nazwa Przedmiotu</string>
-    <string name="catalog_nr">Numer Katalogu</string>
-    <string name="items">Przedmioty</string>
-    <string name="clients">Klienci</string>
-    <string name="catalogs">Katalogi</string>
-    <string name="catalog">Katalog</string>
-    <string name="person">Osoba</string>
-    <string name="item">Przedmiot</string>
-    <string name="pick_person">Wybierz Osobę</string>
-    <string name="pick_item">Wybierz Przedmiot</string>
-    <string name="not_paid">Nie Zapłacono</string>
-    <string name="paid">Zapłacono</string>
-
-    <string name="name">Imię</string>
-    <string name="surname">Nazwisko</string>
-    <string name="address">Adres</string>
-    <string name="phone_number">Numer Telefonu</string>
-
+    <string name="app_name" translatable="false">Ajwon</string>
+    <string name="ExportDB">Save Database</string>
+    <string name="ImportDB">Load Database</string>
+    <string name="account">Account</string>
+    <string name="add_catalog_notify">Catalog was added</string>
+    <string name="add_client_notify">Client was added</string>
+    <string name="add_item_notify">Item was added</string>
+    <string name="add_or_edit">Add  / Edit</string>
+    <string name="address">Address</string>
+    <string name="agree">Yes</string>
+    <string name="amount">Amount</string>
+    <string name="backup_error">Can\'t find Database</string>
+    <string name="basic">Basic</string>
+    <string name="browsing">Browsing</string>
+    <string name="catalog">Catalog</string>
+    <string name="catalog_nr">Catalog Number</string>
+    <string name="catalogs">Catalogs</string>
+    <string name="client">Client</string>
+    <string name="clients">Clients</string>
+    <string name="close">Close</string>
+    <string name="code">Code</string>
+    <string name="coming_soon">Activity available soon</string>
     <string name="colon">:</string>
-    <string name="code">Kod</string>
-    <string name="amount">Ilość</string>
-    <string name="total">Suma</string>
-    <string name="discounts">Zniżki</string>
-    <string name="price">Cena</string>
-    <string name="status">Status</string>
-    <string name="ordered">Zamówiono</string>
-
-    <string name="start">Początek</string>
-    <string name="end">Koniec</string>
-    <string name="date">Data</string>
-
-    <string name="string_new">Nowy</string>
-    <string name="ExportDB">Zapisz Bazę Danych</string>
-    <string name="ImportDB">Wczytaj Bazę Danych</string>
-
-    <string name="account">Konto</string>
-    <string name="basic">Podstawowe</string>
-    <string name="utilities">Narzędzia</string>
-    <string name="search">Szukaj</string>
-    <string name="browsing">Przeglądanie</string>
-    <string name="add_or_edit">Dodaj / Edytuj</string>
-    <string name="login">Zaloguj</string>
-    <string name="information">Informacje</string>
-    <string name="settings">Ustawienia</string>
-    <string name="help_opinion">Pomoc i opinia</string>
-
-    <string name="error">Błąd</string>
-    <string name="search_toast">Bez \" Proszę ;)</string>
-    <string name="coming_soon">Aktywność dostępna wkrótce</string>
-    <string name="error_notify">Ups… coś poszło nie tak :( </string>
-    <string name="delete_notify">"Na pewno chcesz usunąć?</string>
-    <string name="successfully_notify">Sukces !</string>
-    <string name="wait_notify">Czekaj, właśnie pracuje :) </string>
-    <string name="backup_error">Nie Znaleziono Bazy</string>
-    <string name="search_hint">Nazwa/Kod/Data/Status</string>
-    <string name="import_export_DB_information">Importowanie bazy zastąpi istniejące dane.\nEksport utworzy plik w katalogu głównym:\n\"/Ajwon/Exported/\"\ni pozwala sie nim dzielić.\n(Używaj gdy np. chcesz przeinstalować aplikacje)</string>
-    <string name="import_export_DB_title">Import / Eksport\nBazy Danych</string>
-    <string name="import_export">Import / Eksport</string>
-    <string name="export_db">Eksport</string>
-    <string name="import_db">Import</string>
+    <string name="created">Created:</string>
+    <string name="data">Data</string>
+    <string name="date">Date</string>
+    <string name="delete_notify">Are you sure to delete ?</string>
+    <string name="deleting_data_base">Deleting Database</string>
+    <string name="deleting_data_base_info">Enter \"5723\" to delete Database</string>
+    <string name="disagree">No</string>
+    <string name="discounts">Discounts</string>
+    <string name="edit_catalog_notify">Catalog was edited</string>
+    <string name="edit_client_notify">Client was edited</string>
+    <string name="edit_item_notify">Item was edited</string>
     <string name="email">Email</string>
-    <string name="password">Hasło</string>
+    <string name="end">End</string>
+    <string name="ending_catalog">Catalog is ending</string>
+    <string name="ending_catalog_info">Notify that the catalog is ending</string>
+    <string name="error">Error</string>
+    <string name="error_notify">Ups… something get wrong</string>
+    <string name="export_db">Export</string>
+    <string name="file_does_not_exists">File doesn\'t exists</string>
+    <string name="general">General</string>
+    <string name="help_opinion">Help and Opinion</string>
+    <string name="import_db">Import</string>
+    <string name="import_export_folder">Import / Export (Selection)</string>
+    <string name="import_export">Import / Export</string>
+    <string name="import_export_DB_information">Import will over write current database.\nExport will create file in home directory:\n\"/Ajwon/Exported/\"\n(Use it when you want reinstall your app)</string>
+    <string name="import_export_DB_title">Import / Export Database</string>
+    <string name="import_export_hint">IMPORTANT! (Every file you want to import need to be moved to home directory: \"Ajwon\". More information in the Help tab) )</string>
+    <string name="import_export_table_info">Import will add new content. If those exist it will update them.\nExport will create file in home directory:\n\"/Ajwon/Exported/\"\n and you can let it go</string>
+    <string name="information">Information\'s</string>
+    <string name="item">Item</string>
+    <string name="item_title">Item Name</string>
+    <string name="items">Items</string>
     <string name="log_in">Log In</string>
-    <string name="client">Klient</string>
-    <string name="new_client">Nowy Klient</string>
-    <string name="new_catalog">Nowy Katalog</string>
-    <string name="new_item">Nowy Przedmiot</string>
-
-    <string name="import_eksport_folder">Import / Eksport (Zaznaczenia)</string>
-    <string name="import_export_table_info">Importowanie doda brakujące wartości.\nJeżeli istnieją zaktualizuje je.\nEksport utworzy plik w katalogu głównym:\n\"/Ajwon/Exported/\"\ni pozwala sie nim dzielić.</string>
-    <string name="import_export_hint">WAŻNE! (Wszystkie pliki przeznaczone do importowania, umieść w głównym katalogu: \"/Ajwon/\".\nWięcej informacji w zkładce pomocy</string>
-    <string name="file_does_not_exists">Plik nie istnieje</string>
-    <string name="updated">Zaktualizowano:</string>
-    <string name="created">\nUtworzono:</string>
-    <string name="persons">Osoby</string>
-    <string name="orders">Zamowienia</string>
-    <string name="try_again_later">Spróbuj za chwilę</string>
-    <string name="pick_discounts">Wybierz Zniżki</string>
+    <string name="logged_as">Logged as</string>
+    <string name="login">Login</string>
+    <string name="look">Look</string>
+    <string name="name">Name</string>
+    <string name="new_catalog">New Catalog</string>
+    <string name="new_client">New Client</string>
+    <string name="new_client_notifications">Notifications about new clients</string>
+    <string name="new_item">New Item</string>
+    <string name="new_order">New Order</string>
+    <string name="new_order_notifications">Notifications about new orders</string>
+    <string name="news">Hello</string>
+    <string name="news_sub">Nice weather</string>
+    <string name="not_paid">Not paid</string>
+    <string name="notifications">Notifications</string>
+    <string name="open">Open</string>
+    <string name="ordered">Ordered</string>
+    <string name="orders">Orders</string>
+    <string name="paid">Paid</string>
+    <string name="password">Password</string>
+    <string name="person">Person</string>
+    <string name="persons">Persons</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="pick_discounts">Pick Discounts</string>
+    <string name="pick_item">Pick Item</string>
+    <string name="pick_person">Pick Person</string>
+    <string name="pref_category_data">Data settings</string>
+    <string name="pref_def_data_base_exist">That will delete all data !</string>
+    <string name="pref_def_logged_as">Your name</string>
+    <string name="price">Price</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Name/Code/Date/Status</string>
+    <string name="search_toast">Whiteout \" Please ;)</string>
+    <string name="settings">Settings</string>
+    <string name="show_tools">Show tools</string>
+    <string name="start">Begin</string>
+    <string name="status">Status</string>
+    <string name="string_new">New</string>
+    <string name="successfully_notify">Success !</string>
+    <string name="surname">Surname</string>
+    <string name="thank_you">Thanks a lot</string>
+    <string name="total">Total</string>
+    <string name="try_again_later">Try again later</string>
+    <string name="updated">Updated:</string>
+    <string name="utilities">Tools</string>
+    <string name="wait_notify">Wait, i\'m working ;)</string>
 
 
     <!-- -      <string name="ads_Interstitial_main_id">ca-app-pub-3940256099942544/1033173712</string>         Tests ids 1        <!- -->
@@ -101,28 +111,10 @@
     <!-- -      <string name="ads_banner_main_id">ca-app-pub-9635712631261774/7604423447</string>               My ids 2     <!- -->
 
 
-    <string name="ads_Interstitial_main_id">ca-app-pub-3940256099942544/1033173712</string>             <!-- -  ids 1  <!- -->
-    <string name="ads_banner_main_id">ca-app-pub-3940256099942544/6300978111</string>                   <!-- -  ids 2   <!- -->
+    <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>             <!-- -  ids 1  <!- -->
+    <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>                   <!-- -  ids 2   <!- -->
 
 
-    <string name="pref_def_logged_as">Twoja Nazwa</string>
-    <string name="pref_def_data_base_exist">To usunie wszystkie dane !</string>
-    <string name="deleting_data_base_info">Wpisz \"Usuń\" by usunąć całą Bazę Danych</string>
-
-    <string name="thank_you">Wielkie Dzięki :) </string>
-    <string name="show_tools">Pokaż narzędzia</string>
-    <string name="pref_category_data">Ustawienia danych</string>
-    <string name="new_order">Nowe zamówienie</string>
-    <string name="ending_catalog">Kończący się katalog</string>
-    <string name="general">Ogólne</string>
-    <string name="logged_as">Zalogowany jako</string>
-    <string name="look">Wygląd</string>
-    <string name="notifications">Powiadomienia</string>
-    <string name="ending_catalog_info">Powiadomienia o kończącym się katalogu</string>
-    <string name="new_client_notifications">Powiadomienia o nowych klientach</string>
-    <string name="new_order_notifications">Powiadomienia o nowych zamówieniach</string>
-    <string name="data">Dane</string>
-    <string name="deleting_data_base">Usuwanie Bazy Danych</string>
 
 
 </resources>
