@@ -31,7 +31,7 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpenAllCatalogsActivity.this, AddEditCatalogActivity.class);
-                OpenAllCatalogsActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
     }
@@ -60,7 +60,7 @@ public class OpenAllCatalogsActivity extends SimpleActivity {
                     toNextActivityBundle.putBoolean("isEdit", true);
 
                     intent.putExtras(toNextActivityBundle);
-                    OpenAllCatalogsActivity.this.startActivity(intent);
+                    startActivity(intent);
                 }
                 flag[0] = true;
             }

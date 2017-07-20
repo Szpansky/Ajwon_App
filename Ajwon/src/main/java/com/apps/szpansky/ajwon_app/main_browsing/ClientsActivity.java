@@ -63,7 +63,7 @@ public class ClientsActivity extends SimpleActivity {
 
                     Intent intent = new Intent(ClientsActivity.this, OrdersActivity.class);
                     Order.clickedClientId = (int) id;
-                    ClientsActivity.this.startActivity(intent);
+                    startActivity(intent);
                 }
                 flag[0] = true;
             }

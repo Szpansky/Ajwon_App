@@ -27,59 +27,70 @@
             android:name=".for_pick.PickPerson"
             android:label="@string/pick_person"
             android:parentActivityName=".main_browsing.ClientsActivity"
+            android:launchMode="singleTop"
             android:theme="@style/PickTheme"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".for_pick.PickItem"
             android:label="@string/pick_item"
             android:parentActivityName=".main_browsing.OrdersActivity"
+            android:launchMode="singleTop"
             android:theme="@style/PickTheme"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".open_all.OpenAllCatalogsActivity"
             android:label="@string/catalogs"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".open_all.OpenAllPersonsActivity"
             android:label="@string/clients"
             android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".open_all.OpenAllItemsActivity"
             android:label="@string/items"
             android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".add_edit.AddEditCatalogActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllCatalogsActivity"
+            android:launchMode="singleTop"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".add_edit.AddEditPersonActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllPersonsActivity"
+            android:launchMode="singleTop"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".add_edit.AddEditItemsActivity"
             android:label="@string/add_or_edit"
             android:parentActivityName=".open_all.OpenAllItemsActivity"
+            android:launchMode="singleTop"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".main_browsing.CatalogsActivity"
             android:label="@string/browsing"
             android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"
             android:theme="@style/BrowsingTheme"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".main_browsing.ClientsActivity"
             android:label="@string/browsing"
             android:parentActivityName=".main_browsing.CatalogsActivity"
+            android:launchMode="singleTop"
             android:theme="@style/BrowsingTheme"
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".main_browsing.OrdersActivity"
             android:label="@string/browsing"
+            android:launchMode="singleTop"
             android:parentActivityName=".main_browsing.ClientsActivity"
             android:theme="@style/BrowsingTheme"
             tools:targetApi="jelly_bean" />

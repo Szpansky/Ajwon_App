@@ -31,7 +31,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpenAllItemsActivity.this, AddEditItemsActivity.class);
-                OpenAllItemsActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
     }
@@ -60,7 +60,7 @@ public class OpenAllItemsActivity extends SimpleActivity {
                     toNextActivityBundle.putInt("itemId", (int) id);
 
                     intent.putExtras(toNextActivityBundle);
-                    OpenAllItemsActivity.this.startActivity(intent);
+                    startActivity(intent);
                 }
                 flag[0] = true;
             }

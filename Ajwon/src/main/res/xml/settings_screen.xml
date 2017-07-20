@@ -2,76 +2,90 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:summary="Ustawienia ogólne"
-        android:title="Ogólne">
+        android:title="@string/general">
 
 
         <EditTextPreference
-            android:defaultValue="@string/logged_as"
+            android:defaultValue="@string/pref_def_logged_as"
             android:key="pref_edit_text_loggedAs"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:summary="Zalogowany jako"
+            android:summary="@string/logged_as"
             android:title="@string/coming_soon" />
 
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:summary="Ustawienia wyglądu"
-        android:title="Wygląd">
+        android:title="@string/look">
 
         <ListPreference
             android:entries="@array/colors"
             android:entryValues="@array/colors"
-            android:key="list_preference_main_colors1"
+            android:key="list_preference_main_colors"
             android:summary="Schemat kolorów głównych"
             android:title="Kolor Główny" />
 
         <ListPreference
             android:entries="@array/colors"
             android:entryValues="@array/colors"
-            android:key="list_preference_browsing_colors2"
+            android:key="list_preference_browsing_colors"
             android:summary="Schemat kolorów dla okien przeglądania"
             android:title="Kolor Przeglądanie" />
 
         <ListPreference
             android:entries="@array/colors"
             android:entryValues="@array/colors"
-            android:key="list_preference_picking_colors3"
+            android:key="list_preference_picking_colors"
             android:summary="Schemat kolorów dla okien wyboru"
             android:title="Kolor Wyboru" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:summary="Ustawienia powiadomień"
-        android:title="Powiadomienia">
+        android:title="@string/notifications">
 
         <SwitchPreference
-            android:defaultValue="false"
-            android:key="switch_preference_1"
+            android:defaultValue="true"
+            android:key="pref_switch_sync_all"
             android:onClick="notify_switch"
-            android:summary="Powiadomienia"
-            android:title="Powiadomienia" />
+            android:summary="@string/notifications"
+            android:title="@string/notifications" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="switch_preference_2"
-            android:summary="Powiadomienia o kończącym się katalogu"
-            android:title="Kończący się katalog" />
+            android:key="pref_switch_sync_catalog_ends"
+            android:summary="@string/ending_catalog_info"
+            android:dependency="pref_switch_sync_all"
+            android:title="@string/ending_catalog" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="switch_preference_3"
-            android:summary="Powiadomienia o nowych klientach"
-            android:title="Nowy klient" />
+            android:key="pref_switch_sync_all_new_client"
+            android:dependency="pref_switch_sync_all"
+            android:summary="@string/new_client_notifications"
+            android:title="@string/new_client" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="switch_preference_4"
-            android:summary="Powiadomienia o nowych zamówieniach"
-            android:title="Nowe zamówienie" />
+            android:key="pref_switch_sync_new_orders"
+            android:dependency="pref_switch_sync_all"
+            android:summary="@string/new_order_notifications"
+            android:title="@string/new_order" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="@string/pref_category_data"
+        android:title="@string/data">
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_def_data_base_exist"
+        android:key="pref_edit_text_data_base_clean"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/deleting_data_base"
+        android:title="@string/deleting_data_base_info" />
 
     </PreferenceCategory>
 

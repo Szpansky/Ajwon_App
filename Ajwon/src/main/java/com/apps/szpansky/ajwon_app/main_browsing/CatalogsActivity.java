@@ -33,7 +33,7 @@ public class CatalogsActivity extends SimpleActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CatalogsActivity.this, AddEditCatalogActivity.class);
-                CatalogsActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
     }
@@ -61,7 +61,7 @@ public class CatalogsActivity extends SimpleActivity {
 
                     Intent intent = new Intent(CatalogsActivity.this, ClientsActivity.class);
                     Client.clickedCatalogId = (int) id;
-                    CatalogsActivity.this.startActivity(intent);
+                    startActivity(intent);
                 }
                 flag[0] = true;
             }

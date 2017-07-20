@@ -32,7 +32,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpenAllPersonsActivity.this, AddEditPersonActivity.class);
-                OpenAllPersonsActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
     }
@@ -62,7 +62,7 @@ public class OpenAllPersonsActivity extends SimpleActivity {
                     toNextActivityBundle.putInt("personId", (int) id);
 
                     intent.putExtras(toNextActivityBundle);
-                    OpenAllPersonsActivity.this.startActivity(intent);
+                    startActivity(intent);
                 }
                 flag[0] = true;
             }

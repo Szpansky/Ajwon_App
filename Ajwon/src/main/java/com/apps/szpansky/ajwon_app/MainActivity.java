@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private String tableName = Database.TABLE_ITEMS;    //default exported/imported
     private String fileName = "Items.txt";
 
-    private Button openCatalogs;
+    private Button openCatalogs, startAds;
     private FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
 
     private Animation fabClose, fabOpen, fabRotate, fabRotateBack;
@@ -73,43 +73,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationView = (NavigationView) findViewById(R.id.navView);
-        openCatalogs = (Button) findViewById(R.id.openCatalogs);
-
-        fabMain = (FloatingActionButton) findViewById(R.id.fabMain);
-        fabNewCatalog = (FloatingActionButton) findViewById(R.id.fabAddCatalog);
-        fabNewPerson = (FloatingActionButton) findViewById(R.id.fabAddPerson);
-        fabNewItem = (FloatingActionButton) findViewById(R.id.fabAddItem);
-
-        subFloatingMenu = (GridLayout) findViewById(R.id.subFloatingMenu);
-
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
         fabRotate = AnimationUtils.loadAnimation(this, R.anim.fab_rotate);
         fabRotateBack = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_back);
 
-        setToolBar();
-        setDrawerWithToggle();
-
-        onStartClick();
-        onFloatingButtonClick();
+        setDrawer();
 
         onNavigationItemClick();
-
+        onStartClick();
+        onFloatingButtonClick();
         onFabMenuItemClick();
 
         setAds();
-
         onStartADSClick();
 
         getPreferences();
-
     }
 
 
     private void getPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String test = sharedPreferences.getString("pref_edit_text_loggedAs", getResources().getString(R.string.logged_as));
+        String test = sharedPreferences.getString("pref_edit_text_loggedAs", getResources().getString(R.string.pref_def_logged_as));
         View v = navigationView.getHeaderView(0);
         TextView loggedAs = (TextView) v.findViewById(R.id.loggedAs);
         loggedAs.setText(test);
@@ -128,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onStartADSClick() {
-        Button startAds = (Button) findViewById(R.id.startAd);
+        startAds = (Button) findViewById(R.id.startAd);
         startAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,24 +145,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setToolBar() {
+    private void setDrawer() {
+        navigationView = (NavigationView) findViewById(R.id.navView);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-
-    private void setDrawerWithToggle() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-
-        if (drawerLayout.isDrawerVisible(Gravity.START)) {
-            navigationView.clearFocus();
-        }
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     private void dialogLoginBuilder() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -347,6 +325,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onStartClick() {
+        openCatalogs = (Button) findViewById(R.id.openCatalogs);
+
         openCatalogs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent Intent_Open_Catalogs = new Intent(MainActivity.this, CatalogsActivity.class);
@@ -357,6 +337,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onFloatingButtonClick() {
+        fabMain = (FloatingActionButton) findViewById(R.id.fabMain);
+        subFloatingMenu = (GridLayout) findViewById(R.id.subFloatingMenu);
+
         fabMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -387,6 +370,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onFabMenuItemClick() {
+        fabNewCatalog = (FloatingActionButton) findViewById(R.id.fabAddCatalog);
+        fabNewPerson = (FloatingActionButton) findViewById(R.id.fabAddPerson);
+        fabNewItem = (FloatingActionButton) findViewById(R.id.fabAddItem);
+
         fabNewCatalog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
