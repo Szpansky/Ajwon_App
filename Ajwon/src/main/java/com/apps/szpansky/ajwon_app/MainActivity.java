@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
     private void getPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String test = sharedPreferences.getString("pref_edit_text_loggedAs", getResources().getString(R.string.logged_as));
-        NavigationView navigationView = (NavigationView) drawerLayout.findViewById(R.id.navView);
         View v = navigationView.getHeaderView(0);
         TextView loggedAs = (TextView) v.findViewById(R.id.loggedAs);
         loggedAs.setText(test);
@@ -172,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        if (drawerLayout.isDrawerVisible(Gravity.START)) {
+            navigationView.clearFocus();
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

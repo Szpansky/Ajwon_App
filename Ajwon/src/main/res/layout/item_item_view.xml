@@ -33,11 +33,11 @@
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/colon"
         android:layout_alignBaseline="@+id/textView9"
         android:layout_alignBottom="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
         android:layout_toRightOf="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9" />
+        android:text="@string/colon" />
 
     <TextView
         android:id="@+id/itemPrice"
@@ -92,16 +92,6 @@
         android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/textView32"
         android:layout_toRightOf="@+id/textView32"
-        android:text="@string/error"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/itemDiscount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/itemId"
         android:text="@string/error"
         android:textSize="14sp" />
 
