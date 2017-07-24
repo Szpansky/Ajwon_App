@@ -16,14 +16,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/catalog_nr"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
-            android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/colon"
@@ -34,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error"
-            android:textSize="@dimen/default_text_size" />
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
@@ -49,14 +49,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/start"
             android:textSize="@dimen/default_sub_text_size" />
 
         <TextView
-            android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/colon"
@@ -66,8 +65,10 @@
             android:id="@+id/item_catalogDateStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="cursive"
             android:text="@string/error"
-            android:textSize="@dimen/default_sub_text_size" />
+            android:textSize="@dimen/default_sub_text_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -82,14 +83,13 @@
         android:id="@+id/linearLayout12">
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/end"
             android:textSize="@dimen/default_sub_text_size" />
 
         <TextView
-            android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/colon"
@@ -99,8 +99,10 @@
             android:id="@+id/item_catalogDateEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="cursive"
             android:text="@string/error"
-            android:textSize="@dimen/default_sub_text_size" />
+            android:textSize="@dimen/default_sub_text_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -113,15 +115,14 @@
         android:layout_alignParentEnd="true">
 
         <TextView
-            android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="casual"
             android:text="@string/clients_amount"
             android:textSize="@dimen/default_sub_text_size" />
 
         <TextView
-            android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -134,7 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/error"
-            android:textSize="@dimen/default_sub_text_size" />
+            android:textSize="@dimen/default_sub_text_size"
+            android:textStyle="italic" />
     </LinearLayout>
 
 </RelativeLayout>

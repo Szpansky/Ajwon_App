@@ -14,8 +14,10 @@
         android:layout_marginEnd="@dimen/default_text_margin"
         android:layout_marginRight="@dimen/default_text_margin"
         android:layout_marginTop="@dimen/default_text_margin"
+        android:fontFamily="casual"
         android:text="@string/error"
-        android:textSize="@dimen/default_text_size" />
+        android:textSize="@dimen/default_text_size"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/item_clientSurname"
@@ -25,8 +27,10 @@
         android:layout_marginTop="@dimen/default_text_margin"
         android:layout_toEndOf="@+id/item_clientName"
         android:layout_toRightOf="@+id/item_clientName"
+        android:fontFamily="casual"
         android:text="@string/error"
-        android:textSize="@dimen/default_text_size" />
+        android:textSize="@dimen/default_text_size"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -42,6 +46,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/ordered"
             android:textSize="@dimen/default_sub_text_size" />
 
@@ -56,8 +61,10 @@
             android:id="@+id/item_clientDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="cursive"
             android:text="@string/error"
-            android:textSize="@dimen/default_sub_text_size" />
+            android:textSize="@dimen/default_sub_text_size"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,6 +81,7 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/status"
             android:textSize="@dimen/default_sub_text_size" />
 
@@ -89,7 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error"
-            android:textSize="@dimen/default_text_size" />
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="italic" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,6 +114,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/count_of_order"
             android:textSize="@dimen/default_sub_text_size" />
 
@@ -120,7 +130,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error"
-            android:textSize="@dimen/default_text_size" />
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
@@ -128,15 +139,16 @@
         android:id="@+id/linearLayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout6"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/linearLayout4"
-        android:orientation="horizontal">
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/total"
             android:textSize="@dimen/default_sub_text_size" />
 
@@ -159,7 +171,9 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text="@string/money_shortcut"
+            android:textAllCaps="false"
             android:textSize="@dimen/default_sub_text_size" />
     </LinearLayout>
 

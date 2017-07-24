@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/import_db" />
 
             <Button
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/export_db" />
 
         </LinearLayout>
@@ -125,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/import_db" />
 
             <Button
@@ -134,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/export_db" />
 
         </LinearLayout>

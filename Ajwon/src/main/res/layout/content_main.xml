@@ -28,11 +28,9 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/include2"
                 android:layout_margin="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/browsing"
                 android:textSize="@dimen/default_text_size"
                 android:textStyle="bold" />
@@ -42,39 +40,33 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/openCatalogs"
                 android:layout_margin="@dimen/default_padding"
                 android:layout_weight="1"
-                android:text="@string/show_ad_to_spport_developer"
+                android:fontFamily="casual"
+                android:text="@string/daily_reward"
                 android:textSize="@dimen/default_text_size"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/openCalendar"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_below="@+id/button3"
                 android:layout_margin="@dimen/default_padding"
-                android:layout_toEndOf="@+id/subFloatingMenu"
-                android:layout_toRightOf="@+id/subFloatingMenu"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/calendar"
                 android:textSize="@dimen/default_text_size"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/openURLCatalog"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/startAd"
                 android:layout_margin="@dimen/default_padding"
                 android:layout_weight="1"
+                android:fontFamily="casual"
                 android:text="@string/catalog_on_line"
                 android:textSize="@dimen/default_text_size"
                 android:textStyle="bold" />
@@ -98,6 +90,15 @@
         app:srcCompat="@mipmap/ic_add_white_24dp" />
 
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ads_banner_main_id" />
+
     <GridLayout
         android:id="@+id/subFloatingMenu"
         android:layout_width="wrap_content"
@@ -105,6 +106,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="@android:drawable/zoom_plate"
         android:orientation="horizontal"
         android:visibility="gone">
 
@@ -214,15 +216,6 @@
             app:srcCompat="@mipmap/ic_add_white_24dp" />
 
     </GridLayout>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/ads_banner_main_id" />
 
 
 </RelativeLayout>

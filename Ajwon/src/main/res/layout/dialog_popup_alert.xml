@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/agree"
-            />
+            android:fontFamily="casual"
+            android:text="@string/agree" />
 
         <Button
             android:id="@+id/dialog_button_no"
@@ -33,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/disagree"
-            />
+            android:fontFamily="casual"
+            android:text="@string/disagree" />
 
     </LinearLayout>
 

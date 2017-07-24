@@ -19,24 +19,26 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/news"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
         android:layout_above="@+id/imageView5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:fontFamily="casual"
+        android:text="@string/news"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/navi_loggedAs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_toEndOf="@+id/imageView5"
+        android:layout_toRightOf="@+id/imageView5"
+        android:fontFamily="casual"
         android:padding="10dp"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/default_text_size"
-        android:layout_alignBottom="@+id/imageView5"
-        android:layout_toRightOf="@+id/imageView5"
-        android:layout_toEndOf="@+id/imageView5" />
+        android:textSize="@dimen/default_text_size" />
 
     <ImageView
         android:id="@+id/imageView5"

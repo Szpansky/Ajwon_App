@@ -2,6 +2,7 @@ package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.add_edit.AddEditCatalogActivity;
 import com.apps.szpansky.ajwon_app.add_edit.AddEditItemsActivity;
@@ -40,9 +42,15 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+
+import java.net.URL;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RewardedVideoAdListener {
 
     public static boolean LOGGED = false;
 
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private String tableName = Database.TABLE_ITEMS;    //default exported/imported
     private String fileName = "Items.txt";
 
-    private Button openCatalogs, startAds;
+    private Button openCatalogs, startAds, openURLCatalog;
     private FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
 
     private Animation fabClose, fabOpen, fabRotate, fabRotateBack;
@@ -66,12 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private RewardedVideoAd mAd;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        setAds();
 
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
@@ -85,10 +96,26 @@ public class MainActivity extends AppCompatActivity {
         onFloatingButtonClick();
         onFabMenuItemClick();
 
-        setAds();
-        onStartADSClick();
+
+        onDailyRewardClick();
 
         getPreferences();
+
+        openURL();
+
+    }
+
+
+    private void openURL() {
+        final String url = "https://www.avon.pl/ekatalog/";
+        openURLCatalog = (Button) findViewById(R.id.openURLCatalog);
+        openURLCatalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -98,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
         View v = navigationView.getHeaderView(0);
         TextView loggedAs = (TextView) v.findViewById(R.id.navi_loggedAs);
         loggedAs.setText(test);
+
+
     }
 
 
@@ -106,33 +135,47 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_Interstitial_main_id));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        //mInterstitialAd = new InterstitialAd(this);
+        //mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_Interstitial_main_id));
+        //mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mAd = MobileAds.getRewardedVideoAdInstance(this);
+        mAd.setRewardedVideoAdListener(this);
+
+
     }
 
 
-    private void onStartADSClick() {
+    private void onDailyRewardClick() {
         startAds = (Button) findViewById(R.id.startAd);
         startAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mInterstitialAd.isLoaded()) {
+              /*  if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 } else {
                     Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.try_again_later, Snackbar.LENGTH_SHORT);
                     snackbarInfo.show();
-                }
+                }*/
+
+                mAd.loadAd(getResources().getString(R.string.ads_reward_main_id), new AdRequest.Builder().build());
+                Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.wait_notify, Snackbar.LENGTH_SHORT);
+                snackbarInfo.show();
+
             }
         });
-        mInterstitialAd.setAdListener(new AdListener() {
+
+
+       /* mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
                 Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.thank_you, Snackbar.LENGTH_SHORT);
                 snackbarInfo.show();
             }
-        });
+        });*/
+
+
     }
 
 
@@ -398,5 +441,43 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        mAd.show();
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+                rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
     }
 }
