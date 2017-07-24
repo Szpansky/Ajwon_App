@@ -112,6 +112,19 @@
     <string name="pcs">" szt"</string>
     <string name="money_shortcut">" zł"</string>
     <string name="clients_amount">Ilość Klientów</string>
+    <string name="show_ad_to_spport_developer">Wesprzyj twórcę pokazując reklamę</string>
+    <string name="calendar">Kalendarz</string>
+    <string name="catalog_on_line">Katalog On-Line</string>
+    <string name="end_date">Data Końca</string>
+    <string name="start_date">Data Początku</string>
+    <string name="help_and_opinion_title_1">Oceń aplikację</string>
+    <string name="help_and_opinion_title_3">Gdzie są wyeksportowane pliki ?</string>
+    <string name="help_and_opinion_title_2">\"Nie widzę wyeksportowanych plików …</string>
+    <string name="help_and_opinion_title_4">Wyeksportowałem pliki ale teraz nie mogę imporotwać …</string>
+    <string name="help_and_opinion_text_1">\"Chciałbym wiedzieć co myślisz o mojej aplikacji. Jeżeli masz jakieś sugestie lub chcesz mnie poinformować o problemach, proszę wyślij do mnie wiadomość i zrobię wszystko co w mojej mocy by Ci pomóc!</string>
+    <string name="help_and_opinion_text_2">Jeżeli używasz komputera i kabla USB do przeglądania plików na telefonie, spróbuj rozłączyć i połączyćkabel ponownie. W innym wypadku restart urządzenia powinien pomóc.</string>
+    <string name="help_and_opinion_text_3">Jeżeli masz kartę pamięci SD, to właśnie tam są pliki w katalogu \"/Ajwon\", w przeciwnym wypadku użyj aplikacji do przeglądania plików i znajdź główny folder pamięci, gdzie będzie fodler \"/Ajwon\"</string>
+    <string name="help_and_opinion_text_4">Jeżeli chcesz importować pliki, musisz przenieść eksportowane pliki z folderu \"/Ajwon/Exported\" do folderu wcześniej \"/Ajwon\". To dlatego byś nie nadpisał sobię ważnych danych ;)</string>
 
 
 </resources>

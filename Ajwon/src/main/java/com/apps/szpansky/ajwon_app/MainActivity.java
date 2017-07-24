@@ -315,7 +315,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(Intent_Open_Settings);
                         break;
                     case (R.id.menuHelpOpinion):
-
+                        Intent Intent_Open_HelpAndOpinion = new Intent(MainActivity.this, HelpAndOpinionActivity.class);
+                        startActivity(Intent_Open_HelpAndOpinion);
                         break;
                 }
                 return true;
