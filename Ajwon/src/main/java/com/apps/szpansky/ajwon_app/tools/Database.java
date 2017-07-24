@@ -22,6 +22,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String CATALOG_DATE_START = "DATE_START";
     public static final String CATALOG_DATE_ENDS = "DATE_ENDS";
 
+    public static final String CATALOG_CLIENT_AMOUNT = "CLIENT_AMOUNT";
+
     public static final String TABLE_PERSONS = "PERSONS";
     public static final String PERSON_ID = "_id";
     public static final String PERSON_NAME = "NAME";
@@ -214,13 +216,20 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getCatalogs(String filter) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
-                "SELECT * " +
-                        "FROM " + TABLE_CATALOGS + " " +
-                        "WHERE " +
+                "SELECT T."+CATALOG_ID+", " +
+                        "T."+CATALOG_NUMBER+", " +
+                        "T."+CATALOG_DATE_START+", " +
+                        "T."+CATALOG_DATE_ENDS+", " +
+                        "COUNT(T."+CATALOG_ID+") as "+CATALOG_CLIENT_AMOUNT + " " +
+                        "FROM " + TABLE_CATALOGS + " AS T " +
+                        "JOIN " + TABLE_CLIENTS + " AS C " +
+                        "ON T." + CATALOG_ID + " = C." + CLIENT_CATALOG_ID + " " +
+                        "WHERE (" +
+                        "T." + CATALOG_ID + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + " " +
-                        "ORDER BY " + CATALOG_DATE_START + " DESC"
+                        CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + ") "+
+                        "GROUP BY T."+CATALOG_ID
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -269,15 +278,25 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT * " +
-                        "FROM " + TABLE_PERSONS + " AS P " +
-                        "LEFT JOIN " + TABLE_CLIENTS + " AS C " +
-                        "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
+                "SELECT C."+CLIENT_ID+", " +
+                        "SUM("+ORDER_TOTAL+") as "+ORDER_TOTAL+", "+
+                        "SUM("+ORDER_AMOUNT+") as "+ORDER_AMOUNT+", " +
+                        "P."+PERSON_NAME+", " +
+                        "P."+PERSON_SURNAME+", " +
+                        "C."+CLIENT_CATALOG_ID+", " +
+                        "C."+CLIENT_DATE+", " +
+                        "C."+CLIENT_STATUS+" " +
+                        "FROM " + TABLE_CLIENTS + " AS C " +
+                        "JOIN " + TABLE_PERSONS + " AS P " +
+                        "JOIN " + TABLE_ORDERS + " AS O " +
+                        "ON (C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " AND " +
+                        "C." + CLIENT_ID + " = O." + ORDER_CLIENT_ID + ") " +
                         "WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND (" +
                         PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
                         PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
                         CLIENT_DATE + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"
+                        CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"+
+                        "GROUP BY C."+CLIENT_ID
                 , null);
         if (c != null) {
             c.moveToFirst();

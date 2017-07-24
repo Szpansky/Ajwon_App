@@ -12,39 +12,43 @@ public class Client extends Order {
 
 
     @Override
-    public int getItemLayoutResourceId(){
+    public int getItemLayoutResourceId() {
 
         return R.layout.item_client_view;
     }
 
 
     @Override
-    public Cursor setCursor(Database myDB){
+    public Cursor setCursor(Database myDB) {
         return myDB.getClients(clickedCatalogId, this.filter);
     }
 
 
     @Override
-    public int[] getToViewIDs(){
+    public int[] getToViewIDs() {
 
         return (new int[]{
-                R.id.clientName,
-                R.id.clientSurname,
-                R.id.clientDate,
-                R.id.clientOrderStatus
+                R.id.item_clientName,
+                R.id.item_clientSurname,
+                R.id.item_clientDate,
+                R.id.item_clientOrderStatus,
+                R.id.item_clientAmount,
+                R.id.item_clientTotal
         });
     }
 
 
     @Override
-    public String[] getFromFieldsNames(){
+    public String[] getFromFieldsNames() {
 
-        return  new String[]{
+        return (new String[]{
                 Database.PERSON_NAME,
                 Database.PERSON_SURNAME,
                 Database.CLIENT_DATE,
-                Database.CLIENT_STATUS
-        };
+                Database.CLIENT_STATUS,
+                Database.ORDER_AMOUNT,
+                Database.ORDER_TOTAL
+        });
     }
 
 

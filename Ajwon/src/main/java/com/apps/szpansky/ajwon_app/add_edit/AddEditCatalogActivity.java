@@ -53,11 +53,11 @@ public class AddEditCatalogActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        catalogNumber = (EditText) findViewById(R.id.catalogNumber);
-        catalogDateStart = (EditText) findViewById(R.id.catalogDateStart);
-        catalogDateEnd = (EditText) findViewById(R.id.catalogDateEnd);
+        catalogNumber = (EditText) findViewById(R.id.add_edit_catalogNumber);
+        catalogDateStart = (EditText) findViewById(R.id.add_edit_catalogDateStart);
+        catalogDateEnd = (EditText) findViewById(R.id.add_edit_catalogDateEnd);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
+        add = (FloatingActionButton) findViewById(R.id.add_edit_catalog_fab);
 
         if (bundle != null) {
             thisId = bundle.getInt("catalogId");

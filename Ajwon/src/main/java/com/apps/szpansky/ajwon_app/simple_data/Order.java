@@ -7,51 +7,50 @@ import com.apps.szpansky.ajwon_app.tools.Data;
 import com.apps.szpansky.ajwon_app.tools.Database;
 
 
-
-public class Order extends Data{
+public class Order extends Data {
 
     public static int clickedClientId;
 
 
     @Override
-    public int getItemLayoutResourceId(){
+    public int getItemLayoutResourceId() {
         return (R.layout.item_order_view);
     }
 
 
     @Override
-    public Cursor setCursor(Database myDB){
+    public Cursor setCursor(Database myDB) {
         return myDB.getOrders(clickedClientId, this.filter);
     }
 
 
     @Override
-    public int[] getToViewIDs(){
+    public int[] getToViewIDs() {
 
         return (new int[]{
-                R.id.orderItemId,
-                R.id.orderItemName,
-                R.id.orderAmount,
-                R.id.orderTotal
+                R.id.item_orderItemId,
+                R.id.item_orderItemName,
+                R.id.item_orderAmount,
+                R.id.item_orderTotal
         });
     }
 
 
     @Override
-    public String[] getFromFieldsNames(){
+    public String[] getFromFieldsNames() {
 
-        return new String[]{
+        return (new String[]{
                 Database.ITEM_NUMBER,
                 Database.ITEM_NAME,
                 Database.ORDER_AMOUNT,
                 Database.ORDER_TOTAL
-        };
+        });
     }
 
 
     @Override
     public void deleteData(int orderId, Database myDB) {
 
-        myDB.delete(Database.TABLE_ORDERS,Database.ORDER_ID,orderId);
+        myDB.delete(Database.TABLE_ORDERS, Database.ORDER_ID, orderId);
     }
 }

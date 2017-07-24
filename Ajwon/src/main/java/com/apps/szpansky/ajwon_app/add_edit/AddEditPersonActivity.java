@@ -33,11 +33,11 @@ public class AddEditPersonActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        name = (EditText) findViewById(R.id.name);
-        surname = (EditText) findViewById(R.id.surname);
-        address = (EditText) findViewById(R.id.addres);
-        phone = (EditText) findViewById(R.id.phone);
-        add = (FloatingActionButton) findViewById(R.id.add);
+        name = (EditText) findViewById(R.id.add_edit_personName);
+        surname = (EditText) findViewById(R.id.add_edit_personSurname);
+        address = (EditText) findViewById(R.id.add_edit_personAddress);
+        phone = (EditText) findViewById(R.id.add_edit_personPhone);
+        add = (FloatingActionButton) findViewById(R.id.add_edit_person_fab);
 
         if (bundle != null) {
 

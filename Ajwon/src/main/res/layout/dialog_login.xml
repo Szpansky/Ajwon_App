@@ -5,16 +5,15 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/dialog_text_login"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/login"
         android:textSize="@dimen/default_text_size"
-        android:textStyle="bold"
-        android:text="@string/login" />
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/dialog_text_email"
+        android:id="@+id/dialog_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -22,7 +21,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/dialog_text_password"
+        android:id="@+id/dialog_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -30,7 +29,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/dialog_button_login"
+        android:id="@+id/dialog_login_loginBtn"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

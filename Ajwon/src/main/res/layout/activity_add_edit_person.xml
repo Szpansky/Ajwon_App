@@ -16,7 +16,6 @@
         android:focusableInTouchMode="true" />
 
     <TextView
-        android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -34,7 +33,7 @@
         android:paddingTop="@dimen/default_padding">
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/add_edit_personName"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_edit_text_height"
@@ -55,7 +54,7 @@
         android:paddingTop="@dimen/default_padding">
 
         <EditText
-            android:id="@+id/surname"
+            android:id="@+id/add_edit_personSurname"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_edit_text_height"
@@ -76,7 +75,7 @@
         android:paddingTop="@dimen/default_padding">
 
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/add_edit_personPhone"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_edit_text_height"
@@ -96,7 +95,7 @@
         android:paddingTop="@dimen/default_padding">
 
         <EditText
-            android:id="@+id/addres"
+            android:id="@+id/add_edit_personAddress"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_edit_text_height"
@@ -116,7 +115,7 @@
         android:paddingTop="@dimen/default_padding">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add"
+            android:id="@+id/add_edit_person_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

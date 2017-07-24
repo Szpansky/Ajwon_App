@@ -12,40 +12,40 @@ public class Person extends Client {
 
 
     @Override
-    public int getItemLayoutResourceId(){
+    public int getItemLayoutResourceId() {
 
         return (R.layout.item_person_view);
     }
 
 
     @Override
-    public Cursor setCursor(Database myDB){
+    public Cursor setCursor(Database myDB) {
 
         return myDB.getPersons(this.filter);
     }
 
 
     @Override
-    public int[] getToViewIDs(){
+    public int[] getToViewIDs() {
 
         return (new int[]{
-                R.id.personName,
-                R.id.personSurname,
-                R.id.personPhone,
-                R.id.personAddress
+                R.id.item_personName,
+                R.id.item_personSurname,
+                R.id.item_personPhone,
+                R.id.item_personAddress
         });
     }
 
 
     @Override
-    public String[] getFromFieldsNames(){
+    public String[] getFromFieldsNames() {
 
-        return new String[]{
+        return (new String[]{
                 Database.PERSON_NAME,
                 Database.PERSON_SURNAME,
                 Database.PERSON_PHONE,
                 Database.PERSON_ADDRESS
-        };
+        });
     }
 
 

@@ -108,6 +108,10 @@
     <string name="new_order_notifications">Powiadomienia o nowych zamówieniach</string>
     <string name="data">Dane</string>
     <string name="deleting_data_base">Usuwanie Bazy Danych</string>
+    <string name="count_of_order">Ilość zamówionych</string>
+    <string name="pcs">" szt"</string>
+    <string name="money_shortcut">" zł"</string>
+    <string name="clients_amount">Ilość Klientów</string>
 
 
 </resources>

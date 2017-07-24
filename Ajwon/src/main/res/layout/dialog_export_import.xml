@@ -16,7 +16,6 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/textView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,13 +26,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/import_export_DB_information"
             android:textAlignment="center"
-            android:textSize="@dimen/default_sub_text_size_" />
+            android:textSize="@dimen/default_sub_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +59,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -73,13 +70,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/import_export_table_info"
             android:textAlignment="center"
-            android:textSize="@dimen/default_sub_text_size_" />
+            android:textSize="@dimen/default_sub_text_size" />
 
         <RadioGroup
             android:id="@+id/dialog_ie_radio_group"
@@ -143,7 +139,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

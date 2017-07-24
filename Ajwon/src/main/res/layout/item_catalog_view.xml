@@ -5,104 +5,136 @@
     android:alpha="32"
     android:background="@android:drawable/dialog_holo_light_frame">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5sp"
-        android:text="@string/catalog_nr"
-        android:textSize="18sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:text="@string/colon"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/catalog_nr"
+            android:textSize="@dimen/default_text_size" />
 
-    <TextView
-        android:id="@+id/catalogNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView36"
-        android:layout_toRightOf="@+id/textView36"
-        android:text="@string/error"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_text_size" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="5sp"
-        android:text="@string/start"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/item_catalogNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
 
-    <TextView
-        android:id="@+id/textView37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:text="@string/colon" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/catalogDateStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView37"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView37"
-        android:layout_toRightOf="@+id/textView37"
-        android:text="@string/error"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textView3"
+    <LinearLayout
+        android:id="@+id/linearLayout10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/linearLayout11"
         android:layout_marginTop="5sp"
-        android:text="@string/end"
-        android:textSize="14sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView35"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/item_catalogDateStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_sub_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout10"
         android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:text="@string/colon" />
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout12">
 
-    <TextView
-        android:id="@+id/catalogDateEnd"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/item_catalogDateEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_sub_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView35"
-        android:layout_alignBottom="@+id/textView35"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView35"
-        android:layout_toRightOf="@+id/textView35"
-        android:text="@string/error"
-        android:textSize="14sp" />
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/linearLayout12"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/clients_amount"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/item_catalogClientAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/error"
+            android:textSize="@dimen/default_sub_text_size" />
+    </LinearLayout>
 
 </RelativeLayout>

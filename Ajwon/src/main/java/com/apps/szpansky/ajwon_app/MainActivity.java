@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String test = sharedPreferences.getString("pref_edit_text_loggedAs", getResources().getString(R.string.pref_def_logged_as));
         View v = navigationView.getHeaderView(0);
-        TextView loggedAs = (TextView) v.findViewById(R.id.loggedAs);
+        TextView loggedAs = (TextView) v.findViewById(R.id.navi_loggedAs);
         loggedAs.setText(test);
     }
 
@@ -160,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
     private void dialogLoginBuilder() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View dialogView = getLayoutInflater().inflate(R.layout.dialog_login, null);
-        final EditText emailEditText = (EditText) dialogView.findViewById(R.id.dialog_text_email);
-        final EditText passwordEditText = (EditText) dialogView.findViewById(R.id.dialog_text_password);
-        Button loginButton = (Button) dialogView.findViewById(R.id.dialog_button_login);
+        final EditText emailEditText = (EditText) dialogView.findViewById(R.id.dialog_login_email);
+        final EditText passwordEditText = (EditText) dialogView.findViewById(R.id.dialog_login_password);
+        Button loginButton = (Button) dialogView.findViewById(R.id.dialog_login_loginBtn);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog builder = new AlertDialog.Builder(this).create();
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_information, null);
 
-        Button backButton = (Button) dialogView.findViewById(R.id.dialog_button_back);
+        Button backButton = (Button) dialogView.findViewById(R.id.dialog_info_backBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

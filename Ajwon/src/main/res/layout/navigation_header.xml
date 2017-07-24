@@ -24,7 +24,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/loggedAs"
+        android:id="@+id/navi_loggedAs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1"
@@ -44,6 +44,6 @@
         android:padding="10dp"
         android:text="@string/news_sub"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/default_sub_text_size_" />
+        android:textSize="@dimen/default_sub_text_size" />
 
 </RelativeLayout>

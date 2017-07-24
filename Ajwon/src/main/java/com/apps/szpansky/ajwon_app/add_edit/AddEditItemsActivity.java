@@ -41,9 +41,9 @@ public class AddEditItemsActivity extends AppCompatActivity {
         myDB = new Database(this);
         bundle = getIntent().getExtras();
 
-        nr = (EditText) findViewById(R.id.nr);
-        name = (EditText) findViewById(R.id.name);
-        price = (EditText) findViewById(R.id.price);
+        nr = (EditText) findViewById(R.id.add_edit_itemNr);
+        name = (EditText) findViewById(R.id.add_edit_itemName);
+        price = (EditText) findViewById(R.id.add_edit_itemPrice);
 
         dis_all[0] = (CheckBox) findViewById(R.id.check_5);
         dis_all[1] = (CheckBox) findViewById(R.id.check_10);
@@ -55,7 +55,7 @@ public class AddEditItemsActivity extends AppCompatActivity {
         dis_all[7] = (CheckBox) findViewById(R.id.check_40);
         dis_all[8] = (CheckBox) findViewById(R.id.check_100);
 
-        add = (FloatingActionButton) findViewById(R.id.add);
+        add = (FloatingActionButton) findViewById(R.id.add_edit_item_fab);
 
         if (bundle != null) {
             thisId = bundle.getInt("itemId");

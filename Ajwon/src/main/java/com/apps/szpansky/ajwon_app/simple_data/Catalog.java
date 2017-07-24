@@ -6,46 +6,46 @@ import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.tools.Database;
 
 
-
 public class Catalog extends Client {
 
     public static int clickedCatalogId;
 
 
     @Override
-    public int getItemLayoutResourceId(){
+    public int getItemLayoutResourceId() {
 
         return (R.layout.item_catalog_view);
     }
 
 
     @Override
-    public Cursor setCursor(Database myDB){
+    public Cursor setCursor(Database myDB) {
 
         return myDB.getCatalogs(this.filter);
     }
 
 
     @Override
-    public int[] getToViewIDs(){
+    public int[] getToViewIDs() {
 
         return (new int[]{
-                //R.id.catalogId,
-                R.id.catalogNumber,
-                R.id.catalogDateStart,
-                R.id.catalogDateEnd
+                R.id.item_catalogNumber,
+                R.id.item_catalogDateStart,
+                R.id.item_catalogDateEnd,
+                R.id.item_catalogClientAmount
         });
     }
 
 
     @Override
-    public String[] getFromFieldsNames(){
+    public String[] getFromFieldsNames() {
 
-        return new String[]{
-                //Database.CATALOG_ID,
+        return (new String[]{
                 Database.CATALOG_NUMBER,
                 Database.CATALOG_DATE_START,
-                Database.CATALOG_DATE_ENDS};
+                Database.CATALOG_DATE_ENDS,
+                Database.CATALOG_CLIENT_AMOUNT
+        });
     }
 
 

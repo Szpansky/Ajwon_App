@@ -112,9 +112,11 @@
 
 
     <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>             <!-- -  ids 1  <!- -->
-    <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>                   <!-- -  ids 2   <!- -->
-
-
+    <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="count_of_order">Count of order</string>
+    <string name="pcs">" pcs"</string>
+    <string name="money_shortcut">" usd"</string>
+    <string name="clients_amount">Clients Amount</string>                   <!-- -  ids 2   <!- -->
 
 
 </resources>

@@ -4,139 +4,129 @@
     android:layout_height="wrap_content"
     android:background="@android:drawable/dialog_holo_light_frame">
 
+
     <TextView
-        android:id="@+id/orderItemName"
+        android:id="@+id/item_orderItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5sp"
+        android:layout_marginTop="@dimen/default_text_margin"
         android:text="@string/error"
         android:textAlignment="center"
-        android:textSize="14sp" />
+        android:textSize="@dimen/default_sub_text_size" />
 
-
-    <TextView
-        android:id="@+id/textView15"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/orderItemName"
-        android:layout_marginTop="5sp"
-        android:text="@string/amount"
-        android:textSize="14sp" />
+        android:layout_below="@+id/item_orderItemName"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView15"
-        android:layout_alignBottom="@+id/textView15"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView15"
-        android:layout_toRightOf="@+id/textView15"
-        android:text="@string/colon" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textSize="@dimen/default_sub_text_size" />
 
-    <TextView
-        android:id="@+id/orderAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/orderItemName"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView28"
-        android:layout_toRightOf="@+id/textView28"
-        android:text="@string/error"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/orderTotal"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/orderAmount"
-        android:layout_toRightOf="@+id/orderAmount"
-        android:text=" szt"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/item_orderAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
 
-    <TextView
-        android:id="@+id/textView16"
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pcs"
+            android:textSize="@dimen/default_sub_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/orderAmount"
-        android:layout_marginTop="5sp"
-        android:text="@string/total"
-        android:textSize="14sp" />
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="@dimen/default_text_margin"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView29"
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
+
+        <TextView
+            android:id="@+id/item_orderItemId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView16"
-        android:layout_alignBottom="@+id/textView16"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView16"
-        android:layout_toRightOf="@+id/textView16"
-        android:text="@string/colon" />
+        android:layout_alignBottom="@+id/linearLayout3"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/orderTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/orderAmount"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView29"
-        android:layout_toRightOf="@+id/textView29"
-        android:text="@string/error"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            android:textSize="@dimen/default_sub_text_size" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/orderTotal"
-        android:layout_alignBottom="@+id/orderTotal"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/orderTotal"
-        android:layout_toRightOf="@+id/orderTotal"
-        android:text=" zł"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            android:textSize="@dimen/default_sub_text_size" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/orderTotal"
-        android:layout_marginTop="5sp"
-        android:text="@string/code"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/item_orderTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textSize="@dimen/default_text_size"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView16"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView14"
-        android:layout_toRightOf="@+id/textView14"
-        android:text="@string/colon"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/money_shortcut"
+            android:textSize="@dimen/default_sub_text_size" />
 
-    <TextView
-        android:id="@+id/orderItemId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView30"
-        android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/textView30"
-        android:layout_toRightOf="@+id/textView30"
-        android:text="@string/error"
-        android:textSize="12sp" />
+    </LinearLayout>
 
 </RelativeLayout>
