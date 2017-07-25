@@ -65,7 +65,7 @@ public final class FileManagement {
     }
 
 
-    public static void importTXT(View view, Context context, String fileName, String tableName) {//TODO thread
+    public static void importTXT(View view, Context context, String fileName, String tableName) {
         Integer updated = 0, created = 0;
         String where_query;
 

@@ -31,7 +31,7 @@
                 android:id="@+id/menuClients"
                 android:checkable="true"
                 android:icon="@mipmap/ic_account_box_black_24dp"
-                android:title="@string/clients" />
+                android:title="@string/contacts" />
             <item
                 android:id="@+id/menuItems"
                 android:checkable="true"

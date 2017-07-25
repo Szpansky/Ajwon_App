@@ -103,19 +103,19 @@
     <string name="wait_notify">Wait, i\'m working ;)</string>
 
 
-    <!-- -      <string name="ads_Interstitial_main_id">ca-app-pub-3940256099942544/1033173712</string>         Tests ids 1        <!- -->
-    <!-- -      <string name="ads_banner_main_id">ca-app-pub-3940256099942544/6300978111</string>               Tests ids 2        <!- -->
-    <!-- -      <string name="ads_reward_main_id">ca-app-pub-3940256099942544/5224354917</string>               Tests ids 3        <!- -->
+    <!-- -      <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>         Tests ids 1        <!- -->
+    <!-- -      <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>               Tests ids 2        <!- -->
+    <!-- -      <string name="ads_reward_main_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>               Tests ids 3        <!- -->
 
 
-    <!-- -      <string name="ads_Interstitial_main_id">ca-app-pub-9635712631261774/7744024240</string>         My ids 1     <!- -->
-    <!-- -      <string name="ads_banner_main_id">ca-app-pub-9635712631261774/7604423447</string>               My ids 2     <!- -->
-    <!-- -      <string name="ads_banner_main_id">ca-app-pub-9635712631261774/2174583266</string>               My ids 3     <!- -->
+    <!-- -      <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-9635712631261774/7744024240</string>          My ids 1     <!- -->
+    <!-- -      <string name="ads_banner_main_id" translatable="false">ca-app-pub-9635712631261774/7604423447</string>              My ids 2     <!- -->
+    <!-- -      <string name="ads_reward_main_id" translatable="false">ca-app-pub-9635712631261774/2174583266</string>              My ids 3     <!- -->
 
 
 
-    <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>             <!-- -  ids 1  <!- -->
-    <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>                  <!-- -  ids 2   <!- -->
+    <string name="ads_Interstitial_main_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="ads_banner_main_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ads_reward_main_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
     <string name="count_of_order">Ordered</string>
     <string name="pcs">" pcs"</string>
@@ -140,6 +140,14 @@
     <string name="rate_on_play_store">\-\> Rate on Play Store</string>
     <string name="points">Points</string>
     <string name="points_amount">Points amount</string>
+    <string name="help_and_opinion_title_6">Weird exported txt files</string>
+    <string name="help_and_opinion_text_6">Don\'t use standard notepad, use Word, notepad++ instead</string>
+    <string name="help_and_opinion_title_7">Can i use Excel, with exported txt files ?</string>
+    <string name="help_and_opinion_text_7">Yes, you can use it. In Excel just open as text file. Use UTF-8 as text encoding, leave checked default separators and then mark all column as text. I don\'t recommend use Excel for it.</string>
+    <string name="help_and_opinion_title_8">How now create txt from Excel ?</string>
+    <string name="help_and_opinion_text_9">Just pick \"save as\" option, select text file with separators. And that\'s all</string>
+    <string name="failed_to_load_ad">Come back tomorrow or check internet connection</string>
+    <string name="contacts">Contacts</string>
 
 
 </resources>

@@ -131,6 +131,14 @@
     <string name="send_mail_to_developer">->Wyślij E-Mail do Twórcy</string>
     <string name="points">Punkty</string>
     <string name="points_amount">Ilość punktów</string>
+    <string name="help_and_opinion_text_6">Do otwierania plików wyeksportowanych nie używaj zwykłego notatnika, zamast tego użyj Worda lub Notepad++</string>
+    <string name="help_and_opinion_title_6">Dziwny wyeksportowany plik po otwarciu …</string>
+    <string name="help_and_opinion_text_7">Tak, oczywiście. Jeżeli chcesz użyć Excel-a wystarczy otworzyć plik jako txt. Wybrać pochodzenie dokumentu \"UTF-8\", użyć domyślnie zaznaczonych separatorów oraz zaznaczyć wszystkie kolumny jako tekstowe. Nie polecam używać Excela do tego.</string>
+    <string name="help_and_opinion_text_9">Wystarczy wybrać \"zapisz jako\" oraz zaznaczyć tekst rozdzielony znakami tabulacji. I to wszystko.</string>
+    <string name="help_and_opinion_title_7">Moge użyć Excel-a wraz z wyeksportowanymi tekstowymi plikami ?</string>
+    <string name="help_and_opinion_title_8">Jak teraz wrócić z Excela do tekstowego pliku ?</string>
+    <string name="failed_to_load_ad">Wpadnij jutro lub sprawdź połączenie z internetem</string>
+    <string name="contacts">Kontakty</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.apps.szpansky.ajwon_app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
     private final static boolean IMPORT = false;
     private static boolean FLOATING_MENU = false;
 
-    private String tableName = Database.TABLE_ITEMS;    //default exported/imported
+    private String tableName = Database.TABLE_ITEMS;    //default exported/imported content
     private String fileName = "Items.txt";
 
     private Button openCatalogs, startAds, openURLCatalog;
@@ -77,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         setAds();
 
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
@@ -120,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
         mAd = MobileAds.getRewardedVideoAdInstance(this);
         mAd.setRewardedVideoAdListener(this);
     }
@@ -247,27 +248,28 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         fabMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (FLOATING_MENU) {
-                    subFloatingMenu.startAnimation(fabClose);
-                    fabMain.startAnimation(fabRotateBack);
-
-                    fabNewCatalog.setClickable(false);
-                    fabNewPerson.setClickable(false);
-                    fabNewItem.setClickable(false);
-
-                    subFloatingMenu.setVisibility(View.GONE);
-                    FLOATING_MENU = false;
-                } else {
-                    subFloatingMenu.setVisibility(View.VISIBLE);
-                    subFloatingMenu.startAnimation(fabOpen);
-                    fabMain.startAnimation(fabRotate);
-
-                    fabNewCatalog.setClickable(true);
-                    fabNewPerson.setClickable(true);
-                    fabNewItem.setClickable(true);
-
-                    FLOATING_MENU = true;
-                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (FLOATING_MENU) {
+                            subFloatingMenu.startAnimation(fabClose);
+                            fabMain.startAnimation(fabRotateBack);
+                            fabNewCatalog.setClickable(false);
+                            fabNewPerson.setClickable(false);
+                            fabNewItem.setClickable(false);
+                            FLOATING_MENU = false;
+                            subFloatingMenu.setVisibility(View.GONE);
+                        } else {
+                            subFloatingMenu.startAnimation(fabOpen);
+                            fabMain.startAnimation(fabRotate);
+                            fabNewCatalog.setClickable(true);
+                            fabNewPerson.setClickable(true);
+                            fabNewItem.setClickable(true);
+                            FLOATING_MENU = true;
+                            subFloatingMenu.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
             }
         });
     }
@@ -365,30 +367,59 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         importDBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManagement.importExportDB(findViewById(R.id.drawerLayout), IMPORT, getPackageName());
-                builder.dismiss();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileManagement.importExportDB(findViewById(R.id.drawerLayout), IMPORT, getPackageName());
+                        builder.dismiss();
+                    }
+                }).start();
             }
         });
 
         exportDBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManagement.importExportDB(findViewById(R.id.drawerLayout), EXPORT, getPackageName());
-                builder.dismiss();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileManagement.importExportDB(findViewById(R.id.drawerLayout), EXPORT, getPackageName());
+                        builder.dismiss();
+                    }
+                }).start();
             }
         });
 
         importTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManagement.importTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
+                final ProgressBar progressBar = (ProgressBar) dialogView.findViewById(R.id.pb);
+                progressBar.setVisibility(dialogView.VISIBLE);
+                Thread importTXT = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileManagement.importTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setVisibility(dialogView.GONE);
+                            }
+                        });
+                    }
+                });
+                importTXT.start();
             }
         });
 
         exportTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManagement.generateTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileManagement.generateTXT(dialogView.findViewById(R.id.dialog_import_export), getBaseContext(), fileName, tableName);
+                    }
+                }).start();
             }
         });
 
@@ -436,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
 
     @Override
     public void onRewardedVideoAdClosed() {
-        Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout),R.string.end, Snackbar.LENGTH_SHORT);
+        Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.end, Snackbar.LENGTH_SHORT);
         snackbarInfo.show();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -453,12 +484,11 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
-        Toast.makeText(this, "Added points: " + rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, "Added points: " + rewardItem.getAmount() + 1, Toast.LENGTH_SHORT).show();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         rewardAmount = Integer.parseInt(sharedPreferences.getString("pref_edit_text_rewardAmount", "0"));
-        rewardAmount  = rewardAmount + rewardItem.getAmount();
+        rewardAmount = rewardAmount + rewardItem.getAmount();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -475,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout),R.string.error_notify, Snackbar.LENGTH_SHORT);
+        Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.failed_to_load_ad, Snackbar.LENGTH_SHORT);
         snackbarInfo.show();
     }
 }

@@ -229,7 +229,8 @@ public class Database extends SQLiteOpenHelper {
                         CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
                         CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + ") "+
-                        "GROUP BY T."+CATALOG_ID
+                        "GROUP BY T."+CATALOG_ID + " "+
+                        "ORDER BY T." + CATALOG_ID + " DESC"
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -296,7 +297,8 @@ public class Database extends SQLiteOpenHelper {
                         PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
                         CLIENT_DATE + " LIKE \"%" + filter + "%\"" + " OR " +
                         CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"+
-                        "GROUP BY C."+CLIENT_ID
+                        "GROUP BY C."+CLIENT_ID + " " +
+                        "ORDER BY " + PERSON_SURNAME
                 , null);
         if (c != null) {
             c.moveToFirst();
