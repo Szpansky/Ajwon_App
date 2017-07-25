@@ -129,6 +129,8 @@
     <string name="help_and_opinion_title_5">W jaki sposób mogę skontaktować się z twórcą ?</string>
     <string name="rate_on_play_store">->Oceń aplikacje w Play Store</string>
     <string name="send_mail_to_developer">->Wyślij E-Mail do Twórcy</string>
+    <string name="points">Punkty</string>
+    <string name="points_amount">Ilość punktów</string>
 
 
 </resources>

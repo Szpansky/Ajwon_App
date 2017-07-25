@@ -22,10 +22,51 @@
         android:layout_above="@+id/imageView5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/default_text_margin"
+        android:layout_marginStart="@dimen/default_text_margin"
         android:fontFamily="casual"
         android:text="@string/news"
         android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textSize="@dimen/default_text_size" />
+
+    <TextView
+        android:id="@+id/navi_rewardAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/default_text_margin"
+        android:layout_marginRight="@dimen/default_text_margin"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/default_sub_text_size" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/navi_rewardAmount"
+        android:layout_alignBottom="@+id/navi_rewardAmount"
+        android:layout_toLeftOf="@+id/navi_rewardAmount"
+        android:layout_toStartOf="@+id/navi_rewardAmount"
+        android:fontFamily="casual"
+        android:text="@string/colon"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/default_sub_text_size" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2"
+        android:fontFamily="casual"
+        android:text="@string/points"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/default_sub_text_size" />
 
     <TextView
         android:id="@+id/navi_loggedAs"
@@ -48,6 +89,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="@dimen/default_text_margin"
+        android:layout_marginLeft="@dimen/default_text_margin"
+        android:layout_marginStart="@dimen/default_text_margin"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
 </RelativeLayout>

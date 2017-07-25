@@ -309,13 +309,18 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String clientId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT * " +
-                        "FROM " + TABLE_ITEMS + " AS I " +
-                        "LEFT JOIN " + TABLE_ORDERS + " AS O " +
+                "SELECT O."+ORDER_ID+", " +
+                        "O."+ORDER_CLIENT_ID+", " +
+                        "I."+ITEM_NUMBER+", " +
+                        "I."+ITEM_NAME+", " +
+                        "O."+ORDER_AMOUNT+", " +
+                        "O."+ORDER_TOTAL+" " +
+                        "FROM " + TABLE_ORDERS + " AS O " +
+                        "JOIN " + TABLE_ITEMS + " AS I " +
                         "ON O." + ORDER_ITEM_ID + " = I." + ITEM_ID + " " +
                         "WHERE " + ORDER_CLIENT_ID + " = " + clientId + " " + " AND (" +
                         ITEM_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
-                        "I." + ITEM_ID + " LIKE \"%" + filter + "%\"" + ") " +
+                        "I." + ITEM_NUMBER + " LIKE \"%" + filter + "%\"" + ") " +
                         "ORDER BY " + ITEM_NAME
                 , null);
         if (c != null) {

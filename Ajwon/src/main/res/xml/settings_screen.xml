@@ -4,7 +4,6 @@
     <PreferenceCategory
         android:title="@string/general">
 
-
         <EditTextPreference
             android:defaultValue="@string/pref_def_logged_as"
             android:key="pref_edit_text_loggedAs"
@@ -13,6 +12,14 @@
             android:summary="@string/logged_as"
             android:title="@string/coming_soon" />
 
+        <EditTextPreference
+            android:defaultValue="0"
+            android:editable="false"
+            android:key="pref_edit_text_rewardAmount"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/points_amount"
+            android:title="@string/points_amount" />
 
     </PreferenceCategory>
 
