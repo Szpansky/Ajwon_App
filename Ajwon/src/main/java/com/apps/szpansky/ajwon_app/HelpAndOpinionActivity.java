@@ -1,6 +1,7 @@
 package com.apps.szpansky.ajwon_app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,7 +11,7 @@ import android.widget.Button;
 public class HelpAndOpinionActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    Button devContact, marketRate;
+    Button devContact, marketRate, devDonate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,20 @@ public class HelpAndOpinionActivity extends AppCompatActivity {
 
         onMarketRateClick();
 
+        onDonateDevClick();
+
+    }
+
+
+    private void onDonateDevClick() {
+        devDonate = (Button) findViewById(R.id.donateDev);
+        devDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String url = "https://www.paypal.me/ajwonapp/5";
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+            }});
     }
 
 

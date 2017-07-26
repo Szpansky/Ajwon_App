@@ -127,14 +127,14 @@
     <string name="help_and_opinion_text_4">Jeżeli chcesz importować pliki, musisz przenieść eksportowane pliki z folderu \"/Ajwon/Exported\" do folderu wcześniej \"/Ajwon\". To dlatego byś nie nadpisał sobię ważnych danych ;)</string>
     <string name="help_and_opinion_text_5">Jeżeli masz jakiś problem, sugestie bądź chcesz po prostu napisać, możesz to zrobić wysyłając wiadomość na ajwonapp@gmail.com</string>
     <string name="help_and_opinion_title_5">W jaki sposób mogę skontaktować się z twórcą ?</string>
-    <string name="rate_on_play_store">->Oceń aplikacje w Play Store</string>
-    <string name="send_mail_to_developer">->Wyślij E-Mail do Twórcy</string>
+    <string name="rate_on_play_store">-> Oceń aplikacje w Play Store</string>
+    <string name="send_mail_to_developer">-> Wyślij E-Mail do Twórcy</string>
     <string name="points">Punkty</string>
     <string name="points_amount">Ilość punktów</string>
     <string name="help_and_opinion_text_6">Do otwierania plików wyeksportowanych nie używaj zwykłego notatnika, zamast tego użyj Worda lub Notepad++</string>
     <string name="help_and_opinion_title_6">Dziwny wyeksportowany plik po otwarciu …</string>
     <string name="help_and_opinion_text_7">Tak, oczywiście. Jeżeli chcesz użyć Excel-a wystarczy otworzyć plik jako txt. Wybrać pochodzenie dokumentu \"UTF-8\", użyć domyślnie zaznaczonych separatorów oraz zaznaczyć wszystkie kolumny jako tekstowe. Nie polecam używać Excela do tego.</string>
-    <string name="help_and_opinion_text_9">Wystarczy wybrać \"zapisz jako\" oraz zaznaczyć tekst rozdzielony znakami tabulacji. I to wszystko.</string>
+    <string name="help_and_opinion_text_8">Wystarczy wybrać \"zapisz jako\" oraz zaznaczyć tekst rozdzielony znakami tabulacji. I to wszystko.</string>
     <string name="help_and_opinion_title_7">Moge użyć Excel-a wraz z wyeksportowanymi tekstowymi plikami ?</string>
     <string name="help_and_opinion_title_8">Jak teraz wrócić z Excela do tekstowego pliku ?</string>
     <string name="failed_to_load_ad">Wpadnij jutro lub sprawdź połączenie z internetem</string>
@@ -149,6 +149,9 @@
     <string name="count_of_catalogs">Liczba Katalogów</string>
     <string name="count_of_clients">Liczba Klientów</string>
     <string name="catalogs_amount">Ilość Katalogów</string>
+    <string name="help_and_opinion_text_9">Jeżeli chcesz wysłać twórcy darowiznę, użyj tego linka:</string>
+    <string name="help_and_opinion_title_9">Jak mogę wspomóc twórcę ?</string>
+    <string name="visit_website">-> Otwórz Stronę</string>
 
 
 </resources>
