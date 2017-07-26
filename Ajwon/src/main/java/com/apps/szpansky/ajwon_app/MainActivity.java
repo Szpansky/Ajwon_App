@@ -1,8 +1,8 @@
 package com.apps.szpansky.ajwon_app;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -42,7 +42,6 @@ import com.apps.szpansky.ajwon_app.tools.FileManagement;
 import com.apps.szpansky.ajwon_app.tools.NetworkFunctions;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
@@ -349,8 +348,30 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
             }
         });
 
+        Database myDB = new Database(this);
+        Cursor c = myDB.getCurrentCatalogInfo();
+
+
+        TextView currentCatalogNumber = (TextView) dialogView.findViewById(R.id.current_catalogs_number);
+        TextView currentCatalogClientsAmount = (TextView) dialogView.findViewById(R.id.current_clients_amount);
+        TextView currentCatalogItemOrderedAmount = (TextView) dialogView.findViewById(R.id.current_ordered_item_amount);
+        TextView currentCatalogNotPayed = (TextView) dialogView.findViewById(R.id.current_not_payed_amount);
+        TextView currentCatalogPayed = (TextView) dialogView.findViewById(R.id.current_payed_amount);
+        TextView currentCatalogReady = (TextView) dialogView.findViewById(R.id.current_ready_amount);
+        TextView currentCatalogTotal = (TextView) dialogView.findViewById(R.id.current_total);
+        currentCatalogNumber.setText(c.getString(0));
+        currentCatalogClientsAmount.setText(c.getString(1));
+        currentCatalogItemOrderedAmount.setText(c.getString(2));
+        currentCatalogNotPayed.setText(c.getString(3));
+        currentCatalogPayed.setText(c.getString(4));
+        currentCatalogReady.setText(c.getString(5));
+        currentCatalogTotal.setText(c.getString(6));
+
+        c.close();
+        myDB.close();
         builder.setView(dialogView);
         builder.show();
+
     }
 
 

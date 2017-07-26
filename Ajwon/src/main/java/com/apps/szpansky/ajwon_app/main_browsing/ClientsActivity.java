@@ -1,9 +1,13 @@
 package com.apps.szpansky.ajwon_app.main_browsing;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.RadioGroup;
 
 import com.apps.szpansky.ajwon_app.for_pick.PickPerson;
 import com.apps.szpansky.ajwon_app.R;
@@ -49,9 +53,10 @@ public class ClientsActivity extends SimpleActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 flag[0] = false;
+                final long thisId = id;
 
-                popupForDelete((int) id);
-                //TODO delete in new activiti with informations
+                dialogOnClientClick((int) thisId);
+
                 return false;
             }
         });
@@ -79,7 +84,7 @@ public class ClientsActivity extends SimpleActivity {
                 Integer personId = data.getIntExtra("personId", 0);
                 Integer catalogId = Client.clickedCatalogId;
 
-                myDB.insertDataToClients(catalogId.toString(), personId.toString(), getString(R.string.not_paid));
+                myDB.insertDataToClients(catalogId.toString(), personId.toString(), getString(R.string.db_status_not_payed));
 
                 refreshListView();
             }

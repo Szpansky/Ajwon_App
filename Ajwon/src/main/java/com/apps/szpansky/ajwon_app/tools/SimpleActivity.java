@@ -15,9 +15,11 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 
 import com.apps.szpansky.ajwon_app.R;
+import com.apps.szpansky.ajwon_app.main_browsing.ClientsActivity;
 
 
 public abstract class SimpleActivity extends AppCompatActivity {
@@ -168,6 +170,49 @@ public abstract class SimpleActivity extends AppCompatActivity {
             }
         };
         onScrollListener.onScroll(listView, listView.getFirstVisiblePosition(), listView.getLastVisiblePosition(), listView.getCount());
+    }
+
+
+    protected void dialogOnClientClick(final int thisId){
+        final AlertDialog builder = new AlertDialog.Builder(this).create();
+        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_on_client_click, null);
+        Button saveCatalog = (Button) dialogView.findViewById(R.id.buttonOrderSave);
+        Button deleteCatalog = (Button) dialogView.findViewById(R.id.buttonOrderDelete);
+
+        deleteCatalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupForDelete(thisId);
+                builder.dismiss();
+            }
+        });
+
+        saveCatalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String status;
+                RadioGroup radioGroup = (RadioGroup) dialogView.findViewById(R.id.radioGroupOrder);
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case (R.id.radioButtonOrderNotPaid):
+                        status = getString(R.string.db_status_not_payed);
+                        break;
+                    case (R.id.radioButtonOrderPaid):
+                        status = getString(R.string.db_status_payed);
+                        break;
+                    case (R.id.radioButtonOrderReady):
+                        status = getString(R.string.db_status_ready);
+                        break;
+                    default:
+                        status = getString(R.string.db_status_not_payed);
+                        break;
+                }
+                myDB.updateRowClient(thisId, status);
+                refreshListView();
+                builder.dismiss();
+            }
+        });
+        builder.setView(dialogView);
+        builder.show();
     }
 }
 

@@ -149,5 +149,8 @@
     <string name="failed_to_load_ad">Come back tomorrow or check internet connection</string>
     <string name="contacts">Contacts</string>
 
+    <string name="db_status_payed">Paid</string>
+    <string name="db_status_not_payed">Not Paid</string>
+    <string name="db_status_ready">Delivered</string>
 
 </resources>

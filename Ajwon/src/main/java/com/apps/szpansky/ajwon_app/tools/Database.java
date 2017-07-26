@@ -2,16 +2,23 @@ package com.apps.szpansky.ajwon_app.tools;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.apps.szpansky.ajwon_app.MainActivity;
+import com.apps.szpansky.ajwon_app.R;
+
 import java.util.Calendar;
 
 
 public class Database extends SQLiteOpenHelper {
+
+    static Context context;
+
 
     public static final String DATABASE_NAME = "Ajwon.db";
     public static final int DATABASE_VERSION = 4;
@@ -57,6 +64,7 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -216,21 +224,21 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getCatalogs(String filter) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
-                "SELECT T."+CATALOG_ID+", " +
-                        "T."+CATALOG_NUMBER+", " +
-                        "T."+CATALOG_DATE_START+", " +
-                        "T."+CATALOG_DATE_ENDS+", " +
-                        "COUNT(T."+CATALOG_ID+") as "+CATALOG_CLIENT_AMOUNT + " " +
-                        "FROM " + TABLE_CATALOGS + " AS T " +
-                        "JOIN " + TABLE_CLIENTS + " AS C " +
-                        "ON T." + CATALOG_ID + " = C." + CLIENT_CATALOG_ID + " " +
+                "SELECT C." + CATALOG_ID + ", " +
+                        "C." + CATALOG_NUMBER + ", " +
+                        "C." + CATALOG_DATE_START + ", " +
+                        "C." + CATALOG_DATE_ENDS + ", " +
+                        "COUNT(K." + CLIENT_CATALOG_ID + ") AS " + CATALOG_CLIENT_AMOUNT + " " +
+                        "FROM " + TABLE_CATALOGS + " as C " +
+                        "LEFT JOIN " + TABLE_CLIENTS + " AS K " +
+                        "ON C." + CATALOG_ID + " = K." + CLIENT_CATALOG_ID + " " +
                         "WHERE (" +
-                        "T." + CATALOG_ID + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + ") "+
-                        "GROUP BY T."+CATALOG_ID + " "+
-                        "ORDER BY T." + CATALOG_ID + " DESC"
+                        "C."+CATALOG_ID + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "C."+CATALOG_NUMBER + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "C."+CATALOG_DATE_START + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "C."+CATALOG_DATE_ENDS + " LIKE \"%" + filter + "%\"" + ") " +
+                        "GROUP BY C." + CATALOG_ID + " " +
+                        "ORDER BY C." + CATALOG_DATE_START + " DESC"
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -279,26 +287,33 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String workId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT C."+CLIENT_ID+", " +
-                        "SUM("+ORDER_TOTAL+") as "+ORDER_TOTAL+", "+
-                        "SUM("+ORDER_AMOUNT+") as "+ORDER_AMOUNT+", " +
-                        "P."+PERSON_NAME+", " +
-                        "P."+PERSON_SURNAME+", " +
-                        "C."+CLIENT_CATALOG_ID+", " +
-                        "C."+CLIENT_DATE+", " +
-                        "C."+CLIENT_STATUS+" " +
+                "SELECT X." + CLIENT_ID + ", " +
+                        "X." + PERSON_NAME + ", " +
+                        "X." + PERSON_SURNAME + ", " +
+                        "X." + CLIENT_CATALOG_ID + ", " +
+                        "X." + CLIENT_DATE + ", " +
+                        "X." + CLIENT_STATUS + ",  " +
+                        "SUM(O." + ORDER_TOTAL + ") as " + ORDER_TOTAL + ", " +
+                        "SUM(O." + ORDER_AMOUNT + ") as " + ORDER_AMOUNT + " " +
+                        "FROM  (SELECT C." + CLIENT_ID + ", " +
+                        "P." + PERSON_NAME + ", " +
+                        "P." + PERSON_SURNAME + ", " +
+                        "C." + CLIENT_CATALOG_ID + ", " +
+                        "C." + CLIENT_DATE + ", " +
+                        "C." + CLIENT_STATUS + " " +
                         "FROM " + TABLE_CLIENTS + " AS C " +
                         "JOIN " + TABLE_PERSONS + " AS P " +
-                        "JOIN " + TABLE_ORDERS + " AS O " +
-                        "ON (C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " AND " +
-                        "C." + CLIENT_ID + " = O." + ORDER_CLIENT_ID + ") " +
-                        "WHERE " + CLIENT_CATALOG_ID + " = " + workId + " AND (" +
-                        PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
-                        PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CLIENT_DATE + " LIKE \"%" + filter + "%\"" + " OR " +
-                        CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")"+
-                        "GROUP BY C."+CLIENT_ID + " " +
-                        "ORDER BY " + PERSON_SURNAME
+                        "ON C." + CLIENT_PERSON_ID + " = P." + PERSON_ID + " " +
+                        "GROUP BY C." + CLIENT_ID + ") AS X " +
+                        "LEFT JOIN " + TABLE_ORDERS + " AS O " +
+                        "ON O." + ORDER_CLIENT_ID + " = X." + CLIENT_ID + " " +
+                        "WHERE X." + CLIENT_CATALOG_ID + " = " + workId + " AND (" +
+                        "X." + PERSON_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "X." + PERSON_SURNAME + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "X." + CLIENT_DATE + " LIKE \"%" + filter + "%\"" + " OR " +
+                        "X." + CLIENT_STATUS + " LIKE \"%" + filter + "%\"" + ")" +
+                        "GROUP BY X." + CLIENT_ID + " " +
+                        "ORDER BY X." + PERSON_SURNAME
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -311,12 +326,12 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String clientId = id.toString();
         Cursor c = db.rawQuery(
-                "SELECT O."+ORDER_ID+", " +
-                        "O."+ORDER_CLIENT_ID+", " +
-                        "I."+ITEM_NUMBER+", " +
-                        "I."+ITEM_NAME+", " +
-                        "O."+ORDER_AMOUNT+", " +
-                        "O."+ORDER_TOTAL+" " +
+                "SELECT O." + ORDER_ID + ", " +
+                        "O." + ORDER_CLIENT_ID + ", " +
+                        "I." + ITEM_NUMBER + ", " +
+                        "I." + ITEM_NAME + ", " +
+                        "O." + ORDER_AMOUNT + ", " +
+                        "O." + ORDER_TOTAL + " " +
                         "FROM " + TABLE_ORDERS + " AS O " +
                         "JOIN " + TABLE_ITEMS + " AS I " +
                         "ON O." + ORDER_ITEM_ID + " = I." + ITEM_ID + " " +
@@ -324,6 +339,33 @@ public class Database extends SQLiteOpenHelper {
                         ITEM_NAME + " LIKE \"%" + filter + "%\"" + " OR " +
                         "I." + ITEM_NUMBER + " LIKE \"%" + filter + "%\"" + ") " +
                         "ORDER BY " + ITEM_NAME
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    public Cursor getCurrentCatalogInfo() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT  *, MAX(" + CATALOG_DATE_START + ") " +
+                        "FROM (" +
+                        "SELECT " +
+                        "c." + CATALOG_NUMBER + ", " +
+                        "count(distinct k." + CLIENT_ID + "), " +
+                        "sum(o." + ORDER_AMOUNT + "), " +
+                        "count(case k." + CLIENT_STATUS + " when '" + context.getString(R.string.db_status_not_payed)+ "' then 1 else null end ), " +
+                        "count(case k." + CLIENT_STATUS + " when '" + context.getString(R.string.db_status_payed) + "' then 1 else null end ), " +
+                        "count(case k." + CLIENT_STATUS + " when '" + context.getString(R.string.db_status_ready) + "' then 1 else null end ), " +
+                        "sum(o." + ORDER_TOTAL + "), " +
+                        "c." + CATALOG_DATE_START + " " +
+                        "FROM " + TABLE_CATALOGS + " as c " +
+                        "join " + TABLE_CLIENTS + " as k " +
+                        "join " + TABLE_ORDERS + " as o " +
+                        "on (c." + CATALOG_ID + " = k." + CLIENT_CATALOG_ID + " and k." + CLIENT_ID + " = o." + ORDER_CLIENT_ID + ") " +
+                        "group by c." + CATALOG_ID + ")"
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -384,6 +426,18 @@ public class Database extends SQLiteOpenHelper {
         newValues.put(ITEM_DISCOUNT, discount);
         newValues.put(ITEM_UPDATE_DATE, thisDate);
         long result = db.update(TABLE_ITEMS, newValues, where, null);
+        if (result == 1)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean updateRowClient(int id, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String where = CLIENT_ID + " = " + id;
+        ContentValues newValues = new ContentValues();
+        newValues.put(CLIENT_STATUS, status);
+        long result = db.update(TABLE_CLIENTS, newValues, where, null);
         if (result == 1)
             return true;
         else

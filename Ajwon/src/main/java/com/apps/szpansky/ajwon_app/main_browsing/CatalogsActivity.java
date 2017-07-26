@@ -49,7 +49,6 @@ public class CatalogsActivity extends SimpleActivity {
                 flag[0] = false;
 
                 popupForDelete((int) id);
-                //TODO activity about information (delete option in new activity)
                 return false;
             }
         });

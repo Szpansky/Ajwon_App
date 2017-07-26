@@ -49,7 +49,6 @@ public class OrdersActivity extends SimpleActivity {
                 flag[0] = false;
 
                 popupForDelete((int) id);
-                //TODO delete in new activiti with informations
                 return false;
             }
         });
