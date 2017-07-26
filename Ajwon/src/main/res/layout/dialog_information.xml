@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Obecny Katalog:"
+        android:text="@string/current_catalog"
         android:textSize="@dimen/default_text_size"
         android:textStyle="bold|italic" />
 
@@ -25,53 +25,53 @@
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="0"
-            android:text="Numer Katalogu"
+            android:text="@string/catalog_nr"
             android:textAllCaps="false"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="1"
-            android:text="Ilość Klientów"
+            android:text="@string/clients_amount"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="2"
-            android:text="Ilość Zamówionych"
+            android:text="@string/count_of_order"
             android:textSize="@dimen/default_text_size" />
 
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="3"
-            android:text="Nie Zapłacone"
+            android:text="@string/db_status_not_payed"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="4"
-            android:text="Zapłacone"
+            android:text="@string/db_status_payed"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="5"
-            android:text="Dostarczone"
+            android:text="@string/db_status_ready"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_row="6"
-            android:text="Suma"
+            android:text="@string/total"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
@@ -145,7 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/default_margin"
-        android:text="Ogólnie:"
+        android:text="@string/general"
         android:textSize="@dimen/default_text_size"
         android:textStyle="bold|italic" />
 
@@ -159,21 +159,21 @@
             android:layout_column="0"
             android:layout_gravity="left"
             android:layout_row="0"
-            android:text="Ilość Katalogów"
+            android:text="@string/catalogs_amount"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
             android:layout_gravity="left"
             android:layout_row="1"
-            android:text="Ilość Klientów"
+            android:text="@string/clients_amount"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:layout_column="0"
             android:layout_gravity="left"
             android:layout_row="2"
-            android:text="Ilość Przedmiotów"
+            android:text="@string/count_of_order"
             android:textSize="@dimen/default_text_size" />
 
 
@@ -181,7 +181,7 @@
             android:layout_column="0"
             android:layout_gravity="left"
             android:layout_row="3"
-            android:text="Ilość Kontaktów"
+            android:text="@string/total"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
@@ -209,7 +209,7 @@
             android:textSize="@dimen/default_text_size" />
 
         <TextView
-            android:id="@+id/all_persons_amount"
+            android:id="@+id/all_total"
             android:layout_column="1"
             android:layout_gravity="center"
             android:layout_row="3"
@@ -226,7 +226,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:fontFamily="casual"
-        android:text="Powrót" />
+        android:text="@string/back" />
 
 
 </LinearLayout>

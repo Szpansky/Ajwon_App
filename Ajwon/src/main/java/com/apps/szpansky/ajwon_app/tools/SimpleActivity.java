@@ -24,7 +24,7 @@ import com.apps.szpansky.ajwon_app.main_browsing.ClientsActivity;
 
 public abstract class SimpleActivity extends AppCompatActivity {
 
-    protected static Database myDB;
+    protected Database myDB;
     protected Bundle toNextActivityBundle = new Bundle();
     protected SimpleCursorAdapter myCursorAdapter;
     protected ListView listView;

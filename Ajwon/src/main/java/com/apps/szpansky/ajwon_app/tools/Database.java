@@ -374,6 +374,28 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
+    public Cursor getCurrentInfo(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "select count("+CATALOG_ID+") " +
+                        "from "+TABLE_CATALOGS+" " +
+                        "union " +
+                        "select count("+CLIENT_ID+") " +
+                        "from "+TABLE_CLIENTS+" " +
+                        "union " +
+                        "select count("+ORDER_ID+") " +
+                        "from "+TABLE_ORDERS+" " +
+                        "union " +
+                        "select sum("+ORDER_TOTAL+") " +
+                        "from "+TABLE_ORDERS+""
+                , null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
     public boolean updateRowCatalog(int id, String dateStart, String dateEnd) {
         SQLiteDatabase db = this.getWritableDatabase();
         String where = CATALOG_ID + " = " + id;

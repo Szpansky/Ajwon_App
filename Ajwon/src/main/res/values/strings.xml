@@ -152,5 +152,10 @@
     <string name="db_status_payed">Paid</string>
     <string name="db_status_not_payed">Not Paid</string>
     <string name="db_status_ready">Delivered</string>
+    <string name="current_catalog">Current Catalog</string>
+    <string name="count_of_catalogs">Count of Catalogs</string>
+    <string name="count_of_clients">Count of Clients</string>
+    <string name="back">Back</string>
+    <string name="catalogs_amount">Catalogs Amounts</string>
 
 </resources>

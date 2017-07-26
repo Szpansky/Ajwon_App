@@ -351,7 +351,6 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         Database myDB = new Database(this);
         Cursor c = myDB.getCurrentCatalogInfo();
 
-
         TextView currentCatalogNumber = (TextView) dialogView.findViewById(R.id.current_catalogs_number);
         TextView currentCatalogClientsAmount = (TextView) dialogView.findViewById(R.id.current_clients_amount);
         TextView currentCatalogItemOrderedAmount = (TextView) dialogView.findViewById(R.id.current_ordered_item_amount);
@@ -367,11 +366,24 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         currentCatalogReady.setText(c.getString(5));
         currentCatalogTotal.setText(c.getString(6));
 
+        c = myDB.getCurrentInfo();
+
+        TextView allCatalogsAmount = (TextView) dialogView.findViewById(R.id.all_catalogs_amount);
+        TextView allClientsAmount = (TextView) dialogView.findViewById(R.id.all_clients_amount);
+        TextView allItemOrderedAmount = (TextView) dialogView.findViewById(R.id.all_items_amount);
+        TextView allTotal = (TextView) dialogView.findViewById(R.id.all_total);
+        allCatalogsAmount.setText(c.getString(0));
+        c.moveToNext();
+        allClientsAmount.setText(c.getString(0));
+        c.moveToNext();
+        allItemOrderedAmount.setText(c.getString(0));
+        c.moveToNext();
+        allTotal.setText(c.getString(0));
+
         c.close();
         myDB.close();
         builder.setView(dialogView);
         builder.show();
-
     }
 
 

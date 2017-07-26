@@ -144,6 +144,11 @@
     <string name="db_status_payed">Zapłacono</string>
     <string name="db_status_not_payed">Nie Zapłacono</string>
     <string name="db_status_ready">Dostarczone</string>
+    <string name="current_catalog">Obecny Katalog</string>
+    <string name="back">Powrót</string>
+    <string name="count_of_catalogs">Liczba Katalogów</string>
+    <string name="count_of_clients">Liczba Klientów</string>
+    <string name="catalogs_amount">Ilość Katalogów</string>
 
 
 </resources>
