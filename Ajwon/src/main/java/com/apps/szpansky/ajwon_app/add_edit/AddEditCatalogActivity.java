@@ -69,7 +69,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
             catalogDateStart.setText(getCatalogInfo(2));
             catalogDateEnd.setText(getCatalogInfo(3));
 
-            catalogNumber.setFocusable(false);
+           // catalogNumber.setFocusable(false);
         }
 
         showDialogOnDateClick();
@@ -94,6 +94,7 @@ public class AddEditCatalogActivity extends AppCompatActivity {
 
     private void updateData() {
         boolean isUpdated = myDB.updateRowCatalog(thisId,
+                catalogNumber.getText().toString(),
                 catalogDateStart.getText().toString(),
                 catalogDateEnd.getText().toString());
         if (isUpdated) {

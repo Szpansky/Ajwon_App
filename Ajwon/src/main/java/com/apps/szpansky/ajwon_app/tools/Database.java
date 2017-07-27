@@ -377,17 +377,30 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getCurrentInfo(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
-                "select count("+CATALOG_ID+") " +
+                "SELECT * " +
+                        "FROM (select " +
+                        "count("+CATALOG_ID+"), " +
+                        "1 as filter "+
                         "from "+TABLE_CATALOGS+" " +
+
                         "union " +
-                        "select count("+CLIENT_ID+") " +
+                        "select " +
+                        "count("+CLIENT_STATUS+"), " +
+                        "2 as filter "+
                         "from "+TABLE_CLIENTS+" " +
+
                         "union " +
-                        "select count("+ORDER_ID+") " +
+                        "select " +
+                        "count("+ORDER_ID+"), " +
+                        "3 as filter "+
                         "from "+TABLE_ORDERS+" " +
+
                         "union " +
-                        "select sum("+ORDER_TOTAL+") " +
-                        "from "+TABLE_ORDERS+""
+                        "select " +
+                        "sum("+ORDER_TOTAL+"), " +
+                        "4 as filter "+
+                        "from "+TABLE_ORDERS+") " +
+                        "order by filter"
                 , null);
         if (c != null) {
             c.moveToFirst();
@@ -396,17 +409,22 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateRowCatalog(int id, String dateStart, String dateEnd) {
+    public boolean updateRowCatalog(int id,String number, String dateStart, String dateEnd) {
         SQLiteDatabase db = this.getWritableDatabase();
         String where = CATALOG_ID + " = " + id;
         ContentValues newValues = new ContentValues();
         newValues.put(CATALOG_DATE_START, dateStart);
         newValues.put(CATALOG_DATE_ENDS, dateEnd);
+        newValues.put(CATALOG_NUMBER, number);
+        try{
         long result = db.update(TABLE_CATALOGS, newValues, where, null);
         if (result == 1)
             return true;
         else
             return false;
+    } catch (SQLException se) {
+        return false;
+    }
     }
 
 

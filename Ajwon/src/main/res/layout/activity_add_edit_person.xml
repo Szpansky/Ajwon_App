@@ -83,7 +83,7 @@
             android:ems="10"
             android:hint="@string/phone_number"
             android:inputType="phone"
-            android:maxLength="25"
+            android:maxLength="19"
             android:textAlignment="center"
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold" />

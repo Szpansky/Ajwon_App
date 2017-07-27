@@ -2,6 +2,7 @@ package com.apps.szpansky.ajwon_app.main_browsing;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.apps.szpansky.ajwon_app.for_pick.PickPerson;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.simple_data.Client;
 import com.apps.szpansky.ajwon_app.simple_data.Order;
+import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
@@ -28,6 +30,12 @@ public class ClientsActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Cursor c = myDB.getRows(Database.TABLE_CATALOGS,Database.CATALOG_ID, Client.clickedCatalogId );
+        String title = c.getString(1);
+        this.setTitle(title);
+
+
 
         listViewItemClick();
     }

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
     private String tableName = Database.TABLE_ITEMS;    //default exported/imported content
     private String fileName = "Items.txt";
 
-    private Button openCatalogs, startAds, openURLCatalog;
+    private Button openCatalogs, startAds, openURLCatalog, openCalendar;
     private FloatingActionButton fabMain, fabNewCatalog, fabNewPerson, fabNewItem;
 
     private Animation fabClose, fabOpen, fabRotate, fabRotateBack;
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         onDailyRewardClick();
         getPreferences();
         onOpenCatalogOnlineClick();
+        onOpenCalendarClick();
     }
 
 
@@ -136,6 +137,16 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         });
     }
 
+    private void onOpenCalendarClick() {
+        openCalendar = (Button) findViewById(R.id.openCalendar);
+        openCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.coming_soon, Snackbar.LENGTH_SHORT);
+                snackbarInfo.show();
+            }
+        });
+    }
 
     private void onOpenCatalogOnlineClick() {
         final String url = "https://www.avon.pl/ekatalog/katalog-11";
@@ -226,8 +237,11 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
                         dialogExportImportBuilder();
                         break;
                     case (R.id.menuSetting):
-                        Intent Intent_Open_Settings = new Intent(MainActivity.this, SettingsActivity.class);
-                        startActivity(Intent_Open_Settings);
+                        Snackbar snackbarInfo = Snackbar.make(findViewById(R.id.drawerLayout), R.string.coming_soon, Snackbar.LENGTH_SHORT);
+                        snackbarInfo.show();
+
+                        //Intent Intent_Open_Settings = new Intent(MainActivity.this, SettingsActivity.class);
+                        //startActivity(Intent_Open_Settings);
                         break;
                     case (R.id.menuHelpOpinion):
                         Intent Intent_Open_HelpAndOpinion = new Intent(MainActivity.this, HelpAndOpinionActivity.class);
@@ -351,6 +365,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         Database myDB = new Database(this);
         Cursor c = myDB.getCurrentCatalogInfo();
 
+
         TextView currentCatalogNumber = (TextView) dialogView.findViewById(R.id.current_catalogs_number);
         TextView currentCatalogClientsAmount = (TextView) dialogView.findViewById(R.id.current_clients_amount);
         TextView currentCatalogItemOrderedAmount = (TextView) dialogView.findViewById(R.id.current_ordered_item_amount);
@@ -372,6 +387,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         TextView allClientsAmount = (TextView) dialogView.findViewById(R.id.all_clients_amount);
         TextView allItemOrderedAmount = (TextView) dialogView.findViewById(R.id.all_items_amount);
         TextView allTotal = (TextView) dialogView.findViewById(R.id.all_total);
+
         allCatalogsAmount.setText(c.getString(0));
         c.moveToNext();
         allClientsAmount.setText(c.getString(0));
@@ -517,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
-        Toast.makeText(this, "Added points: " + rewardItem.getAmount() + 1, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Added points: " + rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         rewardAmount = Integer.parseInt(sharedPreferences.getString("pref_edit_text_rewardAmount", "0"));
