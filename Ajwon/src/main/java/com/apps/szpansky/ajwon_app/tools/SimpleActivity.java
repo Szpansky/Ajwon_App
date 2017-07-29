@@ -12,6 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,7 +22,6 @@ import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 
 import com.apps.szpansky.ajwon_app.R;
-import com.apps.szpansky.ajwon_app.main_browsing.ClientsActivity;
 
 
 public abstract class SimpleActivity extends AppCompatActivity {
@@ -32,7 +34,6 @@ public abstract class SimpleActivity extends AppCompatActivity {
     private AbsListView.OnScrollListener onScrollListener;
     protected Toolbar toolbar;
     private Data data;
-
 
     protected abstract void onAddButtonClick();
 
@@ -107,6 +108,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 
@@ -146,6 +148,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
 
         builder.setView(view);
         builder.show();
+        listView.clearFocus();
     }
 
 
@@ -162,8 +165,12 @@ public abstract class SimpleActivity extends AppCompatActivity {
                 if (previousItem != firstVisibleItem) {
                     if (previousItem < firstVisibleItem) {
                         addButton.hide();
+                        toolbar.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
+                        toolbar.setActivated(false);
                     } else {
                         addButton.show();
+                        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
+                        toolbar.setActivated(true);
                     }
                     previousItem = firstVisibleItem;
                 }

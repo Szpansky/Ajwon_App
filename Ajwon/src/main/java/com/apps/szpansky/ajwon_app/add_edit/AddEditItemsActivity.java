@@ -12,9 +12,13 @@ import android.widget.Toast;
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
 import com.apps.szpansky.ajwon_app.tools.SimpleFunctions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class AddEditItemsActivity extends AppCompatActivity {
+
+    AdView mAdView;
 
     private EditText nr, price, name;
 
@@ -75,6 +79,15 @@ public class AddEditItemsActivity extends AppCompatActivity {
             nr.setFocusable(false);
         }
         onAddClick();
+
+        setAds();
+    }
+
+
+    private void setAds() {
+        mAdView = (AdView) findViewById(R.id.adViewItem);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 

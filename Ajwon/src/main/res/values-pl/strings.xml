@@ -137,7 +137,7 @@
     <string name="help_and_opinion_text_8">Wystarczy wybrać \"zapisz jako\" oraz zaznaczyć tekst rozdzielony znakami tabulacji. I to wszystko.</string>
     <string name="help_and_opinion_title_7">Moge użyć Excel-a wraz z wyeksportowanymi tekstowymi plikami ?</string>
     <string name="help_and_opinion_title_8">Jak teraz wrócić z Excela do tekstowego pliku ?</string>
-    <string name="failed_to_load_ad">Wpadnij jutro lub sprawdź połączenie z internetem</string>
+    <string name="failed_to_load_ad">Spróbuj ponownie jutro lub sprawdź połączenie z internetem</string>
     <string name="contacts">Kontakty</string>
 
 

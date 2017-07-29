@@ -89,7 +89,7 @@
         app:fabSize="normal"
         app:srcCompat="@mipmap/ic_add_white_24dp" />
 
-
+<!--
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="BANNER"
-        app:adUnitId="@string/ads_banner_main_id" />
+        app:adUnitId="@string/ads_banner_main_id" />-->
 
     <GridLayout
         android:id="@+id/subFloatingMenu"

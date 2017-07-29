@@ -10,8 +10,12 @@ import android.widget.Toast;
 
 import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class AddEditPersonActivity extends AppCompatActivity {
+
+    AdView mAdView;
 
     private EditText name;
     private EditText surname;
@@ -53,6 +57,15 @@ public class AddEditPersonActivity extends AppCompatActivity {
             phone.setText(getPersonInfo(4));
         }
         onAddClick();
+
+        setAds();
+    }
+
+
+    private void setAds() {
+        mAdView = (AdView) findViewById(R.id.adViewPerson);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 

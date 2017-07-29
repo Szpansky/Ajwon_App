@@ -8,25 +8,30 @@
     tools:context="com.apps.szpansky.ajwon_app.open_all.OpenAllCatalogsActivity">
 
 
+    <ListView
+        android:id="@+id/list_view_simple_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/default_padding"
+        android:layout_marginRight="@dimen/default_padding"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:drawSelectorOnTop="true"
+        android:focusable="false"
+        android:layoutAnimation="@anim/my_layout_animation"
+        android:paddingTop="@dimen/toolBar_height"
+        android:scrollbarStyle="outsideInset" />
+
+
     <include
         android:id="@+id/include"
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <ListView
-        android:id="@+id/list_view_simple_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:layoutAnimation="@anim/my_layout_animation"
-        android:scrollbarStyle="outsideOverlay"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/include" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add"

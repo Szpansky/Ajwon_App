@@ -1,12 +1,15 @@
 package com.apps.szpansky.ajwon_app.main_browsing;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.apps.szpansky.ajwon_app.for_pick.PickItem;
+import com.apps.szpansky.ajwon_app.simple_data.Client;
 import com.apps.szpansky.ajwon_app.simple_data.Order;
+import com.apps.szpansky.ajwon_app.tools.Database;
 import com.apps.szpansky.ajwon_app.tools.SimpleActivity;
 
 
@@ -22,6 +25,13 @@ public class OrdersActivity extends SimpleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Cursor c = myDB.getRows(Database.TABLE_CLIENTS, Database.CLIENT_ID, Order.clickedClientId);
+        int cursorId = c.getInt(2);
+        c = myDB.getRows(Database.TABLE_PERSONS, Database.PERSON_ID, cursorId);
+        String title = c.getString(1) + " " + c.getString(2);
+        this.setTitle(title);
+
 
         listViewItemClick();
     }

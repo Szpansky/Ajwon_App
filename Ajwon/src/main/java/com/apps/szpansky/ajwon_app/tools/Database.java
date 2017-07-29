@@ -447,7 +447,7 @@ public class Database extends SQLiteOpenHelper {
     public boolean updateRowItem(int id, String name, String price, String discount) {
         Calendar calendar = Calendar.getInstance();
         Integer year_x = calendar.get(Calendar.YEAR);
-        Integer month_x = calendar.get(Calendar.MONTH);
+        Integer month_x = calendar.get(Calendar.MONTH) + 1;
         Integer day_x = calendar.get(Calendar.DAY_OF_MONTH);
 
         String day = day_x.toString();
